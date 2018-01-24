@@ -94,6 +94,12 @@
 					                </select>
 					              </div>
 					            </div>
+											<div class="form-group">
+												<label class="control-label col-md-2">Stok</label>
+												<div class="col-md-6">
+													<input type="text" name="stok" class="form-control" placeholder="Stok Obat" />
+												</div>
+											</div>
 					            <div class="form-group">
 					              <label class="control-label col-md-2">Supplier</label>
 					              <div class="col-md-6">

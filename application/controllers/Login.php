@@ -1,19 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller{
-	
+
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('Model_login','modelLogin');
 	}
-	
+
 	public function index()
 	{
 		if($_POST){
 			$username    = $this->input->post('username', TRUE);
 			$password 	 = $this->input->post('password', TRUE);
-			
+
 			$result = $this->modelLogin->authenticate($username, $password);
 			if ($result == FALSE){
 				$this->session->set_flashdata("notif",
@@ -24,7 +24,7 @@ class Login extends CI_Controller{
 			else
 			{
 				$getdata = $this->M_crud->get_by_id('role', 'role_id', $result[0]->role_id);
-			
+
 				$session_data = array(
 						'ap_sid' 			=> $result[0]->user_id,
 						'ap_username' 		=> $result[0]->username,
@@ -34,15 +34,18 @@ class Login extends CI_Controller{
 						'ap_is_admin'		=> $result[0]->is_admin,
 						'ap_status_login'	=> 'Ok',
 				);
-			
+
 				$this->session->set_userdata('simklinik', $session_data);
-			
-				redirect('beranda');
+				if($session_data['ap_role_name']=='Gudang'){
+					redirect('Berandagudang');
+				}
+
+				// redirect('beranda');
 			}
 		}
 		$this->load->view('Login');
 	}
-	
+
 	public function save_password()
 	{
 		$now = new DateTime ( NULL, new DateTimeZone('Asia/Jakarta'));
@@ -77,7 +80,7 @@ class Login extends CI_Controller{
 			redirect("Signin/reset_password/token/".$this->input->post('token'));
 		}
 	}
-	
+
 	function hash($string){
 		return hash('sha512', $string . config_item('encryption_key'));
 	}

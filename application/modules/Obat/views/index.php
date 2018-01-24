@@ -1,6 +1,6 @@
 <?php
 		$menusid = $this->M_crud->get_by_param("menu", 'name', "Obat");
-		if(empty($menusid)){
+		if(!empty($menusid)){
 			$akses = $this->M_crud->get_select_to_row('hak_akses_create, hak_akses_update, hak_akses_delete', 'hak_akses', null, null, 'hak_akses_role', $this->session->userdata['simklinik']['ap_role'], 'hak_akses_menu', $menusid->id_menu);
 			if(count($akses) == 0)
 			{
@@ -59,9 +59,11 @@
 							<thead>
 								<tr>
 									<th style="width: 5%;" class="text-center">No.</th>
+									<th >Kode Obat</th>
 									<th class="text-center">Nama Obat / Alkes</th>
 									<th class="text-center">Kategori</th>
 									<th class="text-center">Merk</th>
+									<th class="text-center">Stok</th>
 									<th class="text-center">Satuan</th>
 									<th class="text-center">Supplier</th>
 									<th style="width: 10%;" class="text-center">Aksi</th>
@@ -71,9 +73,11 @@
                 <?php $i=1; foreach($obat as $row): ?>
                   <tr>
                     <td width="2px;"><?=$i++;?></td>
+                    <td><?=$row->kode_obat;?></td>
                     <td><?=$row->nama_obat;?></td>
                     <td><?=$row->nama_kategori;?></td>
                     <td><?=$row->merk_nama;?></td>
+                    <td><?=$row->stok;?></td>
                     <td><?=$row->satuan_nama;?></td>
                     <td><?=$row->nama_supplier;?></td>
 					<td class="center">
@@ -85,11 +89,11 @@
 									<i class="fa fa-edit" title="Edit"></i></a>
 						<?php
 							}
-							
+
 							if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnDelete == 1)
 							{
 						?>
-								<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal" 
+								<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal"
 									onclick="confirm_delete('<?php echo site_url('Obat/hapus').'/'.$row->id_obat;?>',
 									'<?php echo $row->nama_obat;?>');"><i class="fa fa-trash"></i></a>
 						<?php

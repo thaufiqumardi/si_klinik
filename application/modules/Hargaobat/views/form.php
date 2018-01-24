@@ -60,14 +60,14 @@
 				              </div>
 				            </div>
 				            <div class="form-group">
-				              <label class="control-label col-md-2">Harga Jual<sup style="color:red;">*</sup></label>
+				              <label class="control-label col-md-2">Harga Satuan<sup style="color:red;">*</sup></label>
 				              <div class="col-md-3">
 				              	<div class="input-group">
 				              		<span class="input-group-addon">Rp</span><input type="text" name="harga_jual1" id="harga_jual1" placeholder="" <?=(isset($hargaobat)?"value='".$hargaobat->harga_jual1."'":'');?> class="span8 form-control" required="required">
 				              	</div>
 				              </div>
 				            </div>
-				            
+
 				            <div class="box-footer">
 				            	<div class="pull-left">
 									<p>Yang bertanda <span style="color: red;">(*)</span> wajib di isi.</p>
@@ -75,8 +75,8 @@
 								<div class="pull-right">
 									<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
 									<a href="<?php echo base_url(); ?>Hargaobat" class="btn btn-warning"><i class="fa fa-close"></i> Batal</a>
-								</div>							
-							  </div>				            
+								</div>
+							  </div>
 							</div>
 						</form>
 					</div>
@@ -87,7 +87,7 @@
 		<?php $this->load->view('template/v_copyright'); ?>
 	</body>
 	<?php $this->load->view('template/v_footer'); ?>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#mnMasterObat').addClass('active');
