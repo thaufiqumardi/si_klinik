@@ -5,7 +5,7 @@ class M_kasir extends CI_Model
 
 	function __construct()
     {
-      parent::__construct();
+      parent::__construct();	  
     }
 
     function get_no_registrasi()
@@ -15,9 +15,9 @@ class M_kasir extends CI_Model
     	->join('registrasi_pasien B','A.no_registrasi = B.no_registrasi','left')
     	->where('A.status_bayar', '0')
     	->group_by('A.no_registrasi');
-
+    		
     	$get = $this->db->get();
-
+    
     	if($get->num_rows() > 0)
     	{
     		return $get->result();
@@ -27,7 +27,7 @@ class M_kasir extends CI_Model
     		return 0;
     	}
     }
-
+    
     function getRegistrasiJoined($no_registrasi){
     	$this->db->select('*, pasien.jenis_kelamin AS jenis_kelamin_pasien, pasien.tgl_lahir AS tgl_lahir_pasien')
     	->from('registrasi_pasien')
@@ -36,34 +36,34 @@ class M_kasir extends CI_Model
     	->where('no_registrasi',$no_registrasi);
     	return $this->db->get()->row();
     }
-
+    
     function create($data,$table)
     {
     	$this->db->insert($table,$data);
     }
-
+    
     function update($id,$data,$trig,$table)
     {
     	$this->db->where($trig,$id);
     	$this->db->update($table,$data);
     }
-
+    
     function update2($param1,$where1,$param2,$where2,$data,$table)
     {
     	$this->db->where($param1,$where1);
     	$this->db->where($param2,$where2);
     	$this->db->update($table,$data);
     }
-
+    
     function get_detail($no_registrasi)
     {
     	$this->db->select('*')
     	->from('detail_pembiayaan')
     	->where('no_registrasi', $no_registrasi)
     	->where('status_bayar', '0');
-
+    
     	$get = $this->db->get();
-
+    
     	if($get->num_rows() > 0)
     	{
     		return $get->result();
@@ -73,15 +73,15 @@ class M_kasir extends CI_Model
     		return 0;
     	}
     }
-
+    
     function get_pembiayaan($id_pembiayaan)
     {
     	$this->db->select('*')
     	->from('detail_pembiayaan')
     	->where('id_pembiayaan', $id_pembiayaan);
-
+    
     	$get = $this->db->get();
-
+    
     	if($get->num_rows() > 0)
     	{
     		return $get->result();
@@ -91,15 +91,15 @@ class M_kasir extends CI_Model
     		return 0;
     	}
     }
-
+    
     function get_piutang($no_registrasi)
     {
     	$this->db->select('*')
     	->from('piutang')
     	->where('no_registrasi', $no_registrasi);
-
+    
     	$get = $this->db->get();
-
+    
     	if($get->num_rows() > 0)
     	{
     		return $get->result();
@@ -109,7 +109,7 @@ class M_kasir extends CI_Model
     		return 0;
     	}
     }
-
+    
     function get_head_transaksi($no_kuitansi)
     {
     	$this->db->select('A.*, C.*')
@@ -118,9 +118,9 @@ class M_kasir extends CI_Model
     	->join('pemasukan C','B.no_registrasi = C.no_registrasi','left')
     	->where('C.no_kuitansi', $no_kuitansi)
     	->group_by('C.no_kuitansi');
-
+    
     	$get = $this->db->get();
-
+    
     	if($get->num_rows() > 0)
     	{
     		return $get->result();
@@ -130,7 +130,7 @@ class M_kasir extends CI_Model
     		return 0;
     	}
     }
-
+    
     function get_detail_transaksi($no_kuitansi){
     	$this->db->select('*')
     	->from('pemasukan')
@@ -138,16 +138,16 @@ class M_kasir extends CI_Model
     	$query = $this->db->get();
     	return $query->result();
     }
-
+    
     function get_nomor_kuitansi()
     {
     	$this->db->select('no_kuitansi')
     	->from('pemasukan')
     	->order_by('no_kuitansi','desc')
     	->limit(1);
-
+    	
     	$no_kuitansi=$this->db->get()->result();
-
+    	
     	if(empty($no_kuitansi)){
     		$no_kuitansi = "00000001";
     	}
@@ -161,7 +161,7 @@ class M_kasir extends CI_Model
     		elseif ($next < 100000 && $next > 9999) { $no_kuitansi = "000".$next;}
     		elseif ($next < 1000000 && $next > 99999) { $no_kuitansi = "00".$next;}
     	}
-
+    	
     	return $no_kuitansi;
     }
 

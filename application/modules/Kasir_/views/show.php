@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $menusid = $this->M_crud->get_by_param("menu", 'name', "Kasir");
 if(!empty($menusid)){
@@ -34,11 +34,11 @@ if(!empty($menusid)){
     			<div class="box box-widget">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Kasir</h3>
-					</div>
+					</div>					
 					<div class="box-body">
 						<div class='row'>
 							<form action="#" id="formMain">
-								<!-- <div class='col-sm-3'>
+								<div class='col-sm-3'>
 									<div class="panel panel-primary">
 										<div class="panel-heading">
 											<i class='fa fa-file-text-o fa-fw'></i> Informasi Pasien
@@ -92,22 +92,22 @@ if(!empty($menusid)){
 												</div>
 											</div>
 										</div>
-									</div> -->
-								</div>
+									</div>
+								</div>								
 								<div class='col-sm-9'>
 									<h5 class='judul-transaksi'>
-										Transaksi
-									</h5>
-									<div id="ResponseInput"></div>
+										Transaksi							
+									</h5>	
+									<div id="ResponseInput"></div>	
 									<!-- <div class="form-vertical">
 										<div class="col-lg-3" style="padding-left: 0;">
 											<button type="button" class="btn btn-primary" onclick="addObat()" id="btnTambahObat" style="margin-top: -6px;"><i class="fa fa-plus"></i> Tambah Obat (F8)</button>
-										</div>
+										</div>									
 										<div class="col-lg-3" style="padding-left: 0; margin-left: -40px;">
 											<button type="button" class="btn btn-warning" onclick="addLayanan()" id="btnTambahLayanan" style="margin-top: -6px;"><i class="fa fa-plus"></i> Tambah Layanan (F9)</button>
 										</div>
 										<div class="col-lg-6"></div>
-									</div>
+									</div> 
 									<br>-->
 									<table id="table" class="table table-striped table-bordered table-hover" style="cellspacing:0; width:100%; margin-top: 25px;">
 										<thead>
@@ -146,7 +146,7 @@ if(!empty($menusid)){
 													<div class="col-sm-6">
 														<input type='text' id='UangKembali' name='UangKembali' class='form-control' disabled="disabled" style="margin-bottom: 10px;">
 													</div>
-												</div>
+												</div>	
 											</div>
 										</div>
 									</div>
@@ -161,10 +161,10 @@ if(!empty($menusid)){
 												<button type='button' class='btn btn-primary btn-block' id='btnSimpan' name='btnSimpan' onclick="savetrx()">
 													<i class='fa fa-floppy-o'></i> Simpan
 												</button>
-											</div>
+											</div>	
 											<div class='col-sm-4' style='padding-right: 0px;'>
 												<a href="" target="_blank" class="btn btn-warning btn-block" id="btnPrint"><i class='fa fa-print'></i> Cetak</a>
-											</div>
+											</div>	
 										</div>
 									</div>
 								</div>
@@ -176,9 +176,9 @@ if(!empty($menusid)){
     	</div>
 		<?php $this->load->view('template/v_copyright'); ?>
     </body>
-
+    
     <?php $this->load->view('template/v_footer'); ?>
-
+    
     <script type="text/javascript">
     var nomor = 0;
     var total = 0;
@@ -215,7 +215,7 @@ if(!empty($menusid)){
 	            type: "GET",
 	            dataType: "JSON",
 	            success: function(data)
-	            {
+	            {	            
 		            total = 0;
             		deletes();
 	            	for (i = 0; i < data.length; i++) {
@@ -276,7 +276,7 @@ if(!empty($menusid)){
     }
 
     function deletes(){
-    	var cnt = nomor;
+    	var cnt = nomor;	
     	for (i = 0; i <= cnt; i++) {
     		$('#baris_'+i).remove();
     	}
@@ -293,7 +293,7 @@ if(!empty($menusid)){
     	else if(kembalian >= 0)
     	{
     		$('[name=UangTotal]').prop('disabled',false);
-
+    		
     		$.ajax({
     	        url : "<?php echo site_url('Kasir/SimpanTransaksi')?>",
     	        type: "POST",
@@ -310,7 +310,7 @@ if(!empty($menusid)){
     	        		$(".pesan-status").fadeTo(4000, 0).slideUp(500, function(){
     	        	        $(this).remove();
     	        	    });
-
+    	        		
     	        		$('#btnPrint').show();
     	        		$('#btnSimpan').hide();
     	        		$('#btnNew').show();
@@ -326,5 +326,6 @@ if(!empty($menusid)){
         }
     }
 	</script>
-
+    
 </html>
+

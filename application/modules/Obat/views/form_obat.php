@@ -36,6 +36,12 @@
 							}
 							?>">
 							<div class="box-body">
+									<div class="form-group">
+										<label class="control-label col-md-2">Kode Obat</label>
+										<div class="col-md-6">
+											<input type="text" name="kode_obat" class="form-control" placeholder="Kode Obat" <?=(isset($obat)?"value='$obat->kode_obat'":'');?> required="required"/>
+										</div>
+									</div>
 					            <div class="form-group">
 					              <label class="control-label col-md-2">Nama Obat/Alkes<sup style="color:red;">*</sup></label>
 					              <div class="col-md-6">
@@ -110,7 +116,7 @@
 									<div class="pull-right">
 										<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
 										<a href="<?php echo base_url(); ?>Obat" class="btn btn-warning"><i class="fa fa-close"></i> Batal</a>
-									</div>							
+									</div>
 							  </div>
 							</div>
 						</form>
@@ -122,7 +128,7 @@
 		<?php $this->load->view('template/v_copyright'); ?>
 	</body>
 	<?php $this->load->view('template/v_footer'); ?>
-	
+
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#mnMasterObat').addClass('active');

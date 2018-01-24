@@ -3,15 +3,15 @@
 <head>
   <title><?php echo config_item('web_title'); ?></title>
   <!-- <link href='</?php echo config_item('img'); ?>favicon.png' type='image/x-icon' rel='shortcut icon'> -->
-  <style type="text/css">
+  <style type="text/css"> 
     .short{
       width: 50px;
     }
-
+ 
     .normal{
       width: 150px;
     }
-
+ 
     table{
       	border-collapse: collapse;
     	border-spacing: 0;
@@ -20,19 +20,19 @@
       	font-family: arial;
       	color:#5E5B5C;
     }
-
+ 
     thead th{
       text-align: left;
     }
-
+ 
     tbody td{
       border-collapse: collapse;
     }
-
-    tbody tr:nth-child(even){
+ 
+    tbody tr:nth-child(even){      
       border-collapse: collapse;
     }
-
+ 
     tbody tr:hover{
       border-collapse: collapse;
     }
@@ -45,7 +45,7 @@
     			<td width=10% style="border:none; padding:0;">
     			</td>
                 <td align=center style="border:none; font-size:12px;">
-    				<?php
+    				<?php 
 						$image = $imgpath;
 						$imageData = base64_encode(file_get_contents($image));
 						$finfo = new finfo();
@@ -57,10 +57,10 @@
 					<br>
                 </td>
                 <td width=10% style="border:none; padding:0;"></td>
-    		</tr>
+    		</tr>  
 		</table>
 		<br>
-		<table style="width:100%; font-size:12px;">
+		<table style="width:100%; font-size:12px;"> 
 			<tr>
     			<td width=10% style="border:none; padding:0;">
     			</td>
@@ -69,7 +69,7 @@
 					<p>Jl. Kiaracondong 304/19-21 telp. (022) 7311759</p>
                 </td>
                 <td width=10% style="border:none; padding:0;"></td>
-    		</tr>
+    		</tr>  
 		</table>
 		<br />
 		<br />
@@ -78,7 +78,7 @@
                 <td align=center style="border:none; font-size:12px;">
                     <label>KUITANSI PEMBAYARAN</label>
                 </td>
-    		</tr>
+    		</tr>  
     	</table>
     	<br />
 		<?php foreach ($head as $key) { ?>
@@ -106,7 +106,7 @@
     			</td>
     		</tr>
 		</table>
-		<?php } ?>
+		<?php } ?>		
 		<br />
 		<br />
 		<table style="width:100%; font-size:12px; border: 1px solid #e3e3e3;">
@@ -127,7 +127,7 @@
 		  			<td style="border: 1px solid #e3e3e3; text-align:center;"><?php echo $no; ?></td>
 		  			<td style="border: 1px solid #e3e3e3; text-align:left; padding-left:5px;"><?php echo $key->nama_pemasukan; ?></td>
 		  			<td style="border: 1px solid #e3e3e3; text-align:right; padding-right:5px;"><?php echo "Rp. ".number_format($key->harga_pemasukan,0,",","."); ?></td>
-		  			<?php
+		  			<?php 
 			  			$qty = $this->M_base->currFormat0($key->qty_pemasukan);
 						$qty = str_replace(".00", "", $qty);
 						$total = $total + $key->total_pemasukan;

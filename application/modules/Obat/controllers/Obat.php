@@ -13,21 +13,21 @@ class Obat extends MX_Controller {
       	$this->load->model('M_obat','modelObat');
 		$this->load->library('form_validation');
     }
-    
+
 	public function index()
 	{
 		$this->M_setting->_make_sure_is_login();
 		$this->M_setting->_check_menu();
-		
+
     	$data['obat'] = $this->modelObat->get_joined('obat');
 		$this->load->view('index',$data);
 	}
-	
+
 	public function form($id=FALSE)
 	{
 		$this->M_setting->_make_sure_is_login();
 		$this->M_setting->_check_menu();
-		
+
 		$data['kat'] = $this->modelObat->get_kategori();
 		$data['merk'] = $this->modelObat->get_merk();
 		$data['satuan']=$this->modelObat->get_satuan();
@@ -41,7 +41,7 @@ class Obat extends MX_Controller {
 			$this->load->view('form_obat',$data);
 		}
 	}
-	
+
 	public function simpan()
 	{
 		$this->form_validation->set_rules('nama_obat','Nama Obat','is_unique[obat.nama_obat]');
@@ -55,6 +55,7 @@ class Obat extends MX_Controller {
 		}
 		else {
 			$data=array(
+				'kode_obat'=>$this->input->post('kode_obat'),
 				'nama_obat'=>$this->input->post('nama_obat'),
 				'id_kategori'=>$this->input->post('id_kategori'),
 				'id_merk'=>$this->input->post('id_merk'),
@@ -71,19 +72,19 @@ class Obat extends MX_Controller {
 			redirect('obat');
 		}
 	}
-	
+
 	public function update($id)
 	{
 		$getdata = $this->M_crud->get_by_id('obat', 'id_obat', $id);
 		$existing_obat = $getdata->nama_obat;
 		$status_exs = TRUE;
-		
+
 		if($existing_obat <> $this->input->post('nama_obat', TRUE)){
 			if($this->M_crud->check_table('obat', 'nama_obat', $this->input->post('nama_obat', TRUE)) != NULL){
 					$status_exs = FALSE;
 			}
 		}
-		
+
 		if($status_exs == TRUE){
 			$data=array(
 					'nama_obat'=>$this->input->post('nama_obat'),
@@ -119,7 +120,7 @@ class Obat extends MX_Controller {
 			redirect("Obat/form/$id");
 		}
 	}
-	
+
 	public function hapus($id)
 	{
 		$query = $this->modelObat->hapus('obat',$id);
@@ -140,13 +141,13 @@ class Obat extends MX_Controller {
 				redirect('obat');
 			}
 	}
-	
+
 	function cetak()
 	{
 		$data['obat']=$this->modelObat->get_joined('obat');
 		$this->load->view('print',$data);
 	}
-	
+
 	function doexport()
 	{
 		$header = [
@@ -157,7 +158,7 @@ class Obat extends MX_Controller {
 				'Satuan',
 				'Supplier',
 		];
-			
+
 		$dataList = array();
 		$list = $this->modelObat->get_joined('obat');
 		$no = 0;
@@ -173,7 +174,7 @@ class Obat extends MX_Controller {
 			$row[] = $datas->nama_supplier;
 			$dataList[] = $row;
 		}
-			
+
 		$writer = WriterFactory::create(Type::XLSX);
 		$namaFile = 'Data_Obat_'.date('Ymd') . '.xlsx';
 		$writer->openToBrowser($namaFile);
