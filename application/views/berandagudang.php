@@ -20,7 +20,6 @@
 		// die;
 		?>
 <!DOCTYPE html>
-sdadas
 <html>
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
