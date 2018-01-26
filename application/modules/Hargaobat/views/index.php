@@ -75,11 +75,11 @@
 			              </thead>
 			              <tbody>
 			                <?php $i=1; foreach($hargaobat as $row):?>
-			                <?php 
+			                <?php
 				                $beli = $this->M_base->currFormat2($row->harga_beli);
 				                $beli = str_replace(".00", "", $beli);
 				                $beli = "Rp. ".$beli;
-				                	
+
 				                $jual1 = $this->M_base->currFormat2($row->harga_jual1);
 				                $jual1 = str_replace(".00", "", $jual1);
 				                $jual1 = "Rp. ".$jual1;
@@ -106,11 +106,11 @@
 											<i class="fa fa-edit" title="Edit"></i></a>
 								<?php
 									}
-									
+
 									if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnDelete == 1)
 									{
 								?>
-										<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal" 
+										<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal"
 											onclick="confirm_delete('<?php echo site_url('Hargaobat/hapus').'/'.$row->harga_obat_id;?>',
 											'<?php echo $row->nama_obat;?>');"><i class="fa fa-trash"></i></a>
 								<?php
@@ -147,7 +147,7 @@
 		<?php $this->load->view('template/v_copyright'); ?>
 	</body>
 	<?php $this->load->view('template/v_footer'); ?>
-	
+
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$('#mnMasterObat').addClass('active');

@@ -31,161 +31,125 @@ if(!empty($menusid)){
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
-    			<div class="box box-widget">
-					<div class="box-header with-border">
-					  <h3 class="box-title">Kasir</h3>
-					</div>
-					<div class="box-body">
-						<div class='row'>
-							<form action="#" id="formMain">
-								<!-- <div class='col-sm-3'>
-									<div class="panel panel-primary">
-										<div class="panel-heading">
-											<i class='fa fa-file-text-o fa-fw'></i> Informasi Pasien
-										</div>
-										<div class="panel-body">
-											<div class="form-horizontal">
-												<input type="hidden" name="id_reg"/>
-												<div class="form-group informasi-kasir-noreg">
-													<label class="col-sm-4 informasi-kasir-noreg control-label">No. Reg/Antrian</label>
-													<div class="col-sm-8">
-														<select name="no_registrasi" id="no_registrasi" class="form-control selectOption">
-							                       		<option disabled selected value = ''>- Pilih -</option>
-							                               <?php
-													            foreach($arr_no_registrasi as $row)
-													            {
-													              	echo '<option value="'.$row->no_registrasi.'">'.$row->no_registrasi.' / '.$row->no_antrian.'</option>';
-													            }
-							            					?>
-								                        </select>
-													</div>
+					<div class="box box-widget">
+						<div class="box-header with-border" style="text-align:center;">
+							<h2>Kasir</h2>
+							<small>Jl. CIrebon blablabal</small>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-md-4">
+									<form class="form-horizontal">
+										<div class="form-group">
+											<label class="control-label col-md-2">Kd_Obat</label>
+											<div class="col-md-8">
+												<div class="input-group input-group-sm">
+													<input type="text" name="kode_barang" class="form-control" />
+													<span class="input-group-btn">
+														<button type="button" id="searchBarang" class="btn btn-small btn-primary btn-flat"><i class="fa fa-search"></i></button>
+													</span>
 												</div>
-												<div class="form-group informasi-kasir">
-													<label class="col-sm-4 informasi-kasir control-label">Tgl. Registrasi</label>
-													<div class="col-sm-8">
-														<input type='text' name='tgl_registrasi' class='form-control input-sm informasi-kasir' id='tgl_registrasi' disabled="disabled">
-													</div>
-												</div>
-												<div class="form-group informasi-kasir">
-													<label class="col-sm-4 informasi-kasir control-label">No. RM</label>
-													<div class="col-sm-8">
-														<input type='text' name='no_rm' class='form-control input-sm informasi-kasir' id='no_rm' disabled="disabled">
-													</div>
-												</div>
-												<div class="form-group informasi-kasir">
-													<label class="col-sm-4 informasi-kasir control-label">Nama</label>
-													<div class="col-sm-8">
-														<input type='text' name='nama_pasien' class='form-control input-sm informasi-kasir' id='nama_pasien' disabled="disabled">
-													</div>
-												</div>
-												<div class="form-group informasi-kasir">
-													<label class="col-sm-4 informasi-kasir control-label">JK</label>
-													<div class="col-sm-8">
-														<input type='text' name='jk_pasien' class='form-control input-sm informasi-kasir' id='jk_pasien' disabled="disabled">
-													</div>
-												</div>
-												<div class="form-group informasi-kasir">
-													<label class="col-sm-4 informasi-kasir control-label">Alamat</label>
-													<div class="col-sm-8">
-														<input type='text' name='alamat_pasien' class='form-control input-sm informasi-kasir' id='alamat_pasien' disabled="disabled">
-													</div>
-												</div>
+
 											</div>
 										</div>
-									</div> -->
+										<div class="form-group">
+											<label class="control-label col-md-2">Nama</label>
+											<div class="col-md-8">
+												<input type="text" name="nama_barang" class="form-control" readonly  />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-2">Satuan</label>
+											<div class="col-md-8">
+												<input type="text" name="satuan_barang" class="form-control" readonly  />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-2">Harga</label>
+											<div class="col-md-8">
+												<input type="text" name="harga_barang" class="form-control" readonly  />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-2">Qty</label>
+											<div class="col-md-10">
+												<input type="text" name="jumlah_baran" class="form-control"   />
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-md-12">
+												<button class="btn btn-block btn-primary"><i class="fa fa-send"></i> Masukan</button>
+											</div>
+										</div>
+									</form>
 								</div>
-								<div class='col-sm-9'>
-									<h5 class='judul-transaksi'>
-										Transaksi
-									</h5>
-									<div id="ResponseInput"></div>
-									<!-- <div class="form-vertical">
-										<div class="col-lg-3" style="padding-left: 0;">
-											<button type="button" class="btn btn-primary" onclick="addObat()" id="btnTambahObat" style="margin-top: -6px;"><i class="fa fa-plus"></i> Tambah Obat (F8)</button>
-										</div>
-										<div class="col-lg-3" style="padding-left: 0; margin-left: -40px;">
-											<button type="button" class="btn btn-warning" onclick="addLayanan()" id="btnTambahLayanan" style="margin-top: -6px;"><i class="fa fa-plus"></i> Tambah Layanan (F9)</button>
-										</div>
-										<div class="col-lg-6"></div>
-									</div>
-									<br>-->
-									<table id="table" class="table table-striped table-bordered table-hover" style="cellspacing:0; width:100%; margin-top: 25px;">
+								<div class="col-md-8">
+									<table class="table table-bordered">
 										<thead>
 											<tr>
-												<th style="text-align: center;">Nama Item</th>
-												<th style='width:120px; text-align: center;'>Harga</th>
-												<th style='width:100px; text-align: center;'>Satuan</th>
-												<th style='width:75px; text-align: center;'>Qty</th>
-												<th style='width:120px; text-align: center;'>Sub Total</th>
-												<!-- <th style='width:40px; text-align: center;'>Aksi</th> -->
+												<th>
+													No
+												</th>
+												<th>
+													Kd_Obat
+												</th>
+												<th>
+													Nama Barang
+												</th>
+												<th>
+													Harga
+												</th>
+												<th>
+													Qty
+												</th>
+												<th>
+													Total Harga
+												</th>
 											</tr>
 										</thead>
-										<tbody id="orderItem"></tbody>
 									</table>
-									<div class='alert-kasir alert-info-kasir TotalBayar'>
-										<h2>Total : <span id='TotalBayar'>Rp. 0</span></h2>
-									</div>
-									<div class='row'>
-										<div class='col-sm-7'></div>
-										<div class='col-sm-5'>
-											<div class="form-horizontal">
-												<div class="form-group-kasir" style="padding-bottom: 5px;">
-													<label class="col-sm-6 control-label">Total Bayar</label>
-													<div class="col-sm-6">
-														<input type='text' id='UangTotal' name='UangTotal' class='form-control' disabled="disabled" style="margin-bottom: 10px;">
-													</div>
-												</div>
-												<div class="form-group-kasir" style="padding-bottom: 5px;">
-													<label class="col-sm-6 control-label">Jumlah Bayar</label>
-													<div class="col-sm-6">
-														<input type='text' name='UangCash' id='UangCash' class='form-control' style="margin-bottom: 10px;">
-													</div>
-												</div>
-												<div class="form-group-kasir" style="padding-bottom: 15px;">
-													<label class="col-sm-6 control-label">Kembali</label>
-													<div class="col-sm-6">
-														<input type='text' id='UangKembali' name='UangKembali' class='form-control' disabled="disabled" style="margin-bottom: 10px;">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class='row'>
-										<div class='col-sm-5'>
-										</div>
-										<div class='col-sm-7'>
-											<div class='col-sm-4' style='padding-right: 0px;'>
-												<a href="<?php echo site_url('Kasir'); ?>" class="btn btn-default btn-block" id="btnNew"><i class='fa fa-refresh'></i> Transaksi Baru</a>
-											</div>
-											<div class='col-sm-4' style='padding-right: 0px;'>
-												<button type='button' class='btn btn-primary btn-block' id='btnSimpan' name='btnSimpan' onclick="savetrx()">
-													<i class='fa fa-floppy-o'></i> Simpan
-												</button>
-											</div>
-											<div class='col-sm-4' style='padding-right: 0px;'>
-												<a href="" target="_blank" class="btn btn-warning btn-block" id="btnPrint"><i class='fa fa-print'></i> Cetak</a>
-											</div>
-										</div>
-									</div>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
-				</div>
-    		</section>
+					<div class="box box-widget">
+						<div class="box-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="pull-left">
+										<h2>Sub Total:</h2>
+									</div>
+
+								</div>
+								<div class="col-md-6">
+								<!-- <div class="pull-right"> -->
+									<h2 style="text-align:right;">Rp. 343423</h2>
+									<form class="form-horizontal">
+										<div class="form-group">
+											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar</label>
+											<div class="col-md-6 pull-right">
+												<input type="text" name="jmlh_bayar" class="form-control input-lg">
+											</div>
+										</div>
+										<div class="form-group col-md-9 pull-right">
+											<button class="btn btn-primary btn-block">Bayar</button>
+										</div>
+									</form>
+								<!-- </div> -->
+							</div>
+						</div>
+					</div>
+				</section>
     	</div>
 		<?php $this->load->view('template/v_copyright'); ?>
     </body>
-
     <?php $this->load->view('template/v_footer'); ?>
-
     <script type="text/javascript">
     var nomor = 0;
     var total = 0;
     var kembalian = -1;
     $(document).ready(function() {
     	$('#mnKasir').addClass('active');
-
     	$('#btnNew').show();
     	$('#btnPrint').hide();
     	$('#btnSimpan').show();

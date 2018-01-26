@@ -40,7 +40,7 @@ class Login extends CI_Controller{
 					redirect('Berandagudang');
 				}
 
-				// redirect('beranda');
+				redirect('beranda');
 			}
 		}
 		$this->load->view('Login');
