@@ -209,9 +209,7 @@
 								<td><?php echo $row['no_kartu'];?></td>
 								<td><?php echo $row['nama_pasien'];?></td>
 								<td><?php echo $row['no_antrian'];?></td>
-								<td>
-									<?= $row['status_antrian'];?>
-								</td>
+								<td><span class="label <?=$row['status_antrian']==0?'label-warning':'label-success';?>"><?= $row['status_antrian']==0?'Menunggu':'Terlayani';?></span></td>
 							</tr>
 						<?php endforeach;?>
 						</tbody>
