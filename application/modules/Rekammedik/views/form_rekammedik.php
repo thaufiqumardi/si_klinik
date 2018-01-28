@@ -31,53 +31,30 @@
 						<div class="box-header with-border">
 							<h3 class="box-title">Input Diagnosa Pasien</h3>
 						</div>
-						<form method="POST" class="formDokter form-horizontal" action="
-						<?php
-							if(isset($dokter['id_dokter'])){
-								echo site_url('dokter/edit').'/'.$dokter['id_dokter'];
-							}
-							else{
-								echo site_url('dokter/form');
-							}
-						?>">
+						<form method="POST" class="formDokter form-horizontal" action="<?=site_url('rekammedik/form').'/'.$pasien->id_pasien;?>">
 						<div class="box-body">
-							<!-- <div class="form-group">
-								<label class="control-label col-md-3">Kode Dokter<sup style="color:red;">*</sup></label>
-								<div class="col-md-8">
-									<input type="text" name="kode_dokter" placeholder="Kode Dokter" required="required" class="form-control"
-									</?php
-										if(isset($dokter)){
-											echo("value='".$dokter['kd_dokter']."'");
-										}
-										else{
-											echo("value='".set_value('kode_dokter')."'");
-										}
-									?>
-									/>
-								</div>
-							</div> -->
 							<div class="form-group">
 								<label class="control-label col-md-3">No. Rekam Medik </label>
 								<div class="col-md-9">
-									<input type="text" name="no_izin_praktek"   class="form-control" disabled >
+									<input type="text" name="no_izin_praktek" value="<?= $pasien->no_rm;?>" class="form-control" disabled >
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3">No. Kartu</label>
 								<div class="col-md-9">
-									<input type="text" name="nama" class="form-control"  disabled>
+									<input type="text" name="nama" class="form-control" value="<?= $pasien->no_kartu;?>" disabled>
 								</div>
 							</div>
               <div class="form-group">
 								<label class="control-label col-md-3">Nama Pasien</label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" name="nama_pasien" disabled>
+									<input type="text" class="form-control" name="nama_pasien" value="<?= $pasien->nama_pasien;?>" disabled>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3">Tgl. Rekam Medik</label>
 								<div class="col-md-3">
-											<input type="text" name="tgl_rekam_medik"   class="form-control datepicker" data-mask data-inputmask='"mask":"99/99/9999"' disabled
+											<input type="text" name="tgl_rekam_medik" value="<?= date('d-M-Y');?>"  class="form-control" disabled
 											/>
 										</div>
 								</div>
@@ -85,10 +62,9 @@
               <div class="form-group">
 								<label class="control-label col-md-3">Dokter</label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" name="dokter" disabled >
+									<input type="text" class="form-control" value="<?= $pasien->nama_dokter;?>" name="dokter" disabled >
 								</div>
 							</div>
-
 							<div class="form-group">
 								<label class="control-label col-md-3">Diagnosa</label>
 								<div class="col-md-9">
