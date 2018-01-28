@@ -14,12 +14,12 @@
 					<div class="alert <?php echo ($msg['class'] == 0 ? 'alert-danger' : 'alert-success'); ?> alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 							<h4><i class="icon fa fa-<?php echo ($msg['class'] == 0 ? 'ban' : 'check'); ?>"></i> <?php echo ($msg['class'] == 0 ? 'Gagal' : 'Berhasil!'); ?></h4>
-							<?php 
+							<?php
 							if(isset($msg['msg'])){
 								echo $msg['msg'];
 							}else{
 								echo "Penambahan Dokter Gagal, Karena : <br>".validation_errors();
-							} 
+							}
 							?>
 					</div>
 					<?php
@@ -130,7 +130,7 @@
 										else{
 											echo "value='".set_value('tempat_lahir')."'";
 										}
-	
+
 									?>
 											/>
 										</div>
@@ -275,9 +275,9 @@
 									<p>Yang bertanda <span style="color: red;">(*)</span> wajib di isi.</p>
 								</div>
 								<div class="pull-right">
-									<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
-									<a href="<?php echo base_url(); ?>Dokter" class="btn btn-warning"><i class="fa fa-close"></i> Batal</a>
-								</div>							
+									<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
+									<a href="<?php echo base_url(); ?>Dokter" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
+								</div>
 							  </div>
 						</div>
 					</form>

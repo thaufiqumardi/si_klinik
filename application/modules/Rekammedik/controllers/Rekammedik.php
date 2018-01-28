@@ -12,8 +12,8 @@
     function index(){
       $data['rekam_mediks'] = $this->M_crud->get_select_to_array('*','rekam_medik');
       $data['registered']=$this->modelPasien->getRegistered();
-      echo json_encode($data['registered']);
-      die;
+      // echo json_encode($data['registered']);
+      // die;
       $this->load->view('index');
     }
     function form($id_pasien){
