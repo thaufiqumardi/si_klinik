@@ -32,11 +32,16 @@ use Box\Spout\Common\Type;
 					$this->session->set_flashdata('alert',$data);
 				}
 				else{
+					$pasien_terdaftar=$this->modelPasien->simpanPasien();
+					// echo "<pre>";
+					// print_r($pasien_terdaftar);
+					// echo "</pre>";
+					// die;
 					$data=array(
 						'class'=>'1',
 						'msg'=>'Penambahan Pasien Berhasil. Silahkan Lanjutkan Untuk Pendaftaran',
+						'no_kartu'=>$pasien_terdaftar->no_kartu,
 					);
-					$id_pasien=$this->modelPasien->simpanPasien();
 					$this->session->set_flashdata('alert',$data);
 					redirect('Pasien/pendaftaran_pasien');
 				}
@@ -82,55 +87,50 @@ use Box\Spout\Common\Type;
 			$this->M_setting->_make_sure_is_login();
 			$this->M_setting->_check_menu();
 			if($_POST){
-				$jenis_rawat = $this->input->post('jenis_rawat');
-				if($jenis_rawat==="RAWAT JALAN"){
-					$this->form_validation->set_rules('layanan[]','Layanan','required');
-					if($this->form_validation->run()===false){
-						$data=array(
-							'class'=>'0',
-							'msg'=>"Registrasi Gagal, Karena Layanan Tidak dipilih",
+				$check = $this->modelPasien->isRegistExist($_POST);
+				if($check==0){
+					$data = array(
+						'class'=>'0',
+						'msg'=>'Pendaftaran Pasien Gagal Karena Sudah Daftar Sebelumnya'
+					);
+					$this->session->set_flashdata('alert',$data);
+				}
+				else{
+					$tgl = str_replace('/','-',$this->input->post('tgl_daftar'));
+					$tgl_registrasi= date('Y-m-d',strtotime($tgl));
+					$jam_regis = date('H:i:s');
+					$antrian_terakhir = $this->modelPasien->getLast('no_antrian','registrasi_pasien','tgl_registrasi')->no_antrian;
+					if($antrian_terakhir==0){
+						$antrian=1;
+					}
+					else{
+						$antrian = $antrian_terakhir+1;
+					}
+					$data = array(
+						'id_dokter'=>$this->input->post('id_dokter'),
+						'id_pasien'=>$this->input->post('id_pasien'),
+						'tgl_registrasi'=>$tgl_registrasi,
+						'jam_registrasi'=>$jam_regis,
+						'no_antrian'=>$antrian
+					);
+					$this->M_crud->_insert('registrasi_pasien',$data);
+						$data = array(
+							'class'=>'1',
+							'msg'=>'Pendaftaran Pasien Berhasil'
 						);
 						$this->session->set_flashdata('alert',$data);
-					}
+						redirect('Pasien/pendaftaran_pasien');
 				}
-				$this->insert_pendaftaran($jenis_rawat);
 			}
-			$data['pakets']=$this->M_crud->get_select_to_array('*','paket_layanan');
 			$data['dokters']=$this->M_crud->get_select_to_array('*','dokter');
-			$data['layanans']=$this->M_crud->get_select_to_array('*','layanan');
-
 			$data['pasiens']=$this->modelPasien->getPasien();
-			$data['ruangan']=$this->modelPasien->getKamar();
 			$data['registered']=$this->modelPasien->getRegistered();
 			$this->load->view('form_pendaftaran',$data);
-		}
-		private function insert_pendaftaran($jenis_rawat){
-			$check=$this->modelPasien->isRegistExist($_POST);
-			if($check == 0){
-					$data=array(
-					'class'=>'0',
-					'msg'=>'Registrasi Pasien Gagal. Pasien sudah registrasi sebelumnya',
-				);
-				$this->session->set_flashdata('alert',$data);
-			}
-			else{
-				$this->modelPasien->simpanPendaftaran($jenis_rawat);
-					$data=array(
-					'class'=>'1',
-					'msg'=>'Registrasi Pasien Berhasil Dilakukan'
-				);
-				$this->session->set_flashdata('alert',$data);
-				redirect('Pasien/pendaftaran_pasien');
-			}
 		}
 		public function getPasienById($id){
 			$data['pasien']=$this->modelPasien->editPasien($id);
 			echo json_encode($data['pasien']);
 
-		}
-		function getEmptyBedByIdKamar($id_kamar){
-			$data['bed']=$this->modelPasien->getBed($id_kamar);
-			echo json_encode($data['bed']);
 		}
 		function hapus_antrian($id){
 			$p=$this->modelPasien->hapusAntrian($id);
@@ -149,14 +149,6 @@ use Box\Spout\Common\Type;
 				$this->session->set_flashdata('alert',$data);
 			}
 			redirect('Pasien/pendaftaran_pasien');
-		}
-		function getRuanganByPaketId($id){
-			$data['ruangan'] = $this->M_crud->check_table('detail_paket_layanan','paket_id',$id,'kategori_item','Ruangan');
-			echo json_encode($data['ruangan']);
-		}
-		function getKamarById($id){
-			$result = $this->M_crud->check_table('kamar','id_kamar',$id);
-			echo json_encode($result);
 		}
 		function cetak(){
 			$data['pasien']=$this->modelPasien->getPasienExport();
@@ -201,9 +193,5 @@ use Box\Spout\Common\Type;
 		function cetak_detail($id){
 			$data['pasien']=$this->modelPasien->editPasien($id);
 			$this->load->view('print_detail',$data);
-		}
-		function getLayananToJson(){
-			$layanans=$this->M_crud->get_select_to_array('*','layanan');
-			echo json_encode($layanans);
 		}
 	}

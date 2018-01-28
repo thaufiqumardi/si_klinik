@@ -9,6 +9,7 @@
 			$this->db->select('*')
 								->from('registrasi_pasien')
 								->where('tgl_registrasi',$now)
+								->where('no_antrian !=0')
 								->where('status_antrian','0')
 								->limit(10);
 			return $this->db->get()->result();
@@ -19,7 +20,7 @@
 			->from('registrasi_pasien')
 			->where('tgl_registrasi',$now)
 			->where('status_antrian','1')
-			->where('jenis_rawat','RAWAT JALAN')
+			// ->where('jenis_rawat','RAWAT JALAN')
 			->order_by('no_antrian','desc')
 			->limit(1);
 			return $this->db->get()->result();
@@ -29,6 +30,7 @@
 			$this->db->select('*')
 								->from('registrasi_pasien')
 								->where('tgl_registrasi',$now)
+								->where('no_antrian !=0')
 								->join('pasien','pasien.id_pasien = registrasi_pasien.id_pasien')
 								->order_by('no_antrian','asc')
 								->limit(10);

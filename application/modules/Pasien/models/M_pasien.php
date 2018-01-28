@@ -17,7 +17,6 @@
 		function simpanPasien(){
 			$tgl = str_replace('/','-',$this->input->post('tgl_lahir'));
 			$tgl_lahir= date('Y-m-d',strtotime($tgl));
-
 			$this->db->select('no_kartu')
 				->from('pasien')
 				->order_by('no_kartu','desc')
@@ -64,14 +63,10 @@
 				'tempat_lahir'=>$this->input->post('tempat_lahir'),
 				'tgl_lahir'=>$tgl_lahir,
 				'agama'=>$this->input->post('agama'),
-				'pendidikan_pasien'=>$this->input->post('pendidikan_pasien'),
 				'pekerjaan_pasien'=>$this->input->post('pekerjaan_pasien'),
-				'warga_negara'=>$this->input->post('warga_negara'),
 				'gol_darah'=>$this->input->post('gol_darah'),
-				'status_perkawinan'=>$this->input->post('status_perkawinan'),
 				'no_telp_rumah'=>$this->input->post('no_telp_rumah'),
 				'no_handphone'=>$this->input->post('no_handphone'),
-				'email'=>$this->input->post('email'),
 				'jalan'=>$this->input->post('jalan'),
 				'rtrw'=>$this->input->post('rtrw'),
 				'kelurahan'=>$this->input->post('keldesa'),
@@ -81,36 +76,8 @@
 			);
 			$this->db->insert('pasien',$data);
 			$id_pasien= $this->db->insert_id();
-			$this->simpanPenanggung($id_pasien);
-		}
-		function simpanPenanggung($id_pasien){
-			$tgl = str_replace('/','-',$this->input->post('tgl_lahir_penanggung'));
-			$tgl_lahir_p= date('Y-m-d',strtotime($tgl));
-			$data=array(
-				'nama_penanggung'=>$this->input->post('nama_penanggung'),
-				'nik_penanggung'=>$this->input->post('nik_penanggung'),
-				'tempat_lahir_penanggung'=>$this->input->post('tempat_lahir_penanggung'),
-				'tgl_lahir_penanggung'=>$tgl_lahir_p,
-				'hubungan_pasien'=>$this->input->post('hubungan_pasien'),
-				'pendidikan_penanggung'=>$this->input->post('pendidikan_penanggung'),
-				'pekerjaan_penanggung'=>$this->input->post('pekerjaan_penanggung'),
-				'no_telp_penanggung'=>$this->input->post('no_telp_penanggung'),
-				'no_hp_penanggung'=>$this->input->post('no_hp_penanggung'),
-				'email'=>$this->input->post('email_penanggung'),
-				'jalan'=>$this->input->post('jalan_penanggung'),
-				'rtrw'=>$this->input->post('rtrw_penanggung'),
-				'kelurahan'=>$this->input->post('keldesa_penanggung'),
-				'kecamatan'=>$this->input->post('kecamatan_penanggung'),
-				'kota'=>$this->input->post('kota_penanggung'),
-				'cara_pembayaran'=>$this->input->post('cara_pembayaran'),
-				'id_pasien'=>$id_pasien,
-				'created_by' => $this->session->userdata['simklinik']['ap_sid'],
-			);
-			return $this->db->insert('penanggung_pasien',$data);
-		}
-		function getPenanggung($id_pasien){
-			$this->db->where('id_pasien',$id_pasien);
-			return $this->db->get('penanggung_pasien')->row_array();
+			$pasien_terdaftar = $this->db->get_where('pasien',array('id_pasien'=>$id_pasien))->row();
+			return $pasien_terdaftar;
 		}
 		function editPasien($id){
 			$query = $this->db->get_where('pasien',array('id_pasien'=>$id));
@@ -145,31 +112,6 @@
 			return $this->db->update('pasien',$data);
 
 		}
-		function updatePenanggung($id_pasien){
-			$tgl = str_replace('/','-',$this->input->post('tgl_lahir_penanggung'));
-			$updated_penanggung= date('Y-m-d',strtotime($tgl));
-			$data=array(
-				'nama_penanggung'=>$this->input->post('nama_penanggung'),
-				'nik_penanggung'=>$this->input->post('nik_penanggung'),
-				'tempat_lahir_penanggung'=>$this->input->post('tempat_lahir_penanggung'),
-				'tgl_lahir_penanggung'=>$updated_penanggung,
-				'hubungan_pasien'=>$this->input->post('hubungan_pasien'),
-				'pendidikan_penanggung'=>$this->input->post('pendidikan_penanggung'),
-				'pekerjaan_penanggung'=>$this->input->post('pekerjaan_penanggung'),
-				'no_telp_penanggung'=>$this->input->post('no_telp_penanggung'),
-				'no_hp_penanggung'=>$this->input->post('no_hp_penanggung'),
-				'email'=>$this->input->post('email_penanggung'),
-				'jalan'=>$this->input->post('jalan_penanggung'),
-				'rtrw'=>$this->input->post('rtrw_penanggung'),
-				'kelurahan'=>$this->input->post('keldesa_penanggung'),
-				'kecamatan'=>$this->input->post('kecamatan_penanggung'),
-				'kota'=>$this->input->post('kota_penanggung'),
-				'cara_pembayaran'=>$this->input->post('cara_pembayaran'),
-				'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
-			);
-			$this->db->where('id_pasien',$id_pasien);
-			return $this->db->update('penanggung_pasien',$data);
-		}
 		function hapusPasien($id){
 			$this->db->where('id_pasien',$id);
 			$this->db->delete('pasien');
@@ -177,67 +119,6 @@
 		function hapusAntrian($id){
 			$this->db->where('id_registrasi',$id);
 			return $this->db->delete('registrasi_pasien');
-		}
-		function getKamar(){
-			$query=$this->db->get('kamar');
-			return $query->result_array();
-		}
-		function simpanPendaftaran($jenis_rawat){
-			$now = date('d-m-y');
-			$exp = explode("-",$now);
-			$imp = $exp[2].$exp[1].$exp[0];
-			$this->db->select('no_registrasi')
-							->from('registrasi_pasien')
-							->where('no_registrasi like',$imp.'%')
-							->order_by('no_registrasi','desc')
-							->limit(1);
-			$last = $this->db->get()->row();
-			if(empty($last)){
-					$no_regis = $imp."0001";
-			}
-			else{
-				$start = substr($last->no_registrasi, 5-9);
-				$next = ++$start;
-				if ($next < 10){ $no_regis = $imp."000".$next;}
-				elseif ($next < 100 && $next > 9) { $no_regis = $imp."00".$next;}
-				elseif ($next < 1000 && $next > 99) { $no_regis = $imp."0".$next;}
-				elseif ($next < 10000 && $next > 999) { $no_regis = $imp.$next;}
-			}
-			$tgl = str_replace('/','-',$this->input->post('tgl_daftar'));
-			$tgl_registrasi= date('Y-m-d',strtotime($tgl));
-			$jam_regis = date('H:i:s');
-			$bed = $this->input->post('id_bed');
-			$this->db->where('id_bed',$bed);
-			$this->db->update('bed',array('status_isi'=>"ISI"));
-			$antrian_terakhir = $this->getLast('no_antrian','registrasi_pasien','tgl_registrasi')->no_antrian;
-			if($antrian_terakhir==0){
-				$antrian=1;
-			}
-			else{
-				$antrian = $antrian_terakhir+1;
-			}
-			$jenis_rawat = $this->input->post('jenis_rawat');
-			$data = array(
-				'no_registrasi'=>$no_regis,
-				'id_dokter'=>$this->input->post('id_dokter'),
-				'id_pasien'=>$this->input->post('id_pasien'),
-				'tgl_registrasi'=>$tgl_registrasi,
-				'jam_registrasi'=>$jam_regis,
-				'jenis_pembayaran'=>$this->input->post('jenis_pembayaran'),
-				'jenis_rawat'=>$jenis_rawat,
-				'id_bed'=>$bed,
-				'no_antrian'=>$antrian,
-				'created_by' => $this->session->userdata['simklinik']['ap_sid'],
-			);
-			$this->db->insert('registrasi_pasien',$data);
-			$id_regis = $this->db->insert_id();
-			if($jenis_rawat=="RAWAT JALAN"){
-				$this->insertDetailPembiayaanLayanan($id_regis, $no_regis, $tgl_registrasi);
-			}
-			else {
-				$this->insertDetailPembiayaanPaket($id_regis, $no_regis, $tgl_registrasi);
-			}
-			return 1;
 		}
 		function insertDetailPembiayaanLayanan($id_regis, $no_regis, $tgl_registrasi){
 			$layanan = $this->input->post('layanan');
@@ -399,7 +280,7 @@
 		function isRegistExist($data){
 			$id=$data['id_pasien'];
 			$now = date('Y-m-d');
-			$query = $this->db->get_where('registrasi_pasien',array('id_pasien'=>$id,'jenis_rawat'=>$data['jenis_rawat'],'tgl_registrasi'=>$now));
+			$query = $this->db->get_where('registrasi_pasien',array('id_pasien'=>$id,'tgl_registrasi'=>$now));
 			// return $query->row();
 			if($query->num_rows() > 0){
 				return 0;
@@ -407,12 +288,6 @@
 			else{
 				return 1;
 			}
-		}
-		function getBed($id_kamar){
-			// $this->db->select('nama_bed');
-			$this->db->where('id_kamar',$id_kamar);
-			$this->db->where('status_isi','KOSONG');
-			return $this->db->get('bed')->result();
 		}
 		function getLast($select,$table,$where){
 			$now = date('Y-m-d');

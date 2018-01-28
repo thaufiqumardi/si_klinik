@@ -35,7 +35,15 @@
 			<div id="alert" class="alert <?php echo ($msg['class'] == 0 ? 'alert-danger' : 'alert-success'); ?> alert-dismissible">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<h4><i class="icon fa fa-<?php echo ($msg['class'] == 0 ? 'ban' : 'check'); ?>"></i> <?php echo ($msg['class'] == 0 ? 'Alert!' : 'Berhasil!'); ?></h4>
-					<?php echo $msg['msg']; ?>
+					<?php echo $msg['msg'];
+					if(isset($msg['no_kartu'])){
+						?>
+						<p>
+							No. Kartu Pasien: <?= $msg['no_kartu'];?>
+						</p>
+					<?php
+					}
+					?>
 			</div>
 			<?php
 		}
@@ -107,18 +115,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label col-md-4">Jenis Pembayaran</label>
-							<div class="col-md-8">
-								<select class="form-control selectOption" name="jenis_pembayaran" required>
-									<option selected disabled value="">Pilih Jenis Pembayaran</option>
-									<option value="UMUM" <?php echo set_select('jenis_pembayaran','UMUM');?>>UMUM</option>
-									<option value="BPJS" <?php echo set_select('jenis_pembayaran','BPJS');?>>BPJS</option>
-								</select>
-							</div>
-						</div>
-					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
@@ -126,18 +122,6 @@
 							<label class="control-label col-md-4">No. Rekam Medik</label>
 							<div class="col-md-8">
 								<input type="text" placeholder="Nomor Rekam Medik" class="form-control" readonly name="no_rekam_medik" <?php if(!empty(set_value('no_rekam_medik'))){echo "value='".set_value('no_rekam_medik')."'";} ?> id="no_rm" >
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label col-md-4">Jenis Rawat</label>
-							<div class="col-md-8">
-								<select class="form-control selectOption" name="jenis_rawat" id="jenis_rawat" required>
-									<option disabled selected value="">Pilih Jenis Rawat</option>
-									<option value="RAWAT INAP" <?php echo set_select('jenis_rawat','RAWAT INAP');?>>Rawat Inap</option>
-									<option value="RAWAT JALAN" <?php echo set_select('jenis_rawat','RAWAT JALAN');?>>Rawat Jalan</option>
-								</select>
 							</div>
 						</div>
 					</div>
@@ -151,21 +135,6 @@
 						</div>
 						</div>
 					</div>
-					<div class="col-md-6" id="paket">
-						<div class="form-group">
-							<label class="control-label col-md-4">Paket</label>
-							<div class="col-md-8">
-								<select class="form-control selectOption selectPaket" style="width:100%;" disabled name="id_paket">
-									<option selected disabled value="">
-										Pilih Paket Layanan
-									</option>
-									<?php foreach($pakets as $paket):?>
-										<option value="<?= $paket->paket_layanan_id;?>"><?= $paket->nama_paket_layanan;?></option>
-									<?php endforeach;?>
-								</select>
-							</div>
-						</div>
-					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
@@ -173,36 +142,6 @@
 							<label class="control-label col-md-4">Alamat</label>
 							<div class="col-md-8">
 								<textarea class="form-control" id="alamat" rows="5" readonly placeholder="Alamat" name="alamat"  ><?php if(!empty(set_value('alamat'))){echo set_value('alamat');} ?></textarea>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group" id="ruangan">
-									<label class="control-label col-md-4">Ruangan</label>
-									<div class="col-md-8">
-										<input type="text" name="id_kamar" class="form-control" readonly/>
-										<!-- <select class="form-control selectOption " disabled name="id_kamar">
-											<option selected disabled>Pilih Ruangan</option>
-											<?php foreach($ruangan as $r):?>
-												<option value="<?php echo $r['id_kamar'];?>"><?php echo $r['nama_ruangan'];?></option>
-											<?php endforeach;?>
-										</select> -->
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group" id="bed">
-								  <label class="control-label col-md-4">Nomor Bed</label>
-		  						<div class="col-md-8">
-		  							<select class="form-control selectOption" style="width:100%;" disabled name="id_bed" onclick="alert()">
-		  								<!-- <option selected disabled>Pilih Nomor Bed</option> -->
-		  							</select>
-		  						</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -216,27 +155,6 @@
 							</div>
 						</div>
 					</div>
-					<div  id="divLayanan" >
-						<div class="col-md-6" id="containerLayanan">
-							<div class="form-group">
-								<label class="control-label col-md-4">Layanan Pemeriksaan</label>
-								<div class="col-md-8">
-									<select required class="form-control selectOption pilihanLayanan" multiple="multiple" style="width:100%;" name="layanan[]" id="selectLayanan" data-placeholder="Pilih Layanan">
-										<?php foreach($layanans as $layanan):?>
-											<option value="<?= $layanan->id_layanan;?>"><?= $layanan->nama;?></option>
-										<?php endforeach;?>
-									</select>
-								</div>
-								<!-- <div class="col-md-2">
-									<button type="button" class="btn btn-default" id="btnTambahLayanan"><i class="fa fa-plus"></i></button>
-								</div> -->
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div id="wrapperPilihLayanan">
-
 				</div>
 				<div class="box-footer">
 					<div class="pull-left">
@@ -275,7 +193,7 @@
 						<thead>
 							<tr>
 								<!-- <th rowspan="2" style="width: 4px;height: 2px">#</th> -->
-								<th>Nomor Registrasi</th>
+								<!-- <th>Nomor Registrasi</th> -->
 								<th>Nomor Kartu</th>
 								<th>Nama</th>
 								<th>Nomor Antrian</th>
@@ -284,7 +202,7 @@
 						<tbody>
 							<?php foreach($registered as $row):?>
 							<tr>
-								<td><?php echo $row['no_registrasi'];?></td>
+								<!-- <td><?php echo $row['no_registrasi'];?></td> -->
 								<td><?php echo $row['no_kartu'];?></td>
 								<td><?php echo $row['nama_pasien'];?></td>
 								<td><?php echo $row['no_antrian'];?></td>
@@ -337,136 +255,6 @@
 </script>
 <!-- ThaufiqUmardi's Script -->
 <script type="text/javascript">
-function validator(){
-	$('.formPendaftaran').bootstrapValidator({
-		message: 'This value is not valid',
-				feedbackIcons: {
-						valid: 'glyphicon glyphicon-ok',
-						invalid: 'glyphicon glyphicon-remove',
-						validating: 'glyphicon glyphicon-refresh'
-				},
-				fields:{
-					id_pasien:{
-						message:'Pasien Tidak Valid',
-						validators:{
-							notEmpty:{
-								message:'Pasien Harus Dipilih'
-							}
-						}
-					},
-					no_kartu: {
-								message: 'Nomor Kartu Tidak Valid',
-								validators: {
-										notEmpty: {
-												message: 'Nomor Kartu Tidak Boleh Kosong'
-										},
-										regexp:{
-											regexp:/^[0-9 ]+$/,
-											message:'Nomor Kartu Tidak Diperkenankan Diisi Dengan Abjad'
-										},
-								}
-						},
-						nama_pasien:{
-							message: 'Nama Pasien Tidak Valid',
-							validators:{
-								notEmpty:{
-									message: 'Nama Pasien Tidak Boleh Kosong'
-								},
-								// regexp:{
-								// 	regexp:/^[a-zA-z ]+$/,
-								// 	message:'Nama Pasien Tidak Diperkenankan selain A-Z'
-								// }
-							}
-						},
-						alamat:{
-							message:'Tidak Valid',
-							validators:{
-								notEmpty:{
-									message:'Tidak Boleh Kosong'
-								},
-							}
-						},
-					no_rekam_medik:{
-						message:'Nomor Rekam Medik Tidak Valid',
-						validators:{
-							notEmpty:{
-								message:'Nomor Rekam Medik Harus Terisi'
-							}
-						}
-					},
-					jenis_pembayaran:{
-						message:'Jenis Pembayaran Harus Terisi',
-						validators:{
-							notEmpty:{
-									message:'Tidak Boleh Kosong'
-								},
-						}
-					},
-					id_kamar:{
-						// message:'Tidak Valid',
-					 //  	validators:{
-					 //  		notEmpty:{
-					 //  			message:'Tidak Boleh Kosong'
-					 //  		},
-					 //  	}
-					},
-					id_bed:{
-						message:'Tidak Valid',
-							// validators:{
-							// 	notEmpty:{
-							// 		message:'Tidak Boleh Kosong'
-							// 	},
-							// }
-					},
-					jenis_rawat:{
-						message:'Tidak Valid',
-							validators:{
-								notEmpty:{
-									message:'Tidak Boleh Kosong'
-								},
-							}
-					},
-				}
-	});
-}
-$("select[name='layanan[]']").attr('disabled',true);
-$('.selectPaket').change(function(data){
-	var selectBed = $("select[name='id_bed']");
-	$(selectBed).find('option')
-							.remove()
-							.end()
-							.append("<option selected disabled value=''>Pilih Bed</option>");
-	var id_paket = data.target.value;
-	var url = "<?php echo site_url('Pasien/getRuanganByPaketId');?>";
-	$("select[name='id_bed']").attr('disabled',false);
-	$.get(url+'/'+id_paket,function(data){
-		console.log(data);
-		getKamar(data.item_id);
-	},"JSON");
-});
-function getKamar(id){
-	var url ="<?php echo site_url('Pasien/getKamarById');?>";
-	$.get(url+'/'+id,function(data){
-		console.log(data);
-		$("input[name='id_kamar']").val(data.nama_ruangan);
-		getBed(data.id_kamar);
-	},"JSON");
-}
-function getBed(id){
-	var url="<?php echo site_url('Pasien/getEmptyBedByIdKamar');?>";
-	$.get(url+'/'+id,function(data){
-		console.log(data);
-		if(data.length==0){
-			$("select[name='id_bed']").append("<option selected disabled class='text-danger'>Tidak Ada Bed yang Kosong</option>");
-		}
-		else{
-			$.each(data,function(i,data){
-				$("select[name='id_bed']").append("<option value='"+data.id_bed+"'>"+data.nama_bed+" (KOSONG)</option>");
-			// console.log(data.nomor_bed);
-		});
-		}
-	},"JSON")
-}
 	$(document).ready(function(){
 		$('#ruangan').hide();
 		$('#bed').hide();
@@ -493,56 +281,27 @@ function getBed(id){
       var a = document.createElement('a');
       a.href = data_type + ', ' + table_html;
       var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
+	    var dd = today.getDate();
+	    var mm = today.getMonth()+1; //January is 0!
 
-    var yyyy = today.getFullYear();
-    if(dd<10){
-        dd='0'+dd;
-    }
-    if(mm<10){
-        mm='0'+mm;
-    }
-    var today = dd+'/'+mm+'/'+yyyy;
-      a.download = 'Data Pasien' + dd +'-'+ mm +'-'+yyyy+ '.xls';
-      a.click();
-      location.reload();
-    });
-    $('#tgl_lahir').change(function(data){
-      var tgl_lahir=$(this).val().split('/');
-      var today = new Date();
-      var year = today.getFullYear();
-      var umur = year - tgl_lahir[2];
-      $('#umur').val(umur);
-    });
-    $('.status').change(function(data){
-      var stat= data.target.value;
-      var x = document.getElementById('pernikahan');
-      // console.log(stat);
-      if(stat=="Menikah"){
-              x.style.display = "block";
-      }
-      else{
-        x.style.display = "none";
-      }
-    });
-    var jk=$('.jk').val();
-    // console.log(jk);
-    if(jk == 'Laki-Laki'){
-        $('.suamiIstri').text("Istri");
-      }
-      else{
-        $('.suamiIstri').text("Suami");
-      }
-    $('.jk').change(function(data){
-      var jenis= data.target.value;
-      // console.log(jenis);
-      if(jenis == 'Laki-Laki'){
-        $('.suamiIstri').text("Istri");
-      }
-      else{
-        $('.suamiIstri').text("Suami");
-      }
+	    var yyyy = today.getFullYear();
+	    if(dd<10){
+	        dd='0'+dd;
+	    }
+	    if(mm<10){
+	        mm='0'+mm;
+	    }
+	    var today = dd+'/'+mm+'/'+yyyy;
+	      a.download = 'Data Pasien' + dd +'-'+ mm +'-'+yyyy+ '.xls';
+	      a.click();
+	      location.reload();
+	    });
+	    $('#tgl_lahir').change(function(data){
+	      var tgl_lahir=$(this).val().split('/');
+	      var today = new Date();
+	      var year = today.getFullYear();
+	      var umur = year - tgl_lahir[2];
+	      $('#umur').val(umur);
     });
     $('#id_pasien').change(function(data){
       var id = data.target.value;
@@ -558,113 +317,22 @@ function getBed(id){
         $('#alamat').val(data.jalan+'\n'+'Rt/Rw: '+data.rtrw+'\n'+data.kelurahan+'\n'+data.kecamatan+'\n'+data.kota);
         $('#no_rm').val(data.no_rm);
       }, "JSON");
-			// validator();
     });
-		if($("select[name='jenis_rawat']").val()==="RAWAT JALAN"){
-
-			hapusKomponenRawatInap();
-		}
-    $('#jenis_rawat').change(function(data){
-      var jenis=data.target.value;
-      if(jenis=="RAWAT JALAN"){
-				$("select[name='layanan[]']").attr('disabled',false);
-				$('#containerLayanan').show();
-				hapusKomponenRawatInap();
-      }
-      else{
-				$('#ruangan').show();
-				$('#bed').show();
-				$('#paket').show();
-				$("select[name='id_paket']").attr('disabled',false);
-				$('#divLayanan').hide();
-
-      }
-    });
-		function hapusKomponenRawatInap(){
-			$("select[name='id_paket']").find('option')
-									.hide()
-									.end();
-			$("input[name='id_kamar']").val("");
-			$("select[name='id_bed']").find('option')
-									.remove()
-									.end()
-									.append("<option selected disabled value=''>Pilih Bed</option>");;
-			$('#ruangan').hide();
-			$('#paket').hide();
-			$('#bed').hide();
-			$('#divLayanan').show();
-		}
-    $('#ruangan').change(function(data){
-      var id_kamar = data.target.value;
-      // console.log(id_kamar);
-      var url="<?php echo site_url('Pasien/getEmptyBedByIdKamar');?>";
-      $.get(url+'/'+id_kamar,function(data){
-        if(data.length==0){
-          $('#bed').append("<option selected disabled class='text-danger'>Tidak Ada Bed yang Kosong</option>");
-        }
-        else{
-          $.each(data,function(i,data){
-            $("select[name='id_bed']").append("<option value='"+data.nama_bed+"'>"+data.nama_bed+"</option>");
-          // console.log(data.nomor_bed);
-        });
-        }
-      },"JSON")
-    });
-    $('#alert').delay(10000).fadeOut("slow");
-		$('#btnTambahLayanan').click(function(){
-			// alert("hahaha");
-			var max_layanan =10;
-			var allowNew = false;
-
-			var inputLayanan = document.getElementsByName('layanan[]');
-			var arrInput =[];
-			for(var i=0; i< inputLayanan.length; i++){
-				var valInputLayanan = inputLayanan[i];
-				if(valInputLayanan.value =="" || valInputLayanan.value =="0"){
-					allowNew = false;
-				}
-				else{
-					arrInput[i]=parseInt(valInputLayanan.value);
-					// console.log("isian ke:"+i+" "+valInputLayanan.value)
-					allowNew = true;
-				}
-			}
-			if(allowNew === true){
-				var html = "<div class='row' id='idTambahan'>"+
-					"<div class='col-md-6'>"+
-					"</div>"+
-					"<div class='col-md-6'>"+
-						"<div class='form-group'>"+
-							"<label class='control-label col-md-4'></label>"+
-							"<div class='col-md-6' >"+
-								"<select class='form-control selectLay pilihanLayanan'style='margin-top:5px' name='layanan[]'>"+
-								"<option selected disabled>PilihLayanan</option>"+
-								<?php foreach($layanans as $layanan):?>
-									"<option value='<?=$layanan->id_layanan;?>'><?=$layanan->nama;?></option>"+
-								<?php endforeach;?>
-								"</select>"+
-							"</div>"+
-							"<div class='col-md-2'>"+
-							"<button type='button' class='btn btn-danger' id='btnHapusLayanan'><i class='fa fa-trash'></i></button>"+
-							"</div>"+
-						"</div>"+
-					"</div>"+
-				"</div>";
-				$('#wrapperPilihLayanan').append(html);
-				$('.selectLay').select2();
-				$('#wrapperPilihLayanan').on("click","#btnHapusLayanan",function(e){
-					e.preventDefault();
-					$(this).closest('#idTambahan').remove();
-				});
-			}
-			else{
-				alert("Layanan Sebelumnya Harus Terisi Sebelum Menambahkan Yang Baru");
-			}
-		});
-
 		$('.selectOption').select2();
   });
 </script>
+<?php
+	if(!empty($this->session->flashdata('alert'))){
+		$msg = $this->session->flashdata('alert');
+		if(empty($msg['no_kartu'])){
+		?>
+		<script type="text/javascript">
+			$('#alert').delay(7000).fadeOut("slow");
+		</script>
+		<?php
+		}
+	}
+ ?>
 <!-- End of ThaufiqUmardi's Script -->
 	<?php $this->load->view('template/v_copyright'); ?>
 	</body>

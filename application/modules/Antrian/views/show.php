@@ -87,6 +87,7 @@ if(!empty($menusid)){
 										</dt>
 										<dd>
 											&nbsp;&nbsp;&nbsp;<?= count($antrian_belum_terlayani);?>
+											<input type="hidden" id="sisa_antrian" value="<?= count($antrian_belum_terlayani);?>">
 										</dd>
 										<!-- <dt style="width:250px;">
 											Nomor Antrian Sedang Diperiksa&nbsp;&nbsp;&nbsp;&nbsp;:
@@ -108,7 +109,7 @@ if(!empty($menusid)){
 				</div>
 				<div class="row">
 					<div class="col-lg-6">
-						<a type="button" href="<?= site_url('antrian/nextAntrian');?>" class="btn btn-primary btn-block"><i class="fa fa-tv"></i> Tampilkan Antrian Selanjutnya Ke Layar</a>
+						<a type="button" id="btnNextAntrian" class="btn btn-primary btn-block"><i class="fa fa-tv"></i> Tampilkan Antrian Selanjutnya Ke Layar</a>
 					</div>
 					<div class="col-lg-6">
 						<button type="button" class="btn btn-danger btn-block"><i class="fa fa-refresh"></i> Refresh Halaman</button>
@@ -124,6 +125,12 @@ if(!empty($menusid)){
     	$('#mnPemeriksaanPasien').addClass('active');
     	$('#mnAntrianPasien').addClass('active');
     	$('#alert').delay(10000).fadeOut("slow");
+    	var sisa_antrian = $('#sisa_antrian').val();
+    	if(sisa_antrian == 0){
+    		$("#btnNextAntrian").addClass('disabled').removeAttr("href"); 
+    	}else{
+    		$("#btnNextAntrian").removeClass("disabled").attr("href", "<?= site_url('antrian/nextAntrian');?>"); 
+    	}
     });
 	</script>
 
