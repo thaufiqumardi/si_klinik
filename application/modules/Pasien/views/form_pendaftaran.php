@@ -197,6 +197,9 @@
 								<th>Nomor Kartu</th>
 								<th>Nama</th>
 								<th>Nomor Antrian</th>
+								<th>
+									Status
+								</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -206,6 +209,9 @@
 								<td><?php echo $row['no_kartu'];?></td>
 								<td><?php echo $row['nama_pasien'];?></td>
 								<td><?php echo $row['no_antrian'];?></td>
+								<td>
+									<?= $row['status_antrian'];?>
+								</td>
 							</tr>
 						<?php endforeach;?>
 						</tbody>
