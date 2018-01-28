@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2018 at 03:16 PM
+-- Generation Time: Jan 28, 2018 at 01:55 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -159,6 +159,44 @@ INSERT INTO `detail_pembiayaan` (`id_pembiayaan`, `id_registrasi`, `no_registras
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dokter`
+--
+
+CREATE TABLE `dokter` (
+  `id_dokter` int(11) NOT NULL,
+  `kd_dokter` varchar(8) DEFAULT NULL,
+  `nama_dokter` varchar(40) DEFAULT NULL,
+  `jenis_kelamin` enum('Laki-Laki','Perempuan') DEFAULT NULL,
+  `tmp_lahir` varchar(15) DEFAULT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `gol_darah` enum('A','B','O','AB','-') DEFAULT NULL,
+  `agama` varchar(12) DEFAULT NULL,
+  `alamat` text,
+  `telepon` varchar(20) DEFAULT NULL,
+  `status_nikah` enum('Kawin','Belum Kawin','Janda','Duda') DEFAULT NULL,
+  `alumni` varchar(60) DEFAULT NULL,
+  `no_izin_praktek` varchar(20) DEFAULT NULL,
+  `status` enum('Aktif','Tidak Aktif') DEFAULT NULL,
+  `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dokter`
+--
+
+INSERT INTO `dokter` (`id_dokter`, `kd_dokter`, `nama_dokter`, `jenis_kelamin`, `tmp_lahir`, `tgl_lahir`, `gol_darah`, `agama`, `alamat`, `telepon`, `status_nikah`, `alumni`, `no_izin_praktek`, `status`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
+(5, NULL, 'Wawan Setiawan', 'Laki-Laki', 'Surabaya', '1991-06-07', 'B', 'Islam', 'Jakarta', '923-7239-4728', 'Kawin', 'UIN SGD BDG', '121', 'Aktif', '2017-11-21 14:51:11', NULL, '2017-12-29 10:08:43', 2),
+(7, NULL, 'Dadang dusung', 'Laki-Laki', 'Bandung', '1900-11-04', 'A', 'Islam', 'Jl. Maung No. 191 Rt.03 Rw.03', '857-9741-6257', 'Belum Kawin', '', '1111', 'Aktif', '2017-11-29 14:26:17', NULL, '2017-12-29 10:08:17', 2),
+(14, NULL, 'Muchtar', 'Perempuan', 'Surabaya', '2017-12-12', NULL, 'Islam', 'Jl. Saluyu A-XV No. 277', '121-2121-2121', 'Belum Kawin', NULL, '111', 'Aktif', '2017-12-27 11:18:09', 2, '2018-01-11 14:22:45', 2),
+(12, NULL, 'Ratna Zata Rahmi', 'Perempuan', 'Bandung', '2017-12-04', NULL, 'Islam', 'Jl. Saluyu A-XV No. 277', '628-8802-1397', NULL, NULL, '2323', 'Aktif', '2017-12-13 14:54:26', 2, '2017-12-26 15:16:17', 2),
+(16, NULL, 'Cirebon', 'Laki-Laki', 'Bandung', '2018-01-27', NULL, 'Islam', 'Jl. Dldldl', '123-1231-2312', 'Kawin', NULL, '123123', 'Aktif', '2018-01-27 20:13:23', 2, '2018-01-27 20:13:23', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `d_jual`
 --
 
@@ -216,7 +254,9 @@ INSERT INTO `hak_akses` (`id_hak_akses`, `hak_akses_role`, `hak_akses_menu`, `ha
 (38, 24, 37, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL),
 (31, 22, 1, 0, 1, 0, 0, 1, NULL, NULL, 2, NULL),
 (41, 24, 27, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL),
-(44, 24, 69, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL);
+(44, 24, 69, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL),
+(45, 2, 70, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL),
+(46, 2, 52, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -425,15 +465,15 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`id_menu`, `name`, `title`, `url`, `icon`, `ref`, `urutan`, `parent`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
 (1, 'Beranda', 'Beranda', 'beranda', 'fa-home', 'mnBeranda', 1, 0, '2017-11-21 15:55:08', NULL, '2017-11-26 20:39:05', NULL),
-(7, 'MasterPasien', 'Master Pasien', '#', 'fa-wheelchair', 'mnMasterPasien', 7, 0, '2017-11-21 16:07:33', NULL, '2018-01-08 21:29:46', NULL),
-(11, 'MasterObat', 'Master Obat dan Alkes', '#', 'fa-glass', 'mnMasterObat', 21, 0, '2017-11-21 16:13:45', NULL, '2018-01-24 22:21:13', 2),
-(13, 'Supplier', 'Supplier', 'suplier', 'fa-truck', 'mnSupplier', 14, 0, '2017-11-21 16:14:40', NULL, '2017-12-08 07:43:30', NULL),
+(7, 'MasterPasien', 'Master Pasien', '#', 'fa-wheelchair', 'mnMasterPasien', 4, 0, '2017-11-21 16:07:33', NULL, '2018-01-27 20:11:30', 2),
+(11, 'MasterObat', 'Master Obat dan Alkes', '#', 'fa-glass', 'mnMasterObat', 3, 0, '2017-11-21 16:13:45', NULL, '2018-01-27 20:10:22', 2),
+(13, 'Supplier', 'Supplier', 'suplier', 'fa-truck', 'mnSupplier', 7, 0, '2017-11-21 16:14:40', NULL, '2018-01-27 20:12:05', 2),
 (14, 'Pengaturan', 'Pengaturan', '#', 'fa-cog', 'mnPengaturan', 13, 0, '2017-11-21 16:15:15', NULL, '2017-12-08 07:43:33', NULL),
-(15, 'TambahPasien', 'Pendaftaran Baru', 'pasien/form', 'fa-vcard-o', 'mnTambahPasien', 1, 0, '2017-11-21 16:15:41', NULL, '2018-01-08 21:31:51', 2),
+(15, 'TambahPasien', 'Pendaftaran Baru', 'pasien/form', 'fa-vcard-o', 'mnTambahPasien', 5, 0, '2017-11-21 16:15:41', NULL, '2018-01-27 20:11:43', 2),
 (16, 'DataPasien', 'Pasien Terdaftar', 'pasien', 'fa-circle-o', 'mnPasienTerdaftar', 2, 7, '2017-11-21 16:16:03', NULL, '2017-11-26 08:46:43', NULL),
-(2, 'PendaftaranPasien', 'Pendaftaran Pemeriksaan', 'pendaftaran_pasien', 'fa-plus', 'mnPendaftaranPasien', 2, 0, '2017-11-21 15:55:08', NULL, '2018-01-08 21:31:20', NULL),
-(3, 'Kasir', 'Kasir', 'kasir', 'fa-shopping-cart', 'mnKasir', 3, 0, '2017-11-21 15:55:08', NULL, '2017-11-26 08:48:07', NULL),
-(6, 'Keuangan', 'Keuangan', '#', 'fa-money', 'mnKeuangan', 6, 0, '2017-11-21 15:55:08', NULL, '2017-12-08 07:52:12', NULL),
+(2, 'PendaftaranPasien', 'Pendaftaran Pemeriksaan', 'pendaftaran_pasien', 'fa-plus', 'mnPendaftaranPasien', 6, 0, '2017-11-21 15:55:08', NULL, '2018-01-27 20:11:51', 2),
+(3, 'Kasir', 'Kasir', 'kasir', 'fa-shopping-cart', 'mnKasir', 8, 0, '2017-11-21 15:55:08', NULL, '2018-01-27 20:12:24', 2),
+(6, 'Keuangan', 'Keuangan', '#', 'fa-money', 'mnKeuangan', 10, 0, '2017-11-21 15:55:08', NULL, '2018-01-27 20:12:45', 2),
 (26, 'KategoriObat', 'Kategori', 'kategoriobat', 'fa-circle-o', 'mnKategoriObat', 3, 11, '2017-11-26 07:09:34', NULL, '2017-11-27 13:44:58', NULL),
 (27, 'Obat', 'Obat dan Alkes', 'obat', 'fa-circle-o', 'mnObat', 4, 11, '2017-11-26 07:10:43', NULL, '2017-12-02 23:36:28', NULL),
 (28, 'HargaObat', 'Harga', 'hargaobat', 'fa-circle-o', 'mnHargaObat', 5, 11, '2017-11-26 07:11:19', NULL, '2017-12-02 23:36:06', NULL),
@@ -453,6 +493,7 @@ INSERT INTO `menu` (`id_menu`, `name`, `title`, `url`, `icon`, `ref`, `urutan`, 
 (45, 'LaporanLabaRugi', 'Laporan Laba Rugi', 'keuangan/laporanlabarugi', 'fa-circle-o', 'mnLaporanLabaRugi', 7, 6, '2017-12-05 13:49:20', NULL, '2017-12-28 13:21:52', NULL),
 (48, 'LaporanJurnalPengeluaran', 'Laporan Jurnal Pengeluaran', 'keuangan/jurnalpengeluaran', 'fa-circle-o', 'mnLaporanJurnalPengeluaran', 9, 6, '2017-12-08 07:50:35', NULL, '2017-12-28 13:21:54', NULL),
 (49, 'KodeAkun', 'Kode Akun', 'ledger', 'fa-circle-o', 'mnKodeAkun', 1, 6, '2017-12-28 13:21:44', NULL, '2017-12-28 13:21:44', NULL),
+(70, 'dokter', 'Dokter', 'dokter', 'fa-black-tie', 'dokter', 1, 0, '2018-01-27 20:01:24', NULL, '2018-01-27 20:08:33', 2),
 (69, 'BerandaGudang', 'Dashboard Obat', 'Berandagudang', 'fa-home', 'mnBerandaGudang', 20, 0, '2018-01-24 22:16:33', NULL, '2018-01-24 22:20:14', NULL),
 (52, 'AntrianPasien', 'Antrian Pasien', 'antrianpasien', 'fa-circle-o', 'mnAntrianPasien', 1, 4, '2018-01-03 02:11:34', NULL, '2018-01-03 02:11:34', NULL);
 
@@ -549,12 +590,9 @@ CREATE TABLE `pasien` (
   `tempat_lahir` varchar(50) DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
   `agama` varchar(20) DEFAULT NULL,
-  `pendidikan_pasien` varchar(120) DEFAULT NULL,
   `pekerjaan_pasien` varchar(120) DEFAULT NULL,
-  `warga_negara` enum('Indonesia','Asing') DEFAULT NULL,
   `gol_darah` enum('A','B','AB','O') DEFAULT NULL,
   `jenis_kelamin` enum('Laki-Laki','Perempuan') DEFAULT NULL,
-  `status_perkawinan` enum('Kawin','Belum Kawin','Janda','Duda') DEFAULT NULL,
   `no_telp_rumah` varchar(20) DEFAULT NULL,
   `no_handphone` varchar(20) DEFAULT NULL,
   `jalan` varchar(75) DEFAULT NULL,
@@ -562,7 +600,6 @@ CREATE TABLE `pasien` (
   `kelurahan` varchar(50) DEFAULT NULL,
   `kecamatan` varchar(50) DEFAULT NULL,
   `kota` varchar(50) DEFAULT NULL,
-  `email` varchar(120) DEFAULT NULL,
   `status_pasien` enum('LAMA','BARU') DEFAULT 'BARU',
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(11) DEFAULT NULL,
@@ -574,11 +611,15 @@ CREATE TABLE `pasien` (
 -- Dumping data for table `pasien`
 --
 
-INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_kartu`, `nama_pasien`, `nik_pasien`, `tempat_lahir`, `tgl_lahir`, `agama`, `pendidikan_pasien`, `pekerjaan_pasien`, `warga_negara`, `gol_darah`, `jenis_kelamin`, `status_perkawinan`, `no_telp_rumah`, `no_handphone`, `jalan`, `rtrw`, `kelurahan`, `kecamatan`, `kota`, `email`, `status_pasien`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(38, '18000002', '00000002', 'Taufik Umardi', '1212121212121212', 'Jakarta', '2018-01-01', 'Islam', 'S1', 'Programer', 'Indonesia', 'B', NULL, 'Kawin', '(021) 2222-2222', '222-2222-2222', 'kp.melayu', '09/09', 'jatinegara', 'kiarapayung', 'jakarta', 't@gmail.com', 'LAMA', '2018-01-02 13:48:34', 2, '2018-01-03 11:48:40', 2),
-(37, '18000001', '00000001', 'Nadra ', '1234567890', 'Bandung', '1993-11-27', 'Islam', 'S1', 'Programer', 'Indonesia', 'O', NULL, 'Kawin', '(022) 1111-1111', '111-1111-1111', 'Jl. Saluyu A-XV No. 277', '04/07', 'Cipamokolan', 'Rancasari', 'Bandung', 'nadra.zata27@gmail.com', 'LAMA', '2018-01-02 13:43:48', 2, '2018-01-03 11:48:25', 2),
-(39, '18000003', '00000003', 'Muhammad Thaufiq Umardi', '3273060507960005', 'Cicacap', '1996-07-05', 'Islam', 'SSS', 'Pengangguran', 'Indonesia', 'A', NULL, 'Belum Kawin', '(022) 2222-2222', '898-9898-9898', 'Jl. Dr Abdul Rivai ', '03/03', 'Pasirkaliki', 'Cicendo', 'Bandung', 'thaufiqumardi@gmail.com', 'LAMA', '2018-01-04 11:16:12', 2, '2018-01-04 11:16:35', 2),
-(40, '18000004', '00000004', 'Asep Sumpena', '2392389282394802', 'Bandung', '1991-07-17', 'Islam', 'qwer', '', 'Indonesia', 'A', NULL, NULL, '', '123-1231-2312', 'asdf', '12/31', 'ASD', 'asdf', 'asdf', '', 'BARU', '2018-01-08 22:01:42', 90, '2018-01-08 22:01:42', NULL);
+INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_kartu`, `nama_pasien`, `nik_pasien`, `tempat_lahir`, `tgl_lahir`, `agama`, `pekerjaan_pasien`, `gol_darah`, `jenis_kelamin`, `no_telp_rumah`, `no_handphone`, `jalan`, `rtrw`, `kelurahan`, `kecamatan`, `kota`, `status_pasien`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(38, '18000002', '00000002', 'Taufik Umardi', '1212121212121212', 'Jakarta', '2018-01-01', 'Islam', 'Programer', 'B', NULL, '(021) 2222-2222', '222-2222-2222', 'kp.melayu', '09/09', 'jatinegara', 'kiarapayung', 'jakarta', 'LAMA', '2018-01-02 13:48:34', 2, '2018-01-03 11:48:40', 2),
+(37, '18000001', '00000001', 'Nadra ', '1234567890', 'Bandung', '1993-11-27', 'Islam', 'Programer', 'O', NULL, '(022) 1111-1111', '111-1111-1111', 'Jl. Saluyu A-XV No. 277', '04/07', 'Cipamokolan', 'Rancasari', 'Bandung', 'LAMA', '2018-01-02 13:43:48', 2, '2018-01-03 11:48:25', 2),
+(39, '18000003', '00000003', 'Muhammad Thaufiq Umardi', '3273060507960005', 'Cicacap', '1996-07-05', 'Islam', 'Pengangguran', 'A', NULL, '(022) 2222-2222', '898-9898-9898', 'Jl. Dr Abdul Rivai ', '03/03', 'Pasirkaliki', 'Cicendo', 'Bandung', 'LAMA', '2018-01-04 11:16:12', 2, '2018-01-04 11:16:35', 2),
+(45, '18000009', '00000009', 'Thaufiq Umardi', '2392389282394802', 'Bandung', '2018-01-22', 'asdf', 'asdf', 'O', NULL, '(213) 2131-23__', '123-1231-2312', 'asdfa', '12/31', 'asdf', 'asdf', 'asdfasdf', 'BARU', '2018-01-27 21:17:02', 2, '2018-01-27 21:17:02', NULL),
+(41, '18000005', '00000005', 'Dadang', '3273023946793004', 'Bandung', '2000-02-01', 'Islam', 'Maling', 'O', NULL, '(022) 9898-9898', '878-6846-5757', 'Jl. Cararaang', '03/03', 'Cirincing', 'Curuncung', 'Caccang', 'BARU', '2018-01-27 20:26:59', 2, '2018-01-27 20:26:59', NULL),
+(42, '18000006', '00000006', 'Qwerty', '1231231231231231', 'Bandung', '2018-01-27', 'asdf', 'asdf', 'B', NULL, '', '', 'asdf', '12/31', 'asdfasf', 'afsd', 'adsf', 'BARU', '2018-01-27 21:04:43', 2, '2018-01-27 21:04:43', NULL),
+(43, '18000007', '00000007', 'Qwerty', '1231231231231231', 'Bandung', '2018-01-27', 'asdf', 'asdf', 'B', NULL, '', '', 'asdf', '12/31', 'asdfasf', 'afsd', 'adsf', 'BARU', '2018-01-27 21:05:25', 2, '2018-01-27 21:05:25', NULL),
+(44, '18000008', '00000008', 'Qwerty', '1231231231231231', 'Bandung', '2018-01-27', 'asdf', 'asdf', 'B', NULL, '', '', 'asdf', '12/31', 'asdfasf', 'afsd', 'adsf', 'BARU', '2018-01-27 21:11:23', 2, '2018-01-27 21:11:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -712,7 +753,8 @@ INSERT INTO `penanggung_pasien` (`id_penanggung`, `id_pasien`, `nama_penanggung`
 (20, 37, 'Mutia Zata Yumni', '0987654321', 'Bandung', '1991-08-25', 'Kakak', 'S1', 'Guru', '(021) 1111-1111', '111-1111-1111', 'JL. Saluyu A XV No.277', '04/07', 'Cipamokolan ', 'Rancasari', 'Bandung', 'mutia.zata@gmail.com', 'Pribadi', '2018-01-02 13:43:48', 2, '2018-01-03 11:33:55', 2),
 (21, 38, 'Jajat Ismail', '21212121212121', 'Jakarta', '1999-10-21', 'Kakak', 'S1', 'Pegawai Swasta', '(021) 0000-0000', '000-0000-0000', 'kp.melayu', '09/09', 'jongol', 'Kirana', 'Bandung', 'jajat@gmail.com', 'Kantor', '2018-01-02 13:48:34', 2, '2018-01-02 13:48:34', NULL),
 (22, 39, 'Dadang', '3203060507964761', 'Bandung', '2018-01-05', 'Saudara', 'Pendidik', 'Pencuri', '(022) 2222-2222', '898-9989-8989', 'Jl. Dr. Ciairam', '03/03', 'Paspasan', 'Mandiri', 'Bahagia', 'Email@gmail.com', 'Pribadi', '2018-01-04 11:16:12', 2, '2018-01-04 11:16:12', NULL),
-(23, 40, NULL, NULL, NULL, '1970-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-08 22:01:42', 90, '2018-01-08 22:01:42', NULL);
+(23, 40, NULL, NULL, NULL, '1970-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-08 22:01:42', 90, '2018-01-08 22:01:42', NULL),
+(24, 41, NULL, NULL, NULL, '1970-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-27 20:26:59', 2, '2018-01-27 20:26:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -797,22 +839,46 @@ INSERT INTO `produsen_obat` (`suplier_id`, `nama_sup`, `kode_sup`, `alamat_sup`,
 
 CREATE TABLE `registrasi_pasien` (
   `id_registrasi` int(11) NOT NULL,
-  `no_registrasi` varchar(10) DEFAULT NULL,
   `id_dokter` int(11) DEFAULT NULL,
   `id_pasien` int(11) DEFAULT NULL,
-  `id_bed` int(11) DEFAULT NULL,
   `tgl_registrasi` date DEFAULT NULL,
   `jam_registrasi` time DEFAULT NULL,
   `no_antrian` int(11) DEFAULT NULL,
-  `jenis_rawat` enum('RAWAT JALAN','RAWAT INAP') DEFAULT 'RAWAT JALAN',
-  `jenis_pembayaran` enum('UMUM','BPJS') DEFAULT 'UMUM',
   `status_registrasi` char(1) DEFAULT '0',
   `status_antrian` char(1) DEFAULT '0',
+  `status_pembayaran` char(1) NOT NULL,
+  `play_sound` char(1) DEFAULT '0',
   `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(11) DEFAULT NULL,
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `registrasi_pasien`
+--
+
+INSERT INTO `registrasi_pasien` (`id_registrasi`, `id_dokter`, `id_pasien`, `tgl_registrasi`, `jam_registrasi`, `no_antrian`, `status_registrasi`, `status_antrian`, `status_pembayaran`, `play_sound`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
+(1, 5, 37, '2018-01-27', '22:10:52', 1, '0', '1', '', '1', '2018-01-27 22:10:52', NULL, '2018-01-27 22:31:27', NULL),
+(2, 14, 39, '2018-01-27', '22:11:02', 2, '0', '1', '', '1', '2018-01-27 22:11:02', NULL, '2018-01-27 22:31:40', NULL),
+(3, 14, 41, '2018-01-27', '22:11:17', 3, '0', '1', '', '1', '2018-01-27 22:11:17', NULL, '2018-01-27 22:31:54', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rekam_medik`
+--
+
+CREATE TABLE `rekam_medik` (
+  `id_rekam_medik` int(11) NOT NULL,
+  `id_pasien` int(11) NOT NULL,
+  `tgl_rekam_medik` date NOT NULL,
+  `diagnosa` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_by` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -949,6 +1015,12 @@ ALTER TABLE `bed`
 --
 ALTER TABLE `detail_pembiayaan`
   ADD PRIMARY KEY (`id_pembiayaan`);
+
+--
+-- Indexes for table `dokter`
+--
+ALTER TABLE `dokter`
+  ADD PRIMARY KEY (`id_dokter`);
 
 --
 -- Indexes for table `d_jual`
@@ -1093,6 +1165,11 @@ ALTER TABLE `bed`
 ALTER TABLE `detail_pembiayaan`
   MODIFY `id_pembiayaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
+-- AUTO_INCREMENT for table `dokter`
+--
+ALTER TABLE `dokter`
+  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
 -- AUTO_INCREMENT for table `d_jual`
 --
 ALTER TABLE `d_jual`
@@ -1101,7 +1178,7 @@ ALTER TABLE `d_jual`
 -- AUTO_INCREMENT for table `hak_akses`
 --
 ALTER TABLE `hak_akses`
-  MODIFY `id_hak_akses` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_hak_akses` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `harga_obat`
 --
@@ -1116,7 +1193,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT for table `merk`
 --
@@ -1131,7 +1208,7 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `pemasukan`
 --
@@ -1146,7 +1223,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `penanggung_pasien`
 --
 ALTER TABLE `penanggung_pasien`
-  MODIFY `id_penanggung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_penanggung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `piutang`
 --
@@ -1161,7 +1238,7 @@ ALTER TABLE `produsen_obat`
 -- AUTO_INCREMENT for table `registrasi_pasien`
 --
 ALTER TABLE `registrasi_pasien`
-  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `role`
 --
