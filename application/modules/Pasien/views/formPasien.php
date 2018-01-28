@@ -371,8 +371,8 @@
 								<?php
 										}
 								?>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
-								<a class="btn btn-warning" href="<?php echo site_url('pasien');?>"><i class="fa fa-close"></i> Batal</a>
+								<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
+								<a class="btn btn-danger" href="<?php echo site_url('pasien');?>"><i class="fa fa-close"></i> Batal</a>
 						</div>
 					</div>
 					</form>

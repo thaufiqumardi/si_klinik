@@ -37,7 +37,7 @@
 							?>">
 							<div class="box-body">
 									<div class="form-group">
-										<label class="control-label col-md-2">Kode Obat</label>
+										<label class="control-label col-md-2">Kode Obat<sup style="color:red;">*</sup></label>
 										<div class="col-md-6">
 											<input type="text" name="kode_obat" class="form-control" placeholder="Kode Obat" <?=(isset($obat)?"value='$obat->kode_obat'":'');?> required="required"/>
 										</div>
@@ -120,8 +120,8 @@
 										<p>Yang bertanda <span style="color: red;">(*)</span> wajib di isi.</p>
 									</div>
 									<div class="pull-right">
-										<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
-										<a href="<?php echo base_url(); ?>Obat" class="btn btn-warning"><i class="fa fa-close"></i> Batal</a>
+										<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
+										<a href="<?php echo base_url(); ?>Obat" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
 									</div>
 							  </div>
 							</div>

@@ -73,8 +73,8 @@
 									<p>Yang bertanda <span style="color: red;">(*)</span> wajib di isi.</p>
 								</div>
 								<div class="pull-right">
-									<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
-									<a href="<?php echo base_url(); ?>Hargaobat" class="btn btn-warning"><i class="fa fa-close"></i> Batal</a>
+									<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
+									<a href="<?php echo base_url(); ?>Hargaobat" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
 								</div>
 							  </div>
 							</div>

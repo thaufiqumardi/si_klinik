@@ -158,14 +158,14 @@
 				</div>
 				<div class="box-footer">
 					<div class="pull-left">
-						<a href="<?php echo site_url('pasien/form');?>" class="btn btn-warning btn-sm">
+						<a href="<?php echo site_url('pasien/form');?>" class="btn btn-primary btn-sm">
 							<i class="fa fa-plus"></i> Tambahkan Pasien Baru
 						</a>
 					</div>
 					<div class="pull-right">
 						<!-- <div class="form-group"> -->
-							<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Simpan</button>
-							<a href="<?= site_url('pendaftaran_pasien');?>" class="btn btn-default btn-sm" type="reset" id="resetBtn"><i class="fa fa-close"></i> Batal</a>
+							<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i> Simpan</button>
+							<a href="<?= site_url('pendaftaran_pasien');?>" class="btn btn-danger btn-sm" type="reset" id="resetBtn"><i class="fa fa-close"></i> Batal</a>
 						<!-- </div> -->
 					</div>
 				</div>
