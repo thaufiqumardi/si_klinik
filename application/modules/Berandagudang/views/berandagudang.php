@@ -40,17 +40,55 @@
 					<?php
 				}
 				?>
-				<div class="row">
-          <div class="col-md-12">
-            <div class="box box-widget">
-              <div class="box-body">
-                <table class="table table-border">
-                  
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+				<div class="box box-widget">
+					<div class="box-header with-border">
+						<h3 class="box-title pull-left">Data Stok Obat</h3>
+					</div>
+					<div class="box-body">
+							<a href="<?php echo site_url('Obat/cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
+			              	<a href="<?php echo site_url('Obat/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
+			              		<i class="fa fa-file-excel-o"></i> Export Excell</a>
+
+						<table id="example2" style="border: 2" class="table table-bordered table-striped table-hover DataTable">
+							<thead>
+								<tr>
+									<th style="width: 5%;" class="text-center">No.</th>
+									<th >Kode Obat</th>
+									<th class="text-center">Nama Obat / Alkes</th>
+									<th class="text-center">Kategori</th>
+									<th class="text-center">Merk</th>
+									<th class="text-center">Stok</th>
+									<th class="text-center">Satuan</th>
+									<th class="text-center">Supplier</th>
+									<th style="width: 10%;" class="text-center">Aksi</th>
+								</tr>
+							</thead>
+              <tbody>
+
+
+              </tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal fade" id="confirmHapus"  data-backdrop="static" data-keyboard="false">
+					<div class="modal-dialog">
+						<div class="modal-content" style="margin-top:100px;">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" style="text-align:center;">
+									Anda Yakin Akan menghapus <span class="grt"></span>?
+								</h4>
+							</div>
+							<div class="modal-footer">
+								<span id="preloader-delete"></span>
+								<br><a class="btn btn-primary" id="delete_link_m_n" href="">Delete</a>
+								<button type="button" class="btn btn-default" data-dismiss="modal" id="delete_cancel_link">
+									Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</section>
 		</div>
 		<?php $this->load->view('template/v_copyright'); ?>
@@ -66,8 +104,8 @@
 	</script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$('#mnBerandaGudang').addClass('active');
-	  	// $('#mnObat').addClass('active');
+		$('#mnMasterObat').addClass('active');
+	  	$('#mnObat').addClass('active');
 
 	  	$('#alert').delay(10000).fadeOut("slow");
 	});
