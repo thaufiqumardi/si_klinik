@@ -39,7 +39,7 @@
 					<?php
 				}
 				?>
-				<div class="box box-widget">
+				<div class="box box-primary box-solid box-widget">
 					<div class="box-header with-border">
 						<h3 class="box-title">Data Dokter</h3>
 					</div>
@@ -86,17 +86,17 @@
 													<i class="fa fa-edit" title="Edit"></i></a>
 										<?php
 											}
-											
+
 											if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnDelete == 1)
 											{
 										?>
-												<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal" 
+												<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal"
 													onclick="confirm_delete('<?php echo site_url('Dokter/hapus').'/'.$dokter['id_dokter'];?>',
 													'<?php echo $dokter['nama_dokter'];?>');"><i class="fa fa-trash"></i></a>
 										<?php
 											}
 										?>
-												
+
 									</td>
 								</tr>
 								<?php endforeach;?>
@@ -146,7 +146,7 @@
 
       $('#alert').delay(10000).fadeOut("slow");
 	});
-	
+
 	$(function () {
         $('#example2').DataTable({
           "paging": true,

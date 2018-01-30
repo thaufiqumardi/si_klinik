@@ -53,7 +53,7 @@
 	<div class="box-body">
 		<div class="row">
 			<div class="col-md-12">
-			<div class="box box-success box-solid">
+			<div class="box box-primary box-solid">
 				<div class="box-header">
 					<h3 class="box-title">Pasien Terdaftar Hari Ini</h3>
 					<div class="box-tools pull-right">
@@ -67,16 +67,18 @@
 							<tr>
 								<!-- <th rowspan="2" style="width: 4px;height: 2px">#</th> -->
 								<!-- <th>Nomor Registrasi</th> -->
-								<th>Nomor Kartu</th>
-								<th>Nama</th>
-								<th>Nomor Antrian</th>
+								<th class="col-md-2">No. Antrian</th>
+								<th class="col-md-2">No. Kartu</th>
+								<th class="col-md-3">Nama Pasien</th>
+								<th class="col-md-3">Dokter</th>
+
 								<th>
 									Status
 								</th>
 							</tr>
 						</thead>
 						<tbody>
-							
+
 						</tbody>
 					</table>
 				</div>

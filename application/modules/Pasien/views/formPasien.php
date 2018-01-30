@@ -75,7 +75,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-2">Nama Pasien<sup style="color:red;">*</sup></label>
 											<div class="col-md-9">
-												<input type="text" name="nama_pasien" class="form-control" required="required"
+												<input type="text" placeholder="Nama Pasien" name="nama_pasien" class="form-control" required="required"
 													<?php
 														if(isset($pasien)){
 															echo("value='".$pasien['nama_pasien']."'");
@@ -90,7 +90,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-2">No. KTP<sup style="color:red;">*</sup></label>
 											<div class="col-md-9">
-												<input type="text" name="nik_pasien" class="form-control" required="required"
+												<input type="text"  placeholder="Nomor KTP" name="nik_pasien" class="form-control" required="required"
 												<?php
 														if(isset($pasien)){
 															echo("value='".$pasien['nik_pasien']."'");

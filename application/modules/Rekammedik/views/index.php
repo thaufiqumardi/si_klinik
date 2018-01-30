@@ -39,9 +39,9 @@
 					<?php
 				}
 				?>
-				<div class="box box-widget">
+				<div class="box box-primary box-solid box-widget">
 					<div class="box-header with-border">
-						<h3 class="box-title">Data Pasien Hari Ini</h3>
+						<h3 class="box-title">Form Rekam Medik</h3>
 					</div>
 					<div class="box-body">
 						<a href="<?php echo site_url('Dokter/cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
