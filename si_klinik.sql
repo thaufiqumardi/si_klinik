@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2018 at 01:55 PM
+-- Generation Time: Jan 30, 2018 at 04:40 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -98,64 +98,6 @@ CREATE TABLE `detail_pembiayaan` (
   `updated_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `detail_pembiayaan`
---
-
-INSERT INTO `detail_pembiayaan` (`id_pembiayaan`, `id_registrasi`, `no_registrasi`, `tgl_registrasi`, `nama_item`, `jenis_item`, `item_id`, `harga`, `qty`, `total_harga`, `status_bayar`, `satuan`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, 6, '1712260001', '2017-12-26 00:00:00', 'vaksin', 'Layanan', 15, '200000.00', '1.00', '200000.00', '0', NULL, 2, '2017-12-26 04:10:07', NULL, '2017-12-26 04:10:07'),
-(2, 6, '1712260001', '2017-12-26 00:00:00', 'Biaya Pendaftaran Pasien Baru', 'Pendaftaran', 0, '15000.00', '1.00', '15000.00', '0', NULL, 2, '2017-12-26 04:10:07', NULL, '2017-12-26 04:10:07'),
-(3, 7, '1712260002', '2017-12-26 00:00:00', NULL, 'Paket', NULL, NULL, '1.00', '0.00', '0', NULL, 2, '2017-12-26 04:10:55', NULL, '2017-12-26 04:10:55'),
-(4, 7, '1712260002', '2017-12-26 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, 2, '2017-12-26 04:10:55', NULL, '2017-12-26 04:10:55'),
-(5, 8, '1712260003', '2017-12-26 00:00:00', 'Biaya Pendaftaran Pasien Baru', 'Pendaftaran', 0, '15000.00', '1.00', '15000.00', '0', NULL, 2, '2017-12-26 04:18:37', NULL, '2017-12-26 04:18:37'),
-(6, 9, '1712260004', '2017-12-26 00:00:00', 'Biaya Pendaftaran Pasien Baru', 'Pendaftaran', 0, '15000.00', '1.00', '15000.00', '0', NULL, 2, '2017-12-26 04:21:04', NULL, '2017-12-26 04:21:04'),
-(7, 10, '1712280001', '2017-12-28 00:00:00', 'Umum', 'Layanan', 5, '100000.00', '1.00', '100000.00', '0', NULL, 2, '2017-12-28 09:20:54', NULL, '2017-12-28 09:20:54'),
-(8, 10, '1712280001', '2017-12-28 00:00:00', 'Operasi Besar', 'Layanan', 11, '100000.00', '1.00', '100000.00', '0', NULL, 2, '2017-12-28 09:20:54', NULL, '2017-12-28 09:20:54'),
-(9, 10, '1712280001', '2017-12-28 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, 2, '2017-12-28 09:20:54', NULL, '2017-12-28 09:20:54'),
-(10, 11, '1712280002', '2017-12-28 00:00:00', 'Keluarga Berencana', 'Layanan', 14, '20000.00', '1.00', '20000.00', '0', NULL, 2, '2017-12-28 09:22:55', NULL, '2017-12-28 09:22:55'),
-(11, 11, '1712280002', '2017-12-28 00:00:00', 'Biaya Pendaftaran Pasien Baru', 'Pendaftaran', 0, '15000.00', '1.00', '15000.00', '0', NULL, 2, '2017-12-28 09:22:55', NULL, '2017-12-28 09:22:55'),
-(12, 12, '1712280003', '2017-12-28 00:00:00', NULL, 'Paket', NULL, NULL, '1.00', '0.00', '1', NULL, 2, '2017-12-28 09:23:10', 2, '2017-12-28 09:44:13'),
-(13, 12, '1712280003', '2017-12-28 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '1', NULL, 2, '2017-12-28 09:23:10', 2, '2017-12-28 09:44:13'),
-(14, 13, '1712280004', '2017-12-28 00:00:00', 'Spesialis Dalam', 'Layanan', 10, '250000.00', '1.00', '250000.00', '1', NULL, 2, '2017-12-28 09:23:36', 2, '2017-12-28 10:10:19'),
-(15, 13, '1712280004', '2017-12-28 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '1', NULL, 2, '2017-12-28 09:23:36', 2, '2017-12-28 10:10:19'),
-(16, 14, '1712280005', '2017-12-28 00:00:00', NULL, 'Paket', NULL, NULL, '1.00', '0.00', '1', NULL, 2, '2017-12-28 09:24:57', 2, '2017-12-28 10:36:18'),
-(17, 14, '1712280005', '2017-12-28 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '1', NULL, 2, '2017-12-28 09:24:57', 2, '2017-12-28 10:36:18'),
-(18, 15, '1712280006', '2017-12-28 00:00:00', NULL, 'Paket', NULL, NULL, '1.00', '0.00', '0', NULL, 2, '2017-12-28 09:25:28', NULL, '2017-12-28 09:25:28'),
-(19, 15, '1712280006', '2017-12-28 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, 2, '2017-12-28 09:25:28', NULL, '2017-12-28 09:25:28'),
-(20, 16, '1712290001', '2017-12-29 00:00:00', 'Operasi Besar', 'Layanan', 11, '100000.00', '1.00', '100000.00', '1', NULL, 86, '2017-12-29 03:26:54', 2, '2017-12-29 03:34:59'),
-(21, 16, '1712290001', '2017-12-29 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '1', NULL, 86, '2017-12-29 03:26:54', 2, '2017-12-29 03:34:59'),
-(22, 17, '1712290002', '2017-12-29 00:00:00', NULL, 'Paket', NULL, NULL, '1.00', '0.00', '0', NULL, 87, '2017-12-29 03:27:32', NULL, '2017-12-29 03:27:32'),
-(23, 17, '1712290002', '2017-12-29 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, 87, '2017-12-29 03:27:32', NULL, '2017-12-29 03:27:32'),
-(24, 18, '1712290002', '2017-12-29 00:00:00', 'Spesialis Dalam', 'Layanan', 10, '250000.00', '1.00', '250000.00', '1', NULL, 2, '2017-12-29 03:59:00', 2, '2017-12-29 03:59:46'),
-(25, 18, '1712290002', '2017-12-29 00:00:00', 'Keluarga Berencana', 'Layanan', 14, '20000.00', '1.00', '20000.00', '1', NULL, 2, '2017-12-29 03:59:00', 2, '2017-12-29 03:59:46'),
-(26, 18, '1712290002', '2017-12-29 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '1', NULL, 2, '2017-12-29 03:59:00', 2, '2017-12-29 03:59:46'),
-(27, 16, '1712290001', '2017-12-29 00:00:00', 'AMOXICILLIN', 'Obat', 9, '5000.00', '1.00', '5000.00', '1', NULL, NULL, '2017-12-29 04:31:19', 2, '2017-12-29 05:14:29'),
-(28, 16, '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', 10, '2000.00', '2.00', '4000.00', '1', NULL, NULL, '2017-12-29 04:31:20', 2, '2017-12-29 05:14:29'),
-(29, 16, '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', 10, '2000.00', '3.00', '6000.00', '1', NULL, NULL, '2017-12-29 04:31:20', 2, '2017-12-29 05:14:29'),
-(30, 16, '1712290001', '2017-12-29 00:00:00', 'ANTASIDA DOEN', 'Obat', 13, '2000.00', '1.00', '2000.00', '1', NULL, NULL, '2017-12-29 05:11:51', 2, '2017-12-29 05:14:29'),
-(31, 16, '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', 10, '2000.00', '2.00', '4000.00', '1', NULL, NULL, '2017-12-29 05:11:51', 2, '2017-12-29 05:14:29'),
-(32, 16, '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', 10, '2000.00', '1.00', '2000.00', '1', NULL, NULL, '2017-12-29 05:25:43', 2, '2017-12-29 05:27:52'),
-(33, 16, '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', 10, '2000.00', '1.00', '2000.00', '1', NULL, NULL, '2017-12-29 05:25:43', 2, '2017-12-29 05:27:52'),
-(34, 19, '1801020001', '2018-01-02 00:00:00', 'Spesialis Dalam', 'Layanan', 10, '250000.00', '1.00', '250000.00', '0', NULL, 2, '2018-01-02 06:15:03', NULL, '2018-01-02 06:15:03'),
-(35, 19, '1801020001', '2018-01-02 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, 2, '2018-01-02 06:15:03', NULL, '2018-01-02 06:15:03'),
-(36, 20, '1801030001', '2018-01-03 00:00:00', 'Operasi Besar', 'Layanan', 11, '100000.00', '1.00', '100000.00', '1', NULL, 2, '2018-01-03 04:48:25', 2, '2018-01-03 04:53:00'),
-(37, 20, '1801030001', '2018-01-03 00:00:00', 'Biaya Pendaftaran Pasien Baru', 'Pendaftaran', 0, '15000.00', '1.00', '15000.00', '1', NULL, 2, '2018-01-03 04:48:25', 2, '2018-01-03 04:53:00'),
-(38, 21, '1801030002', '2018-01-03 00:00:00', 'Persalinan ', 'Paket', 2, '912.00', '1.00', '912.00', '0', NULL, 2, '2018-01-03 04:48:40', NULL, '2018-01-03 04:48:40'),
-(39, 21, '1801030002', '2018-01-03 00:00:00', 'Biaya Pendaftaran Pasien Baru', 'Pendaftaran', 0, '15000.00', '1.00', '15000.00', '0', NULL, 2, '2018-01-03 04:48:40', NULL, '2018-01-03 04:48:40'),
-(40, 22, '1801040001', '2018-01-04 00:00:00', 'Umum', 'Layanan', 5, '100000.00', '1.00', '100000.00', '0', NULL, 2, '2018-01-04 03:38:51', NULL, '2018-01-04 03:38:51'),
-(41, 22, '1801040001', '2018-01-04 00:00:00', 'Operasi Besar', 'Layanan', 11, '100000.00', '1.00', '100000.00', '0', NULL, 2, '2018-01-04 03:38:51', NULL, '2018-01-04 03:38:51'),
-(42, 22, '1801040001', '2018-01-04 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, 2, '2018-01-04 03:38:51', NULL, '2018-01-04 03:38:51'),
-(43, 23, '1801040002', '2018-01-04 00:00:00', 'Medical Check Up', 'Paket', 1, '1110000.00', '1.00', '1110000.00', '0', NULL, 2, '2018-01-04 03:40:41', NULL, '2018-01-04 03:40:41'),
-(44, 23, '1801040002', '2018-01-04 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, 2, '2018-01-04 03:40:41', NULL, '2018-01-04 03:40:41'),
-(45, 24, '1801040003', '2018-01-04 00:00:00', 'Keluarga Berencana', 'Layanan', 14, '20000.00', '1.00', '20000.00', '0', NULL, 2, '2018-01-04 04:16:35', NULL, '2018-01-04 04:16:35'),
-(46, 24, '1801040003', '2018-01-04 00:00:00', 'Biaya Pendaftaran Pasien Baru', 'Pendaftaran', 0, '15000.00', '1.00', '15000.00', '0', NULL, 2, '2018-01-04 04:16:35', NULL, '2018-01-04 04:16:35'),
-(47, 25, '1801070001', '2018-01-07 00:00:00', 'Operasi Besar', 'Layanan', 11, '100000.00', '1.00', '100000.00', '0', NULL, 2, '2018-01-07 13:17:44', NULL, '2018-01-07 13:17:44'),
-(48, 25, '1801070001', '2018-01-07 00:00:00', 'Keluarga Berencana', 'Layanan', 14, '20000.00', '1.00', '20000.00', '0', NULL, 2, '2018-01-07 13:17:44', NULL, '2018-01-07 13:17:44'),
-(49, 25, '1801070001', '2018-01-07 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, 2, '2018-01-07 13:17:44', NULL, '2018-01-07 13:17:44'),
-(50, 26, '1801080001', '2018-01-08 00:00:00', 'Umum', 'Layanan', 5, '100000.00', '1.00', '100000.00', '0', NULL, 2, '2018-01-08 14:12:53', NULL, '2018-01-08 14:12:53'),
-(51, 26, '1801080001', '2018-01-08 00:00:00', 'Operasi Besar', 'Layanan', 11, '100000.00', '1.00', '100000.00', '0', NULL, 2, '2018-01-08 14:12:53', NULL, '2018-01-08 14:12:53'),
-(52, 26, '1801080001', '2018-01-08 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, 2, '2018-01-08 14:12:53', NULL, '2018-01-08 14:12:53');
-
 -- --------------------------------------------------------
 
 --
@@ -191,8 +133,7 @@ INSERT INTO `dokter` (`id_dokter`, `kd_dokter`, `nama_dokter`, `jenis_kelamin`, 
 (5, NULL, 'Wawan Setiawan', 'Laki-Laki', 'Surabaya', '1991-06-07', 'B', 'Islam', 'Jakarta', '923-7239-4728', 'Kawin', 'UIN SGD BDG', '121', 'Aktif', '2017-11-21 14:51:11', NULL, '2017-12-29 10:08:43', 2),
 (7, NULL, 'Dadang dusung', 'Laki-Laki', 'Bandung', '1900-11-04', 'A', 'Islam', 'Jl. Maung No. 191 Rt.03 Rw.03', '857-9741-6257', 'Belum Kawin', '', '1111', 'Aktif', '2017-11-29 14:26:17', NULL, '2017-12-29 10:08:17', 2),
 (14, NULL, 'Muchtar', 'Perempuan', 'Surabaya', '2017-12-12', NULL, 'Islam', 'Jl. Saluyu A-XV No. 277', '121-2121-2121', 'Belum Kawin', NULL, '111', 'Aktif', '2017-12-27 11:18:09', 2, '2018-01-11 14:22:45', 2),
-(12, NULL, 'Ratna Zata Rahmi', 'Perempuan', 'Bandung', '2017-12-04', NULL, 'Islam', 'Jl. Saluyu A-XV No. 277', '628-8802-1397', NULL, NULL, '2323', 'Aktif', '2017-12-13 14:54:26', 2, '2017-12-26 15:16:17', 2),
-(16, NULL, 'Cirebon', 'Laki-Laki', 'Bandung', '2018-01-27', NULL, 'Islam', 'Jl. Dldldl', '123-1231-2312', 'Kawin', NULL, '123123', 'Aktif', '2018-01-27 20:13:23', 2, '2018-01-27 20:13:23', NULL);
+(12, NULL, 'Ratna Zata Rahmi', 'Perempuan', 'Bandung', '2017-12-04', NULL, 'Islam', 'Jl. Saluyu A-XV No. 277', '628-8802-1397', NULL, NULL, '2323', 'Aktif', '2017-12-13 14:54:26', 2, '2017-12-26 15:16:17', 2);
 
 -- --------------------------------------------------------
 
@@ -256,7 +197,8 @@ INSERT INTO `hak_akses` (`id_hak_akses`, `hak_akses_role`, `hak_akses_menu`, `ha
 (41, 24, 27, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL),
 (44, 24, 69, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL),
 (45, 2, 70, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL),
-(46, 2, 52, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL);
+(46, 2, 52, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL),
+(47, 2, 71, 1, 1, 1, 1, 1, NULL, NULL, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -380,7 +322,8 @@ INSERT INTO `harga_obat` (`harga_obat_id`, `id_obat`, `harga_beli`, `harga_jual1
 (97, 122, '12000.00', '14000.00', '0.00', NULL, '2017-12-03 07:44:14', NULL, '2017-12-03 07:44:14'),
 (98, 123, '12000.00', '14000.00', '0.00', NULL, '2017-12-03 07:44:27', NULL, '2017-12-03 07:44:27'),
 (101, 133, '100000.00', '110000.00', '0.00', 2, '2017-12-27 15:08:22', 2, '2017-12-28 12:59:39'),
-(103, 2, '200000.00', '2000.00', '0.00', 2, '2018-01-24 21:13:28', NULL, '2018-01-24 21:13:28');
+(103, 2, '200000.00', '2000.00', '0.00', 2, '2018-01-24 21:13:28', NULL, '2018-01-24 21:13:28'),
+(104, 3, '900000.00', '3000.00', '0.00', 2, '2018-01-30 21:47:39', NULL, '2018-01-30 21:47:39');
 
 -- --------------------------------------------------------
 
@@ -430,10 +373,9 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `created_date`, `created
 (34, 'PUSING', '2017-11-28 11:04:33', NULL, '2017-11-28 11:04:33', NULL),
 (36, 'GATAL', '2017-11-28 11:04:47', NULL, '2017-11-28 11:04:47', NULL),
 (37, 'LAMBUNG', '2017-11-28 11:04:55', NULL, '2017-11-28 11:04:55', NULL),
-(38, 'ANTI NYERI 2', '2017-11-28 11:05:03', NULL, '2018-01-24 21:31:34', 92),
 (39, 'ANTI PENDARAHAN', '2017-11-28 11:05:08', NULL, '2017-11-28 11:05:08', NULL),
 (40, 'MUAL', '2017-11-28 11:05:14', NULL, '2017-11-28 11:05:14', NULL),
-(41, 'HIPERTENSI', '2017-11-28 11:06:54', NULL, '2017-11-28 11:06:54', NULL),
+(51, 'Kadas Kurap', '2018-01-30 21:45:38', 2, '2018-01-30 21:45:38', NULL),
 (43, 'BATUK', '2017-12-02 23:50:53', NULL, '2017-12-03 06:19:28', NULL),
 (44, 'GENERIK', '2017-12-02 23:55:13', NULL, '2017-12-02 23:55:13', NULL),
 (50, 'Sakit Perut', '2018-01-24 21:03:57', 2, '2018-01-24 21:03:57', NULL);
@@ -473,6 +415,7 @@ INSERT INTO `menu` (`id_menu`, `name`, `title`, `url`, `icon`, `ref`, `urutan`, 
 (16, 'DataPasien', 'Pasien Terdaftar', 'pasien', 'fa-circle-o', 'mnPasienTerdaftar', 2, 7, '2017-11-21 16:16:03', NULL, '2017-11-26 08:46:43', NULL),
 (2, 'PendaftaranPasien', 'Pendaftaran Pemeriksaan', 'pendaftaran_pasien', 'fa-plus', 'mnPendaftaranPasien', 6, 0, '2017-11-21 15:55:08', NULL, '2018-01-27 20:11:51', 2),
 (3, 'Kasir', 'Kasir', 'kasir', 'fa-shopping-cart', 'mnKasir', 8, 0, '2017-11-21 15:55:08', NULL, '2018-01-27 20:12:24', 2),
+(71, 'rekammedik', 'Rekam Medik', 'rekammedik', 'fa-stethoscope', 'mnrekammedik', 7, 0, '2018-01-28 22:47:46', NULL, '2018-01-28 22:51:10', 2),
 (6, 'Keuangan', 'Keuangan', '#', 'fa-money', 'mnKeuangan', 10, 0, '2017-11-21 15:55:08', NULL, '2018-01-27 20:12:45', 2),
 (26, 'KategoriObat', 'Kategori', 'kategoriobat', 'fa-circle-o', 'mnKategoriObat', 3, 11, '2017-11-26 07:09:34', NULL, '2017-11-27 13:44:58', NULL),
 (27, 'Obat', 'Obat dan Alkes', 'obat', 'fa-circle-o', 'mnObat', 4, 11, '2017-11-26 07:10:43', NULL, '2017-12-02 23:36:28', NULL),
@@ -494,7 +437,6 @@ INSERT INTO `menu` (`id_menu`, `name`, `title`, `url`, `icon`, `ref`, `urutan`, 
 (48, 'LaporanJurnalPengeluaran', 'Laporan Jurnal Pengeluaran', 'keuangan/jurnalpengeluaran', 'fa-circle-o', 'mnLaporanJurnalPengeluaran', 9, 6, '2017-12-08 07:50:35', NULL, '2017-12-28 13:21:54', NULL),
 (49, 'KodeAkun', 'Kode Akun', 'ledger', 'fa-circle-o', 'mnKodeAkun', 1, 6, '2017-12-28 13:21:44', NULL, '2017-12-28 13:21:44', NULL),
 (70, 'dokter', 'Dokter', 'dokter', 'fa-black-tie', 'dokter', 1, 0, '2018-01-27 20:01:24', NULL, '2018-01-27 20:08:33', 2),
-(69, 'BerandaGudang', 'Dashboard Obat', 'Berandagudang', 'fa-home', 'mnBerandaGudang', 20, 0, '2018-01-24 22:16:33', NULL, '2018-01-24 22:20:14', NULL),
 (52, 'AntrianPasien', 'Antrian Pasien', 'antrianpasien', 'fa-circle-o', 'mnAntrianPasien', 1, 4, '2018-01-03 02:11:34', NULL, '2018-01-03 02:11:34', NULL);
 
 -- --------------------------------------------------------
@@ -519,7 +461,8 @@ CREATE TABLE `merk` (
 INSERT INTO `merk` (`merk_id`, `merk_nama`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
 (70, 'BETADIN', 2, '2017-12-27 13:57:54', NULL, '2017-12-27 13:57:54'),
 (68, 'MIXAGRIP', NULL, '2017-12-11 11:33:58', 2, '2017-12-27 13:59:29'),
-(71, 'Intunal', 2, '2018-01-24 21:03:44', NULL, '2018-01-24 21:03:44');
+(71, 'Intunal', 2, '2018-01-24 21:03:44', NULL, '2018-01-24 21:03:44'),
+(72, 'Konidin', 2, '2018-01-30 21:45:21', NULL, '2018-01-30 21:45:21');
 
 -- --------------------------------------------------------
 
@@ -548,7 +491,8 @@ CREATE TABLE `obat` (
 
 INSERT INTO `obat` (`id_obat`, `id_kategori`, `id_satuan`, `id_merk`, `id_supplier`, `kode_obat`, `nama_obat`, `stok`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
 (1, 34, 5, 68, 14, '0', 'Bodrexin', 0, '2018-01-24 20:26:17', 2, '2018-01-24 20:26:17', NULL),
-(2, 50, 67, 71, 14, 'KD0001', 'Intunal Kuning', 90, '2018-01-24 21:04:27', 2, '2018-01-24 21:04:27', NULL);
+(2, 50, 67, 71, 14, 'KD0001', 'Intunal Kuning', 90, '2018-01-24 21:04:27', 2, '2018-01-24 21:04:27', NULL),
+(3, 51, 68, 72, 19, 'KK000213', 'Konidin', 10, '2018-01-30 21:46:51', 2, '2018-01-30 21:46:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -589,6 +533,7 @@ CREATE TABLE `pasien` (
   `nik_pasien` varchar(16) DEFAULT NULL,
   `tempat_lahir` varchar(50) DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
+  `umur` int(2) NOT NULL,
   `agama` varchar(20) DEFAULT NULL,
   `pekerjaan_pasien` varchar(120) DEFAULT NULL,
   `gol_darah` enum('A','B','AB','O') DEFAULT NULL,
@@ -611,15 +556,8 @@ CREATE TABLE `pasien` (
 -- Dumping data for table `pasien`
 --
 
-INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_kartu`, `nama_pasien`, `nik_pasien`, `tempat_lahir`, `tgl_lahir`, `agama`, `pekerjaan_pasien`, `gol_darah`, `jenis_kelamin`, `no_telp_rumah`, `no_handphone`, `jalan`, `rtrw`, `kelurahan`, `kecamatan`, `kota`, `status_pasien`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(38, '18000002', '00000002', 'Taufik Umardi', '1212121212121212', 'Jakarta', '2018-01-01', 'Islam', 'Programer', 'B', NULL, '(021) 2222-2222', '222-2222-2222', 'kp.melayu', '09/09', 'jatinegara', 'kiarapayung', 'jakarta', 'LAMA', '2018-01-02 13:48:34', 2, '2018-01-03 11:48:40', 2),
-(37, '18000001', '00000001', 'Nadra ', '1234567890', 'Bandung', '1993-11-27', 'Islam', 'Programer', 'O', NULL, '(022) 1111-1111', '111-1111-1111', 'Jl. Saluyu A-XV No. 277', '04/07', 'Cipamokolan', 'Rancasari', 'Bandung', 'LAMA', '2018-01-02 13:43:48', 2, '2018-01-03 11:48:25', 2),
-(39, '18000003', '00000003', 'Muhammad Thaufiq Umardi', '3273060507960005', 'Cicacap', '1996-07-05', 'Islam', 'Pengangguran', 'A', NULL, '(022) 2222-2222', '898-9898-9898', 'Jl. Dr Abdul Rivai ', '03/03', 'Pasirkaliki', 'Cicendo', 'Bandung', 'LAMA', '2018-01-04 11:16:12', 2, '2018-01-04 11:16:35', 2),
-(45, '18000009', '00000009', 'Thaufiq Umardi', '2392389282394802', 'Bandung', '2018-01-22', 'asdf', 'asdf', 'O', NULL, '(213) 2131-23__', '123-1231-2312', 'asdfa', '12/31', 'asdf', 'asdf', 'asdfasdf', 'BARU', '2018-01-27 21:17:02', 2, '2018-01-27 21:17:02', NULL),
-(41, '18000005', '00000005', 'Dadang', '3273023946793004', 'Bandung', '2000-02-01', 'Islam', 'Maling', 'O', NULL, '(022) 9898-9898', '878-6846-5757', 'Jl. Cararaang', '03/03', 'Cirincing', 'Curuncung', 'Caccang', 'BARU', '2018-01-27 20:26:59', 2, '2018-01-27 20:26:59', NULL),
-(42, '18000006', '00000006', 'Qwerty', '1231231231231231', 'Bandung', '2018-01-27', 'asdf', 'asdf', 'B', NULL, '', '', 'asdf', '12/31', 'asdfasf', 'afsd', 'adsf', 'BARU', '2018-01-27 21:04:43', 2, '2018-01-27 21:04:43', NULL),
-(43, '18000007', '00000007', 'Qwerty', '1231231231231231', 'Bandung', '2018-01-27', 'asdf', 'asdf', 'B', NULL, '', '', 'asdf', '12/31', 'asdfasf', 'afsd', 'adsf', 'BARU', '2018-01-27 21:05:25', 2, '2018-01-27 21:05:25', NULL),
-(44, '18000008', '00000008', 'Qwerty', '1231231231231231', 'Bandung', '2018-01-27', 'asdf', 'asdf', 'B', NULL, '', '', 'asdf', '12/31', 'asdfasf', 'afsd', 'adsf', 'BARU', '2018-01-27 21:11:23', 2, '2018-01-27 21:11:23', NULL);
+INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_kartu`, `nama_pasien`, `nik_pasien`, `tempat_lahir`, `tgl_lahir`, `umur`, `agama`, `pekerjaan_pasien`, `gol_darah`, `jenis_kelamin`, `no_telp_rumah`, `no_handphone`, `jalan`, `rtrw`, `kelurahan`, `kecamatan`, `kota`, `status_pasien`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, '18000001', '00000001', 'Thaufiq Muhammad Umardi', '3273060507960005', 'Bandung', '1996-07-05', 22, 'Islam', 'Pengangguran', 'O', 'Laki-Laki', '(222) 2222-2222', '222-2222-2222', 'Jl. Dr Abdul Rivai ', '23/42', 'asdfasf', 'asdf', 'asdf', 'BARU', '2018-01-30 22:31:46', 2, '2018-01-30 22:31:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -839,6 +777,7 @@ INSERT INTO `produsen_obat` (`suplier_id`, `nama_sup`, `kode_sup`, `alamat_sup`,
 
 CREATE TABLE `registrasi_pasien` (
   `id_registrasi` int(11) NOT NULL,
+  `no_registrasi` int(11) NOT NULL,
   `id_dokter` int(11) DEFAULT NULL,
   `id_pasien` int(11) DEFAULT NULL,
   `tgl_registrasi` date DEFAULT NULL,
@@ -858,10 +797,8 @@ CREATE TABLE `registrasi_pasien` (
 -- Dumping data for table `registrasi_pasien`
 --
 
-INSERT INTO `registrasi_pasien` (`id_registrasi`, `id_dokter`, `id_pasien`, `tgl_registrasi`, `jam_registrasi`, `no_antrian`, `status_registrasi`, `status_antrian`, `status_pembayaran`, `play_sound`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, 5, 37, '2018-01-27', '22:10:52', 1, '0', '1', '', '1', '2018-01-27 22:10:52', NULL, '2018-01-27 22:31:27', NULL),
-(2, 14, 39, '2018-01-27', '22:11:02', 2, '0', '1', '', '1', '2018-01-27 22:11:02', NULL, '2018-01-27 22:31:40', NULL),
-(3, 14, 41, '2018-01-27', '22:11:17', 3, '0', '1', '', '1', '2018-01-27 22:11:17', NULL, '2018-01-27 22:31:54', NULL);
+INSERT INTO `registrasi_pasien` (`id_registrasi`, `no_registrasi`, `id_dokter`, `id_pasien`, `tgl_registrasi`, `jam_registrasi`, `no_antrian`, `status_registrasi`, `status_antrian`, `status_pembayaran`, `play_sound`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
+(1, 1801300001, 7, 1, '2018-01-30', '22:32:18', 1, '0', '1', '', '0', '2018-01-30 22:32:18', NULL, '2018-01-30 22:35:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -872,6 +809,7 @@ INSERT INTO `registrasi_pasien` (`id_registrasi`, `id_dokter`, `id_pasien`, `tgl
 CREATE TABLE `rekam_medik` (
   `id_rekam_medik` int(11) NOT NULL,
   `id_pasien` int(11) NOT NULL,
+  `id_dokter` int(11) NOT NULL,
   `tgl_rekam_medik` date NOT NULL,
   `diagnosa` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -879,6 +817,18 @@ CREATE TABLE `rekam_medik` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rekam_medik`
+--
+
+INSERT INTO `rekam_medik` (`id_rekam_medik`, `id_pasien`, `id_dokter`, `tgl_rekam_medik`, `diagnosa`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, 37, 5, '2018-01-30', 'asdf', '2018-01-30 12:59:13', 0, '2018-01-30 12:59:13', 0),
+(17, 39, 7, '2018-01-31', 'asdfasdf', '2018-01-31 13:24:35', 0, '2018-01-31 13:24:35', 0),
+(18, 39, 7, '2018-01-31', '1231231', '2018-01-31 13:24:41', 0, '2018-01-31 13:24:41', 0),
+(19, 39, 7, '2018-01-31', 'xzxcxc', '2018-01-31 13:24:56', 0, '2018-01-31 13:24:56', 0),
+(21, 46, 7, '2018-01-31', 'jl', '2018-01-31 14:33:25', 0, '2018-01-31 14:33:25', 0),
+(24, 1, 7, '2018-01-30', 'kkkk', '2018-01-30 15:36:48', 0, '2018-01-30 15:36:48', 0);
 
 -- --------------------------------------------------------
 
@@ -931,7 +881,8 @@ INSERT INTO `satuan` (`satuan_id`, `satuan_nama`, `created_by`, `created_date`, 
 (3, 'PAK', NULL, '2017-11-28 11:00:29', NULL, '2017-11-28 11:00:29'),
 (67, 'BOX', 2, '2018-01-24 21:03:23', NULL, '2018-01-24 21:03:23'),
 (5, 'STRIP', NULL, '2017-11-28 11:00:42', NULL, '2017-11-28 11:00:42'),
-(6, 'GRAM', NULL, '2017-11-28 11:00:49', NULL, '2017-11-28 11:00:49');
+(6, 'GRAM', NULL, '2017-11-28 11:00:49', NULL, '2017-11-28 11:00:49'),
+(68, 'Karung', 2, '2018-01-30 21:45:00', NULL, '2018-01-30 21:45:00');
 
 -- --------------------------------------------------------
 
@@ -962,7 +913,8 @@ INSERT INTO `supplier` (`supplier_id`, `nama_supplier`, `kode_supplier`, `alamat
 (17, 'ABC', NULL, 'Jl. Saluyu A XV no.277', '08711271993', 'dede', NULL, '2017-12-28 11:42:46', 2, '2017-12-28 11:42:46', NULL),
 (14, 'Kimia Farma', '2', 'bANDUNG', '022989898', 'Jaja', NULL, '2017-12-13 17:33:20', 2, '2017-12-13 17:33:20', NULL),
 (15, 'Nana Sumirat', 'Lucas Djaja', 'Bandung', '0228984948', '089734647323', NULL, '2017-12-13 17:39:30', 2, '2017-12-13 18:00:41', 2),
-(16, 'AB', NULL, 'Bandung ', '32323289', '098887', NULL, '2017-12-13 17:50:07', 2, '2017-12-28 11:45:49', 2);
+(16, 'AB', NULL, 'Bandung ', '32323289', '098887', NULL, '2017-12-13 17:50:07', 2, '2017-12-28 11:45:49', 2),
+(19, 'Tukang Obat', NULL, 'Bandung', '084848484', 'Usep Cahyat', NULL, '2018-01-30 21:44:09', 2, '2018-01-30 21:44:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -1122,6 +1074,12 @@ ALTER TABLE `registrasi_pasien`
   ADD PRIMARY KEY (`id_registrasi`);
 
 --
+-- Indexes for table `rekam_medik`
+--
+ALTER TABLE `rekam_medik`
+  ADD PRIMARY KEY (`id_rekam_medik`);
+
+--
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
@@ -1163,7 +1121,7 @@ ALTER TABLE `bed`
 -- AUTO_INCREMENT for table `detail_pembiayaan`
 --
 ALTER TABLE `detail_pembiayaan`
-  MODIFY `id_pembiayaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_pembiayaan` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `dokter`
 --
@@ -1178,37 +1136,37 @@ ALTER TABLE `d_jual`
 -- AUTO_INCREMENT for table `hak_akses`
 --
 ALTER TABLE `hak_akses`
-  MODIFY `id_hak_akses` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_hak_akses` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `harga_obat`
 --
 ALTER TABLE `harga_obat`
-  MODIFY `harga_obat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `harga_obat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_kategori` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `merk`
 --
 ALTER TABLE `merk`
-  MODIFY `merk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `merk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_obat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pemasukan`
 --
@@ -1238,7 +1196,12 @@ ALTER TABLE `produsen_obat`
 -- AUTO_INCREMENT for table `registrasi_pasien`
 --
 ALTER TABLE `registrasi_pasien`
-  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `rekam_medik`
+--
+ALTER TABLE `rekam_medik`
+  MODIFY `id_rekam_medik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -1248,12 +1211,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `satuan`
 --
 ALTER TABLE `satuan`
-  MODIFY `satuan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `satuan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `users`
 --
