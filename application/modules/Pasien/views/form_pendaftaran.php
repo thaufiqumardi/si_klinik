@@ -49,7 +49,7 @@
 		}
 		?>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-8">
 			<div class="box box-primary box-solid">
 				<div class="box-header with-border">
 					<h3 class="box-title">Pendaftaran Pemeriksaan Pasien</h3>
@@ -81,7 +81,7 @@
 							<!-- <input type="text" name="id_pasien" class="form-control" placeholder="Nama Pasien / No. Kartu / No.Rm"> -->
 							<div class="col-md-8">
 								<select required class="form-control selectOption" name="id_pasien" id="id_pasien">
-								<option selected disabled value="">Nama Pasien / No. Kartu / No.Rm</option>
+								<option selected disabled value="">Nama Pasien / No. Kartu</option>
 								<?php foreach ($pasiens as $pasien):?>
 									<option	value="<?php echo $pasien['id_pasien'];?>" <?php echo set_select('id_pasien',$pasien['id_pasien']);?>>
 										<?php echo $pasien['nama_pasien'].' / '.$pasien['no_kartu'];?></option>
@@ -175,8 +175,72 @@
 		<?php
 				}
 			?>
-	</div>
 
+	</div>
+	<div class="col-md-4">
+		<div class="box box-primary box-solid">
+			<div class="box-header with-border">
+				<h3 class="box-title">Antrian</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<?php
+					$now = date('D');
+					$hari = array(
+						'Sun'=>'Minggu',
+						'Mon' => 'Senin',
+						'Tue' => 'Selasa',
+						'Wed' => 'Rabu',
+						'Thu' => 'Kamis',
+						'Fri' => "Jum'at",
+						'Sat' => 'Sabtu'
+					);
+					$bulan = array(
+						'01' => 'JANUARI',
+						'02' => 'FEBRUARI',
+						'03' => 'MARET',
+						'04' => 'APRIL',
+						'05' => 'MEI',
+						'06' => 'JUNI',
+						'07' => 'JULI',
+						'08' => 'AGUSTUS',
+						'09' => 'SEPTEMBER',
+						'10' => 'OKTOBER',
+						'11' => 'NOVEMBER',
+						'12' => 'DESEMBER',
+						);
+					?>
+					<ul class="todo-list">
+						<li>
+							<strong>Tanggal: </strong><?= date('d').' '.$bulan[date('m')].' '.date('Y');?>
+						</li>
+						<li>
+							<strong>Antrian Pasien Hari Ini: </strong> <?php echo count($antrian);?>
+						</li>
+						<li>
+							<strong>Pasien Terpanggil: </strong><?= count($antrian_terlayani)==0?"Belum Ada":count($antrian_terlayani);?>
+						</li>
+						<li>
+							<strong>Sisa Antrian: </strong> <?= count($antrian_belum_terlayani);?>
+							<!-- <input type="hidden" id="sisa_antrian" value="<?= count($antrian_belum_terlayani);?>"> -->
+						</li>
+					</ul>
+			</div>
+			<div class="box-footer">
+				<div class="col-lg-6">
+						<button type="button" class="btn btn-danger btn-block"><i class="fa fa-refresh"></i> Refresh</button>
+				</div>
+				<div class="col-lg-6">
+					<a type="button" id="btnNextAntrian" class="btn btn-primary btn-block"><i class="fa fa-tv"></i> Next</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="row">
 	<div class="box-body">
 		<div class="row">
 			<div class="col-md-12">
@@ -194,21 +258,21 @@
 							<tr>
 								<!-- <th rowspan="2" style="width: 4px;height: 2px">#</th> -->
 								<!-- <th>Nomor Registrasi</th> -->
-								<th>Nomor Kartu</th>
+								<th class="col-md-2">Nomor Antrian</th>
+								<th class="col-md-2">Nomor Kartu</th>
+								<th class="col-md-2">Nomor Registrasi</th>
 								<th>Nama</th>
-								<th>Nomor Antrian</th>
-								<th>
-									Status
-								</th>
+								<th style="width:50px;">Status</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach($registered as $row):?>
 							<tr>
 								<!-- <td><?php echo $row['no_registrasi'];?></td> -->
-								<td><?php echo $row['no_kartu'];?></td>
-								<td><?php echo $row['nama_pasien'];?></td>
 								<td><?php echo $row['no_antrian'];?></td>
+								<td><?php echo $row['no_kartu'];?></td>
+								<td><?php echo $row['no_registrasi'];?></td>
+								<td><?php echo $row['nama_pasien'];?></td>
 								<td><span class="label <?=$row['status_antrian']==0?'label-warning':'label-success';?>"><?= $row['status_antrian']==0?'Menunggu':'Terlayani';?></span></td>
 							</tr>
 						<?php endforeach;?>
@@ -323,6 +387,12 @@
       }, "JSON");
     });
 		$('.selectOption').select2();
+		var sisa_antrian = $('#sisa_antrian').val();
+		if(sisa_antrian == 0){
+			$("#btnNextAntrian").addClass('disabled').removeAttr("href");
+		}else{
+			$("#btnNextAntrian").removeClass("disabled").attr("href", "<?= site_url('Pasien/nextAntrian');?>");
+		}
   });
 </script>
 <?php

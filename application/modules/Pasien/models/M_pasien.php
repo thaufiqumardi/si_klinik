@@ -61,6 +61,7 @@
 				'nama_pasien'=>$this->input->post('nama_pasien'),
 				'nik_pasien'=>$this->input->post('nik_pasien'),
 				'tempat_lahir'=>$this->input->post('tempat_lahir'),
+				'jenis_kelamin'=>$this->input->post('jenis_kelamin'),
 				'tgl_lahir'=>$tgl_lahir,
 				'agama'=>$this->input->post('agama'),
 				'pekerjaan_pasien'=>$this->input->post('pekerjaan_pasien'),
@@ -84,23 +85,20 @@
 			return $query->row_array();
 		}
 		function updatePasien($id_pasien){
-			$this->updatePenanggung($id_pasien);
 			$tgl = str_replace('/','-',$this->input->post('tgl_lahir'));
+			$tgl_lahir= date('Y-m-d',strtotime($tgl));
 			$updated_pasien= date('Y-m-d',strtotime($tgl));
 			$data=array(
 				'nama_pasien'=>$this->input->post('nama_pasien'),
 				'nik_pasien'=>$this->input->post('nik_pasien'),
 				'tempat_lahir'=>$this->input->post('tempat_lahir'),
-				'tgl_lahir'=>$updated_pasien,
+				'jenis_kelamin'=>$this->input->post('jenis_kelamin'),
+				'tgl_lahir'=>$tgl_lahir,
 				'agama'=>$this->input->post('agama'),
-				'pendidikan_pasien'=>$this->input->post('pendidikan_pasien'),
 				'pekerjaan_pasien'=>$this->input->post('pekerjaan_pasien'),
-				'warga_negara'=>$this->input->post('warga_negara'),
 				'gol_darah'=>$this->input->post('gol_darah'),
-				'status_perkawinan'=>$this->input->post('status_perkawinan'),
 				'no_telp_rumah'=>$this->input->post('no_telp_rumah'),
 				'no_handphone'=>$this->input->post('no_handphone'),
-				'email'=>$this->input->post('email'),
 				'jalan'=>$this->input->post('jalan'),
 				'rtrw'=>$this->input->post('rtrw'),
 				'kelurahan'=>$this->input->post('keldesa'),

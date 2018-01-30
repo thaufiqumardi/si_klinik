@@ -19,19 +19,18 @@
       $rows = $this->db->get($table)->num_rows();
       return $rows;
     }
-    function get_pasien_by_id($id_pasien){
-      $this->db->from('pasien')
-                ->join('registrasi_pasien','pasien.id_pasien=registrasi_pasien.id_pasien')
-                ->join('dokter','registrasi_pasien.id_dokter=dokter.id_dokter')
-                ->where('pasien.id_pasien',$id_pasien);
+    function get_pasien_by_registrasi($no_regis){
+      $this->db->from('registrasi_pasien')
+                ->where('registrasi_pasien.no_registrasi',$no_regis)
+                ->join('pasien','pasien.id_pasien=registrasi_pasien.id_pasien')
+                ->join('dokter','registrasi_pasien.id_dokter=dokter.id_dokter');
       return $this->db->get()->row();
     }
     function get_diagnosa_by_pasien_id($id_pasien){
-      $this->db->from('pasien')
-                ->join('registrasi_pasien','pasien.id_pasien=registrasi_pasien.id_pasien')
-                ->join('dokter','registrasi_pasien.id_dokter=dokter.id_dokter','left')
-                ->join('rekam_medik','pasien.id_pasien=rekam_medik.id_pasien')
-                ->where('pasien.id_pasien',$id_pasien);
+      $this->db->from('rekam_medik')
+                ->where('rekam_medik.id_pasien',$id_pasien)
+                ->join('dokter','rekam_medik.id_dokter=dokter.id_dokter')
+                ->join('pasien','rekam_medik.id_pasien=pasien.id_pasien');
       return $this->db->get()->result();
     }
   }

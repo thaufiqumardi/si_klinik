@@ -84,7 +84,7 @@
 											<?= $row->nama_dokter;?>
 										</td>
 										<td>
-											<a href="<?=site_url('rekammedik/form').'/'.$row->id_pasien;?>" class="btn btn-primary"><i class="fa fa-stethoscope"></i> Pemeriksaan</a>
+											<a href="<?=site_url('rekammedik/form').'/'.$row->id_pasien.'/'.$row->no_registrasi;?>" class="btn btn-primary"><i class="fa fa-stethoscope"></i> Pemeriksaan</a>
 										</td>
 									</tr>
 								<?php endforeach;?>

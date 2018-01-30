@@ -28,7 +28,7 @@
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
-	          <?php 
+	          <?php
 	          if(!empty($this->session->flashdata('alert'))){
 	              $msg=$this->session->flashdata('alert');
 	              ?>
@@ -65,6 +65,8 @@
 							            <th class="text-center">No Kartu</th>
 							            <th class="text-center">Nama</th>
 							            <th class="text-center">Tempat, Tgl Lahir</th>
+							            <th class="text-center">Alamat</th>
+							            <!-- <th class="text-center">Alamat</th> -->
 										<th style="width: 10%;" class="text-center">Aksi</th>
 									</tr>
 								</thead>
@@ -75,10 +77,11 @@
 										<td><?php echo $pasien['no_rm'];?></td>
 										<td><?php echo $pasien['no_kartu'];?></td>
 										<td><?php echo $pasien['nama_pasien'];?></td>
-										<td><?php 
+										<td class="col-md-2"><?php
 			              					echo $pasien['tempat_lahir'].', '.date('d-M-Y',strtotime($pasien['tgl_lahir']));
 			              					?>
 			              				</td>
+										<td><?php echo $pasien['jalan']." Rt/Rw:".$pasien['rtrw']." Kelurahan:".$pasien['kelurahan']." Kecamatan:".$pasien['kecamatan']." Kota:".$pasien['kota']?></td>
 										<td class="opsiTd">
 											<!-- <a class="btn btn-success btn-xs" href="#" title="Lihat Detail"><i class="fa fa-eye"></i></a> -->
 											<a class="btn btn-warning btn-xs" href="<?php echo site_url('pasien/edit\/').$pasien['id_pasien'];?>"><i class="fa fa-edit" title="Edit"></i></a>
@@ -91,7 +94,7 @@
 							</table>
 						</div>
 						<div class="box-footer">
-			
+
 						</div>
 					</div>
 				</div>
@@ -119,7 +122,7 @@
     	</div>
     	<?php $this->load->view('template/v_copyright'); ?>
     </body>
-    
+
     <?php $this->load->view('template/v_footer'); ?>
 
 	<script type="text/javascript">
@@ -132,7 +135,7 @@
 	  $(document).ready(function(){
 		$('#mnMasterPasien').addClass('active');
 	  	$('#mnPasienTerdaftar').addClass('active');
-		  
+
 	    $("[data-mask]").inputmask();
 	    $('.selectOption').select2();
 	    $('.datepicker').datepicker({
@@ -142,7 +145,7 @@
 	    });
 
 	    $('#alert').delay(10000).fadeOut("slow");
-	
+
 	    $('#tgl_lahir').change(function(data){
 	      var tgl_lahir=$(this).val().split('/');
 	      var today = new Date();
@@ -150,7 +153,7 @@
 	      var umur = year - tgl_lahir[2];
 	      $('#umur').val(umur);
 	    });
-	    
+
 	    $('.status').change(function(data){
 	      var stat= data.target.value;
 	      var x = document.getElementById('pernikahan');
@@ -162,7 +165,7 @@
 	        x.style.display = "none";
 	      }
 	    });
-	    
+
 	    var jk=$('.jk').val();
 	    // console.log(jk);
 	    if(jk == 'Laki-Laki'){
@@ -181,7 +184,7 @@
 	        $('.suamiIstri').text("Suami");
 	      }
 	    });
-	    
+
 	    $('#id_pasien').change(function(data){
 	      var id = data.target.value;
 	      var url = "<?php echo site_url('pasien/getPasienById');?>";
@@ -192,7 +195,7 @@
 	        $('#no_rm').val(data.no_rekam_medik);
 	      }, "JSON");
 	    });
-	    
+
 	    $('#jenis_rawat').change(function(data){
 	      var jenis=data.target.value;
 	      if(jenis=="RAWAT JALAN"){
@@ -204,7 +207,7 @@
 	        $('#bed').attr('disabled',false);
 	      }
 	    });
-	    
+
 	    $('#ruangan').change(function(data){
 	      var id_kamar = data.target.value;
 	      // console.log(id_kamar);
@@ -215,9 +218,9 @@
 	        }
 	        else{
 	          $.each(data,function(i,data){
-	          
+
 	            $('#bed').append("<option value='"+data.nomor_bed+"'>"+data.nomor_bed+"</option>");
-	          // console.log(data.nomor_bed);         
+	          // console.log(data.nomor_bed);
 	        });
 	        }
 	      },"JSON")

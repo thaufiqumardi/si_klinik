@@ -134,6 +134,41 @@
 											</div>
 										</div>
 										<div class="form-group">
+											<label class="control-label col-md-2">Jenis Kelamin<sup style="color:red;">*</sup></label>
+											<div class="col-md-10">
+												<div class="row">
+													<div class="radio col-md-2">
+													<label class="control-label">
+														<input type="radio" name="jenis_kelamin" required="required" value="Laki-Laki"
+														<?php
+															if(isset($pasien)){
+																echo($pasien['jenis_kelamin']=="Laki-Laki"?"checked":"");
+															}
+															else{
+																echo set_radio('jenis_kelamin','Laki-Laki');
+															}
+														?>
+														>Laki-Laki
+													</label>
+												</div>
+												<div class="radio col-md-1">
+													<label class="control-label">
+														<input type="radio" name="jenis_kelamin" required="required" value="Perempuan"
+															<?php
+															if(isset($pasien)){
+																echo($pasien['jenis_kelamin']=="Perempuan"?"checked":"");
+															}
+															else{
+																echo set_radio('jenis_kelamin','Perempuan');
+															}
+														?>
+														>Perempuan
+													</label>
+												</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
 											<label class="control-label col-md-2">Agama</label>
 											<div class="col-md-9">
 												<input type="text" name="agama" placeholder="Agama" class="form-control"

@@ -11,7 +11,7 @@
 				if(!empty($this->session->flashdata('alert'))){
 					$msg=$this->session->flashdata('alert');
 					?>
-					<div class="alert <?php echo ($msg['class'] == 0 ? 'alert-danger' : 'alert-success'); ?> alert-dismissible">
+					<div id="alert" class="alert <?php echo ($msg['class'] == 0 ? 'alert-danger' : 'alert-success'); ?> alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 							<h4><i class="icon fa fa-<?php echo ($msg['class'] == 0 ? 'ban' : 'check'); ?>"></i> <?php echo ($msg['class'] == 0 ? 'Gagal' : 'Berhasil!'); ?></h4>
 							<?php
@@ -31,7 +31,7 @@
 						<div class="box-header with-border">
 							<h3 class="box-title">Input Diagnosa Pasien</h3>
 						</div>
-						<form method="POST" class="formDokter form-horizontal" action="<?=site_url('rekammedik/form').'/'.$pasien->id_pasien;?>">
+						<form method="POST" class="formDokter form-horizontal" action="<?=site_url('rekammedik/form').'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>">
 						<div class="box-body">
 							<div class="form-group">
 								<label class="control-label col-md-3">No. Rekam Medik </label>
@@ -75,7 +75,7 @@
 							<div class="box-footer">
 								<div class="pull-right">
 									<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
-									<a href="../" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
+									<a href="<?= site_url('rekammedik');?>" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
 								</div>
 							  </div>
 						</div>
@@ -90,53 +90,69 @@
 						<div class="box-header with-border">
 							<h3 class="box-title">Riwayat Pasien</h3>
 						</div>
-						<div class="box-body">
-              <table id="example2" style="border: 2" class="table table-bordered table-striped DataTable">
-  							<thead>
-  								<tr>
-  									<th style="width: 5%;" class="text-center">No.</th>
-  									<th class="text-center">No. Rekam Medik</th>
-  									<th class="text-center">No. Kartu</th>
-  									<th class="text-center">Nama Pasien</th>
-  									<th class="text-center">Dokter</th>
-                    <th class="text-center">Tgl. Rekammedik</th>
-                    <th class="text-center">Diagnosa</th>
-  									<th style="width: 10%;" class="text-center">Aksi</th>
-  								</tr>
-  							</thead>
-  							<tbody>
-									<?php foreach ($riwayats as $key => $row):?>
-										<tr>
-											<td>
-												<?= ++$key;?>
-											</td>
-											<td>
-												<?= $row->no_rm;?>
-											</td>
-											<td>
-												<?= $row->id_pasien;?>
-											</td>
-											<td>
-												<?= $row->nama_pasien;?>
-											</td>
-											<td>
-												<?= $row->nama_dokter;?>
-											</td>
-											<td>
-												<?= $row->tgl_rekam_medik;?>
-											</td>
-											<td>
-												<?= $row->diagnosa;?>
-											</td>
-											<td>
-												<a href="" class="btn btn-danger btn-xs" onclick="confirm_delete('<?php echo site_url('rekammedik/hapus').'/'.$row->id_rekam_medik;?>',
-												'<?php echo $row->diagnosa;?>');"><i class="fa fa-trash" ></i> Hapus</a>
-											</td>
-										</tr>
-									<?php endforeach;?>
-  							</tbody>
-  						</table>
-						</div>
+						<?php
+							if(empty($riwayats)){
+								?>
+								<div class="box-body">
+									<div class="alert text-center">
+										<p>
+											Belum Ada Riwayat
+										</p>
+									</div>
+								</div>
+								<?php
+							}
+							else{
+								?>
+								<div class="box-body">
+									<table id="example2" style="border: 2" class="table table-bordered table-striped DataTable">
+										<thead>
+											<tr>
+												<th style="width: 5%;" class="text-center">No.</th>
+												<th class="text-center">No. Rekam Medik</th>
+												<th class="text-center">No. Kartu</th>
+												<th class="text-center">Nama Pasien</th>
+												<th class="text-center">Dokter</th>
+												<th class="text-center">Tgl. Rekammedik</th>
+												<th class="text-center">Diagnosa</th>
+												<th style="width: 10%;" class="text-center">Aksi</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($riwayats as $key => $row):?>
+												<tr>
+													<td>
+														<?= ++$key;?>
+													</td>
+													<td>
+														<?= $row->no_rm;?>
+													</td>
+													<td>
+														<?= $row->id_pasien;?>
+													</td>
+													<td>
+														<?= $row->nama_pasien;?>
+													</td>
+													<td>
+														<?= $row->nama_dokter;?>
+													</td>
+													<td>
+														<?= $row->tgl_rekam_medik;?>
+													</td>
+													<td>
+														<?= $row->diagnosa;?>
+													</td>
+													<td>
+														<a href="<?php echo site_url('rekammedik/hapus').'/'.$row->id_rekam_medik.'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>" class="btn btn-danger btn-xs" onClick="history.go(0)" ><i class="fa fa-trash" ></i> Hapus</a>
+													</td>
+												</tr>
+											<?php endforeach;?>
+										</tbody>
+									</table>
+								</div>
+								<?php
+							}
+						 ?>
 					</div>
 				</div>
 			</div>
@@ -151,6 +167,9 @@
 
 		$('#mnMasterPegawai').addClass('active');
 	  	$('#mnDokter').addClass('active');
+		$('#example2').DataTable({
+			"info":false,
+		});
 		$('#resetBtn').click(function() {
         $('.formDokter').data('bootstrapValidator').resetForm(true);
     });
@@ -161,6 +180,6 @@
            containter:true,
         });
         $('.selectOption').select2();
-        $('#alert').delay(10000).fadeOut("slow");
+        $('#alert').delay(2000).fadeOut("slow");
 	});
 </script>

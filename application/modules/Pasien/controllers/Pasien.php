@@ -10,6 +10,7 @@ use Box\Spout\Common\Type;
 		function __construct(){
 			parent::__construct();
 			$this->load->model('M_pasien','modelPasien');
+			$this->load->model('Antrian/M_antrian','antrian');
 			$this->load->library('form_validation');
 		}
 		function index(){
@@ -61,7 +62,6 @@ use Box\Spout\Common\Type;
 			$this->M_setting->_make_sure_is_login();
 			$this->M_setting->_check_menu();
 			$data['pasien']=$this->modelPasien->editPasien($id);
-			$data['penanggung']=$this->modelPasien->getPenanggung($id);
 			$this->load->view('formPasien',$data);
 		}
 		function update_pasien($id){
@@ -96,6 +96,27 @@ use Box\Spout\Common\Type;
 					$this->session->set_flashdata('alert',$data);
 				}
 				else{
+					$now = date('d-m-y');
+					$exp = explode("-",$now);
+					$imp = $exp[2].$exp[1].$exp[0];
+					$this->db->select('no_registrasi')
+									->from('registrasi_pasien')
+									->where('no_registrasi like',$imp.'%')
+									->order_by('no_registrasi','desc')
+									->limit(1);
+					$last = $this->db->get()->row();
+					if(empty($last)){
+							$no_regis = $imp."0001";
+					}
+					else{
+						$start = substr($last->no_registrasi, 5-9);
+						$next = ++$start;
+						if ($next < 10){ $no_regis = $imp."000".$next;}
+						elseif ($next < 100 && $next > 9) { $no_regis = $imp."00".$next;}
+						elseif ($next < 1000 && $next > 99) { $no_regis = $imp."0".$next;}
+						elseif ($next < 10000 && $next > 999) { $no_regis = $imp.$next;}
+					}
+
 					$tgl = str_replace('/','-',$this->input->post('tgl_daftar'));
 					$tgl_registrasi= date('Y-m-d',strtotime($tgl));
 					$jam_regis = date('H:i:s');
@@ -106,7 +127,9 @@ use Box\Spout\Common\Type;
 					else{
 						$antrian = $antrian_terakhir+1;
 					}
+
 					$data = array(
+						'no_registrasi'=>$no_regis,
 						'id_dokter'=>$this->input->post('id_dokter'),
 						'id_pasien'=>$this->input->post('id_pasien'),
 						'tgl_registrasi'=>$tgl_registrasi,
@@ -122,6 +145,9 @@ use Box\Spout\Common\Type;
 						redirect('Pasien/pendaftaran_pasien');
 				}
 			}
+			$data['antrian']=$this->antrian->getAllAntrianToday();
+			$data['antrian_terlayani']=$this->antrian->getAntrianTerlayani();
+			$data['antrian_belum_terlayani']=$this->antrian->getAntrianBelumTerlayani();
 			$data['dokters']=$this->M_crud->get_select_to_array('*','dokter');
 			$data['pasiens']=$this->modelPasien->getPasien();
 			$data['registered']=$this->modelPasien->getRegistered();
@@ -131,6 +157,28 @@ use Box\Spout\Common\Type;
 			$data['pasien']=$this->modelPasien->editPasien($id);
 			echo json_encode($data['pasien']);
 
+		}
+		function nextAntrian(){
+			$belum_terlayani = $this->antrian->getAntrianBelumTerlayani();
+			$pasien_maju = $belum_terlayani[0];
+			$data = array(
+				'status_antrian'=>1
+			);
+			$update = $this->M_crud->_update('registrasi_pasien','id_registrasi',$pasien_maju->id_registrasi,$data);
+			if($update==1){
+				redirect('Pasien/pendaftaran_pasien');
+			}
+			else{
+				echo "gagal";
+				die;
+			}
+		}
+		function update_sound($id){
+			$data = array(
+				'play_sound' => 1,
+			);
+			$this->antrian->update($id,$data,'id_registrasi','registrasi_pasien');
+			echo json_encode(array("status" => TRUE));
 		}
 		function hapus_antrian($id){
 			$p=$this->modelPasien->hapusAntrian($id);

@@ -15,7 +15,7 @@
       // die;
       $this->load->view('index',$data);
     }
-    function form($id_pasien){
+    function form($id_pasien,$no_regis){
       if($_POST){
   			$tgl_rekam_medik= date('Y-m-d',strtotime($this->input->post('tgl_rekam_medik')));;
         $diagnosa = $this->input->post('diagnosa');
@@ -43,18 +43,23 @@
           // $this->form($id_pasien);
         }
       }
-      $data['pasien']= $this->model->get_pasien_by_id($id_pasien);
+      $data['pasien']= $this->model->get_pasien_by_registrasi($no_regis);
+      // echo "<pre>";
+      // print_r($data['pasien']);
+      // echo "</pre>";
+      // die;
       $data['now'] = date('d-m-Y');
       $data['riwayats']= $this->model->get_diagnosa_by_pasien_id($id_pasien);
       $this->load->view('form_rekammedik',$data);
     }
-    function hapus($id){
+    function hapus($id,$id_pasien,$no_regis){
       $this->M_crud->_delete('rekam_medik','id_rekam_medik',$id);
       $data = array(
-        'class'=>0,
+        'class'=>1,
         'msg'=>'Data Berhasil Dihapus',
       );
       $this->session->set_flashdata('alert',$data);
+      redirect('rekammedik/form/'.$id_pasien.'/'.$no_regis);
     }
   }
  ?>
