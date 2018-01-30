@@ -26,6 +26,14 @@
                 ->where('pasien.id_pasien',$id_pasien);
       return $this->db->get()->row();
     }
+    function get_diagnosa_by_pasien_id($id_pasien){
+      $this->db->from('pasien')
+                ->join('registrasi_pasien','pasien.id_pasien=registrasi_pasien.id_pasien')
+                ->join('dokter','registrasi_pasien.id_dokter=dokter.id_dokter','left')
+                ->join('rekam_medik','pasien.id_pasien=rekam_medik.id_pasien')
+                ->where('pasien.id_pasien',$id_pasien);
+      return $this->db->get()->result();
+    }
   }
 
 ?>

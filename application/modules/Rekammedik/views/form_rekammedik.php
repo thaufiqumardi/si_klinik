@@ -36,25 +36,25 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">No. Rekam Medik </label>
 								<div class="col-md-9">
-									<input type="text" name="no_izin_praktek" value="<?= $pasien->no_rm;?>" class="form-control" disabled >
+									<input type="text" name="no_izin_praktek" value="<?= $pasien->no_rm;?>" class="form-control" readonly >
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3">No. Kartu</label>
 								<div class="col-md-9">
-									<input type="text" name="nama" class="form-control" value="<?= $pasien->no_kartu;?>" disabled>
+									<input type="text" name="no_kartu" class="form-control" value="<?= $pasien->no_kartu;?>" readonly>
 								</div>
 							</div>
               <div class="form-group">
 								<label class="control-label col-md-3">Nama Pasien</label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" name="nama_pasien" value="<?= $pasien->nama_pasien;?>" disabled>
+									<input type="text" class="form-control" name="nama_pasien" value="<?= $pasien->nama_pasien;?>" readonly>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3">Tgl. Rekam Medik</label>
 								<div class="col-md-3">
-											<input type="text" name="tgl_rekam_medik" value="<?= date('d-M-Y');?>"  class="form-control" disabled
+											<input type="text" name="tgl_rekam_medik" value="<?=$now;?>"  class="form-control" readonly
 											/>
 										</div>
 								</div>
@@ -62,21 +62,20 @@
               <div class="form-group">
 								<label class="control-label col-md-3">Dokter</label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" value="<?= $pasien->nama_dokter;?>" name="dokter" disabled >
+									<input type="text" class="form-control" value="<?= $pasien->nama_dokter;?>" name="dokter" readonly >
+									<input type="hidden" value="<?= $pasien->id_dokter;?>" name="id_dokter">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3">Diagnosa</label>
 								<div class="col-md-9">
-									<textarea class="form-control" name="diagnosa"rows="3"></textarea>
+									<textarea class="form-control" name="diagnosa" rows="3" required></textarea>
 								</div>
 							</div>
 							<div class="box-footer">
 								<div class="pull-right">
-									<button type="submit" class="btn btn-success
-
-                  "><i class="fa fa-save"></i> Simpan</button>
-									<a href="<?php echo base_url(); ?>Dokter" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
+									<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
+									<a href="../" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
 								</div>
 							  </div>
 						</div>
@@ -91,15 +90,6 @@
 						<div class="box-header with-border">
 							<h3 class="box-title">Riwayat Pasien</h3>
 						</div>
-						<form method="POST" class="formDokter form-horizontal" action="
-						<?php
-							if(isset($dokter['id_dokter'])){
-								echo site_url('dokter/edit').'/'.$dokter['id_dokter'];
-							}
-							else{
-								echo site_url('dokter/form');
-							}
-						?>">
 						<div class="box-body">
               <table id="example2" style="border: 2" class="table table-bordered table-striped DataTable">
   							<thead>
@@ -115,16 +105,42 @@
   								</tr>
   							</thead>
   							<tbody>
-
+									<?php foreach ($riwayats as $key => $row):?>
+										<tr>
+											<td>
+												<?= ++$key;?>
+											</td>
+											<td>
+												<?= $row->no_rm;?>
+											</td>
+											<td>
+												<?= $row->id_pasien;?>
+											</td>
+											<td>
+												<?= $row->nama_pasien;?>
+											</td>
+											<td>
+												<?= $row->nama_dokter;?>
+											</td>
+											<td>
+												<?= $row->tgl_rekam_medik;?>
+											</td>
+											<td>
+												<?= $row->diagnosa;?>
+											</td>
+											<td>
+												<a href="" class="btn btn-danger btn-xs" onclick="confirm_delete('<?php echo site_url('rekammedik/hapus').'/'.$row->id_rekam_medik;?>',
+												'<?php echo $row->diagnosa;?>');"><i class="fa fa-trash" ></i> Hapus</a>
+											</td>
+										</tr>
+									<?php endforeach;?>
   							</tbody>
   						</table>
 						</div>
-					</form>
 					</div>
 				</div>
 			</div>
 	</section>
-
 </div>
 
 <?php $this->load->view('template/v_copyright'); ?>
@@ -132,6 +148,7 @@
 	<?php $this->load->view('template/v_footer'); ?>
 <script type="text/javascript">
 	$(document).ready(function(){
+
 		$('#mnMasterPegawai').addClass('active');
 	  	$('#mnDokter').addClass('active');
 		$('#resetBtn').click(function() {

@@ -49,7 +49,7 @@
 		              		<i class="fa fa-file-excel-o"></i> Export Excell</a>
 						  <?php if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnCreate == 1){
 		              	  ?>
-		              	  <a href="<?php echo base_url(); ?>Rekammedik/index" style="margin-right: 10px;" class="btn btn-warning pull-right">
+		              	  <a href="<?php echo base_url(); ?>Rekammedik" style="margin-right: 10px;" class="btn btn-warning pull-right">
 		              	  <i class="fa fa-refresh"></i> Refresh</a><br><br>
 		              	  <?php
 		              	  }
@@ -66,7 +66,28 @@
 								</tr>
 							</thead>
 							<tbody>
-
+								<?php foreach($registered as $key => $row):?>
+									<tr>
+										<td>
+											<?= ++$key;?>
+										</td>
+										<td>
+											<?= $row->no_rm;?>
+										</td>
+										<td>
+											<?= $row->no_kartu;?>
+										</td>
+										<td>
+											<?= $row->nama_pasien;?>
+										</td>
+										<td>
+											<?= $row->nama_dokter;?>
+										</td>
+										<td>
+											<a href="<?=site_url('rekammedik/form').'/'.$row->id_pasien;?>" class="btn btn-primary"><i class="fa fa-stethoscope"></i> Pemeriksaan</a>
+										</td>
+									</tr>
+								<?php endforeach;?>
 							</tbody>
 						</table>
 					</div>
@@ -108,8 +129,8 @@
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
-	  $('#mnMasterPegawai').addClass('active');
-	  $('#mnDokter').addClass('active');
+	  $('#mnrekammedik').addClass('active');
+
 
       $('#alert').delay(10000).fadeOut("slow");
 	});
