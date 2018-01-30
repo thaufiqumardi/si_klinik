@@ -63,6 +63,7 @@
 				'tempat_lahir'=>$this->input->post('tempat_lahir'),
 				'jenis_kelamin'=>$this->input->post('jenis_kelamin'),
 				'tgl_lahir'=>$tgl_lahir,
+				'umur' => $this->input->post('umur'),
 				'agama'=>$this->input->post('agama'),
 				'pekerjaan_pasien'=>$this->input->post('pekerjaan_pasien'),
 				'gol_darah'=>$this->input->post('gol_darah'),

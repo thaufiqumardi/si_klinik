@@ -3,7 +3,7 @@
     $is_admin = $this->session->userdata['simklinik']['ap_is_admin'];
     $menus = $this->M_crud->get_select_to_array('m.id_menu', 'hak_akses as p','menu as m','p.hak_akses_menu = m.id_menu','p.hak_akses_role', $this->session->userdata['simklinik']['ap_role'], 'p.hak_akses_retrive', '1', 'm.id_menu');
     $listmenu = "";
- 
+
     if(!empty($menus)){
     	foreach($menus as $item) {
     		$listmenu .= $item->id_menu.",";
@@ -16,24 +16,24 @@
 
 <div class="wrapper">
 	<?php $this->load->view('template/v_top_menu'); ?>
-	
+
 	<aside class="main-sidebar">
 		<section class="sidebar">
 			<div class="user-panel">
-				<div class="image">
+				<div class="image" >
           			<img src="<?php echo base_url('logo/KMB_Logo.png');?>" alt="">
         		</div>
 			</div>
 			<ul class="sidebar-menu">
-				<?php 
+				<?php
 					$mysql_query = "";
-					 
+
 					if($is_admin == 1){
 						$mysql_query = "select * from menu where parent = 0 order by urutan asc";
 					}else if(!empty($listmenu)){
 						$mysql_query = "select * from menu where id_menu in(".$listmenu.") and parent = 0 order by urutan asc";
 					}
-					
+
 					if(!empty($mysql_query)){
 						$query = $this->M_crud->_custom_query($mysql_query);
 						foreach ($query->result() as $row){
@@ -47,14 +47,14 @@
 								            <span class="pull-right-container">
 								              <i class="fa fa-angle-left pull-right"></i>
 								            </span>
-		        						</a>	
+		        						</a>
 		        						<ul class="treeview-menu">
-		        							<?php 
+		        							<?php
 					        					if($is_admin == 1){
 					        						$mysql_query_child = "select * from menu where parent = $row->id_menu order by urutan asc";
 					        					}else if(!empty($listmenu)){
 					        						$mysql_query_child = "select * from menu where id_menu in(".$listmenu.") and parent = $row->id_menu order by urutan asc";
-					        					}		        						
+					        					}
 				        						$query_child = $this->M_crud->_custom_query($mysql_query_child);
 				        						foreach ($query_child->result() as $row_child){
 				        						?>
@@ -65,7 +65,7 @@
 										            </li>
 				        						<?php
 				        						}
-				        					?>		        							
+				        					?>
 		        						</ul>
 									</li>
 								<?php

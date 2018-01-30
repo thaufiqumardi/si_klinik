@@ -12,14 +12,10 @@ class Home extends CI_Controller{
 	{
 		$login = $this->M_base->check_session_login();
 		if($login == 'Ok'){
-			$now = new DateTime ( NULL, new DateTimeZone('Asia/Jakarta'));
-			// $data['curr_tgl'] = $now->format('d F Y');
-			// $data['reg_pasien'] = $this->modelMaster->get_patient_registered();
-			// $data['pasien_rj'] = $this->modelMaster->get_pasien_rj();
-			// $data['pasien_ri'] = $this->modelMaster->get_pasien_ri();
-			// $data['pasien_umum'] = $this->modelMaster->get_pasien_umum();
-			// $data['pasien_bpjs'] = $this->modelMaster->get_pasien_bpjs();
-			$this->load->view('Index');
+			// $now = new DateTime ( NULL, new DateTimeZone('Asia/Jakarta'));
+			$now = date('Y-m-d');
+			$data['jumlah_pasien_daftar'] = $this->M_crud->count_where('registrasi_pasien','tgl_registrasi',$now);
+			$this->load->view('Index',$data);
 		}else{
 			redirect('login');
 		}

@@ -118,7 +118,7 @@
 														/>
 													</div>
 													<div class="col-md-4" style="margin-left: -20px;width:55%;">
-														<input required="required" type="text" name="tgl_lahir" placeholder="Tanggal Lahir" class="form-control datepicker" data-mask data-inputmask='"mask":"99/99/9999"'
+														<input required="required" id="tgl_lahir" type="text" name="tgl_lahir" placeholder="Tanggal Lahir" class="form-control datepicker" data-mask data-inputmask='"mask":"99/99/9999"'
 															<?php
 																if(isset($pasien)){
 																	$tgl_lahir=explode('-',$pasien['tgl_lahir']);
@@ -131,6 +131,21 @@
 														/>
 													</div>
 												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-2">Umur</label>
+											<div class="col-md-9">
+												<input type="text" readonly id="umur" name="umur" placeholder="Umur" class="form-control"
+													<?php
+														if(isset($pasien)){
+															echo("value='".$pasien['umur']."'");
+														}
+														else{
+															echo "value='".set_value('umur')."'";
+														}
+														?>
+												/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -420,6 +435,7 @@
     <?php $this->load->view('template/v_footer'); ?>
 	<script type="text/javascript">
 	  $(document).ready(function(){
+
 	  	$('#mnTambahPasien').addClass('active');
 
 	    $("[data-mask]").inputmask();
@@ -462,6 +478,7 @@
 		    });
 	    $('#tgl_lahir').change(function(data){
 	      var tgl_lahir=$(this).val().split('/');
+				// console.log(tgl_lahir);
 	      var today = new Date();
 	      var year = today.getFullYear();
 	      var umur = year - tgl_lahir[2];
