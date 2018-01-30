@@ -29,8 +29,8 @@ $config['images'] 			= $config['assets'].'images/';
 
 //Setingan Judul & Footer Web
 $config['web_title']		= "SIM KLINIK";
-$config['web_footer']		= "COPYRIGHT &copy; 2017.";
-$config['owner_name']		= "KLINIK MELATI BUNDA";
+$config['web_footer']		= "COPYRIGHT &copy; 2018.";
+$config['owner_name']		= "JASA PRIMA MEDICAL CENTRE";
 $config['owner_image']		= $config['base_url'].'logo/KMB_Logo.png';
 $config['owner_icon']		= $config['base_url'].'logo/KMB.ico';
 

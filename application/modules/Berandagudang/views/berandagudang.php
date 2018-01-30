@@ -40,7 +40,7 @@
 					<?php
 				}
 				?>
-				<div class="box box-primary box-solid box-widget">
+				<div class="box box-primary box-solid">
 					<div class="box-header with-border">
 						<h3 class="box-title pull-left">Data Stok Obat</h3>
 					</div>

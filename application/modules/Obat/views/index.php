@@ -40,21 +40,23 @@
 					<?php
 				}
 				?>
-				<div class="box box-widget">
+				<div class="box box-primary box-solid">
 					<div class="box-header with-border">
-						<h3 class="box-title pull-left">Data Obat</h3>
+						<h3 class="box-title pull-left">Data Stok Obat</h3>
 					</div>
 					<div class="box-body">
-							<a href="<?php echo site_url('Obat/cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
-			              	<a href="<?php echo site_url('Obat/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
-			              		<i class="fa fa-file-excel-o"></i> Export Excell</a>
-							  <?php if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnCreate == 1){
-			              	  ?>
-			              	  <a href="<?php echo base_url(); ?>Obat/form" style="margin-right: 10px;" class="btn btn-primary pull-right">
-			              	  <i class="fa fa-plus"></i> Tambah Data</a><br><br>
-			              	  <?php
-			              	  }
-			              	  ?>
+							<div class="pull-left"style="margin-right: 17.9%">
+								<a href="<?php echo site_url('Obat/cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
+				              	<a href="<?php echo site_url('Obat/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
+				              		<i class="fa fa-file-excel-o"></i> Export Excell</a>
+								  <?php if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnCreate == 1){
+				              	  ?>
+				              	  <a href="<?php echo base_url(); ?>Obat/form" style="margin-right: 10px;" class="btn btn-primary pull-right">
+				              	  <i class="fa fa-plus"></i> Tambah Data</a><br><br>
+				              	  <?php
+				              	  }
+				              	  ?>
+							</div>
 						<table id="example2" style="border: 2" class="table table-bordered table-striped table-hover DataTable">
 							<thead>
 								<tr>
@@ -138,7 +140,7 @@
 				document.getElementById('delete_link_m_n').setAttribute("href" , delete_url );
 			}
 	</script>
-	<script type="text/javascript">
+	<script type="text/javascript" class="pull-right">
 	$(document).ready(function() {
 		$('#mnMasterObat').addClass('active');
 	  	$('#mnObat').addClass('active');
