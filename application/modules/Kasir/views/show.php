@@ -33,7 +33,15 @@ if(!empty($menusid)){
     		<section class="content">
 					<div class="box box-primary box-solid">
 						<div class="box-header" style="text-align:left;">
-							<h4>Form Kasir</h4>
+							<div class="row">
+								<div class="col-md-3 pull-left">
+									<h4>Form Kasir</h4>
+								</div>
+								<br>
+							<div class="col-md-2 pull-right">
+							<small>No. Transaksi : </small>
+							</div>
+							</div>
 						</div>
 						<div class="box-body">
 							<div class="row">
@@ -129,13 +137,13 @@ if(!empty($menusid)){
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar</label>
+											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar :</label>
 											<div class="col-md-6 pull-right">
 												<input type="text" name="jmlh_bayar" class="form-control ">
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-md-offset-3">Kembalian</label>
+											<label class="control-label col-md-3 col-md-offset-3">Kembalian :</label>
 											<div class="col-md-6 pull-right">
 												<input type="text" name="kembalian" class="form-control " readonly>
 											</div>
