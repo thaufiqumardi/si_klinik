@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 $menusid = $this->M_crud->get_by_param("menu", 'name', "Supplier");
 if(!empty($menusid)){
@@ -44,7 +44,7 @@ if(!empty($menusid)){
 					<?php
 				}
 				?>
-    			<div class="box box-widget">
+    			<div class="box box-primary box-solid">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Data Supplier</h3>
 					</div>
@@ -62,15 +62,15 @@ if(!empty($menusid)){
 						  <table id="example2" class="table table-bordered table-striped">
 							<thead>
 							<tr>
-							  <th style="width: 5%;" class="text-center">No</th>
+							  <th style="width: 5%;" class="text-center">No.</th>
 							  <th class="text-center">Nama Supplier</th>
 							  <th class="text-center">No. Telepon</th>
 							  <th class="text-center">Contact Person</th>
 							  <th style="width: 10%;" class="text-center">Aksi</th>
 							</tr>
 							</thead>
-							
-							
+
+
 							<tbody>
 							<?php
 								if($supplier > 0)
@@ -93,17 +93,17 @@ if(!empty($menusid)){
 									<i class="fa fa-edit" title="Edit"></i></a>
 							<?php
 								}
-								
+
 								if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnDelete == 1)
 								{
 							?>
-									<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal" 
+									<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal"
 										onclick="confirm_delete('<?php echo site_url('Suplier/delete').'/'.$data->supplier_id;?>',
 										'<?php echo $data->nama_supplier;?>');"><i class="fa fa-trash"></i></a>
 							<?php
 								}
 							?>
-									
+
 									</td>
 								</tr>
 							<?php
@@ -118,7 +118,7 @@ if(!empty($menusid)){
     		</section>
     	</div>
 		<?php $this->load->view('template/v_copyright'); ?>
-		
+
 		<div class="modal fade" id="confirmHapus"  data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog">
 				<div class="modal-content" style="margin-top:100px;">
@@ -139,9 +139,9 @@ if(!empty($menusid)){
 			</div>
 		</div>
     </body>
-    
+
     <?php $this->load->view('template/v_footer'); ?>
-    
+
     <script type="text/javascript">
     $(document).ready(function() {
     	$('#mnSupplier').addClass('active');
@@ -170,5 +170,5 @@ if(!empty($menusid)){
 		document.getElementById('delete_link_m_n').setAttribute("href" , delete_url );
 	}
 	</script>
-    
+
 </html>

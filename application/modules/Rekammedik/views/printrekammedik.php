@@ -19,37 +19,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-xs-9 text-center">
 			<br>
 			<span>IZIN NO:</span><br>
-			<p>Cirebon telp. (022) xxxx</p>
+			<p>Cirebon  telp. (022) xxx</p>
 		</div>
 		<hr>
 	</div>
 	<br>
 	<br>
-	<table style="border: 2" class="table table-bordered table-striped DataTable">
+	<table id="tablePasien" style="border: 2" class="table table-bordered table-striped DataTable">
 		<thead>
 			<tr>
 				<th class="col-xs-1">No.</th>
-				<th>Nama Obat/Alkes</th>
-				<th>Harga Beli</th>
-				<th>Harga Jual</th>
+				<th>Kategori</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php $i=1; foreach($hargaobat as $row):?>
-			<?php
-				$beli = $this->M_base->currFormat2($row->harga_beli);
-				$beli = str_replace(".00", "", $beli);
-				$beli = "Rp. ".$beli;
-
-				$jual1 = $this->M_base->currFormat2($row->harga_jual1);
-				$jual1 = str_replace(".00", "", $jual1);
-				$jual1 = "Rp. ".$jual1;
-			?>
+			<?php $i=1; foreach($rekam_medik as $row):?>
 			<tr>
 				<td class="col-xs-1"><?php echo $i++;?></td>
-				<td><?php echo $row->nama_obat;?></td>
-				<td><?php echo $beli;?></td>
-				<td><?php echo $jual1;?></td>
+				<td><?php echo $row->nama_kategor;?></td>
 			</tr>
 			<?php endforeach;?>
 		</tbody>

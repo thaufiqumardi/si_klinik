@@ -40,7 +40,7 @@
 					<?php
 				}
 				?>
-				<div class="box box-widget">
+				<div class="box box-primary box-solid">
 					<div class="box-header with-border">
 						<h3 class="box-title pull-left">Data Harga Obat/Alkes</h3>
 					</div>
@@ -59,7 +59,7 @@
 			              <thead>
 			                <tr>
 			                  <th style="width: 5%;" class="text-center">
-			                    No
+			                    No.
 			                  </th>
 			                  <th class="text-center">
 			                    Nama Obat/Alkes

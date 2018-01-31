@@ -42,9 +42,9 @@
 	          ?>
     			<div class="row">
 				<div class="col-md-12">
-					<div class="box box-widget">
+					<div class="box box-primary box-solid">
 						<div class="box-header with-border">
-							<h3 class="box-title">Pasien</h3>
+							<h3 class="box-title">Daftar Pasien</h3>
 						</div>
 						<div class="box-body">
 							<a href="<?php echo site_url('Pasien/cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
@@ -60,12 +60,12 @@
 							<table id="example2" style="border: 2" class="table table-bordered table-striped DataTable">
 								<thead>
 									<tr>
-										<th style="width: 5%;" class="text-center">#</th>
+										<th style="width: 5%;" class="text-center">No.</th>
 										<th class="text-center">No. Rm</th>
 							            <th class="text-center">No Kartu</th>
 							            <th class="text-center">Nama</th>
 							            <th class="text-center">Tempat, Tgl Lahir</th>
-							            <th class="text-center">Alamat</th>
+							            <th class="text-center col-md-3">Alamat</th>
 							            <!-- <th class="text-center">Alamat</th> -->
 										<th style="width: 10%;" class="text-center">Aksi</th>
 									</tr>

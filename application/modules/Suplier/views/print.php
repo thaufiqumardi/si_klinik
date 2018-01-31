@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <!DOCTYPE html>
@@ -16,17 +16,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-xs-2">
 			<img src="<?php echo config_item('owner_image'); ?>" style="position:'center';" class="img-responsive">
 		</div>
-		<div class="col-xs-10 text-center">
+		<div class="col-xs-9 text-center">
 			<br>
-			<span>IZIN NO:445/1617-DINKES/04-S1-KK/IV/05</span><br>
-			<p>Jl. Kiaracondong 304/19-21 telp. (022) 7311759</p>
+			<span>IZIN NO</span><br>
+			<p>Cirebon telp. (022) xxxxx</p>
 		</div>
 		<hr>
 	</div>
+	<br><br>
 	<table style="border: 2" class="table table-bordered table-striped DataTable">
 		<thead>
 			<tr>
-				<th>#</th>
+				<th class="col-xs-1">No.</th>
 				<th>Nama Supplier</th>
 				<th>No. Telepon</th>
 				<th>Contact Person</th>

@@ -32,7 +32,7 @@ if(!empty($menusid)){
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
 		    <section class="content-header">
-		    	<h1>Beranda</h1>
+		    	
 		    </section>
     		<section class="content">
 					<div class="row">
@@ -78,8 +78,33 @@ if(!empty($menusid)){
 		          </div>
 		        </div>
 					</div>
+					<div class="box box-widget">
+						<div class="content">
+
+							<div class="callout callout-info">
+								<h4>I am an info callout!</h4>
+
+								<p>Follow the steps to continue to payment.</p>
+							</div>
+
+							<div class="callout callout-warning">
+								<h4>I am an info callout!</h4>
+
+								<p>Follow the steps to continue to payment.</p>
+							</div>
+
+							<div class="callout callout-danger">
+								<h4>I am an info callout!</h4>
+
+								<p>Follow the steps to continue to payment.</p>
+							</div>
+						</div>
+				</div>
     		</section>
-    	</div>
+
+    	</div
+
+
     	<?php $this->load->view('template/v_copyright'); ?>
     </body>
 

@@ -57,7 +57,7 @@
 						<table id="example2" style="border: 2" class="table table-bordered table-striped DataTable">
 							<thead>
 								<tr>
-									<th style="width: 5%;" class="text-center">#</th>
+									<th style="width: 5%;" class="text-center">No.</th>
 									<th class="text-center">Nama Dokter</th>
 									<th class="text-center">Tgl. Lahir</th>
 									<th class="text-center">Jenis Kelamin</th>

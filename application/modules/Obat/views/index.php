@@ -45,7 +45,7 @@
 						<h3 class="box-title pull-left">Data Stok Obat</h3>
 					</div>
 					<div class="box-body">
-							<div class="pull-left"style="margin-right: 17.9%">
+
 								<a href="<?php echo site_url('Obat/cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
 				              	<a href="<?php echo site_url('Obat/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
 				              		<i class="fa fa-file-excel-o"></i> Export Excell</a>

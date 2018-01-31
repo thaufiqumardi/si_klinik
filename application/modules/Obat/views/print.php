@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <!DOCTYPE html>
@@ -16,20 +16,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-xs-2">
 			<img src="<?php echo config_item('owner_image'); ?>" style="position:'center';" class="img-responsive">
 		</div>
-		<div class="col-xs-10 text-center">
+		<div class="col-xs-9 text-center">
 			<br>
-			<span>IZIN NO:445/1617-DINKES/04-S1-KK/IV/05</span><br>
-			<p>Jl. Kiaracondong 304/19-21 telp. (022) 7311759</p>
+			<span>IZIN NO:</span><br>
+			<p>Cirebon telp. (022) xxxx</p>
 		</div>
 		<hr>
 	</div>
+	<br>
+	<br>
 	<table style="border: 2" class="table table-bordered table-striped DataTable">
 		<thead>
 			<tr>
-				<th>#</th>
+				<th>No.</th>
+				<th>Kode Obat</th>
 				<th>Nama Obat/Alkes</th>
 				<th>Kategori</th>
 				<th>Merk</th>
+				<th>Stok</th>
 				<th>Satuan</th>
 				<th>Supplier</th>
 			</tr>
@@ -38,9 +42,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php $i=1; foreach($obat as $row):?>
 			<tr>
 				<td><?php echo $i++;?></td>
+				<td><?php echo $row->kode_obat;?></td>
 				<td><?php echo $row->nama_obat;?></td>
 				<td><?php echo $row->nama_kategori;?></td>
 				<td><?php echo $row->merk_nama;?></td>
+				<td><?php echo $row->stok;?></td>
 				<td><?php echo $row->satuan_nama;?></td>
 				<td><?php echo $row->nama_supplier;?></td>
 			</tr>
