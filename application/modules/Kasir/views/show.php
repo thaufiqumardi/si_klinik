@@ -137,7 +137,7 @@ if(!empty($menusid)){
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Kembalian</label>
 											<div class="col-md-6 pull-right">
-												<input type="text" name="kembalian" class="form-control ">
+												<input type="text" name="kembalian" class="form-control " readonly>
 											</div>
 										</div>
 										<div class="form-group col-md-9 pull-right">
