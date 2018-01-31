@@ -31,10 +31,17 @@ if(!empty($menusid)){
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
-					<div class="box box-widget">
-						<div class="box-header with-border" style="text-align:center;">
-							<h3>Kasir</h3>
-							<small>Jl. CIrebon blablabal</small>
+					<div class="box box-primary box-solid">
+						<div class="box-header" style="text-align:left;">
+							<div class="row">
+								<div class="col-md-3 pull-left">
+									<h4>Form Kasir</h4>
+								</div>
+								<br>
+							<div class="col-md-2 pull-right">
+							<small>No. Transaksi : </small>
+							</div>
+							</div>
 						</div>
 						<div class="box-body">
 							<div class="row">
@@ -109,6 +116,9 @@ if(!empty($menusid)){
 												<th>
 													Total Harga
 												</th>
+												<th>
+													Aksi
+												</th>
 											</tr>
 										</thead>
 									</table>
@@ -116,28 +126,30 @@ if(!empty($menusid)){
 							</div>
 						</div>
 					</div>
-					<div class="box box-widget">
+					<div class="box box-primary box-solid">
 						<div class="box-body">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="pull-left">
-										<h2>Sub Total:</h2>
-									</div>
-								</div>
-								<div class="col-md-6">
+							<div class="row ">
+
+								<div class="col-md-6 pull-right">
 								<!-- <div class="pull-right"> -->
-									<h2 style="text-align:right;">Rp. 343423</h2>
+
 									<form class="form-horizontal">
 										<div class="form-group">
-											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar</label>
+											<label class="control-label col-md-3 col-md-offset-3">Sub Total :</label>
+											<div class="col-md-6 pull-right">
+											<label class="control-label pull-right "> Rp. XXXXXXX </label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar :</label>
 											<div class="col-md-6 pull-right">
 												<input type="text" name="jmlh_bayar" class="form-control ">
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-md-offset-3">Kembalian</label>
+											<label class="control-label col-md-3 col-md-offset-3">Kembalian :</label>
 											<div class="col-md-6 pull-right">
-												<input type="text" name="kembalian" class="form-control ">
+												<input type="text" name="kembalian" class="form-control " readonly>
 											</div>
 										</div>
 										<div class="form-group col-md-9 pull-right">
