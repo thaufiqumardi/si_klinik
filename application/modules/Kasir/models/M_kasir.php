@@ -133,7 +133,7 @@ class M_kasir extends CI_Model
 
     function get_detail_transaksi($no_kuitansi){
     	$this->db->select('*')
-    	->from('pemasukan')
+    	->from('transaksi_kasir')
     	->where('no_kuitansi',$no_kuitansi);
     	$query = $this->db->get();
     	return $query->result();
@@ -171,5 +171,11 @@ class M_kasir extends CI_Model
 								->join('harga_obat','obat.id_obat=harga_obat.id_obat')
 								->where('kode_obat',$kode_obat);
 			return $this->db->get()->row();
+		}
+		function getTransaksiObatNow($no_kuitansi){
+			$this->db->from('transaksi_kasir')
+								->join('obat','obat.id_obat=transaksi_kasir.id_barang')
+								->where('no_kuitansi',$no_kuitansi);
+			return $this->db->get()->result();
 		}
 }

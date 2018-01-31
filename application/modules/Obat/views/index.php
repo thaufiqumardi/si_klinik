@@ -57,7 +57,7 @@
 				              	  }
 				              	  ?>
 							</div>
-						<table id="example2" style="border: 2" class="table table-bordered table-striped table-hover DataTable">
+						<table id="example2" class="table table-bordered table-striped table-hover DataTable">
 							<thead>
 								<tr>
 									<th style="width: 5%;" class="text-center">No.</th>
@@ -156,8 +156,9 @@
           "info": false,
           "autoWidth": true,
           "columnDefs": [{
-              "targets": [ -1],
+              "targets": [ -1,-2,-3,-4,-5,-6,-7,-8],
               "orderable": false,
+
       		}],
         });
       });

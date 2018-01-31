@@ -40,6 +40,7 @@ if(!empty($menusid)){
 								<br>
 							<div class="col-md-2 pull-right">
 							<small>No. Transaksi : </small>
+							<small>No. Transaksi : <?=$no_kuitansi;?></small>
 							</div>
 							</div>
 						</div>
@@ -60,11 +61,12 @@ if(!empty($menusid)){
 											</div>
 										</div>
 									</div>
-									<form class="form-horizontal">
-
+									<form id="form_transaksi" class="form-horizontal" action="<?= site_url('Kasir/transaksiBarang');?>" method="post">
 										<div class="form-group">
 											<label class="control-label col-md-2">Nama</label>
 											<div class="col-md-10">
+												<input type="hidden" name="no_kuitansi" class="ignoreReset" value="<?=$no_kuitansi;?>" />
+												<input type="hidden" name="id_barang" />
 												<input type="text" name="nama_barang" class="form-control" readonly  />
 											</div>
 										</div>
@@ -89,13 +91,13 @@ if(!empty($menusid)){
 										</div>
 										<div class="form-group">
 											<div class="col-md-12">
-												<button class="btn btn-block btn-primary"><i class="fa fa-send"></i> Masukan</button>
+												<button type="submit" id="btnTrx" class="btn btn-block btn-primary"><i class="fa fa-send"></i> Masukan</button>
 											</div>
 										</div>
 									</form>
 								</div>
 								<div class="col-md-8">
-									<table class="table table-bordered">
+									<table class="table table-bordered tableTransaksi">
 										<thead>
 											<tr>
 												<th>
@@ -126,34 +128,49 @@ if(!empty($menusid)){
 							</div>
 						</div>
 					</div>
+					<div class='alert alert-info TotalBayar'>
+										<h2>Total : Rp. <span class="sub_total" id="sub_total"></span></h2>
+									</div>
 					<div class="box box-primary box-solid">
 						<div class="box-body">
 							<div class="row ">
 
 								<div class="col-md-6 pull-right">
 								<!-- <div class="pull-right"> -->
-
-									<form class="form-horizontal">
+									<form class="form-horizontal" id="formPemasukan" method="post" action="<?=site_url('Kasir/simpanPemasukan');?>">
+										<input type="hidden" name="no_kuitansi_pemasukan" />
 										<div class="form-group">
-											<label class="control-label col-md-3 col-md-offset-3">Sub Total :</label>
+											<label class="control-label col-md-3 col-md-offset-3">Total Bayar:</label>
 											<div class="col-md-6 pull-right">
-											<label class="control-label pull-right "> Rp. XXXXXXX </label>
+
+													<input type="text" name="total_bayar" readonly id="total_bayar" class="form-control input-lg ">
+
+											<!-- <h2 style="padding:none;">Rp. 40.000</h2> -->
+											<!-- <labelclass="control-label pull-right sub_total">Rp. <span class="sub_total" id="sub_total"></span></label> -->
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar :</label>
 											<div class="col-md-6 pull-right">
-												<input type="text" name="jmlh_bayar" class="form-control ">
+												<input type="text" name="jmlh_bayar" id="UangCash" class="form-control input-lg ">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Kembalian :</label>
 											<div class="col-md-6 pull-right">
-												<input type="text" name="kembalian" class="form-control " readonly>
+												<input type="text" name="kembalian" id="UangKembali" class="form-control input-lg" readonly>
 											</div>
 										</div>
 										<div class="form-group col-md-9 pull-right">
-											<button class="btn btn-primary btn-block"><i class="fa fa-money"></i> Simpan Transaksi</button>
+											<div class="row">
+												<div class="col-md-6">
+														<button class="btn btn-default btn-flat btn-block" id="btnCetak"><i class="fa fa-refresh"></i> Transaksi Baru</button>
+												</div>
+												<div class="col-md-6">
+													<button class="btn btn-primary btn-flat" id="btnSimpan"><i class="fa fa-money"></i> Simpan Transaksi</button>
+												</div>
+											</div>
+
 										</div>
 									</form>
 								<!-- </div> -->
@@ -170,7 +187,19 @@ if(!empty($menusid)){
     var total = 0;
     var kembalian = -1;
     $(document).ready(function() {
+			// $('#btnCetak').hide();
+			$('#btnTrx').on("click",function(){
+				var kode = $('#searchByKodeBarang').val();
+				if(kode==''||kode==0){
+					alert("Silahkan Cari Barang dulu");
+				}
+			});
     	$('#mnKasir').addClass('active');
+			var nomor_kuitansi = $("input[name='no_kuitansi']").val();
+			if(nomor_kuitansi ==null || nomor_kuitansi==0){
+				$("input[name='no_kuitansi_pemasukan']").val('0');
+			}
+			$("input[name='no_kuitansi_pemasukan']").val(nomor_kuitansi);
     	$('#searchByKodeBarang').keyup(function(event){
 				if(event.keyCode==13){
 					var data = $(this).val();
@@ -179,18 +208,102 @@ if(!empty($menusid)){
 						if(data==null){
 							alert("Data Obat tidak ada");
 						}
-						$("input[name='nama_barang']").val(data.nama_obat);
-						$("input[name='satuan_barang']").val(data.satuan_nama);
-						$("input[name='harga_barang']").val(data.harga_jual1);
+						else{
+							$("input[name='id_barang']").val(data.id_obat);
+							$("input[name='nama_barang']").val(data.nama_obat);
+							$("input[name='satuan_barang']").val(data.satuan_nama);
+							$("input[name='id_satuan']").val(data.satuan_id);
+							$("input[name='harga_barang']").val(data.harga_jual1);
+						}
 					},"JSON");
 				}
-			})
-    });
-
-    $(document).on('keyup', '#UangCash', function(){
+			});
+			$('#form_transaksi').submit(function(e){
+				e.preventDefault();
+				$.ajax({
+					type:"POST",
+					url : "<?= site_url('Kasir/transaksiBarang');?>",
+					cache:false,
+					data:$(this).serialize(),
+					success: function(data){
+						try {
+							var no_kuitansi = $("input[name='no_kuitansi']").val();
+							setTableTransaksi(no_kuitansi);
+							$('#form_transaksi :input:not(".ignoreReset")').val('');
+							$('#searchByKodeBarang').val('');
+						} catch (e) {
+							alert("Transaksi Gagal");
+						}
+					}
+				});
+				var nomor_kuitansi = $("input[name='no_kuitansi']").val();
+				var uri = "<?=site_url('Kasir/getSubTotal');?>";
+				$.get(uri+'/'+nomor_kuitansi,function(data){
+					total = data.sub_total;
+					$('.sub_total').text(to_rupiah(total));
+					$('#total_bayar').val(to_rupiah(total))
+				},"JSON");
+			});
+			function setTableTransaksi(no_kuitansi){
+				var tableTransaksi = $('.tableTransaksi').DataTable({
+					'searching':false,
+						'lengthChange':false,
+						'retrieve':true,
+						"pageLength": 100,
+				});
+				var url = "<?= site_url('Kasir/getTransaksiNow');?>";
+				$.get(url+'/'+no_kuitansi,function(data){
+					tableTransaksi.clear().draw();
+					var JSONObject = data;
+					var counter = 1;
+					for(var key in JSONObject){
+						if(JSONObject.hasOwnProperty(key)){
+							var harga = JSONObject[key]["harga_barang"].toLocaleString();
+							tableTransaksi.row.add([
+								counter++,
+								JSONObject[key]["kode_obat"],
+								JSONObject[key]["nama_obat"],
+								harga,
+								JSONObject[key]["qty_barang"],
+								JSONObject[key]["total_harga"],
+								"aksi",
+							]).draw(false);
+						}
+					}
+					console.log(data);
+				},"JSON");
+			}
+			// $('#formPemasukan').submit(function(e){
+			// 	e.preventDefault();
+			// 	console.log('Pemasukan Submited');
+			// 	$.ajax({
+			// 		type:"POST",
+			// 		url: "<?= site_url('Kasir/simpanPemasukan');?>",
+			// 		cache:false,
+			// 		data:$(this).serialize(),
+			// 		success:function(data){
+			// 			try {
+			// 				console.log(data);
+			// 			} catch (e) {
+      //
+			// 			}
+			// 		}
+			// 	});
+			// })
+			function to_rupiah(angka){
+        var rev     = parseInt(angka, 10).toString().split('').reverse().join('');
+        var rev2    = '';
+        for(var i = 0; i < rev.length; i++){
+            rev2  += rev[i];
+            if((i + 1) % 3 === 0 && i !== (rev.length - 1)){
+                rev2 += '.';
+            }
+        }
+        return rev2.split('').reverse().join('');
+    	}
+			$(document).on('keyup', '#UangCash', function(){
     	HitungTotalKembalian();
     });
-
     function HitungTotalKembalian()
     {
     	var uang = $('#UangCash').val();
@@ -205,69 +318,7 @@ if(!empty($menusid)){
     		kembalian = -1;
     	}
     }
-
-    function to_rupiah(angka){
-        var rev     = parseInt(angka, 10).toString().split('').reverse().join('');
-        var rev2    = '';
-        for(var i = 0; i < rev.length; i++){
-            rev2  += rev[i];
-            if((i + 1) % 3 === 0 && i !== (rev.length - 1)){
-                rev2 += '.';
-            }
-        }
-        return rev2.split('').reverse().join('');
-    }
-
-    function deletes(){
-    	var cnt = nomor;
-    	for (i = 0; i <= cnt; i++) {
-    		$('#baris_'+i).remove();
-    	}
-    }
-
-    function savetrx()
-    {
-    	if(nomor == 0){
-    		$('#ResponseInput').html("<div id='alert' class='alert alert-danger alert-dismissible pesan-status'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-ban')></i> Item transaksi harus terisi.</h4></div>");
-    		$(".pesan-status").fadeTo(4000, 0).slideUp(500, function(){
-    	        $(this).remove();
-    	    });
-        }
-    	else if(kembalian >= 0)
-    	{
-    		$('[name=UangTotal]').prop('disabled',false);
-
-    		$.ajax({
-    	        url : "<?php echo site_url('Kasir/SimpanTransaksi')?>",
-    	        type: "POST",
-    	        data:$('#formMain').serialize(),
-    	        dataType: "JSON",
-    	        success: function(data)
-    	        {
-    	        	if(data.status)
-    	        	{
-    	        		$('[name=UangTotal]').prop('disabled',"disabled");
-    	        		$('[name=UangCash]').prop('disabled',"disabled");
-    	        		$('[name=no_registrasi]').prop('disabled',"disabled");
-    	        		$('#ResponseInput').html("<div id='alert' class='alert alert-success alert-dismissible pesan-status'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check')></i> Transaksi Berhasil.</h4></div>");
-    	        		$(".pesan-status").fadeTo(4000, 0).slideUp(500, function(){
-    	        	        $(this).remove();
-    	        	    });
-
-    	        		$('#btnPrint').show();
-    	        		$('#btnSimpan').hide();
-    	        		$('#btnNew').show();
-    	        		$("#btnPrint").attr("href", "<?php echo base_url('Kasir/CetakTransaksi')?>"+"/"+data.no_kuitansi);
-    	        	}
-    	        }
-    		});
-    	}else{
-    		$('#ResponseInput').html("<div id='alert' class='alert alert-danger alert-dismissible pesan-status'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-ban')></i> Jumlah bayar tidak boleh kurang dari total bayar.</h4></div>");
-    		$(".pesan-status").fadeTo(4000, 0).slideUp(500, function(){
-    	        $(this).remove();
-    	    });
-        }
-    }
-	</script>
+			});
+		</script>
 
 </html>
