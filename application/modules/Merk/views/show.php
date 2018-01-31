@@ -44,7 +44,7 @@ if(!empty($menusid)){
 					<?php
 				}
 				?>
-    			<div class="box box-widget">
+    			<div class="box box-primary box-solid">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Data Merk</h3>
 					</div>
@@ -62,7 +62,7 @@ if(!empty($menusid)){
 						  <table id="example2" class="table table-bordered table-striped">
 							<thead>
 							<tr>
-							  <th style="width: 5%;" class="text-center">No</th>
+							  <th style="width: 5%;" class="text-center">No.</th>
 							  <th class="text-center">Merk</th>
 							  <th style="width: 10%;" class="text-center">Aksi</th>
 							</tr>
