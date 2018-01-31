@@ -39,12 +39,12 @@ if(!empty($menusid)){
 						<div class="box-body">
 							<div class="row">
 								<div class="col-md-4">
-									<form class="form-horizontal">
+									<div class="row" style="margin-bottom:5%;">
 										<div class="form-group">
 											<label class="control-label col-md-2">Kd_Obat</label>
 											<div class="col-md-10">
 												<div class="input-group input-group-sm">
-													<input type="text" name="kode_barang" class="form-control" />
+													<input type="text" name="kode_barang" id="searchByKodeBarang" class="form-control" />
 													<span class="input-group-btn">
 														<button type="button" id="searchBarang" class="btn btn-small btn-primary btn-flat"><i class="fa fa-search"></i></button>
 													</span>
@@ -52,6 +52,9 @@ if(!empty($menusid)){
 
 											</div>
 										</div>
+									</div>
+									<form class="form-horizontal">
+
 										<div class="form-group">
 											<label class="control-label col-md-2">Nama</label>
 											<div class="col-md-10">
@@ -59,6 +62,7 @@ if(!empty($menusid)){
 											</div>
 										</div>
 										<div class="form-group">
+											<input type="hidden" name="id_satuan" />
 											<label class="control-label col-md-2">Satuan</label>
 											<div class="col-md-10">
 												<input type="text" name="satuan_barang" class="form-control" readonly  />
@@ -119,7 +123,6 @@ if(!empty($menusid)){
 									<div class="pull-left">
 										<h2>Sub Total:</h2>
 									</div>
-
 								</div>
 								<div class="col-md-6">
 								<!-- <div class="pull-right"> -->
@@ -138,7 +141,7 @@ if(!empty($menusid)){
 											</div>
 										</div>
 										<div class="form-group col-md-9 pull-right">
-											<button class="btn btn-primary btn-block">Bayar</button>
+											<button class="btn btn-primary btn-block"><i class="fa fa-money"></i> Simpan Transaksi</button>
 										</div>
 									</form>
 								<!-- </div> -->
@@ -156,62 +159,20 @@ if(!empty($menusid)){
     var kembalian = -1;
     $(document).ready(function() {
     	$('#mnKasir').addClass('active');
-    	$('#btnNew').show();
-    	$('#btnPrint').hide();
-    	$('#btnSimpan').show();
-
-    	$('#alert').delay(10000).fadeOut("slow");
-
-    	$('.selectOption').select2();
-
-    	$("select[name='no_registrasi']").change(function(data){
-			var no_registrasi = $(this).val();
-			var url = "<?= site_url('Kasir/getPasienByNoRegistrasi');?>";
-			$.get(url+'/'+no_registrasi,function(data){
-				var tgl_lahir_splited = data.tgl_lahir_pasien.split('-');
-				var umur = 2017-tgl_lahir_splited[0];
-				$("input[name='no_reg']").val(data.no_registrasi);
-				$("input[name='no_rm']").val(data.no_rm);
-				$("input[name='id_reg']").val(data.id_registrasi);
-				$("input[name='tgl_registrasi']").val(data.tgl_registrasi);
-				$("input[name='no_rm']").val(data.no_rm);
-				$("input[name='nama_pasien']").val(data.nama_pasien);
-				$("input[name='jk_pasien']").val(data.jenis_kelamin_pasien);
-				$("input[name='alamat_pasien']").val(data.jalan);
-			},"JSON");
-
-			$.ajax({
-	            url : "<?php echo site_url('Kasir/getdetail')?>" + "/" + no_registrasi,
-	            type: "GET",
-	            dataType: "JSON",
-	            success: function(data)
-	            {
-		            total = 0;
-            		deletes();
-	            	for (i = 0; i < data.length; i++) {
-	            		var mySplitResult = data[i];
-	            		nomor++;
-	 	            	$('#orderItem').append(
-	 		    	        	'<tr class="baris" id="baris_'+ nomor +'">'
-	 		    	            + '<input type="hidden" name="nomor[]" value="'+ nomor +'">'
-	 		    	        	+ '<input type="hidden" id="id_pembiayaan'+ nomor +'" name="id_pembiayaan'+ nomor +'" value="'+ mySplitResult[0] +'">'
-	 		    	            + '<td><label style="font-weight: normal;">'+ mySplitResult[1] +'</label></td>'
-	 		    	            + '<td><label style="font-weight: normal;">'+ parseFloat(mySplitResult[2]).toFixed(2).replace(".", ",").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") +'</label></td>'
-	 		    	            + '<td><label style="font-weight: normal;">'+ mySplitResult[3] +'</label></td>'
-	 		    	            + '<td><label style="font-weight: normal;">'+ parseFloat(mySplitResult[4]).toFixed(2).replace(".", ",").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") +'</label></td>'
-	 		    	            + '<td><label style="font-weight: normal;">'+ parseFloat(mySplitResult[5]).toFixed(2).replace(".", ",").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") +'</label></td>'
-	 		    	            + '</tr>'
-	 		    	        );
-	 	            	total = total + parseFloat(mySplitResult[5]);
-	                }
-	            	$('[name="UangTotal"]').val(parseFloat(total).toFixed(2).replace(".", ",").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1."));
-	            	$('[name="UangCash"]').val('');
-	            	$('[name="UangKembali"]').val('');
-	            	document.getElementById("TotalBayar").innerHTML = "Rp. " + parseFloat(total).toFixed(2).replace(".", ",").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
-	            }
-	        });
-
-		});
+    	$('#searchByKodeBarang').keyup(function(event){
+				if(event.keyCode==13){
+					var data = $(this).val();
+					var uri = "<?= site_url('Kasir/getObatByKd');?>";
+					$.get(uri+'/'+data,function(data){
+						if(data==null){
+							alert("Data Obat tidak ada");
+						}
+						$("input[name='nama_barang']").val(data.nama_obat);
+						$("input[name='satuan_barang']").val(data.satuan_nama);
+						$("input[name='harga_barang']").val(data.harga_jual1);
+					},"JSON");
+				}
+			})
     });
 
     $(document).on('keyup', '#UangCash', function(){

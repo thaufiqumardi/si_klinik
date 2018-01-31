@@ -12,13 +12,11 @@ class Kasir extends MX_Controller {
 	public function index(){
 		$this->M_setting->_make_sure_is_login();
 		$this->M_setting->_check_menu();
-		$data['arr_no_registrasi']	= $this->modelKasir->get_no_registrasi();
-
-		$this->load->view('show',$data);
+		$this->load->view('show');
 	}
-	function getPasienByNoRegistrasi($no_registrasi){
-		$data['registrasi']= $this->modelKasir->getRegistrasiJoined($no_registrasi);
-		echo json_encode($data['registrasi']);
+	function getObatByKd($kd_obat){
+		$obat = $this->modelKasir->getObatByKodeObat($kd_obat);
+		echo json_encode($obat);
 	}
 	function getDetail($no_registrasi){
 		$list = $this->modelKasir->get_detail($no_registrasi);
