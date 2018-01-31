@@ -33,7 +33,7 @@ if(!empty($menusid)){
     		<section class="content">
 					<div class="box box-widget">
 						<div class="box-header with-border" style="text-align:center;">
-							<h2>Kasir</h2>
+							<h3>Kasir</h3>
 							<small>Jl. CIrebon blablabal</small>
 						</div>
 						<div class="box-body">
@@ -42,7 +42,7 @@ if(!empty($menusid)){
 									<form class="form-horizontal">
 										<div class="form-group">
 											<label class="control-label col-md-2">Kd_Obat</label>
-											<div class="col-md-8">
+											<div class="col-md-10">
 												<div class="input-group input-group-sm">
 													<input type="text" name="kode_barang" class="form-control" />
 													<span class="input-group-btn">
@@ -54,26 +54,26 @@ if(!empty($menusid)){
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-2">Nama</label>
-											<div class="col-md-8">
+											<div class="col-md-10">
 												<input type="text" name="nama_barang" class="form-control" readonly  />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-2">Satuan</label>
-											<div class="col-md-8">
+											<div class="col-md-10">
 												<input type="text" name="satuan_barang" class="form-control" readonly  />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-2">Harga</label>
-											<div class="col-md-8">
+											<div class="col-md-10">
 												<input type="text" name="harga_barang" class="form-control" readonly  />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-2">Qty</label>
 											<div class="col-md-10">
-												<input type="text" name="jumlah_baran" class="form-control"   />
+												<input type="text" name="jumlah_barang" class="form-control"   />
 											</div>
 										</div>
 										<div class="form-group">
@@ -128,7 +128,13 @@ if(!empty($menusid)){
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar</label>
 											<div class="col-md-6 pull-right">
-												<input type="text" name="jmlh_bayar" class="form-control input-lg">
+												<input type="text" name="jmlh_bayar" class="form-control ">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-md-offset-3">Kembalian</label>
+											<div class="col-md-6 pull-right">
+												<input type="text" name="kembalian" class="form-control ">
 											</div>
 										</div>
 										<div class="form-group col-md-9 pull-right">
