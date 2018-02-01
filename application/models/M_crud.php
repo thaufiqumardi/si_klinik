@@ -126,7 +126,6 @@ class M_crud extends CI_Model {
 		if(!is_null($where2)){
 			$this->db->where($where2, $param2);
 		}
-
 		$query = $this->db->get();
 		return $query->row();
 	}

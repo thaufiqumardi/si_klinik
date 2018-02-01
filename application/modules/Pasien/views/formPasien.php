@@ -118,7 +118,7 @@
 														/>
 													</div>
 													<div class="col-md-4" style="margin-left: -20px;width:55%;">
-														<input required="required" id="tgl_lahir" type="text" name="tgl_lahir" placeholder="Tanggal Lahir" class="form-control datepicker" data-mask data-inputmask='"mask":"99/99/9999"'
+														<input required="required" id="tgl_lahir" type="text" name="tgl_lahir" placeholder="Tanggal Lahir" class="form-control datepicker" 
 															<?php
 																if(isset($pasien)){
 																	$tgl_lahir=explode('-',$pasien['tgl_lahir']);
@@ -444,7 +444,7 @@
 
 	  	$('#mnTambahPasien').addClass('active');
 
-	    // $("[data-mask]").inputmask();
+	    $("[data-mask]").inputmask();
 	    $('.selectOption').select2();
 	    $('.DataTable').DataTable({});
 	    $('.datepicker').datepicker({

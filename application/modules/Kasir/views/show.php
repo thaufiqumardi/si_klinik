@@ -84,18 +84,18 @@ if(!empty($menusid)){
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-2">Qty</label>
-											<div class="col-md-10">
-												<input type="text" name="jumlah_barang" required id="qty_barang" class="form-control"   />
+											<div class="col-md-6">
+												<input type="text" name="jumlah_barang" required id="qty_barang" class="form-control"/>
+											</div>
+											<div class="col-md-4 label bg-blue" style="width:29%;">
+												<h5 id="infoStok"></h5>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-md-12">
 												<button type="submit" id="btnTrx" class="btn btn-block btn-primary"><i class="fa fa-send"></i> Masukan</button>
-
-													<button type="button" class="btn btn-block btn-danger" id="btnBatal" onclick="batalTransaksi()" title="Batalkan Transaksi"><i class="fa fa-times"></i> Batalkan Transaksi</button>
-
+													<!-- <button type="button" class="btn btn-block btn-danger" id="btnBatal" onclick="batalTransaksi()" title="Batalkan Transaksi"><i class="fa fa-times"></i> Batalkan Transaksi</button> -->
 											</div>
-
 										</div>
 									</form>
 								</div>
@@ -151,7 +151,7 @@ if(!empty($menusid)){
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar :</label>
 											<div class="col-md-6 pull-right">
-												<input type="text" name="jmlh_bayar" id="UangCash" required class="form-control input-lg ">
+												<input type="text" name="jmlh_bayar" required id="UangCash" class="form-control input-lg " />
 											</div>
 										</div>
 										<div class="form-group">
@@ -194,9 +194,13 @@ if(!empty($menusid)){
 			setSubTotal(nomor_kuitansi);
 			$('#btnRefresh').hide();
 			$('#btnSimpan').click(function(){
-				$(this).hide();
-				$('#UangCash').attr('readonly',true);
-				$('#btnRefresh').show();
+				if($('#UangCash').val()==''){
+					alert("Mohon Lakukan Transaksi Terlebih Dulu")
+				}
+				else{
+					$(this).hide();
+					$('#btnRefresh').show();
+				}
 			});
 
     	$('#mnKasir').addClass('active');
@@ -218,6 +222,7 @@ if(!empty($menusid)){
 							$("input[name='satuan_barang']").val(data.satuan_nama);
 							$("input[name='id_satuan']").val(data.satuan_id);
 							$("input[name='harga_barang']").val(data.harga_jual1);
+							$("#infoStok").text(data.stok);
 						}
 					},"JSON");
 				}
@@ -250,6 +255,7 @@ if(!empty($menusid)){
 				// var nomor_kuitansi = $("input[name='no_kuitansi']").val();
 				setSubTotal(nomor_kuitansi);
 				setTableTransaksi(nomor_kuitansi)
+				window.location.reload();
 			});
 			function setSubTotal(nomor_kuitansi){
 				var uri = "<?=site_url('Kasir/getSubTotal');?>";
@@ -275,12 +281,16 @@ if(!empty($menusid)){
 				});
 				var url = "<?= site_url('Kasir/getTransaksiNow');?>";
 				$.get(url+'/'+no_kuitansi,function(data){
+					// console.log(data);
 					tableTransaksi.clear().draw();
 					var JSONObject = data;
 					var counter = 1;
 					for(var key in JSONObject){
 						if(JSONObject.hasOwnProperty(key)){
 							var harga = JSONObject[key]["harga_barang"].toLocaleString();
+							var url = "<?= site_url('Kasir/hapusItem').'/';?>";
+							var id_transaksi = JSONObject[key]["id_transaksi"];
+							var btn_hapus ='<a href="'+url+id_transaksi+'" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</a>';
 							tableTransaksi.row.add([
 								counter++,
 								JSONObject[key]["kode_obat"],
@@ -288,7 +298,7 @@ if(!empty($menusid)){
 								harga,
 								JSONObject[key]["qty_barang"],
 								JSONObject[key]["total_harga"],
-								"aksi",
+								btn_hapus,
 							]).draw(false);
 						}
 					}

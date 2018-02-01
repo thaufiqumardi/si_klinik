@@ -121,18 +121,6 @@ class Kasir extends MX_Controller {
 		echo json_encode($data);
 	}
 	function CetakTransaksi($no_kuitansi){
-		// $location = 'logo';
-		// $path_to_file = FCPATH . $location."\KMB_Logo_Small.png";
-		// $data['imgpath'] = $path_to_file;
-		// $data['head'] = $this->modelKasir->get_head_transaksi($no_kuitansi);
-		// $data['details'] = $this->modelKasir->get_detail_transaksi($no_kuitansi);
-		// $this->load->view('print',$data);
-		// $html = $this->output->get_output();
-		// $this->pdf->load_html($html);
-		// $this->pdf->set_paper("A4","potrait");
-		// $this->pdf->render();
-		// $this->pdf->stream('KuitansiPembayaran'.$no_registrasi,array("Attachment"=>0));
-		// $data = array();
 		$data['detail_pemasukan']=$this->M_crud->get_by_id('pemasukan','no_kuitansi',$no_kuitansi);
 		$data['transaksi'] = $this->M_crud->get_select_to_array('*','transaksi_kasir','obat','transaksi_kasir.id_barang=obat.id_obat','no_kuitansi',$no_kuitansi);
 		// echo json_encode($data['detail_pemasukan']);
@@ -145,18 +133,25 @@ class Kasir extends MX_Controller {
 	}
 	function transaksiBarang(){
 		if($_POST){
+			$id_obat = $this->input->post('id_barang');
 			$harga = $this->input->post('harga_barang');
 			$qty = $this->input->post('jumlah_barang');
 			$total_harga = $harga * $qty;
 			// $no_kuitansi = $this->modelKasir->get_nomor_kuitansi();
 			$data = array(
-				'id_barang'=>$this->input->post('id_barang'),
+				'id_barang'=> $id_obat,
 				'id_satuan'=>$this->input->post('id_satuan'),
 				'harga_barang'=>$harga,
 				'qty_barang'=>$qty,
 				'no_kuitansi'=>$this->input->post('no_kuitansi'),
 				'total_harga'=>$total_harga,
 			);
+			$obat = $this->M_crud->get_by_id('obat','id_obat',$id_obat);
+			$sisa = $obat->stok - $qty;
+			$stok_sisa = array(
+				'stok'=>$sisa,
+			);
+			$this->M_crud->_update('obat','id_obat',$id_obat,$stok_sisa);
 			$this->M_crud->_insert('transaksi_kasir',$data);
 			return;
 		}
@@ -202,6 +197,17 @@ class Kasir extends MX_Controller {
 	}
 	function batalTransaksi($no_kuitansi){
 		$this->M_crud->_delete('transaksi_kasir','no_kuitansi',$no_kuitansi);
+		redirect('kasir');
+	}
+	function hapusItem($id_transaksi){
+		$obat_trx = $this->M_crud->get_by_id('transaksi_kasir','id_transaksi',$id_transaksi);
+		$obat = $this->M_crud->get_by_id('obat','id_obat',$obat_trx->id_barang);
+		$stok_balik = $obat->stok + $obat_trx->qty_barang;
+		$data = array(
+			'stok'=>$stok_balik,
+		);
+		$this->M_crud->_update('obat','id_obat',$obat_trx->id_barang,$data);
+		$this->M_crud->_delete('transaksi_kasir','id_transaksi',$id_transaksi);
 		redirect('kasir');
 	}
 }
