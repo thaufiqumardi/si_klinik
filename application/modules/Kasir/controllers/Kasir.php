@@ -153,7 +153,7 @@ class Kasir extends MX_Controller {
 			);
 			$this->M_crud->_update('obat','id_obat',$id_obat,$stok_sisa);
 			$this->M_crud->_insert('transaksi_kasir',$data);
-			return;
+			// return;
 		}
 	}
 	function getTransaksiNow($no_kuitansi){

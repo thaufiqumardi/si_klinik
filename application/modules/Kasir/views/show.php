@@ -228,34 +228,41 @@ if(!empty($menusid)){
 				}
 			});
 			$('#form_transaksi').submit(function(e){
-				var kode_barang = $('#searchByKodeBarang').val();
-				var qty = $('#qty_barang').val();
-				if(kode_barang == null && qty == null){
-					alert("Silahkan Pilih Barang");
+				e.preventDefault()
+				var sisa = $('#infoStok').text();
+				// console.log(sisa);
+				if(sisa==''||sisa=='0'){
+					alert("Stok Obat Habis");
+					// window.location.reload();
 				}
-				$('#btnSimpan').attr('disabled',false);
-				e.preventDefault();
-				$.ajax({
-					type:"POST",
-					url : "<?= site_url('Kasir/transaksiBarang');?>",
-					cache:false,
-					data:$(this).serialize(),
-					success: function(data){
-						try {
-							var no_kuitansi = $("input[name='no_kuitansi']").val();
-							setTableTransaksi(no_kuitansi);
-							$('#form_transaksi :input:not(".ignoreReset")').val('');
-							$('#searchByKodeBarang').val('');
-						} catch (e) {
-							alert("Transaksi Gagal");
-						}
+				else{
+					var kode_barang = $('#searchByKodeBarang').val();
+					var qty = $('#qty_barang').val();
+					if(kode_barang == null && qty == null){
+						alert("Silahkan Pilih Barang");
 					}
-					// $('#btnSimpan').attr('disabled',false);
-				});
-				// var nomor_kuitansi = $("input[name='no_kuitansi']").val();
-				setSubTotal(nomor_kuitansi);
-				setTableTransaksi(nomor_kuitansi)
-				window.location.reload();
+					$('#btnSimpan').attr('disabled',false);
+					e.preventDefault();
+					$.ajax({
+						type:"POST",
+						url : "<?= site_url('Kasir/transaksiBarang');?>",
+						cache:false,
+						data:$(this).serialize(),
+						success: function(data){
+							try {
+								var no_kuitansi = $("input[name='no_kuitansi']").val();
+								setTableTransaksi(no_kuitansi);
+								$('#form_transaksi :input:not(".ignoreReset")').val('');
+								$('#searchByKodeBarang').val('');
+							} catch (e) {
+								alert("Transaksi Gagal");
+							}
+						}
+					});
+					setSubTotal(nomor_kuitansi);
+					setTableTransaksi(nomor_kuitansi)
+					window.location.reload();
+				}
 			});
 			function setSubTotal(nomor_kuitansi){
 				var uri = "<?=site_url('Kasir/getSubTotal');?>";
