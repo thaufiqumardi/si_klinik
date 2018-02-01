@@ -133,6 +133,8 @@ class Kasir extends MX_Controller {
 		// $this->pdf->render();
 		// $this->pdf->stream('KuitansiPembayaran'.$no_registrasi,array("Attachment"=>0));
 		$data['details']=$this->M_crud->get_by_param_to_array('transaksi_kasir','no_kuitansi',$no_kuitansi);
+		echo json_encode($data);
+		die;
 		$this->load->view('print',$data);
 	}
 	function cetak(){

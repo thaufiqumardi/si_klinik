@@ -39,7 +39,6 @@ if(!empty($menusid)){
 								</div>
 								<br>
 							<div class="col-md-2 pull-right">
-							<small>No. Transaksi : </small>
 							<small>No. Transaksi : <?=$no_kuitansi;?></small>
 							</div>
 							</div>
@@ -97,7 +96,7 @@ if(!empty($menusid)){
 									</form>
 								</div>
 								<div class="col-md-8">
-									<table class="table table-bordered tableTransaksi">
+									<table class="table tableTransaksi">
 										<thead>
 											<tr>
 												<th>
@@ -137,7 +136,7 @@ if(!empty($menusid)){
 
 								<div class="col-md-6 pull-right">
 								<!-- <div class="pull-right"> -->
-									<form class="form-horizontal" id="formPemasukan" method="post" action="<?=site_url('Kasir/simpanPemasukan');?>">
+									<form class="form-horizontal" id="formPemasukan" method="post" action="<?=site_url('Kasir/simpanPemasukan');?>" target="_blank">
 										<input type="hidden" name="no_kuitansi_pemasukan" />
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Total Bayar:</label>
@@ -152,7 +151,7 @@ if(!empty($menusid)){
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar :</label>
 											<div class="col-md-6 pull-right">
-												<input type="text" name="jmlh_bayar" id="UangCash" class="form-control input-lg ">
+												<input type="text" name="jmlh_bayar" id="UangCash" required class="form-control input-lg ">
 											</div>
 										</div>
 										<div class="form-group">
@@ -164,10 +163,10 @@ if(!empty($menusid)){
 										<div class="form-group col-md-9 pull-right">
 											<div class="row">
 												<div class="col-md-6">
-														<button class="btn btn-default btn-flat btn-block" id="btnCetak"><i class="fa fa-refresh"></i> Transaksi Baru</button>
+														<button type="button" onclick="window.location.reload();" class="btn btn-default btn-flat btn-block" id="btnRefresh"><i class="fa fa-refresh"></i> Transaksi Baru</button>
 												</div>
 												<div class="col-md-6">
-													<button class="btn btn-primary btn-flat" id="btnSimpan"><i class="fa fa-money"></i> Simpan Transaksi</button>
+													<button class="btn btn-primary btn-flat" type="submit" id="btnSimpan"><i class="fa fa-money"></i> Simpan Transaksi</button>
 												</div>
 											</div>
 
@@ -187,7 +186,13 @@ if(!empty($menusid)){
     var total = 0;
     var kembalian = -1;
     $(document).ready(function() {
-			// $('#btnCetak').hide();
+			$('#btnRefresh').hide();
+			$('#btnSimpan').click(function(){
+				$(this).hide();
+				$('#UangCash').attr('disabled',true);
+				$('#btnRefresh').show();
+			});
+			$('#btnSimpan').attr('disabled',true);
 			$('#btnTrx').on("click",function(){
 				var kode = $('#searchByKodeBarang').val();
 				if(kode==''||kode==0){
@@ -219,6 +224,7 @@ if(!empty($menusid)){
 				}
 			});
 			$('#form_transaksi').submit(function(e){
+				$('#btnSimpan').attr('disabled',false);
 				e.preventDefault();
 				$.ajax({
 					type:"POST",
@@ -235,6 +241,7 @@ if(!empty($menusid)){
 							alert("Transaksi Gagal");
 						}
 					}
+					// $('#btnSimpan').attr('disabled',false);
 				});
 				var nomor_kuitansi = $("input[name='no_kuitansi']").val();
 				var uri = "<?=site_url('Kasir/getSubTotal');?>";
@@ -246,10 +253,17 @@ if(!empty($menusid)){
 			});
 			function setTableTransaksi(no_kuitansi){
 				var tableTransaksi = $('.tableTransaksi').DataTable({
-					'searching':false,
-						'lengthChange':false,
-						'retrieve':true,
+					"searching":false,
+						"lengthChange":false,
+						"retrieve":true,
+						"info":false,
+						"paging":false,
 						"pageLength": 100,
+						"columnDefs": [{
+	              "targets": [ -1,-2,-3,-4,-5,-6,-7],
+	              "orderable": false,
+
+	      		}],
 				});
 				var url = "<?= site_url('Kasir/getTransaksiNow');?>";
 				$.get(url+'/'+no_kuitansi,function(data){
@@ -273,23 +287,9 @@ if(!empty($menusid)){
 					console.log(data);
 				},"JSON");
 			}
-			// $('#formPemasukan').submit(function(e){
-			// 	e.preventDefault();
-			// 	console.log('Pemasukan Submited');
-			// 	$.ajax({
-			// 		type:"POST",
-			// 		url: "<?= site_url('Kasir/simpanPemasukan');?>",
-			// 		cache:false,
-			// 		data:$(this).serialize(),
-			// 		success:function(data){
-			// 			try {
-			// 				console.log(data);
-			// 			} catch (e) {
-      //
-			// 			}
-			// 		}
-			// 	});
-			// })
+			$('#formPemasukan').submit(function(e){
+				window.location.reload();
+			})
 			function to_rupiah(angka){
         var rev     = parseInt(angka, 10).toString().split('').reverse().join('');
         var rev2    = '';

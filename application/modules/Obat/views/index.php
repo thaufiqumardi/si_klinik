@@ -56,7 +56,7 @@
 				              	  <?php
 				              	  }
 				              	  ?>
-							</div>
+							
 						<table id="example2" class="table table-bordered table-striped table-hover DataTable">
 							<thead>
 								<tr>

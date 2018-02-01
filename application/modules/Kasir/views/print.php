@@ -27,16 +27,42 @@ if(!empty($menusid)){
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
     </head>
-    <body onload="window.print();">
+    <body>
     <div class="wrapper">
       <!-- Main content -->
       <section class="invoice">
         <!-- title row -->
+				<?php
+					$now = date('D');
+					$hari = array(
+						'Sun'=>'Minggu',
+						'Mon' => 'Senin',
+						'Tue' => 'Selasa',
+						'Wed' => 'Rabu',
+						'Thu' => 'Kamis',
+						'Fri' => "Jum'at",
+						'Sat' => 'Sabtu'
+					);
+					$bulan = array(
+						'01' => 'Januari',
+						'02' => 'Februari',
+						'03' => 'Maret',
+						'04' => 'April',
+						'05' => 'Mei',
+						'06' => 'Juni',
+						'07' => 'Juli',
+						'08' => 'Agustus',
+						'09' => 'September',
+						'10' => 'Oktober',
+						'11' => 'November',
+						'12' => 'Desember',
+						);
+					?>
         <div class="row">
           <div class="col-xs-12">
             <h2 class="page-header">
-              <i class="fa fa-globe"></i> AdminLTE, Inc.
-              <small class="pull-right">Date: 2/10/2014</small>
+              <i class="fa fa-globe"></i> JASA PRIMA KLINIK
+              <small class="pull-right">Tanggal: <?= date('d').' '.$bulan[date('m')].' '.date('Y');?></small>
             </h2>
           </div>
           <!-- /.col -->
@@ -172,4 +198,8 @@ if(!empty($menusid)){
     </div>
     <!-- ./wrapper -->
     </body>
+		<script type="text/javascript">
+window.print();
+window.onfocus=function(){ window.close();}
+</script>
 </html>
