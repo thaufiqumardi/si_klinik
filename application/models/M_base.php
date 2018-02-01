@@ -34,7 +34,7 @@ class M_base extends CI_Model {
 
 	public function currFormat2($num)
 	{
-		$result = number_format($num,2,".",",");
+		$result = number_format($num,2,".",".");
 		return $result;
 	}
 }

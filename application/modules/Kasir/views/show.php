@@ -51,16 +51,16 @@ if(!empty($menusid)){
 											<label class="control-label col-md-2">Kd_Obat</label>
 											<div class="col-md-10">
 												<div class="input-group input-group-sm">
-													<input type="text" name="kode_barang" id="searchByKodeBarang" class="form-control" />
+													<input type="text" name="kode_barang " required id="searchByKodeBarang" class="form-control" />
 													<span class="input-group-btn">
-														<button type="button" id="searchBarang" class="btn btn-small btn-primary btn-flat"><i class="fa fa-search"></i></button>
+														<button type="button" id="searchBarang"  class="btn btn-small btn-primary btn-flat"><i class="fa fa-search"></i></button>
 													</span>
 												</div>
 
 											</div>
 										</div>
 									</div>
-									<form id="form_transaksi" class="form-horizontal" action="<?= site_url('Kasir/transaksiBarang');?>" method="post">
+									<form id="form_transaksi" class="form-horizontal">
 										<div class="form-group">
 											<label class="control-label col-md-2">Nama</label>
 											<div class="col-md-10">
@@ -85,13 +85,17 @@ if(!empty($menusid)){
 										<div class="form-group">
 											<label class="control-label col-md-2">Qty</label>
 											<div class="col-md-10">
-												<input type="text" name="jumlah_barang" class="form-control"   />
+												<input type="text" name="jumlah_barang" required id="qty_barang" class="form-control"   />
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-md-12">
 												<button type="submit" id="btnTrx" class="btn btn-block btn-primary"><i class="fa fa-send"></i> Masukan</button>
+
+													<button type="button" class="btn btn-block btn-danger" id="btnBatal" onclick="batalTransaksi()" title="Batalkan Transaksi"><i class="fa fa-times"></i> Batalkan Transaksi</button>
+
 											</div>
+
 										</div>
 									</form>
 								</div>
@@ -141,11 +145,7 @@ if(!empty($menusid)){
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Total Bayar:</label>
 											<div class="col-md-6 pull-right">
-
 													<input type="text" name="total_bayar" readonly id="total_bayar" class="form-control input-lg ">
-
-											<!-- <h2 style="padding:none;">Rp. 40.000</h2> -->
-											<!-- <labelclass="control-label pull-right sub_total">Rp. <span class="sub_total" id="sub_total"></span></label> -->
 											</div>
 										</div>
 										<div class="form-group">
@@ -165,11 +165,10 @@ if(!empty($menusid)){
 												<div class="col-md-6">
 														<button type="button" onclick="window.location.reload();" class="btn btn-default btn-flat btn-block" id="btnRefresh"><i class="fa fa-refresh"></i> Transaksi Baru</button>
 												</div>
-												<div class="col-md-6">
+												<div class="col-md-4">
 													<button class="btn btn-primary btn-flat" type="submit" id="btnSimpan"><i class="fa fa-money"></i> Simpan Transaksi</button>
 												</div>
 											</div>
-
 										</div>
 									</form>
 								<!-- </div> -->
@@ -185,25 +184,25 @@ if(!empty($menusid)){
     var nomor = 0;
     var total = 0;
     var kembalian = -1;
+		var nomor_kuitansi = $("input[name='no_kuitansi']").val();
+		function batalTransaksi(){
+			var uri = "<?= site_url('Kasir/batalTransaksi/');?>";
+			window.location=uri+'/'+nomor_kuitansi;
+		}
     $(document).ready(function() {
+			setTableTransaksi(nomor_kuitansi)
+			setSubTotal(nomor_kuitansi);
 			$('#btnRefresh').hide();
 			$('#btnSimpan').click(function(){
 				$(this).hide();
-				$('#UangCash').attr('disabled',true);
+				$('#UangCash').attr('readonly',true);
 				$('#btnRefresh').show();
 			});
-			$('#btnSimpan').attr('disabled',true);
-			$('#btnTrx').on("click",function(){
-				var kode = $('#searchByKodeBarang').val();
-				if(kode==''||kode==0){
-					alert("Silahkan Cari Barang dulu");
-				}
-			});
+
     	$('#mnKasir').addClass('active');
-			var nomor_kuitansi = $("input[name='no_kuitansi']").val();
-			if(nomor_kuitansi ==null || nomor_kuitansi==0){
-				$("input[name='no_kuitansi_pemasukan']").val('0');
-			}
+			// if(nomor_kuitansi ==null || nomor_kuitansi==0){
+			// 	$("input[name='no_kuitansi_pemasukan']").val('0');
+			// }
 			$("input[name='no_kuitansi_pemasukan']").val(nomor_kuitansi);
     	$('#searchByKodeBarang').keyup(function(event){
 				if(event.keyCode==13){
@@ -224,6 +223,11 @@ if(!empty($menusid)){
 				}
 			});
 			$('#form_transaksi').submit(function(e){
+				var kode_barang = $('#searchByKodeBarang').val();
+				var qty = $('#qty_barang').val();
+				if(kode_barang == null && qty == null){
+					alert("Silahkan Pilih Barang");
+				}
 				$('#btnSimpan').attr('disabled',false);
 				e.preventDefault();
 				$.ajax({
@@ -243,14 +247,18 @@ if(!empty($menusid)){
 					}
 					// $('#btnSimpan').attr('disabled',false);
 				});
-				var nomor_kuitansi = $("input[name='no_kuitansi']").val();
+				// var nomor_kuitansi = $("input[name='no_kuitansi']").val();
+				setSubTotal(nomor_kuitansi);
+				setTableTransaksi(nomor_kuitansi)
+			});
+			function setSubTotal(nomor_kuitansi){
 				var uri = "<?=site_url('Kasir/getSubTotal');?>";
 				$.get(uri+'/'+nomor_kuitansi,function(data){
 					total = data.sub_total;
 					$('.sub_total').text(to_rupiah(total));
 					$('#total_bayar').val(to_rupiah(total))
 				},"JSON");
-			});
+			}
 			function setTableTransaksi(no_kuitansi){
 				var tableTransaksi = $('.tableTransaksi').DataTable({
 					"searching":false,

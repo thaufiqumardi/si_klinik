@@ -434,19 +434,27 @@
 
     <?php $this->load->view('template/v_footer'); ?>
 	<script type="text/javascript">
+	$(function(){
+		$('#tgl_lahir').keypress(function(event) {
+				 event.preventDefault();
+				 return false;
+		 });
+	})
 	  $(document).ready(function(){
 
 	  	$('#mnTambahPasien').addClass('active');
 
-	    $("[data-mask]").inputmask();
+	    // $("[data-mask]").inputmask();
 	    $('.selectOption').select2();
 	    $('.DataTable').DataTable({});
 	    $('.datepicker').datepicker({
 	           format:'dd/mm/yyyy',
 	           todayHighlight:true,
 	           containter:true,
+						 orientation:'bottom',
+						 // minViewMode: "years"
+						 startView:'years'
 	        });
-
 	    $('#alert').delay(10000).fadeOut("slow");
 	    $("#btnExportExcell").click(function(e) {
 	      e.preventDefault();

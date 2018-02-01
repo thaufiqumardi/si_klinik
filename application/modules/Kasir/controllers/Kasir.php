@@ -132,9 +132,11 @@ class Kasir extends MX_Controller {
 		// $this->pdf->set_paper("A4","potrait");
 		// $this->pdf->render();
 		// $this->pdf->stream('KuitansiPembayaran'.$no_registrasi,array("Attachment"=>0));
-		$data['details']=$this->M_crud->get_by_param_to_array('transaksi_kasir','no_kuitansi',$no_kuitansi);
-		echo json_encode($data);
-		die;
+		// $data = array();
+		$data['detail_pemasukan']=$this->M_crud->get_by_id('pemasukan','no_kuitansi',$no_kuitansi);
+		$data['transaksi'] = $this->M_crud->get_select_to_array('*','transaksi_kasir','obat','transaksi_kasir.id_barang=obat.id_obat','no_kuitansi',$no_kuitansi);
+		// echo json_encode($data['detail_pemasukan']);
+		// die;
 		$this->load->view('print',$data);
 	}
 	function cetak(){
@@ -165,26 +167,41 @@ class Kasir extends MX_Controller {
 	}
 	function getSubTotal($no_kuitansi){
 		$transaksi = $this->M_crud->get_by_param_to_array('transaksi_kasir','no_kuitansi',$no_kuitansi);
-		$data = array();
+		// $data = array();
 		$sub_total = 0;
 		foreach ($transaksi as $tr) {
-			$sub_total += $tr->total_harga;
+			$sub_total = $sub_total+$tr->total_harga;
 		}
 		$data['sub_total'] = $sub_total;
 		echo json_encode($data);
 	}
 	function simpanPemasukan(){
+		$harga = str_replace('.','',$this->input->post('total_bayar'));
+		$uang_bayar = $this->input->post('jmlh_bayar');
+		$uang_kembalian = str_replace('.','',$this->input->post('kembalian'));
+		$qty = 1;
+		$total = $harga * $qty;
 		$no_kuitansi = $this->input->post('no_kuitansi_pemasukan');
 		$data = array(
 			'no_kuitansi'=>$no_kuitansi,
 			'nama_pemasukan'=>"Transaksi Obat Apotek",
 			'jenis_pemasukan'=>"Obat",
-			'harga_pemasukan'=>$this->input->post('total_bayar'),
-			'qty_pemasukan'=>1,
-			'total_pemasukan'=>$this->input->post('total_bayar'),
+			'harga_pemasukan'=>$harga,
+			'qty_pemasukan'=>$qty,
+			'total_pemasukan'=>$total,
+			'uang_bayar'=>$uang_bayar,
+			'uang_kembalian'=>$uang_kembalian,
 			'created_by'=>$this->session->userdata['simklinik']['ap_sid']
 		);
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
+		// die;
 		$this->M_crud->_insert('pemasukan',$data);
 		redirect('Kasir/CetakTransaksi/'.$no_kuitansi);
+	}
+	function batalTransaksi($no_kuitansi){
+		$this->M_crud->_delete('transaksi_kasir','no_kuitansi',$no_kuitansi);
+		redirect('kasir');
 	}
 }
