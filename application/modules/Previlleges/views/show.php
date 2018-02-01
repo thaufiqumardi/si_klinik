@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 $menusid = $this->M_crud->get_by_param("menu", 'name', "HakAkses");
 if(!empty($menusid)){
@@ -44,12 +44,12 @@ if(!empty($menusid)){
 					<?php
 				}
 				?>
-    			<div class="box box-widget">
+    			<div class="box box-primary box-solid">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Data Hak Akses</h3>
 					</div>
 						<div class="box-body">
-							  <a href="<?php echo site_url('Previlleges/cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
+							  <a href="<?php echo site_url('Previlleges/cetak');?>" target="_blank" class="btn btn-default pull-right hidden"><i class="fa fa-print"></i> Cetak</a>
 			              	  <a href="<?php echo site_url('Previlleges/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
 			              		<i class="fa fa-file-excel-o"></i> Export Excell</a>
 							  <?php if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnCreate == 1){
@@ -72,8 +72,8 @@ if(!empty($menusid)){
 							  <th style="width: 10%;" class="text-center">Aksi</th>
 							</tr>
 							</thead>
-							
-							
+
+
 							<tbody>
 							<?php
 								if($previlleges > 0)
@@ -111,7 +111,7 @@ if(!empty($menusid)){
 										}
 							?>
 										<td class="center">
-							<?php 
+							<?php
 							if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnUpdate == 1)
 							{
 							?>
@@ -119,11 +119,11 @@ if(!empty($menusid)){
 										<i class="fa fa-edit" title="Edit"></i></a>
 							<?php
 							}
-							
+
 							if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnDelete == 1)
 							{
 							?>
-								<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal" 
+								<a class="btn btn-danger btn-xs" title="Hapus" href="" data-toggle="modal"
 										onclick="confirm_delete('<?php echo site_url('Previlleges/delete').'/'.$data->id_hak_akses;?>',
 										'<?php echo $data->role_name.' - '.$data->title;?>');"><i class="fa fa-trash"></i></a>
 							<?php
@@ -143,7 +143,7 @@ if(!empty($menusid)){
     		</section>
     	</div>
 		<?php $this->load->view('template/v_copyright'); ?>
-		
+
 		<div class="modal fade" id="confirmHapus"  data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog">
 				<div class="modal-content" style="margin-top:100px;">
@@ -164,9 +164,9 @@ if(!empty($menusid)){
 			</div>
 		</div>
     </body>
-    
+
     <?php $this->load->view('template/v_footer'); ?>
-    
+
     <script type="text/javascript">
     $(document).ready(function() {
     	$('#mnPengaturan').addClass('active');
@@ -196,5 +196,5 @@ if(!empty($menusid)){
 		document.getElementById('delete_link_m_n').setAttribute("href" , delete_url );
 	}
 	</script>
-    
+
 </html>

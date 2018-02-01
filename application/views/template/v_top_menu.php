@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <header class="main-header">
 	<a href="index2.html" class="logo">
     	<span class="logo-mini"><b>SK</b></span>
-    	<span class="logo-lg"><b>JASA PRIMA KLINIK</b></span>
+    	<span class="logo-lg"><b>JASA PRIMA </b></span>
     </a>
     <nav class="navbar navbar-static-top">
     	<!-- <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> -->

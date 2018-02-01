@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 $menusid = $this->M_crud->get_by_param("menu", 'name', "Menu");
 if(!empty($menusid)){
@@ -44,13 +44,13 @@ if(!empty($menusid)){
 					<?php
 				}
 				?>
-    			<div class="box box-widget">
+    			<div class="box box-primary box-solid">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Data Menu</h3>
 					</div>
 					<div class="box-body">
-					    <a href="<?php echo site_url('Menu/cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
-		              	<a href="<?php echo site_url('Menu/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
+					    <a href="<?php echo site_url('Menu/cetak');?>" target="_blank" class="btn btn-default pull-right hidden"><i class="fa fa-print"></i> Cetak</a>
+		              	<a href="<?php echo site_url('Menu/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right hidden">
 		              		<i class="fa fa-file-excel-o"></i> Export Excell</a><br><br>
 						<table id="example2" class="table table-bordered table-striped">
 							<thead>
@@ -101,9 +101,9 @@ if(!empty($menusid)){
     	</div>
     	<?php $this->load->view('template/v_copyright'); ?>
     </body>
-    
+
     <?php $this->load->view('template/v_footer'); ?>
-    
+
     <script type="text/javascript">
     $(document).ready(function() {
     	$('#mnPengaturan').addClass('active');

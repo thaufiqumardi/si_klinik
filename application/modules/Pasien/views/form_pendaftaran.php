@@ -63,7 +63,7 @@
 				if(empty($pasiens)){
 					?>
 					<div class="box-body">
-						<div class="callout callout-warning text-center">
+						<div class="alert bg-warning text-center">
                	 			<h4>Belum Ada Pasien</h4>
                 			<p>Anda Belum pernah Menambahkan pasien sebelumnya. Silahkan menambahkan pasien dulu sebelum melakukan pendaftaran pasien.</p>
                 			<a style="text-decoration:none;" href="<?php echo site_url('pasien/tambah');?>" class="btn btn-lg btn-primary">Tambahkan Pasien</a>

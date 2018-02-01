@@ -32,7 +32,7 @@ if(!empty($menusid)){
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
 		    <section class="content-header">
-		    	
+
 		    </section>
     		<section class="content">
 					<div class="row">
@@ -50,33 +50,7 @@ if(!empty($menusid)){
 		            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 		          </div>
 		        </div>
-						<div class="col-lg-3 col-xs-6">
-		          <!-- small box -->
-		          <div class="small-box bg-purple">
-		            <div class="inner">
-		              <h3><?= $jumlah_pasien_daftar;?></h3>
-
-		              <p>Pasien Daftar Hari Ini</p>
-		            </div>
-		            <div class="icon">
-		              <i class="fa fa-wheelchair"></i>
-		            </div>
-		            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-		          </div>
-		        </div>
-						<div class="col-lg-3 col-xs-6">
-		          <div class="small-box bg-navy">
-		            <div class="inner">
-		              <h3><?= $jumlah_pasien_daftar;?></h3>
-
-		              <p>Pasien Daftar Hari Ini</p>
-		            </div>
-		            <div class="icon" style="color:grey;">
-		              <i class="fa fa-wheelchair"></i>
-		            </div>
-		            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-		          </div>
-		        </div>
+						
 					</div>
 					<div class="box box-widget">
 						<div class="content">
