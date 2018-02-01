@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2018 at 04:40 PM
+-- Generation Time: Feb 01, 2018 at 11:12 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -569,7 +569,7 @@ CREATE TABLE `pemasukan` (
   `pemasukan_id` int(11) NOT NULL,
   `no_kuitansi` varchar(12) DEFAULT NULL,
   `no_registrasi` varchar(10) DEFAULT NULL,
-  `tgl_pemasukan` datetime DEFAULT NULL,
+  `tgl_pemasukan` datetime DEFAULT CURRENT_TIMESTAMP,
   `nama_pemasukan` varchar(100) DEFAULT NULL,
   `jenis_pemasukan` enum('Pendaftaran','Layanan','Obat','Lain-Lain','Paket') DEFAULT NULL,
   `harga_pemasukan` decimal(10,2) DEFAULT NULL,
@@ -586,30 +586,16 @@ CREATE TABLE `pemasukan` (
 --
 
 INSERT INTO `pemasukan` (`pemasukan_id`, `no_kuitansi`, `no_registrasi`, `tgl_pemasukan`, `nama_pemasukan`, `jenis_pemasukan`, `harga_pemasukan`, `qty_pemasukan`, `total_pemasukan`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, '00000001', '1712280003', '2017-12-28 00:00:00', NULL, 'Paket', NULL, '1.00', '0.00', 2, '2017-12-28 16:44:13', NULL, '2017-12-28 16:44:13'),
-(2, '00000001', '1712280003', '2017-12-28 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', '10000.00', '1.00', '10000.00', 2, '2017-12-28 16:44:13', NULL, '2017-12-28 16:44:13'),
-(3, '00000002', '1712280004', '2017-12-28 00:00:00', 'Spesialis Dalam', 'Layanan', '250000.00', '1.00', '250000.00', 2, '2017-12-28 17:10:19', NULL, '2017-12-28 17:10:19'),
-(4, '00000002', '1712280004', '2017-12-28 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', '10000.00', '1.00', '10000.00', 2, '2017-12-28 17:10:19', NULL, '2017-12-28 17:10:19'),
-(5, '00000003', '1712280005', '2017-12-28 00:00:00', NULL, 'Paket', NULL, '1.00', '0.00', 2, '2017-12-28 17:36:18', NULL, '2017-12-28 17:36:18'),
-(6, '00000003', '1712280005', '2017-12-28 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', '10000.00', '1.00', '10000.00', 2, '2017-12-28 17:36:18', NULL, '2017-12-28 17:36:18'),
-(7, '00000004', '1712290001', '2017-12-29 00:00:00', 'Operasi Besar', 'Layanan', '100000.00', '1.00', '100000.00', 2, '2017-12-29 10:34:59', NULL, '2017-12-29 10:34:59'),
-(8, '00000004', '1712290001', '2017-12-29 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', '10000.00', '1.00', '10000.00', 2, '2017-12-29 10:34:59', NULL, '2017-12-29 10:34:59'),
-(9, '00000005', '1712290002', '2017-12-29 00:00:00', NULL, 'Paket', NULL, '1.00', '0.00', 2, '2017-12-29 10:59:46', NULL, '2017-12-29 10:59:46'),
-(10, '00000005', '1712290002', '2017-12-29 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', '10000.00', '1.00', '10000.00', 2, '2017-12-29 10:59:46', NULL, '2017-12-29 10:59:46'),
-(11, '00000005', '1712290002', '2017-12-29 00:00:00', 'Spesialis Dalam', 'Layanan', '250000.00', '1.00', '250000.00', 2, '2017-12-29 10:59:46', NULL, '2017-12-29 10:59:46'),
-(12, '00000005', '1712290002', '2017-12-29 00:00:00', 'Keluarga Berencana', 'Layanan', '20000.00', '1.00', '20000.00', 2, '2017-12-29 10:59:46', NULL, '2017-12-29 10:59:46'),
-(13, '00000005', '1712290002', '2017-12-29 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', '10000.00', '1.00', '10000.00', 2, '2017-12-29 10:59:46', NULL, '2017-12-29 10:59:46'),
-(14, '00000006', '1712290001', '2017-12-29 00:00:00', 'AMOXICILLIN', 'Obat', '5000.00', '1.00', '5000.00', 2, '2017-12-29 12:14:29', NULL, '2017-12-29 12:14:29'),
-(15, '00000006', '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', '2000.00', '2.00', '4000.00', 2, '2017-12-29 12:14:29', NULL, '2017-12-29 12:14:29'),
-(16, '00000006', '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', '2000.00', '3.00', '6000.00', 2, '2017-12-29 12:14:29', NULL, '2017-12-29 12:14:29'),
-(17, '00000006', '1712290001', '2017-12-29 00:00:00', 'ANTASIDA DOEN', 'Obat', '2000.00', '1.00', '2000.00', 2, '2017-12-29 12:14:29', NULL, '2017-12-29 12:14:29'),
-(18, '00000006', '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', '2000.00', '2.00', '4000.00', 2, '2017-12-29 12:14:29', NULL, '2017-12-29 12:14:29'),
-(19, '00000007', '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', '2000.00', '1.00', '2000.00', 2, '2017-12-29 12:27:52', NULL, '2017-12-29 12:27:52'),
-(20, '00000007', '1712290001', '2017-12-29 00:00:00', 'AMBROXOL', 'Obat', '2000.00', '1.00', '2000.00', 2, '2017-12-29 12:27:52', NULL, '2017-12-29 12:27:52'),
-(21, '00000008', '1712290002', '2017-12-29 00:00:00', NULL, 'Paket', NULL, '1.00', '0.00', 2, '2017-12-29 14:34:51', NULL, '2017-12-29 14:34:51'),
-(22, '00000008', '1712290002', '2017-12-29 00:00:00', 'Biaya Pendaftaran Pasien Lama', 'Pendaftaran', '10000.00', '1.00', '10000.00', 2, '2017-12-29 14:34:51', NULL, '2017-12-29 14:34:51'),
-(23, '00000009', '1801030001', '2018-01-03 00:00:00', 'Operasi Besar', 'Layanan', '100000.00', '1.00', '100000.00', 2, '2018-01-03 11:53:00', NULL, '2018-01-03 11:53:00'),
-(24, '00000009', '1801030001', '2018-01-03 00:00:00', 'Biaya Pendaftaran Pasien Baru', 'Pendaftaran', '15000.00', '1.00', '15000.00', 2, '2018-01-03 11:53:00', NULL, '2018-01-03 11:53:00');
+(1, '00000001', NULL, '2018-02-01 16:59:31', 'Transaksi Obat Apotek', 'Obat', '2.00', '1.00', '2.00', 2, '2018-02-01 16:59:31', NULL, '2018-02-01 16:59:31'),
+(2, '00000002', NULL, '2018-02-01 17:00:15', 'Transaksi Obat Apotek', 'Obat', '2.00', '1.00', '2.00', 2, '2018-02-01 17:00:15', NULL, '2018-02-01 17:00:15'),
+(3, '00000003', NULL, '2018-02-01 17:00:43', 'Transaksi Obat Apotek', 'Obat', '8.00', '1.00', '8.00', 2, '2018-02-01 17:00:43', NULL, '2018-02-01 17:00:43'),
+(4, '00000003', NULL, '2018-02-01 17:00:59', 'Transaksi Obat Apotek', 'Obat', '8.00', '1.00', '8.00', 2, '2018-02-01 17:00:59', NULL, '2018-02-01 17:00:59'),
+(5, '00000004', NULL, '2018-02-01 17:02:32', 'Transaksi Obat Apotek', 'Obat', '26.00', '1.00', '26.00', 2, '2018-02-01 17:02:32', NULL, '2018-02-01 17:02:32'),
+(6, '00000005', NULL, '2018-02-01 17:03:23', 'Transaksi Obat Apotek', 'Obat', '16.00', '1.00', '16.00', 2, '2018-02-01 17:03:23', NULL, '2018-02-01 17:03:23'),
+(7, '00000006', NULL, '2018-02-01 17:04:22', 'Transaksi Obat Apotek', 'Obat', '14.00', '1.00', '14.00', 2, '2018-02-01 17:04:22', NULL, '2018-02-01 17:04:22'),
+(8, '00000007', NULL, '2018-02-01 17:05:07', 'Transaksi Obat Apotek', 'Obat', '246.00', '1.00', '246.00', 2, '2018-02-01 17:05:07', NULL, '2018-02-01 17:05:07'),
+(9, '00000008', NULL, '2018-02-01 17:07:57', 'Transaksi Obat Apotek', 'Obat', '6.00', '1.00', '6.00', 2, '2018-02-01 17:07:57', NULL, '2018-02-01 17:07:57'),
+(10, '00000009', NULL, '2018-02-01 17:11:36', 'Transaksi Obat Apotek', 'Obat', '8.00', '1.00', '8.00', 2, '2018-02-01 17:11:36', NULL, '2018-02-01 17:11:36');
 
 -- --------------------------------------------------------
 
@@ -919,6 +905,42 @@ INSERT INTO `supplier` (`supplier_id`, `nama_supplier`, `kode_supplier`, `alamat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaksi_kasir`
+--
+
+CREATE TABLE `transaksi_kasir` (
+  `id_transaksi` int(11) NOT NULL,
+  `no_kuitansi` varchar(18) NOT NULL,
+  `id_barang` int(11) NOT NULL,
+  `id_satuan` int(11) NOT NULL,
+  `harga_barang` decimal(10,2) NOT NULL,
+  `qty_barang` int(3) NOT NULL,
+  `total_harga` decimal(10,2) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaksi_kasir`
+--
+
+INSERT INTO `transaksi_kasir` (`id_transaksi`, `no_kuitansi`, `id_barang`, `id_satuan`, `harga_barang`, `qty_barang`, `total_harga`, `created_by`, `created_at`) VALUES
+(1, '00000001', 2, 67, '2000.00', 1, '2000.00', 0, '2018-02-01 16:59:18'),
+(2, '00000002', 2, 67, '2000.00', 1, '2000.00', 0, '2018-02-01 17:00:08'),
+(3, '00000003', 2, 67, '2000.00', 4, '8000.00', 0, '2018-02-01 17:00:37'),
+(4, '00000004', 2, 67, '2000.00', 4, '8000.00', 0, '2018-02-01 17:01:33'),
+(5, '00000004', 2, 67, '2000.00', 4, '8000.00', 0, '2018-02-01 17:01:53'),
+(6, '00000004', 2, 67, '2000.00', 5, '10000.00', 0, '2018-02-01 17:02:22'),
+(7, '00000004', 0, 0, '0.00', 0, '0.00', 0, '2018-02-01 17:02:24'),
+(8, '00000005', 2, 67, '2000.00', 8, '16000.00', 0, '2018-02-01 17:03:15'),
+(9, '00000006', 2, 67, '2000.00', 7, '14000.00', 0, '2018-02-01 17:04:17'),
+(10, '00000007', 2, 67, '2000.00', 123, '246000.00', 0, '2018-02-01 17:04:49'),
+(11, '00000008', 2, 67, '2000.00', 3, '6000.00', 0, '2018-02-01 17:07:50'),
+(12, '00000009', 2, 67, '2000.00', 4, '8000.00', 0, '2018-02-01 17:11:26');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -1098,6 +1120,12 @@ ALTER TABLE `supplier`
   ADD PRIMARY KEY (`supplier_id`);
 
 --
+-- Indexes for table `transaksi_kasir`
+--
+ALTER TABLE `transaksi_kasir`
+  ADD PRIMARY KEY (`id_transaksi`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1171,7 +1199,7 @@ ALTER TABLE `pasien`
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
-  MODIFY `pemasukan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `pemasukan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
@@ -1217,6 +1245,11 @@ ALTER TABLE `satuan`
 --
 ALTER TABLE `supplier`
   MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `transaksi_kasir`
+--
+ALTER TABLE `transaksi_kasir`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `users`
 --
