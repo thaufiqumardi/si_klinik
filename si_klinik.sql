@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2018 at 11:12 AM
+-- Generation Time: Feb 01, 2018 at 06:36 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -323,7 +323,8 @@ INSERT INTO `harga_obat` (`harga_obat_id`, `id_obat`, `harga_beli`, `harga_jual1
 (98, 123, '12000.00', '14000.00', '0.00', NULL, '2017-12-03 07:44:27', NULL, '2017-12-03 07:44:27'),
 (101, 133, '100000.00', '110000.00', '0.00', 2, '2017-12-27 15:08:22', 2, '2017-12-28 12:59:39'),
 (103, 2, '200000.00', '2000.00', '0.00', 2, '2018-01-24 21:13:28', NULL, '2018-01-24 21:13:28'),
-(104, 3, '900000.00', '3000.00', '0.00', 2, '2018-01-30 21:47:39', NULL, '2018-01-30 21:47:39');
+(104, 3, '900000.00', '3000.00', '0.00', 2, '2018-01-30 21:47:39', NULL, '2018-01-30 21:47:39'),
+(105, 4, '200000.00', '20000.00', '0.00', 2, '2018-02-01 18:52:46', NULL, '2018-02-01 18:52:46');
 
 -- --------------------------------------------------------
 
@@ -490,9 +491,9 @@ CREATE TABLE `obat` (
 --
 
 INSERT INTO `obat` (`id_obat`, `id_kategori`, `id_satuan`, `id_merk`, `id_supplier`, `kode_obat`, `nama_obat`, `stok`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, 34, 5, 68, 14, '0', 'Bodrexin', 0, '2018-01-24 20:26:17', 2, '2018-01-24 20:26:17', NULL),
-(2, 50, 67, 71, 14, 'KD0001', 'Intunal Kuning', 90, '2018-01-24 21:04:27', 2, '2018-01-24 21:04:27', NULL),
-(3, 51, 68, 72, 19, 'KK000213', 'Konidin', 10, '2018-01-30 21:46:51', 2, '2018-01-30 21:46:51', NULL);
+(2, 50, 67, 71, 14, 'KD0001', 'Intunal Kuning', 0, '2018-01-24 21:04:27', 2, '2018-02-02 00:14:46', NULL),
+(3, 51, 68, 72, 19, 'KK000213', 'Konidin', 10, '2018-01-30 21:46:51', 2, '2018-01-30 21:46:51', NULL),
+(4, 20, 1, 68, 14, 'KD0002', 'Aspirin', 10, '2018-02-01 18:51:48', 2, '2018-02-01 18:51:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -557,7 +558,8 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_kartu`, `nama_pasien`, `nik_pasien`, `tempat_lahir`, `tgl_lahir`, `umur`, `agama`, `pekerjaan_pasien`, `gol_darah`, `jenis_kelamin`, `no_telp_rumah`, `no_handphone`, `jalan`, `rtrw`, `kelurahan`, `kecamatan`, `kota`, `status_pasien`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, '18000001', '00000001', 'Thaufiq Muhammad Umardi', '3273060507960005', 'Bandung', '1996-07-05', 22, 'Islam', 'Pengangguran', 'O', 'Laki-Laki', '(222) 2222-2222', '222-2222-2222', 'Jl. Dr Abdul Rivai ', '23/42', 'asdfasf', 'asdf', 'asdf', 'BARU', '2018-01-30 22:31:46', 2, '2018-01-30 22:31:46', NULL);
+(1, '18000001', '00000001', 'Thaufiq Muhammad Umardi', '3273060507960005', 'Bandung', '1996-07-05', 22, 'Islam', 'Pengangguran', 'O', 'Laki-Laki', '(222) 2222-2222', '222-2222-2222', 'Jl. Dr Abdul Rivai ', '23/42', 'asdfasf', 'asdf', 'asdf', 'BARU', '2018-01-30 22:31:46', 2, '2018-01-30 22:31:46', NULL),
+(2, '18000002', '00000002', 'UMIMIMI', '2392389282394802', 'Bandung', '1996-03-01', 22, 'Islam', 'Pekerjaan', 'O', 'Laki-Laki', '02222222222', '213123213', 'alamat', '03/03', 'Pasirkaliki', 'Cicendo', 'Bandung', 'BARU', '2018-02-01 22:46:43', 2, '2018-02-01 22:46:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -575,6 +577,8 @@ CREATE TABLE `pemasukan` (
   `harga_pemasukan` decimal(10,2) DEFAULT NULL,
   `qty_pemasukan` decimal(10,2) DEFAULT NULL,
   `total_pemasukan` decimal(10,2) DEFAULT NULL,
+  `uang_bayar` decimal(10,2) NOT NULL,
+  `uang_kembalian` decimal(10,2) NOT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_by` int(11) DEFAULT NULL,
@@ -585,17 +589,12 @@ CREATE TABLE `pemasukan` (
 -- Dumping data for table `pemasukan`
 --
 
-INSERT INTO `pemasukan` (`pemasukan_id`, `no_kuitansi`, `no_registrasi`, `tgl_pemasukan`, `nama_pemasukan`, `jenis_pemasukan`, `harga_pemasukan`, `qty_pemasukan`, `total_pemasukan`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, '00000001', NULL, '2018-02-01 16:59:31', 'Transaksi Obat Apotek', 'Obat', '2.00', '1.00', '2.00', 2, '2018-02-01 16:59:31', NULL, '2018-02-01 16:59:31'),
-(2, '00000002', NULL, '2018-02-01 17:00:15', 'Transaksi Obat Apotek', 'Obat', '2.00', '1.00', '2.00', 2, '2018-02-01 17:00:15', NULL, '2018-02-01 17:00:15'),
-(3, '00000003', NULL, '2018-02-01 17:00:43', 'Transaksi Obat Apotek', 'Obat', '8.00', '1.00', '8.00', 2, '2018-02-01 17:00:43', NULL, '2018-02-01 17:00:43'),
-(4, '00000003', NULL, '2018-02-01 17:00:59', 'Transaksi Obat Apotek', 'Obat', '8.00', '1.00', '8.00', 2, '2018-02-01 17:00:59', NULL, '2018-02-01 17:00:59'),
-(5, '00000004', NULL, '2018-02-01 17:02:32', 'Transaksi Obat Apotek', 'Obat', '26.00', '1.00', '26.00', 2, '2018-02-01 17:02:32', NULL, '2018-02-01 17:02:32'),
-(6, '00000005', NULL, '2018-02-01 17:03:23', 'Transaksi Obat Apotek', 'Obat', '16.00', '1.00', '16.00', 2, '2018-02-01 17:03:23', NULL, '2018-02-01 17:03:23'),
-(7, '00000006', NULL, '2018-02-01 17:04:22', 'Transaksi Obat Apotek', 'Obat', '14.00', '1.00', '14.00', 2, '2018-02-01 17:04:22', NULL, '2018-02-01 17:04:22'),
-(8, '00000007', NULL, '2018-02-01 17:05:07', 'Transaksi Obat Apotek', 'Obat', '246.00', '1.00', '246.00', 2, '2018-02-01 17:05:07', NULL, '2018-02-01 17:05:07'),
-(9, '00000008', NULL, '2018-02-01 17:07:57', 'Transaksi Obat Apotek', 'Obat', '6.00', '1.00', '6.00', 2, '2018-02-01 17:07:57', NULL, '2018-02-01 17:07:57'),
-(10, '00000009', NULL, '2018-02-01 17:11:36', 'Transaksi Obat Apotek', 'Obat', '8.00', '1.00', '8.00', 2, '2018-02-01 17:11:36', NULL, '2018-02-01 17:11:36');
+INSERT INTO `pemasukan` (`pemasukan_id`, `no_kuitansi`, `no_registrasi`, `tgl_pemasukan`, `nama_pemasukan`, `jenis_pemasukan`, `harga_pemasukan`, `qty_pemasukan`, `total_pemasukan`, `uang_bayar`, `uang_kembalian`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
+(1, '00000001', NULL, '2018-02-02 00:07:48', 'Transaksi Obat Apotek', 'Obat', '24000.00', '1.00', '24000.00', '0.00', '0.00', 2, '2018-02-02 00:07:48', NULL, '2018-02-02 00:07:48'),
+(2, '00000002', NULL, '2018-02-02 00:09:21', 'Transaksi Obat Apotek', 'Obat', '0.00', '1.00', '0.00', '0.00', '0.00', 2, '2018-02-02 00:09:21', NULL, '2018-02-02 00:09:21'),
+(3, '00000003', NULL, '2018-02-02 00:09:56', 'Transaksi Obat Apotek', 'Obat', '0.00', '1.00', '0.00', '0.00', '0.00', 2, '2018-02-02 00:09:56', NULL, '2018-02-02 00:09:56'),
+(4, '00000004', NULL, '2018-02-02 00:10:58', 'Transaksi Obat Apotek', 'Obat', '0.00', '1.00', '0.00', '0.00', '0.00', 2, '2018-02-02 00:10:58', NULL, '2018-02-02 00:10:58'),
+(5, '00000005', NULL, '2018-02-02 00:24:28', 'Transaksi Obat Apotek', 'Obat', '156000.00', '1.00', '156000.00', '160000.00', '4000.00', 2, '2018-02-02 00:24:28', NULL, '2018-02-02 00:24:28');
 
 -- --------------------------------------------------------
 
@@ -784,7 +783,9 @@ CREATE TABLE `registrasi_pasien` (
 --
 
 INSERT INTO `registrasi_pasien` (`id_registrasi`, `no_registrasi`, `id_dokter`, `id_pasien`, `tgl_registrasi`, `jam_registrasi`, `no_antrian`, `status_registrasi`, `status_antrian`, `status_pembayaran`, `play_sound`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, 1801300001, 7, 1, '2018-01-30', '22:32:18', 1, '0', '1', '', '0', '2018-01-30 22:32:18', NULL, '2018-01-30 22:35:37', NULL);
+(1, 1801300001, 7, 1, '2018-01-30', '22:32:18', 1, '0', '1', '', '0', '2018-01-30 22:32:18', NULL, '2018-01-30 22:35:37', NULL),
+(2, 1802010001, 5, 1, '2018-02-01', '22:45:26', 1, '0', '0', '', '0', '2018-02-01 22:45:26', NULL, '2018-02-01 22:45:26', NULL),
+(3, 1802010002, 5, 2, '2018-02-01', '22:46:55', 2, '0', '0', '', '0', '2018-02-01 22:46:55', NULL, '2018-02-01 22:46:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -925,18 +926,9 @@ CREATE TABLE `transaksi_kasir` (
 --
 
 INSERT INTO `transaksi_kasir` (`id_transaksi`, `no_kuitansi`, `id_barang`, `id_satuan`, `harga_barang`, `qty_barang`, `total_harga`, `created_by`, `created_at`) VALUES
-(1, '00000001', 2, 67, '2000.00', 1, '2000.00', 0, '2018-02-01 16:59:18'),
-(2, '00000002', 2, 67, '2000.00', 1, '2000.00', 0, '2018-02-01 17:00:08'),
-(3, '00000003', 2, 67, '2000.00', 4, '8000.00', 0, '2018-02-01 17:00:37'),
-(4, '00000004', 2, 67, '2000.00', 4, '8000.00', 0, '2018-02-01 17:01:33'),
-(5, '00000004', 2, 67, '2000.00', 4, '8000.00', 0, '2018-02-01 17:01:53'),
-(6, '00000004', 2, 67, '2000.00', 5, '10000.00', 0, '2018-02-01 17:02:22'),
-(7, '00000004', 0, 0, '0.00', 0, '0.00', 0, '2018-02-01 17:02:24'),
-(8, '00000005', 2, 67, '2000.00', 8, '16000.00', 0, '2018-02-01 17:03:15'),
-(9, '00000006', 2, 67, '2000.00', 7, '14000.00', 0, '2018-02-01 17:04:17'),
-(10, '00000007', 2, 67, '2000.00', 123, '246000.00', 0, '2018-02-01 17:04:49'),
-(11, '00000008', 2, 67, '2000.00', 3, '6000.00', 0, '2018-02-01 17:07:50'),
-(12, '00000009', 2, 67, '2000.00', 4, '8000.00', 0, '2018-02-01 17:11:26');
+(9, '00000001', 2, 67, '2000.00', 12, '24000.00', 0, '2018-02-02 00:07:37'),
+(10, '00000005', 2, 67, '2000.00', 8, '16000.00', 0, '2018-02-02 00:14:36'),
+(11, '00000005', 2, 67, '2000.00', 70, '140000.00', 0, '2018-02-02 00:14:46');
 
 -- --------------------------------------------------------
 
@@ -1169,7 +1161,7 @@ ALTER TABLE `hak_akses`
 -- AUTO_INCREMENT for table `harga_obat`
 --
 ALTER TABLE `harga_obat`
-  MODIFY `harga_obat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `harga_obat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
@@ -1189,17 +1181,17 @@ ALTER TABLE `merk`
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_obat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
-  MODIFY `pemasukan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `pemasukan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
@@ -1224,7 +1216,7 @@ ALTER TABLE `produsen_obat`
 -- AUTO_INCREMENT for table `registrasi_pasien`
 --
 ALTER TABLE `registrasi_pasien`
-  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `rekam_medik`
 --
@@ -1249,7 +1241,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `transaksi_kasir`
 --
 ALTER TABLE `transaksi_kasir`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `users`
 --
