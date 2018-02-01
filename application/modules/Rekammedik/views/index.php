@@ -44,8 +44,8 @@
 						<h3 class="box-title">Form Rekam Medik</h3>
 					</div>
 					<div class="box-body">
-						<a href="<?php echo site_url('Rekammedik/cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
-		              	<a href="<?php echo site_url('Rekammedik/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
+						<a href="<?php echo site_url('Rekammedik/Cetak');?>" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Cetak</a>
+										<a href="<?php echo site_url('Rekammedik/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
 		              		<i class="fa fa-file-excel-o"></i> Export Excell</a>
 						  <?php if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnCreate == 1){
 		              	  ?>

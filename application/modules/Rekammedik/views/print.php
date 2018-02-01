@@ -19,24 +19,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-xs-9 text-center">
 			<br>
 			<span>IZIN NO:</span><br>
-			<p>Cirebon  telp. (022) xxx</p>
+			<p>Jl. Raya Paling No. 147 Cirebon telp. (022) xxxx</p>
 		</div>
 		<hr>
 	</div>
 	<br>
 	<br>
-	<table id="tablePasien" style="border: 2" class="table table-bordered table-striped DataTable">
+	<table style="border: 2" class="table table-bordered table-striped DataTable">
 		<thead>
 			<tr>
-				<th class="col-xs-1">No.</th>
+				<th>No.</th>
+				<th>Kode Obat</th>
+				<th>Nama Obat/Alkes</th>
 				<th>Kategori</th>
+				<th>Merk</th>
+				<th>Stok</th>
+				<th>Satuan</th>
+				<th>Supplier</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php $i=1; foreach($rekam_medik as $row):?>
 			<tr>
-				<td class="col-xs-1"><?php echo $i++;?></td>
-				<td><?php echo $row->nama_kategor;?></td>
+				<td><?php echo $i++;?></td>
+				<td><?php echo $row->diagnosa;?></td>
+				
 			</tr>
 			<?php endforeach;?>
 		</tbody>

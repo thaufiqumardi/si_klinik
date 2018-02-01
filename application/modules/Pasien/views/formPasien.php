@@ -417,7 +417,7 @@
 								<?php
 									if(!empty($pasien['id_pasien'])){
 								?>
-								<a href="<?php echo site_url('pasien/cetak_detail\/').$pasien['id_pasien'];?>" class="btn btn-default"><i class="fa fa-print"></i> Cetak</a>
+								<!-- <a href="<?php echo site_url('pasien/cetak_detail\/').$pasien['id_pasien'];?>" class="btn btn-default"><i class="fa fa-print"></i> Cetak</a> -->
 								<?php
 										}
 								?>
