@@ -64,8 +64,9 @@ if(!empty($menusid)){
 							<tr>
 							  <th style="width: 5%;" class="text-center">No.</th>
 							  <th class="text-center">Nama Supplier</th>
-							  <th class="text-center">No. Telepon</th>
-							  <th class="text-center">Contact Person</th>
+							  <th class="text-center col-md-2">No. Telepon</th>
+								<th class="text-center">Alamat</th>
+							  <th class="text-center col-md-2">Contact Person</th>
 							  <th style="width: 10%;" class="text-center">Aksi</th>
 							</tr>
 							</thead>
@@ -83,6 +84,7 @@ if(!empty($menusid)){
 									<td><?= $no ?></td>
 									<td><?= $data->nama_supplier ?></td>
 									<td><?= $data->no_telpon_supplier ?></td>
+									<td><?= $data->alamat_supplier ?></td>
 									<td><?= $data->contact_person ?></td>
 									<td class="center">
 							<?php

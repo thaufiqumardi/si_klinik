@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-xs-9 text-center">
 			<br>
 			<span>IZIN NO</span><br>
-			<p>Cirebon telp. (022) xxxxx</p>
+			<p>Jl. Raya Paling No. 147 Cirebon telp. (022) xxxxx</p>
 		</div>
 		<hr>
 	</div>
@@ -30,6 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<th class="col-xs-1">No.</th>
 				<th>Nama Supplier</th>
 				<th>No. Telepon</th>
+				<th> Alamat </th>
 				<th>Contact Person</th>
 			</tr>
 		</thead>
@@ -39,6 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<td><?php echo $i++;?></td>
 				<td><?php echo $row->nama_supplier;?></td>
 				<td><?php echo $row->no_telpon_supplier;?></td>
+				<td><?php echo $row->alamat_supplier;?></td>
 				<td><?php echo $row->contact_person;?></td>
 			</tr>
 			<?php endforeach;?>
