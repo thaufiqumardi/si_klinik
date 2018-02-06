@@ -77,11 +77,11 @@
 			                <?php $i=1; foreach($hargaobat as $row):?>
 			                <?php
 				                $beli = $this->M_base->currFormat2($row->harga_beli);
-				                $beli = str_replace(".00", "", $beli);
+				                $beli = substr($beli, 0, -3);
 				                $beli = "Rp. ".$beli;
 
 				                $jual1 = $this->M_base->currFormat2($row->harga_jual1);
-				                $jual1 = str_replace(".00", "", $jual1);
+				                $jual1 = substr($jual1, 0, -3);
 				                $jual1 = "Rp. ".$jual1;
 			                ?>
 			                  <tr>

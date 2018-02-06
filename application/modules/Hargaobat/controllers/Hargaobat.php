@@ -12,21 +12,23 @@ class Hargaobat extends CI_Controller
       parent::__construct();
       $this->load->model('M_harga','model');
     }
-    
+
     function index()
     {
     	$this->M_setting->_make_sure_is_login();
     	$this->M_setting->_check_menu();
-    	
+
         $data['hargaobat']=$this->model->get_joined('harga_obat');
+        // echo json_encode($data);
+        // die;
         $this->load->view('index',$data);
     }
-    
+
     function form($id=FALSE)
     {
     	$this->M_setting->_make_sure_is_login();
     	$this->M_setting->_check_menu();
-    	
+
 	      $data['obat']=$this->model->get_obat();
 	      if($id===false){
 	        $this->load->view('form',$data);
@@ -37,7 +39,7 @@ class Hargaobat extends CI_Controller
 	        $this->load->view('form',$data);
 	      }
     }
-    
+
     function simpan()
     {
       $this->form_validation->set_rules('id_obat','ID OBAT','is_unique[harga_obat.id_obat]');
@@ -50,16 +52,16 @@ class Hargaobat extends CI_Controller
   			redirect('hargaobat/form');
       }
       else {
-      	
+
       	$beli = $this->input->post('harga_beli', TRUE);
       	$beli = str_replace(",", "", $beli);
-      	
+
       	$jual1 = $this->input->post('harga_jual1', TRUE);
       	$jual1 = str_replace(",", "", $jual1);
-      	
+
       	$jual2 = $this->input->post('harga_jual2', TRUE);
       	$jual2 = str_replace(",", "", $jual2);
-      	
+
         $data=array(
           'id_obat'=>$this->input->post('id_obat'),
           'harga_beli'=>$beli,
@@ -76,28 +78,28 @@ class Hargaobat extends CI_Controller
   			redirect('hargaobat');
       }
     }
-    
+
     public function update($id)
     {
     	$beli = $this->input->post('harga_beli', TRUE);
     	$beli = str_replace(",", "", $beli);
-    	 
+
     	$jual1 = $this->input->post('harga_jual1', TRUE);
     	$jual1 = str_replace(",", "", $jual1);
-    	 
+
     	$jual2 = $this->input->post('harga_jual2', TRUE);
     	$jual2 = str_replace(",", "", $jual2);
-    	
+
     	$getdata = $this->M_crud->get_by_id('harga_obat', 'harga_obat_id', $id);
     	$existing_harga = $getdata->id_obat;
     	$status_exs = TRUE;
-    	
+
     	if($existing_harga <> $this->input->post('id_obat', TRUE)){
     		if($this->M_crud->check_table('harga_obat', 'id_obat', $this->input->post('id_obat', TRUE)) != NULL){
     			$status_exs = FALSE;
     		}
     	}
-    	
+
     	if($status_exs == TRUE){
     		$data=array(
     				'id_obat'=>$this->input->post('id_obat'),
@@ -132,7 +134,7 @@ class Hargaobat extends CI_Controller
     		redirect("Hargaobat/form/$id");
     	}
   	}
-  	
+
   	public function hapus($id)
   	{
   		$query = $this->model->hapus('harga_obat',$id);
@@ -159,7 +161,7 @@ class Hargaobat extends CI_Controller
   		$data['hargaobat']=$this->model->get_joined('harga_obat');
   		$this->load->view('print',$data);
   	}
-  	
+
   	function doexport()
   	{
   		$header = [
@@ -169,7 +171,7 @@ class Hargaobat extends CI_Controller
   				'Harga Jual 1',
   				'Harga Jual 2'
   		];
-  		 
+
   		$dataList = array();
   		$list = $this->model->get_joined('harga_obat');
   		$no = 0;
@@ -181,22 +183,22 @@ class Hargaobat extends CI_Controller
   			$beli = $this->M_base->currFormat2($datas->harga_beli);
   			$beli = str_replace(".00", "", $beli);
   			$beli = "Rp. ".$beli;
-  			 
+
   			$jual1 = $this->M_base->currFormat2($datas->harga_jual1);
   			$jual1 = str_replace(".00", "", $jual1);
   			$jual1 = "Rp. ".$jual1;
-  			
+
   			$jual2 = $this->M_base->currFormat2($datas->harga_jual2);
   			$jual2 = str_replace(".00", "", $jual2);
   			$jual2 = "Rp. ".$jual2;
-  			
+
   			$row[] = $datas->nama_obat;
   			$row[] = $beli;
   			$row[] = $jual1;
   			$row[] = $jual2;
   			$dataList[] = $row;
   		}
-  		 
+
   		$writer = WriterFactory::create(Type::XLSX);
   		$namaFile = 'Data_Harga_Obat_'.date('Ymd') . '.xlsx';
   		$writer->openToBrowser($namaFile);
