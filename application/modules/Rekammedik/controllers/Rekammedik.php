@@ -19,7 +19,9 @@
       if($_POST){
   			$tgl_rekam_medik= date('Y-m-d',strtotime($this->input->post('tgl_rekam_medik')));;
         $diagnosa = $this->input->post('diagnosa');
-        $is_double = $this->model->validate_double('rekam_medik','id_pasien',$id_pasien,'tgl_rekam_medik',$tgl_rekam_medik,'diagnosa',$diagnosa);
+        $keluhan = $this->input->post('keluhan');
+        $anamnesa = $this->input->post('anamnesa');
+        $is_double = $this->model->validate_double('rekam_medik','id_pasien',$id_pasien,'tgl_rekam_medik',$tgl_rekam_medik,'diagnosa',$diagnosa,'keluhan',$keluhan,'anamnesa',$anamnesa);
         if($is_double > 0){
           $data = array(
             'class'=>0,
@@ -32,7 +34,9 @@
             'id_pasien' => $id_pasien,
             'tgl_rekam_medik' =>$tgl_rekam_medik,
             'id_dokter'=>$this->input->post('id_dokter'),
-            'diagnosa' =>$diagnosa
+            'diagnosa' =>$diagnosa,
+            'anamnesa' =>$anamnesa,
+            'keluhan' =>$keluhan
           );
           $this->M_crud->_insert('rekam_medik',$data);
           $alert = array(
