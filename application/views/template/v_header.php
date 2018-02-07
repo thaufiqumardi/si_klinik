@@ -10,7 +10,6 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <link rel="icon" href="<?php echo base_url('KMB_Logo.ico');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/font-awesome/css/font-awesome.min.css');?>">
-<link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap-validator/css/bootstrapValidator.css');?>"/>
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/ionicons/css/ionicons.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/pace/pace.min.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.css');?>">
