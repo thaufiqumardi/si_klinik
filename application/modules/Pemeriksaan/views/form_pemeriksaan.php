@@ -50,7 +50,7 @@
 																	<div class="box-header with-border">
 																			<h3 class="box-title">Riwayat Pasien</h3>
 																	</div>
-																	<form method="POST"  class="formDokter form-horizontal" action="<?=site_url('rekammedik/form').'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>">
+																	<form method="POST"  class="formDokter form-horizontal" action="<?=site_url('Pemeriksaan/form').'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>">
 																		<div class="box-body">
 																			<input type="hidden" class="ignoreDeletion" name="is_what" value="diagnosa" />
 																			<input type="hidden" class="ignoreDeletion" name="no_reg"/>
@@ -77,7 +77,7 @@
 																					</div>
 
 																					<div class="form-group">
-																						<label class="control-label col-md-3">Tgl. Rekam Medik</label>
+																						<label class="control-label col-md-3">Tanggal</label>
 																						<div class="col-md-3">
 																									<input type="text" name="tgl_rekam_medik" value="<?=$now;?>"  class="form-control" readonly/>
 																						</div>
@@ -139,7 +139,7 @@
 																		<div class="box-footer">
 																			<div class="pull-right">
 																				<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
-																				<a href="<?= site_url('rekammedik');?>" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
+																				<a href="<?= site_url('Pemeriksaan');?>" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
 																			</div>
 																		</div>
 																	</form>
@@ -172,7 +172,7 @@
 																							<!-- <th class="text-center">No. Kartu</th> -->
 																							<th class="text-center">Nama Pasien</th>
 																							<th class="text-center">Dokter</th>
-																							<th class="text-center">Tgl. Rekammedik</th>
+																							<th class="text-center">Tanggal</th>
 																							<th class="text-center">Tensi</th>
 																							<th class="text-center">Berat</th>
 																							<th class="text-center">Tinggi</th>
@@ -190,17 +190,10 @@
 																								</td>
 																								<!-- <td>
 																									<?= $row->no_rm;?>
-<<<<<<< HEAD
-																								</td>
-																								<td>
-																									<?= $row->no_kartu;?>
-																								</td>
-=======
 																								</td> -->
 																								<!-- <td>
-																									<?= $row->id_pasien;?>
+																									<?= $row->no_kartu;?>
 																								</td> -->
->>>>>>> 8b3301cc27646423fa9d91c6b771224ebedfbe82
 																								<td>
 																									<?= $row->nama_pasien;?>
 																								</td>
@@ -208,7 +201,7 @@
 																									<?= $row->nama_dokter;?>
 																								</td>
 																								<td>
-																									<?= $row->tgl_rekam_medik;?>
+																									<?= $row->tgl_pemeriksaan;?>
 																								</td>
 																								<td>
 																									<?= $row->tensi;?>
@@ -229,7 +222,7 @@
 																									<?= $row->diagnosa;?>
 																								</td>
 																								<td>
-																									<a href="<?php echo site_url('rekammedik/hapus').'/'.$row->id_rekam_medik.'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>" class="btn btn-danger btn-xs" onClick="history.go(0)" ><i class="fa fa-trash" ></i> Hapus</a>
+																									<a href="<?php echo site_url('Pemeriksaan/hapus').'/'.$row->id_pemeriksaan.'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>" class="btn btn-danger btn-xs" onClick="history.go(0)" ><i class="fa fa-trash" ></i> Hapus</a>
 																								</td>
 																							</tr>
 																						<?php endforeach;?>
@@ -295,7 +288,7 @@
 																		<div class="box-footer">
 																			<div class="pull-right">
 																				<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
-																				<a href="<?= site_url('rekammedik');?>" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
+																				<a href="<?= site_url('Pemeriksaan');?>" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
 																			</div>
 																		</div>
 																	</form>
@@ -355,7 +348,7 @@
 																		<div class="box-footer">
 																			<div class="pull-right">
 																				<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
-																				<a href="<?= site_url('rekammedik');?>" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
+																				<a href="<?= site_url('Pemeriksaan');?>" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
 																			</div>
 																		</div>
 																	</form>
@@ -390,19 +383,15 @@
 						</div>
 					</div>
 					<!-- akhir box widget 1 -->
-
-
 			</section>
 		</div>
-
-
 <?php $this->load->view('template/v_copyright'); ?>
 </body>
 <?php $this->load->view('template/v_footer'); ?>
 <!-- Script		 -->
 	<script type="text/javascript">
 			$(document).ready(function(){
-				$('#mnMasterPegawai').addClass('active');
+				$('#mnPemeriksaan').addClass('active');
 				$('#mnDokter').addClass('active');
 				$('#example2').DataTable({
 					"info":false,

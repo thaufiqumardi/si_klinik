@@ -81,6 +81,11 @@
 			$pasien_terdaftar = $this->db->get_where('pasien',array('id_pasien'=>$id_pasien))->row();
 			return $pasien_terdaftar;
 		}
+		function insert_detail_pembiayaan($data){
+			$data_pendaftaran = array(
+
+			);
+		}
 		function editPasien($id){
 			$query = $this->db->get_where('pasien',array('id_pasien'=>$id));
 			return $query->row_array();
@@ -119,163 +124,17 @@
 			$this->db->where('id_registrasi',$id);
 			return $this->db->delete('registrasi_pasien');
 		}
-		function insertDetailPembiayaanLayanan($id_regis, $no_regis, $tgl_registrasi){
-			$layanan = $this->input->post('layanan');
-			$sum_layanan = count($layanan);
-			$total = 0;
-			for($i =0; $i < $sum_layanan; $i++){
-				$select_layanan = $this->M_crud->check_table('layanan','id_layanan',$layanan[$i]);
-				$qty = 1;
-				$harga = $select_layanan->tarif;
-				$total_harga = $harga * $qty;
-				$total = $total + $total_harga;
-				$layanan_terpilih[] = array(
-					'id_registrasi'=>$id_regis,
-					'item_id'=>$select_layanan->id_layanan,
-					'nama_item'=>$select_layanan->nama,
-					'harga'=>$harga,
-					'jenis_item'=>"Layanan",
-					'qty'=>$qty,
-					'total_harga'=>$total_harga,
-					'no_registrasi'=>$no_regis,
-					'tgl_registrasi'=>$tgl_registrasi,
-					'created_by' => $this->session->userdata['simklinik']['ap_sid'],
-					// 'nama_item'=>
-				);
-			}
-			$jumlah_layanan = count($layanan_terpilih);
-			for($i=0; $i<$jumlah_layanan;$i++){
-				$this->db->insert('detail_pembiayaan',$layanan_terpilih[$i]);
-			}
-
-			$id_pasien = $this->input->post('id_pasien');
-			$get_pasien = $this->M_crud->check_table('pasien','id_pasien',$id_pasien);
-			$no_rm = $get_pasien->no_rm;
-			$nama_pasien = $get_pasien->nama_pasien;
-			$status_pasien = $get_pasien->status_pasien;
-			$biaya_pendaftaran = 0;
-			$jenis_pendaftaran = "";
-
-			if($status_pasien == "BARU"){
-				$biaya_pendaftaran = 15000;
-				$jenis_pendaftaran = "Biaya Pendaftaran Pasien Baru";
-				$data=array(
-						'status_pasien'=>'LAMA',
-						'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
-				);
-				$this->db->where('id_pasien',$id_pasien);
-				$this->db->update('pasien',$data);
-			}else{
-				$biaya_pendaftaran = 10000;
-				$jenis_pendaftaran = "Biaya Pendaftaran Pasien Lama";
-			}
-
-			$data_pendaftaran = array(
-					'id_registrasi'=>$id_regis,
-					'item_id'=>0,
-					'nama_item'=>$jenis_pendaftaran,
-					'harga'=>$biaya_pendaftaran,
-					'jenis_item'=>"Pendaftaran",
-					'qty'=>1,
-					'total_harga'=>$biaya_pendaftaran,
-					'no_registrasi'=>$no_regis,
-					'tgl_registrasi'=>$tgl_registrasi,
-					'created_by' => $this->session->userdata['simklinik']['ap_sid'],
-			);
-			$this->db->insert('detail_pembiayaan',$data_pendaftaran);
-
-			$total = $total + $biaya_pendaftaran;
-
-			$data_piutang = array(
-					'no_registrasi'=>$no_regis,
-					'tgl_registrasi'=>$tgl_registrasi,
-					'no_rm'=>$no_rm,
-					'nama_pasien'=>$nama_pasien,
-					'total_biaya'=>$total,
-					'total_bayar'=>0,
-					'sisa_bayar'=>$total,
-					'created_by' => $this->session->userdata['simklinik']['ap_sid'],
-			);
-			$this->db->insert('piutang',$data_piutang);
-		}
-		function insertDetailPembiayaanPaket($id_regis, $no_regis, $tgl_registrasi){
-			$paket=$this->M_crud->check_table('paket_layanan','paket_layanan_id',$this->input->post('id_paket'));
-			$qty = 1;
-			$harga = $paket->total_harga;
-			$total_harga = $harga * $qty;
-			$data = array(
-				'id_registrasi'=>$id_regis,
-				'nama_item'=>$paket->nama_paket_layanan,
-				'item_id'=>$paket->paket_layanan_id,
-				'jenis_item'=>"Paket",
-				'harga'=>$harga,
-				'qty'=>$qty,
-				'total_harga'=>$total_harga,
-				'no_registrasi'=>$no_regis,
-				'tgl_registrasi'=>$tgl_registrasi,
-				'created_by' => $this->session->userdata['simklinik']['ap_sid'],
-			);
-			$this->db->insert('detail_pembiayaan',$data);
-
-			$id_pasien = $this->input->post('id_pasien');
-			$get_pasien = $this->M_crud->check_table('pasien','id_pasien',$id_pasien);
-			$no_rm = $get_pasien->no_rm;
-			$nama_pasien = $get_pasien->nama_pasien;
-			$status_pasien = $get_pasien->status_pasien;
-			$biaya_pendaftaran = 0;
-			$jenis_pendaftaran = "";
-
-			if($status_pasien == "BARU"){
-				$biaya_pendaftaran = 15000;
-				$jenis_pendaftaran = "Biaya Pendaftaran Pasien Baru";
-				$data=array(
-						'status_pasien'=>'LAMA',
-						'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
-				);
-				$this->db->where('id_pasien',$id_pasien);
-				$this->db->update('pasien',$data);
-			}else{
-				$biaya_pendaftaran = 10000;
-				$jenis_pendaftaran = "Biaya Pendaftaran Pasien Lama";
-			}
-
-			$data_pendaftaran = array(
-					'id_registrasi'=>$id_regis,
-					'item_id'=>0,
-					'nama_item'=>$jenis_pendaftaran,
-					'harga'=>$biaya_pendaftaran,
-					'jenis_item'=>"Pendaftaran",
-					'qty'=>1,
-					'total_harga'=>$biaya_pendaftaran,
-					'no_registrasi'=>$no_regis,
-					'tgl_registrasi'=>$tgl_registrasi,
-					'created_by' => $this->session->userdata['simklinik']['ap_sid'],
-			);
-			$this->db->insert('detail_pembiayaan',$data_pendaftaran);
-
-			$total_harga = $total_harga + $biaya_pendaftaran;
-
-			$data_piutang = array(
-					'no_registrasi'=>$no_regis,
-					'tgl_registrasi'=>$tgl_registrasi,
-					'no_rm'=>$no_rm,
-					'nama_pasien'=>$nama_pasien,
-					'total_biaya'=>$total_harga,
-					'total_bayar'=>0,
-					'sisa_bayar'=>$total_harga,
-					'created_by' => $this->session->userdata['simklinik']['ap_sid'],
-			);
-			$this->db->insert('piutang',$data_piutang);
-		}
 		function getRegistered(){
 			$now= date('Y-m-d');
 			$this->db->select('*');
 			$this->db->from('registrasi_pasien');
 			$this->db->where('tgl_registrasi',$now);
+			$this->db->join('dokter','dokter.id_dokter = registrasi_pasien.id_dokter');
 			$this->db->join('pasien','pasien.id_pasien = registrasi_pasien.id_pasien');
+			$this->db->order_by('no_antrian','desc');
 
 			$query = $this->db->get();
-			return $query->result_array();
+			return $query->result();
 		}
 		function getRegistered1(){
 			$now= date('Y-m-d');

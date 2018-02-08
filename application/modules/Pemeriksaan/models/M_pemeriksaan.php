@@ -2,7 +2,7 @@
   /**
    *
    */
-  class M_rekammedik extends CI_Model
+  class M_pemeriksaan extends CI_Model
   {
 
     function __construct(){
@@ -27,10 +27,10 @@
       return $this->db->get()->row();
     }
     function get_diagnosa_by_pasien_id($id_pasien){
-      $this->db->from('rekam_medik')
-                ->where('rekam_medik.id_pasien',$id_pasien)
-                ->join('dokter','rekam_medik.id_dokter=dokter.id_dokter')
-                ->join('pasien','rekam_medik.id_pasien=pasien.id_pasien');
+      $this->db->from('pemeriksaan')
+                ->where('pemeriksaan.id_pasien',$id_pasien)
+                ->join('dokter','pemeriksaan.id_dokter=dokter.id_dokter')
+                ->join('pasien','pemeriksaan.id_pasien=pasien.id_pasien');
       return $this->db->get()->result();
     }
   }

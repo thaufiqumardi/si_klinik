@@ -136,7 +136,22 @@ use Box\Spout\Common\Type;
 						'jam_registrasi'=>$jam_regis,
 						'no_antrian'=>$antrian
 					);
-					$this->M_crud->_insert('registrasi_pasien',$data);
+					$id_registrasi = $this->M_crud->_insert_return('registrasi_pasien',$data);
+					$registered_pasien = $this->M_crud->get_by_id('registrasi_pasien','id_registrasi',$id_registrasi);
+
+						$data_pembiayaan = array(
+							'id_registrasi'		=>$registered_pasien->id_registrasi,
+							'no_registrasi'		=>$registered_pasien->no_registrasi,
+							'tgl_registrasi'	=>$registered_pasien->tgl_registrasi,
+							'nama_item'				=>"Biaya Pendaftaran",
+							'jenis_item'			=>"Pendaftaran",
+							'item_id'					=>0,
+							'harga'						=>10000,
+							'qty'							=>1,
+							'total_harga'			=>10000,
+							'status_bayar'		=>0,
+						);
+						$this->M_crud->_insert('detail_pembiayaan',$data_pembiayaan);
 						$data = array(
 							'class'=>'1',
 							'msg'=>'Pendaftaran Pasien Berhasil'

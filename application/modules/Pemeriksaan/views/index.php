@@ -44,12 +44,12 @@
 						<h3 class="box-title">Form Rekam Medik</h3>
 					</div>
 					<div class="box-body">
-						<a href="<?php echo site_url('Rekammedik/Cetak');?>" target="_blank"  class="btn btn-default pull-right hidden"><i class="fa fa-print"></i> Cetak</a>
-										<a href="<?php echo site_url('Rekammedik/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
+						<a href="<?php echo site_url('Pemeriksaan/Cetak');?>" target="_blank"  class="btn btn-default pull-right hidden"><i class="fa fa-print"></i> Cetak</a>
+										<a href="<?php echo site_url('Pemeriksaan/doexport');?>" style="margin-right: 10px;" target="_blank" class="btn btn-success pull-right">
 		              		<i class="fa fa-file-excel-o"></i> Export Excell</a>
 						  <?php if($this->session->userdata['simklinik']['ap_is_admin'] == 1 || $mnCreate == 1){
 		              	  ?>
-		              	  <a href="<?php echo base_url(); ?>Rekammedik" style="margin-right: 10px;" class="btn btn-warning pull-right">
+		              	  <a href="<?php echo base_url(); ?>Pemeriksaan" style="margin-right: 10px;" class="btn btn-warning pull-right">
 		              	  <i class="fa fa-refresh"></i> Refresh</a><br><br>
 		              	  <?php
 		              	  }
@@ -84,7 +84,7 @@
 											<?= $row->nama_dokter;?>
 										</td>
 										<td>
-											<a href="<?=site_url('rekammedik/form').'/'.$row->id_pasien.'/'.$row->no_registrasi;?>" class="btn btn-primary"><i class="fa fa-stethoscope"></i> Pemeriksaan</a>
+											<a href="<?=site_url('Pemeriksaan/form').'/'.$row->id_pasien.'/'.$row->no_registrasi;?>" class="btn btn-primary"><i class="fa fa-stethoscope"></i> Pemeriksaan</a>
 										</td>
 									</tr>
 								<?php endforeach;?>
@@ -129,7 +129,7 @@
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
-	  $('#mnrekammedik').addClass('active');
+	  $('#mnPemeriksaan').addClass('active');
 
 
       $('#alert').delay(10000).fadeOut("slow");
