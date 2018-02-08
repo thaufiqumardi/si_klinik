@@ -24,10 +24,12 @@ class Login extends CI_Controller{
 			else
 			{
 				$getdata = $this->M_crud->get_by_id('role', 'role_id', $result[0]->role_id);
-
+				// echo json_encode($result[0]);
+				// die;
 				$session_data = array(
 						'ap_sid' 			=> $result[0]->user_id,
 						'ap_username' 		=> $result[0]->username,
+						'ap_name'					=> $result[0]->name,
 						'ap_role_name' 		=> $getdata->role_name,
 						'ap_role'			=> $result[0]->role_id,
 						'ap_image'			=> $result[0]->user_photo,

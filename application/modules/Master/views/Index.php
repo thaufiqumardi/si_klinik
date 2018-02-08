@@ -28,57 +28,15 @@ if(!empty($menusid)){
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
     </head>
-    <body class="fixed hold-transition skin-blue-light sidebar-mini">
+    <body class="fixed hold-transition skin-blue-light">
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
 		    <section class="content-header">
-
+					<h1>Selamat Datang <?php echo ucfirst($this->session->userdata['simklinik']['ap_name']);?> <small><?= $this->session->userdata['simklinik']['ap_role_name'];?></small></h1>
 		    </section>
     		<section class="content">
-					<div class="row">
-		        <div class="col-lg-3 col-xs-6">
-		          <!-- small box -->
-		          <div class="small-box bg-aqua">
-		            <div class="inner">
-		              <h3><?= $jumlah_pasien_daftar;?></h3>
-
-		              <p>Pasien Daftar Hari Ini</p>
-		            </div>
-		            <div class="icon">
-		              <i class="fa fa-wheelchair"></i>
-		            </div>
-		            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-		          </div>
-		        </div>
-						
-					</div>
-					<div class="box box-widget">
-						<div class="content">
-
-							<div class="callout callout-info">
-								<h4>I am an info callout!</h4>
-
-								<p>Follow the steps to continue to payment.</p>
-							</div>
-
-							<div class="callout callout-warning">
-								<h4>I am an info callout!</h4>
-
-								<p>Follow the steps to continue to payment.</p>
-							</div>
-
-							<div class="callout callout-danger">
-								<h4>I am an info callout!</h4>
-
-								<p>Follow the steps to continue to payment.</p>
-							</div>
-						</div>
-				</div>
     		</section>
-
-    	</div
-
-
+    	</div>
     	<?php $this->load->view('template/v_copyright'); ?>
     </body>
 

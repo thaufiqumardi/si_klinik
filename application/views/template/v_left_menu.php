@@ -21,8 +21,8 @@
 		<section class="sidebar">
 			<div class="user-panel">
 				<div class="image" >
-          			<img src="<?php echo base_url('logo/KMB_Logo.png');?>" alt="">
-        		</div>
+        	<img src="<?php echo base_url('logo/KMB_Logo.png');?>" alt="">
+        </div>
 			</div>
 			<ul class="sidebar-menu">
 				<?php

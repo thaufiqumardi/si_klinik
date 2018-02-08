@@ -6,47 +6,49 @@ use Box\Spout\Writer\WriterFactory;
 use Box\Spout\Common\Type;
 
 class Users extends MX_Controller {
-	 
+
 	function __construct()
     {
       parent::__construct();
-      $this->load->model('M_users','usersModel');	  
+      $this->load->model('M_users','usersModel');
     }
 
 	public function index()
 	{
 		$this->M_setting->_make_sure_is_login();
 		$this->M_setting->_check_menu();
-		
+
     	$data['users'] = $this->usersModel->get_users();
-		
+
 		$this->load->view('show',$data);
-	}	
+	}
 
 	public function add_users()
 	{
 		$this->M_setting->_make_sure_is_login();
 		$this->M_setting->_check_menu();
-		
+
 		$data['role_id']		= $this->session->flashdata("role_id");
 		$data['username']		= $this->session->flashdata("username");
+		$data['name']				= $this->session->flashdata("name");
 		$data['user_photo']		= $this->session->flashdata("user_photo");
 		$data['status']			= $this->session->flashdata("status");
 		$data['arr_role']		= $this->usersModel->get_role();
 		$this->load->view('form',$data);
 	}
-	
+
 	public function edit($id)
 	{
 		$this->M_setting->_make_sure_is_login();
 		$this->M_setting->_check_menu();
-		
+
 		$data['arr_role']			= $this->usersModel->get_role();
-		 
+
 		if(!empty($this->session->flashdata("nama_user"))){
 			$data['user_id']		= $id;
 			$data['role_id']		= $this->session->flashdata("role_id");
 			$data['username']		= $this->session->flashdata("username");
+			$data['name']				= $this->session->flashdata("name");
 			$data['user_photo']		= $this->session->flashdata("user_photo");
 			$data['status']			= $this->session->flashdata("status");
 		}else{
@@ -55,14 +57,15 @@ class Users extends MX_Controller {
 				$data['user_id']		= $id;
 				$data['role_id']		= $result->role_id;
 				$data['username']		= $result->username;
+				$data['name']				= $result->name;
 				$data['user_photo']		= $result->user_photo;
 				$data['status']			= $result->status;
 			}
 		}
-	
+
 		$this->load->view('form',$data);
 	}
-	
+
 	public function insert()
 	{
 		if (!empty($_FILES['user_photo']['name']))
@@ -74,31 +77,32 @@ class Users extends MX_Controller {
 					if (!is_dir('assets/userphoto/')) {
 						mkdir('./assets/userphoto/');
 					}
-					
+
 					$ext = explode(".", $_FILES['user_photo']['name']) ;
-					
+
 					$fileName = time();
 					$config['upload_path'] = './assets/userphoto';
 					$config['file_name'] = url_title($fileName);
 					$config['allowed_types'] = '*';
 					$this->upload->initialize($config);
-					
+
 					$pathfile = "./assets/userphoto/".url_title($fileName).'.'.$ext[1];
 					if (file_exists($pathfile)){
 						unlink($pathfile);
 					}
 
 					if($this->upload->do_upload('user_photo') )
-					{						
+					{
 						$data = array(
 								'username' => $this->input->post('nama', TRUE),
+								'name' => $this->input->post('fullname', TRUE),
 								'password' => $this->hash($this->input->post('password', TRUE)),
 								'role_id' => $this->input->post('role_id', TRUE),
 								'user_photo'  => url_title($fileName).'.'.$ext[1],
 								'status' => $this->input->post('status', TRUE),
 								'created_by' => $this->session->userdata['simklinik']['ap_sid'],
 						);
-						
+
 						if(!$this->usersModel->create($data,'users'))
 						{
 							$data = array(
@@ -136,7 +140,7 @@ class Users extends MX_Controller {
 						redirect('Users/add_users');
 					}
 				}
-				else 
+				else
 				{
 					$data = array(
 							'class' => '0',
@@ -144,6 +148,7 @@ class Users extends MX_Controller {
 					);
 					$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 					$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+					$this->session->set_flashdata("name",$this->input->post('fullname',TRUE));
 					$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 					$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 					$this->session->set_flashdata('alert',$data);
@@ -179,12 +184,13 @@ class Users extends MX_Controller {
 				}else{
 					$data = array(
 							'username' => $this->input->post('nama', TRUE),
+							'name' => $this->input->post('fullname', TRUE),
 							'password' => $this->hash($this->input->post('password', TRUE)),
 							'role_id' => $this->input->post('role_id', TRUE),
 							'status' => $this->input->post('status', TRUE),
 							'created_by' => $this->session->userdata['simklinik']['ap_sid'],
 					);
-					
+
 					if(!$this->usersModel->create($data,'users'))
 					{
 						$data = array(
@@ -208,7 +214,7 @@ class Users extends MX_Controller {
 						redirect('Users/add_users');
 					}
 				}
-				
+
 			}else{
 				$data = array(
 						'class' => '0',
@@ -223,7 +229,7 @@ class Users extends MX_Controller {
 			}
 		}
 	}
-	
+
 	public function update()
 	{
 		$inpt_pswd = $this->input->post('password');
@@ -231,7 +237,7 @@ class Users extends MX_Controller {
 		$exs_username = $getdata->username;
 		$status_username = TRUE;
 		$id = $this->input->post('id', TRUE);
-		
+
 		if($exs_username <> $this->input->post('nama', TRUE)){
 			if($this->M_crud->check_table('users', 'username', $this->input->post('nama', TRUE)) != NULL){
 				$status_username = FALSE;
@@ -239,10 +245,10 @@ class Users extends MX_Controller {
 				$status_username = TRUE;
 			}
 		}
-		
+
 		if (!empty($_FILES['user_photo']['name']))
 		{
-			if(!empty($inpt_pswd)){				
+			if(!empty($inpt_pswd)){
 				if($status_username == FALSE){
 					$data = array(
 							'class' => '0',
@@ -250,6 +256,7 @@ class Users extends MX_Controller {
 					);
 					$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 					$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+					$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 					$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 					$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 					$this->session->set_flashdata('alert',$data);
@@ -259,32 +266,33 @@ class Users extends MX_Controller {
 						if (!is_dir('assets/userphoto/')) {
 							mkdir('./assets/userphoto/');
 						}
-							
+
 						$ext = explode(".", $_FILES['user_photo']['name']) ;
-							
+
 						$fileName = time();
 						$config['upload_path'] = './assets/userphoto';
 						$config['file_name'] = url_title($fileName);
 						$config['allowed_types'] = '*';
 						$config['max_size'] = config_item('max_image_size');
 						$this->upload->initialize($config);
-							
+
 						$pathfile = "./assets/userphoto/".url_title($fileName).'.'.$ext[1];
 						if (file_exists($pathfile)){
 							unlink($pathfile);
 						}
-						
+
 						if($this->upload->do_upload('user_photo') )
 						{
 							$data = array(
 									'username' => $this->input->post('nama', TRUE),
+									'name' => $this->input->post('fullname', TRUE),
 									'password' => $this->hash($this->input->post('password', TRUE)),
 									'role_id' => $this->input->post('role_id', TRUE),
 									'user_photo'  => url_title($fileName).'.'.$ext[1],
 									'status' => $this->input->post('status', TRUE),
 									'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
 							);
-						
+
 							if(!$this->usersModel->update($id,$data,'user_id','users'))
 							{
 								$data = array(
@@ -302,6 +310,7 @@ class Users extends MX_Controller {
 								);
 								$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 								$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+								$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 								$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 								$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 								$this->session->set_flashdata('alert',$data);
@@ -316,6 +325,7 @@ class Users extends MX_Controller {
 							);
 							$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 							$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+							$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 							$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 							$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 							$this->session->set_flashdata('alert',$data);
@@ -328,12 +338,13 @@ class Users extends MX_Controller {
 						);
 						$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 						$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+						$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 						$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 						$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 						$this->session->set_flashdata('alert',$data);
 						redirect("Users/edit/$id");
 					}
-				}				
+				}
 			}
 			else{
 				if($status_username == FALSE){
@@ -343,6 +354,7 @@ class Users extends MX_Controller {
 					);
 					$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 					$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+					$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 					$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 					$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 					$this->session->set_flashdata('alert',$data);
@@ -351,21 +363,21 @@ class Users extends MX_Controller {
 					if (!is_dir('assets/userphoto/')) {
 						mkdir('./assets/userphoto/');
 					}
-					
+
 					$ext = explode(".", $_FILES['user_photo']['name']) ;
-					
+
 					$fileName = time();
 					$config['upload_path'] = './assets/userphoto';
 					$config['file_name'] = url_title($fileName);
 					$config['allowed_types'] = '*';
 					$config['max_size'] = config_item('max_image_size');
 					$this->upload->initialize($config);
-					
+
 					$pathfile = "./assets/userphoto/".url_title($fileName).'.'.$ext[1];
 					if (file_exists($pathfile)){
 						unlink($pathfile);
 					}
-					
+
 					if($this->upload->do_upload('user_photo') )
 					{
 						$data = array(
@@ -375,7 +387,7 @@ class Users extends MX_Controller {
 								'status' => $this->input->post('status', TRUE),
 								'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
 						);
-					
+
 						if(!$this->usersModel->update($id,$data,'user_id','users'))
 						{
 							$data = array(
@@ -393,6 +405,7 @@ class Users extends MX_Controller {
 							);
 							$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 							$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+							$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 							$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 							$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 							$this->session->set_flashdata('alert',$data);
@@ -407,6 +420,7 @@ class Users extends MX_Controller {
 						);
 						$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 						$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+						$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 						$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 						$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 						$this->session->set_flashdata('alert',$data);
@@ -426,6 +440,7 @@ class Users extends MX_Controller {
 					);
 					$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 					$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+					$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 					$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 					$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 					$this->session->set_flashdata('alert',$data);
@@ -433,15 +448,16 @@ class Users extends MX_Controller {
 				}else{
 					if($this->input->post('password') == $this->input->post('confirm_password'))
 					{
-							
+
 						$data = array(
 								'username' => $this->input->post('nama', TRUE),
+								'name'	=> $this->input->post('fullname',TRUE),
 								'password' => $this->hash($this->input->post('password', TRUE)),
 								'role_id' => $this->input->post('role_id', TRUE),
 								'status' => $this->input->post('status', TRUE),
 								'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
 						);
-							
+
 						if(!$this->usersModel->update($id,$data,'user_id','users'))
 						{
 							$data = array(
@@ -459,6 +475,7 @@ class Users extends MX_Controller {
 							);
 							$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 							$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+							$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 							$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 							$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 							$this->session->set_flashdata('alert',$data);
@@ -471,12 +488,13 @@ class Users extends MX_Controller {
 						);
 						$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 						$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+						$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 						$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 						$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 						$this->session->set_flashdata('alert',$data);
 						redirect("Users/edit/$id");
 					}
-				}	
+				}
 			}
 			else
 			{
@@ -488,20 +506,22 @@ class Users extends MX_Controller {
 					);
 					$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 					$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+					$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 					$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 					$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 					$this->session->set_flashdata('alert',$data);
 					redirect("Users/edit/$id");
 				}
-				else 
+				else
 				{
 					$data = array(
 							'username' => $this->input->post('nama', TRUE),
+							'name'		=>$this->input->post('fullname',TRUE),
 							'role_id' => $this->input->post('role_id', TRUE),
 							'status' => $this->input->post('status', TRUE),
 							'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
 					);
-					
+
 					if(!$this->usersModel->update($id,$data,'user_id','users'))
 					{
 						$data = array(
@@ -519,6 +539,7 @@ class Users extends MX_Controller {
 						);
 						$this->session->set_flashdata("role_id", $this->input->post('role_id', TRUE));
 						$this->session->set_flashdata("username", $this->input->post('nama', TRUE));
+						$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 						$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 						$this->session->set_flashdata("status", $this->input->post('status', TRUE));
 						$this->session->set_flashdata('alert',$data);
@@ -528,7 +549,7 @@ class Users extends MX_Controller {
 			}
 		}
 	}
-	
+
 	function delete($id)
 	{
 		if(!$this->usersModel->delete('user_id',$id,'users'))
@@ -550,23 +571,24 @@ class Users extends MX_Controller {
 			redirect("Users");
 		}
 	}
-	
+
 	function hash($string){
 		return hash('sha512', $string . config_item('encryption_key'));
 	}
-	
+
 	function users_profile($id)
-	{				 
+	{
 		$query = $this->usersModel->edit($id);
 		foreach ($query as $result){
 			$data['user_id']		= $id;
 			$data['username']		= $result->username;
+			$data['name']				=$result->name;
 			$data['user_photo']		= $result->user_photo;
 		}
-	
+
 		$this->load->view('form_profile',$data);
 	}
-	
+
 	public function update_profile()
 	{
 		$inpt_pswd = $this->input->post('password');
@@ -574,7 +596,7 @@ class Users extends MX_Controller {
 		$exs_username = $getdata->username;
 		$status_username = TRUE;
 		$id = $this->input->post('id', TRUE);
-	
+
 		if($exs_username <> $this->input->post('username', TRUE)){
 			if($this->M_crud->check_table('users', 'username', $this->input->post('username', TRUE)) != NULL){
 				$status_username = FALSE;
@@ -582,7 +604,7 @@ class Users extends MX_Controller {
 				$status_username = TRUE;
 			}
 		}
-	
+
 		if (!empty($_FILES['user_photo']['name']))
 		{
 			if(!empty($inpt_pswd)){
@@ -592,6 +614,7 @@ class Users extends MX_Controller {
 							'msg' => '<strong>Maaf</strong>, Nama pengguna ini sudah ada.',
 					);
 					$this->session->set_flashdata("username", $this->input->post('username', TRUE));
+					$this->session->set_flashdata("name", $this->input->post('fullname', TRUE));
 					$this->session->set_flashdata("user_photo", $this->input->post('user_photo', TRUE));
 					$this->session->set_flashdata('alert',$data);
 					redirect("Users/users_profile/$id");
@@ -600,21 +623,21 @@ class Users extends MX_Controller {
 						if (!is_dir('assets/userphoto/')) {
 							mkdir('./assets/userphoto/');
 						}
-							
+
 						$ext = explode(".", $_FILES['user_photo']['name']) ;
-							
+
 						$fileName = time();
 						$config['upload_path'] = './assets/userphoto';
 						$config['file_name'] = url_title($fileName);
 						$config['allowed_types'] = '*';
 						$config['max_size'] = config_item('max_image_size');
 						$this->upload->initialize($config);
-							
+
 						$pathfile = "./assets/userphoto/".url_title($fileName).'.'.$ext[1];
 						if (file_exists($pathfile)){
 							unlink($pathfile);
 						}
-	
+
 						if($this->upload->do_upload('user_photo') )
 						{
 							$data = array(
@@ -623,7 +646,7 @@ class Users extends MX_Controller {
 									'user_photo'  => url_title($fileName).'.'.$ext[1],
 									'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
 							);
-	
+
 							if(!$this->usersModel->update($id,$data,'user_id','users'))
 							{
 								$data = array(
@@ -684,21 +707,21 @@ class Users extends MX_Controller {
 					if (!is_dir('assets/userphoto/')) {
 						mkdir('./assets/userphoto/');
 					}
-						
+
 					$ext = explode(".", $_FILES['user_photo']['name']) ;
-						
+
 					$fileName = time();
 					$config['upload_path'] = './assets/userphoto';
 					$config['file_name'] = url_title($fileName);
 					$config['allowed_types'] = '*';
 					$config['max_size'] = config_item('max_image_size');
 					$this->upload->initialize($config);
-						
+
 					$pathfile = "./assets/userphoto/".url_title($fileName).'.'.$ext[1];
 					if (file_exists($pathfile)){
 						unlink($pathfile);
 					}
-						
+
 					if($this->upload->do_upload('user_photo') )
 					{
 						$data = array(
@@ -706,7 +729,7 @@ class Users extends MX_Controller {
 								'user_photo'  => url_title($fileName).'.'.$ext[1],
 								'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
 						);
-							
+
 						if(!$this->usersModel->update($id,$data,'user_id','users'))
 						{
 							$data = array(
@@ -760,13 +783,13 @@ class Users extends MX_Controller {
 				}else{
 					if($this->input->post('password') == $this->input->post('confirm_password'))
 					{
-							
+
 						$data = array(
 								'username' => $this->input->post('username', TRUE),
 								'password' => $this->hash($this->input->post('password', TRUE)),
 								'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
 						);
-							
+
 						if(!$this->usersModel->update($id,$data,'user_id','users'))
 						{
 							$data = array(
@@ -819,7 +842,7 @@ class Users extends MX_Controller {
 					$data = array(
 							'username' => $this->input->post('username', TRUE),
 					);
-						
+
 					if(!$this->usersModel->update($id,$data,'user_id','users'))
 					{
 						$data = array(
@@ -846,13 +869,13 @@ class Users extends MX_Controller {
 			}
 		}
 	}
-	
+
 	function cetak()
 	{
 		$data['pengguna']=$this->usersModel->get_users();
 		$this->load->view('print',$data);
 	}
-	
+
 	function doexport()
 	{
 		$header = [
@@ -861,7 +884,7 @@ class Users extends MX_Controller {
 				'Tipe Akses',
 				'Status'
 		];
-		 
+
 		$dataList = array();
 		$list = $this->usersModel->get_users();
 		$no = 0;
@@ -875,7 +898,7 @@ class Users extends MX_Controller {
 			$row[] = $datas->status;
 			$dataList[] = $row;
 		}
-		 
+
 		$writer = WriterFactory::create(Type::XLSX);
 		$namaFile = 'Data_Pengguna_'.date('Ymd') . '.xlsx';
 		$writer->openToBrowser($namaFile);

@@ -145,3 +145,25 @@ td.details-control {
 tr.shown td.details-control {
     background: url('../images/details_close.png') no-repeat center center;
 }
+
+/* btn-signout */
+.btn-signout {
+    background-color: darkred !important;
+    cursor: pointer;
+}
+.btn-signout:hover {
+    background-color: maroon !important;
+}
+.btn-signout div {
+    width: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    /* transition */
+    -webkit-transition: width 0.4s;
+    -moz-transition: width 0.4s;
+    -o-transition: width 0.4s;
+    transition: width 0.4s;
+}
+.btn-signout:hover div {
+    width: 70px;
+}

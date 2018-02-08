@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 </script>
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js');?>"></script>
 <script src="<?php echo base_url('assets/plugins/datepicker/js/bootstrap-datepicker.js');?>"></script>
-<script src="<?php echo base_url('assets/dist/js/app.min.js');?>"></script>
+<script src="<?php echo base_url('assets/dist/js/app.js');?>"></script>
 <script src="<?php echo base_url('assets/plugins/slimScroll/jquery.slimscroll.min.js');?>"></script>
 <script src="<?php echo base_url('assets/plugins/select2/select2.full.min.js');?>"></script>
 <script src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js');?>"></script>

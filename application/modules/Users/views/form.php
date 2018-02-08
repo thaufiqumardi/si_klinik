@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
 
@@ -25,8 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 				}
 				?>
-    			<div class="row">		        
-						<div class="col-md-12">		
+    			<div class="row">
+						<div class="col-md-12">
 							<div class="box box-primary box-solid">
 							<div class="box-header with-border">
 								  <h3 class="box-title">Input Data Pengguna</h3>
@@ -39,20 +39,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									}
 								  ?>
 								  <input name="foilautofill" style="display: none;" type="password" />
-								  <div  class="box-body">									
+								  <div  class="box-body">
+										<div class="form-group">
+										  <label for="inputEmail3" class="col-sm-2 control-label">Nama Lengkap<sup style="color:red;">*</sup></label>
+										  <div class="col-sm-4">
+											<input type="text" name="fullname" class="form-control" value="<?php echo (isset($name) ? $name : ''); ?>" placeholder="Masukan Nama Lengkap..." required="required">
+										  </div>
+										</div>
 									<div class="form-group">
-									  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pengguna<sup style="color:red;">*</sup></label>					
+									  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pengguna<sup style="color:red;">*</sup></label>
 									  <div class="col-sm-4">
 										<input type="text" name="nama" class="form-control" value="<?php echo (isset($username) ? $username : ''); ?>" placeholder="Masukan Nama Pengguna..." required="required">
 									  </div>
 									</div>
-											
+
 									<div class="form-group">
-									  <label for="inputEmail3" class="col-sm-2 control-label">Kata Kunci<sup style="color:red;">*</sup></label>					
+									  <label for="inputEmail3" class="col-sm-2 control-label">Kata Kunci<sup style="color:red;">*</sup></label>
 									  <div class="col-sm-4">
-										<input type="password" name="password" id="password" class="form-control" 
+										<input type="password" name="password" id="password" class="form-control"
 												placeholder="Masukan Kata Kunci..." onblur="cekpassword()"
-										<?php 
+										<?php
 										if(!isset($user_id)){
 										?>
 											required="required">
@@ -65,36 +71,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										?>
 									  </div>
 									</div>
-									
+
 									<div class="form-group">
-									  <label for="inputEmail3" class="col-sm-2 control-label">Konfirmasi Kata Kunci</label>					
+									  <label for="inputEmail3" class="col-sm-2 control-label">Konfirmasi Kata Kunci</label>
 									  <div class="col-sm-4">
 										<input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Masukan Konfirmasi Kata Kunci...">
 									  </div>
 									</div>
-									
-									<div class="form-group">					
+
+									<div class="form-group">
 										<label for="inputEmail3" class="col-sm-2 control-label">Tipe Akses<sup style="color:red;">*</sup></label>
 										  <div class="col-sm-4">
 											<select class="form-control" name="role_id" id="role_id" required="required">
 												<option value = ''>-Pilih Tipe Akses-</option>
-												<?php 
+												<?php
 													foreach($arr_role as $row)
-													{ 
+													{
 														if($row->role_id == $role_id){
 															echo '<option value="'.$row->role_id.'" selected>'.$row->role_name.'</option>';
 														}else{
-													   		echo '<option value="'.$row->role_id.'">'.$row->role_name.'</option>';							           			
+													   		echo '<option value="'.$row->role_id.'">'.$row->role_name.'</option>';
 														}
 													}
 						            			?>
 											</select>
 										  </div>
 									</div>
-									
+
 									<div class="form-group">
 									  <label for="inputEmail3" class="col-sm-2 control-label">Status<sup style="color:red;">*</sup></label>
-					
+
 									  <div class="col-sm-2">
 											<select name='status' class="form-control" required="required">
 												<option value=''>-Pilih Status-</option>
@@ -103,8 +109,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</select>
 									  </div>
 									</div>
-									
-									<div class="form-group">					
+
+									<div class="form-group">
 										<label for="inputEmail3" class="col-sm-2 control-label">Photo</label>
 										<div class="col-sm-3">
 											<div class="input-group">
@@ -114,7 +120,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</div>
 										</div>
 									</div>
-								  
+
 								  <div class="box-footer">
 								  	<div class="pull-left">
 										<p>Yang bertanda <span style="color: red;">(*)</span> wajib di isi.</p>
@@ -126,17 +132,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								  </div>
 								  </div>
 								</form>
-								
+
 							</div>
-						</div>	
+						</div>
 				</div>
     		</section>
     	</div>
 		<?php $this->load->view('template/v_copyright'); ?>
     </body>
-    
+
     <?php $this->load->view('template/v_footer'); ?>
-    
+
     <script type="text/javascript">
     $(document).ready(function() {
     	$('#mnPengaturan').addClass('active');
@@ -164,4 +170,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	};
     </script>
 </html>
-

@@ -132,7 +132,7 @@
 																		if(empty($riwayats)){
 																			?>
 																			<div class="box-body">
-																				<div class="alert text-center">
+																				<div class="alert bg-warning text-center">
 																					<p>
 																						Belum Ada Riwayat
 																					</p>
