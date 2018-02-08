@@ -33,15 +33,14 @@
 								<div class="box-header with-border">
 									<h3 class="box-title">Rekam Medik Pasien</h3>
 								</div>
-
 								<div class="box-body">
 									<div class='row'>
 										<div class='col-sm-12'>
 											<div class="nav-tabs-custom">
 												<ul class="nav nav-tabs">
 													<li class="active"><a href="#tab_riw" data-toggle="tab" id="tab_riwayat">Riwayat</a></li>
+													<li><a href="#tab_tin" data-toggle="tab" id="tab_tindakan">Tindakan / Layanan</a></li>
 													<li><a href="#tab_res" data-toggle="tab" id="tab_resep">Resep Obat</a></li>
-													<li><a href="#tab_tin" data-toggle="tab" id="tab_tindakan">Tindakan</a></li>
 												</ul>
 												<div class="tab-content">
 													<div class="tab-pane active" id="tab_riw">
@@ -166,7 +165,7 @@
 																									<?= $row->no_rm;?>
 																								</td>
 																								<td>
-																									<?= $row->id_pasien;?>
+																									<?= $row->no_kartu;?>
 																								</td>
 																								<td>
 																									<?= $row->nama_pasien;?>
@@ -259,51 +258,15 @@
 																<table class="table table-bordered table-striped" id="tbl_data_obat">
 																	<thead>
 																		<tr>
-																			<!-- <th>
-																				No
-																			</th> -->
-																			<th>
-																				Tanggal
-																			</th>
-																			<th>
-																				Nama Obat
-																			</th>
-																			<th>
-																				Jumlah
-																			</th>
-																			<th>
-																				Keterangan
-																			</th>
-																			<th>
-																				Aksi
-																			</th>
+																			<th>Tanggal</th>
+																			<th>Nama Obat</th>
+																			<th>Jumlah</th>
+																			<th>Keterangan</th>
+																			<th>Aksi</th>
 																		</tr>
 																	</thead>
 																	<tbody>
-																		<?php if(!empty($obat_by_paket)){
-																			foreach($obat_by_paket as $key => $obat):?>
-																			<tr>
-																				<!-- <td>
-																					<?= ++$key;?>
-																				</td> -->
-																				<td>
-																					<?= date('d-M-Y',strtotime($obat->created_date));?>
-																				</td>
-																				<td>
-																					<?= $obat->nama_item;?>
-																				</td>
-																				<td>
-																					<?= 0;?>
-																				</td>
-																				<td>
-																					<label class="label bg-gray">Dari Paket</label>
-																				</td>
-																				<td>
-																					<button class="btn btn-xs btn-danger" disabled><i class="fa fa-trash"></i> Hapus</button>
-																				</td>
-																			</tr>
-																		<?php endforeach;
-																		}?>
+
 																	</tbody>
 																</table>
 															</div>
@@ -320,24 +283,23 @@
 																		<div class="box-body">
 																			<div class="row">
 																				<div class="col-md-5">
-																					<label class="control-label col-md-4">Tindakan</label>
+																					<label class="control-label col-md-4">Tindakan / Layanan</label>
 																					<div class="col-md-8">
-																						<select class="form-control selectOption" name="id_obat[]" style="width:100%;">
+																						<select class="form-control selectOption" name="tindakan[]" style="width:100%;">
 																							<option value="">
 																								- Pilih -
 																							</option>
-																							<?php foreach($obats as $obat):?>
+																							<?php foreach($tindakans as $tindakan):?>
 																								<option value="<?= $obat->id_obat;?>"><?= $obat->nama_obat;?></option>
 																							<?php endforeach;?>
 																						</select>
 																					</div>
 																				</div>
-
 																				<div class="col-md-2">
 																					<button type="button" class="btn btn-warning" title="Tambah" id="btn_tambah_obat"><i class="fa fa-plus"></i></button>
 																				</div>
 																			</div>
-																			<div id="wrapperObat">
+																			<div id="wrapperTindakan">
 
 																			</div>
 																		</div>
@@ -356,51 +318,15 @@
 																<table class="table table-bordered table-striped" id="tbl_data_obat">
 																	<thead>
 																		<tr>
-																			<!-- <th>
-																				No
-																			</th> -->
-																			<th>
-																				Tanggal
-																			</th>
-																			<th>
-																				Nama Obat
-																			</th>
-																			<th>
-																				Jumlah
-																			</th>
-																			<th>
-																				Keterangan
-																			</th>
-																			<th>
-																				Aksi
-																			</th>
+																			<th>Tanggal</th>
+																			<th>Nama Obat</th>
+																			<th>Jumlah</th>
+																			<th>Keterangan</th>
+																			<th>Aksi</th>
 																		</tr>
 																	</thead>
 																	<tbody>
-																		<?php if(!empty($obat_by_paket)){
-																			foreach($obat_by_paket as $key => $obat):?>
-																			<tr>
-																				<!-- <td>
-																					<?= ++$key;?>
-																				</td> -->
-																				<td>
-																					<?= date('d-M-Y',strtotime($obat->created_date));?>
-																				</td>
-																				<td>
-																					<?= $obat->nama_item;?>
-																				</td>
-																				<td>
-																					<?= 0;?>
-																				</td>
-																				<td>
-																					<label class="label bg-gray">Dari Paket</label>
-																				</td>
-																				<td>
-																					<button class="btn btn-xs btn-danger" disabled><i class="fa fa-trash"></i> Hapus</button>
-																				</td>
-																			</tr>
-																		<?php endforeach;
-																		}?>
+
 																	</tbody>
 																</table>
 															</div>
@@ -427,22 +353,18 @@
 <!-- Script		 -->
 	<script type="text/javascript">
 			$(document).ready(function(){
-
 				$('#mnMasterPegawai').addClass('active');
 				$('#mnDokter').addClass('active');
 				$('#example2').DataTable({
 					"info":false,
 				});
-				$('#resetBtn').click(function() {
-		        $('.formDokter').data('bootstrapValidator').resetForm(true);
+		    $("[data-mask]").inputmask();
+		    $('.datepicker').datepicker({
+		      format:'dd/mm/yyyy',
+		      todayHighlight:true,
+		      containter:true,
 		    });
-		    	$("[data-mask]").inputmask();
-		    	$('.datepicker').datepicker({
-		           format:'dd/mm/yyyy',
-		           todayHighlight:true,
-		           containter:true,
-		        });
-		        $('.selectOption').select2();
-		        $('#alert').delay(2000).fadeOut("slow");
+		    $('.selectOption').select2();
+		    $('#alert').delay(2000).fadeOut("slow");
 			});
 		</script>

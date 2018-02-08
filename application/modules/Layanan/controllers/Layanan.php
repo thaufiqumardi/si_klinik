@@ -48,16 +48,10 @@ class Layanan extends MX_Controller {
     	}else{
     		$query = $this->modelLayanan->edit($id);
     		foreach ($query as $result){
-    			$tarif = $this->M_base->currFormat2($result->tarif_layanan);
-    			// $tarif = str_replace(".00", "", $tarif);
-					$tarif = substr($tarif,0,-3);
-
-    			$tarif_khusus = "";
-    			if(!empty($row->tarif_khusus)){
-    				$tarif_khusus = $this->M_base->currFormat2($result->tarif_khusus);
-    				$tarif_khusus = str_replace(".00", "", $tarif_khusus);
-    				$tarif_khusus = "Rp. ".$tarif_khusus;
-    			}
+					$tarif = $result->tarif_layanan;
+    			$tarif = str_replace(".00", "", $tarif);
+    			$tarif_khusus = $result->tarif_khusus;
+    			$tarif_khusus = str_replace(".00", "", $tarif_khusus);
     			$data['id_layanan']			= $id;
     			$data['nama']				= $result->nama_layanan;
 					$data['tarif']				= $tarif;

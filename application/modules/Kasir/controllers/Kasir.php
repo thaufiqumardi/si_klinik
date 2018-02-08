@@ -17,6 +17,8 @@ class Kasir extends MX_Controller {
 	}
 	function getObatByKd($kd_obat){
 		$obat = $this->modelKasir->getObatByKodeObat($kd_obat);
+		$obat->harga_jual1 = $this->M_base->currFormat2($obat->harga_jual1);
+		$obat->harga_jual1 = substr($obat->harga_jual1,0,-3);
 		echo json_encode($obat);
 	}
 	function getDetail($no_registrasi){
@@ -43,7 +45,6 @@ class Kasir extends MX_Controller {
 	function SimpanTransaksi(){
 		$id_registrasi = $this->input->post('id_reg');
 		$get_registrasi = $this->M_crud->check_table('registrasi_pasien','id_registrasi',$id_registrasi);
-		$id_bed = $get_registrasi->id_bed;
 		$no_registrasi = $get_registrasi->no_registrasi;
 
 		if(!is_null($id_bed) or !empty($id_bed)){
@@ -134,7 +135,7 @@ class Kasir extends MX_Controller {
 	function transaksiBarang(){
 		if($_POST){
 			$id_obat = $this->input->post('id_barang');
-			$harga = $this->input->post('harga_barang');
+			$harga = str_replace(".","",$this->input->post('harga_barang'));
 			$qty = $this->input->post('jumlah_barang');
 			$total_harga = $harga * $qty;
 			// $no_kuitansi = $this->modelKasir->get_nomor_kuitansi();

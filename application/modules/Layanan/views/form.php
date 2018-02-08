@@ -1,7 +1,24 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+$menusid = $this->M_crud->get_by_param("menu", 'name', "Layanan");
+if(!empty($menusid)){
+	$akses = $this->M_crud->get_select_to_row('hak_akses_create, hak_akses_update, hak_akses_delete', 'hak_akses', null, null, 'hak_akses_role', $this->session->userdata['simklinik']['ap_role'], 'hak_akses_menu', $menusid->id_menu);
+	if(count($akses) == 0)
+	{
+		$mnCreate = 0;
+		$mnUpdate = 0;
+		$mnDelete = 0;
+	}else{
+		$mnCreate = $akses->hak_akses_create;
+		$mnUpdate = $akses->hak_akses_update;
+		$mnDelete = $akses->hak_akses_delete;
+	}
+}else{
+	$mnCreate = 0;
+	$mnUpdate = 0;
+	$mnDelete = 0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +115,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     $('#tarif').inputmask("numeric", {
         radixPoint: ".",
-        groupSeparator: ",",
+        groupSeparator: ".",
         digits: 2,
         autoGroup: true,
         rightAlign: false,

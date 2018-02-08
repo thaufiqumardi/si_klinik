@@ -43,7 +43,7 @@ if(!empty($menusid)){
 					<?php
 				}
 				?>
-    			<div class="box box-widget">
+    			<div class="box box-primary box-solid">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Data Layanan</h3>
 					</div>

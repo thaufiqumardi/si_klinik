@@ -27,7 +27,7 @@ if(!empty($menusid)){
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
     </head>
-    <body class="fixed hold-transition skin-blue-light sidebar-mini">
+    <body class="fixed hold-transition skin-blue-light">
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
@@ -53,7 +53,7 @@ if(!empty($menusid)){
 												<div class="input-group input-group-sm">
 													<input type="text" name="kode_barang " required id="searchByKodeBarang" class="form-control" />
 													<span class="input-group-btn">
-														<button type="button" id="searchBarang"  class="btn btn-small btn-primary btn-flat"><i class="fa fa-search"></i></button>
+														<button type="button" id="btnSearchBarang"  class="btn btn-small btn-primary btn-flat"><i class="fa fa-search"></i></button>
 													</span>
 												</div>
 
@@ -85,7 +85,7 @@ if(!empty($menusid)){
 										<div class="form-group">
 											<label class="control-label col-md-2">Qty</label>
 											<div class="col-md-6">
-												<input type="text" name="jumlah_barang" required id="qty_barang" class="form-control"/>
+												<input type="number" name="jumlah_barang" required id="qty_barang" autocomplete="off" class="form-control"/>
 											</div>
 											<div class="col-md-4 label bg-blue" style="width:29%;">
 												<h5 id="infoStok"></h5>
@@ -151,7 +151,7 @@ if(!empty($menusid)){
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Jumlah Bayar :</label>
 											<div class="col-md-6 pull-right">
-												<input type="text" name="jmlh_bayar" required id="UangCash" class="form-control input-lg " />
+												<input type="text" name="jmlh_bayar" autocomplete="off" required id="UangCash" class="form-control input-lg " />
 											</div>
 										</div>
 										<div class="form-group">
@@ -195,7 +195,7 @@ if(!empty($menusid)){
 			$('#btnRefresh').hide();
 			$('#btnSimpan').click(function(){
 				if($('#UangCash').val()==''){
-					alert("Mohon Lakukan Transaksi Terlebih Dulu")
+					alert("Mohon Isi Jumlah Uang Bayar Terlebih Dulu")
 				}
 				else{
 					$(this).hide();
@@ -211,22 +211,34 @@ if(!empty($menusid)){
     	$('#searchByKodeBarang').keyup(function(event){
 				if(event.keyCode==13){
 					var data = $(this).val();
-					var uri = "<?= site_url('Kasir/getObatByKd');?>";
-					$.get(uri+'/'+data,function(data){
-						if(data==null){
-							alert("Data Obat tidak ada");
-						}
-						else{
-							$("input[name='id_barang']").val(data.id_obat);
-							$("input[name='nama_barang']").val(data.nama_obat);
-							$("input[name='satuan_barang']").val(data.satuan_nama);
-							$("input[name='id_satuan']").val(data.satuan_id);
-							$("input[name='harga_barang']").val(data.harga_jual1);
-							$("#infoStok").text(data.stok);
-						}
-					},"JSON");
+					getObat(data);
 				}
 			});
+			$('#btnSearchBarang').click(function(){
+				var data = $('#searchByKodeBarang').val();
+				if(data == ''){
+					alert("Masukan Kode Obat Untuk Dicari");
+				}
+				else{
+					getObat(data);
+				}
+			})
+			function getObat(data){
+				var uri = "<?= site_url('Kasir/getObatByKd');?>";
+				$.get(uri+'/'+data,function(data){
+					if(data==null){
+						alert("Data Obat tidak ada");
+					}
+					else{
+						$("input[name='id_barang']").val(data.id_obat);
+						$("input[name='nama_barang']").val(data.nama_obat);
+						$("input[name='satuan_barang']").val(data.satuan_nama);
+						$("input[name='id_satuan']").val(data.satuan_id);
+						$("input[name='harga_barang']").val(data.harga_jual1);
+						$("#infoStok").text(data.stok);
+					}
+				},"JSON");
+			}
 			$('#form_transaksi').submit(function(e){
 				e.preventDefault()
 				var sisa = $('#infoStok').text();
@@ -294,7 +306,7 @@ if(!empty($menusid)){
 					var counter = 1;
 					for(var key in JSONObject){
 						if(JSONObject.hasOwnProperty(key)){
-							var harga = JSONObject[key]["harga_barang"].toLocaleString();
+							var harga = JSONObject[key]["harga_barang"];
 							var url = "<?= site_url('Kasir/hapusItem').'/';?>";
 							var id_transaksi = JSONObject[key]["id_transaksi"];
 							var btn_hapus ='<a href="'+url+id_transaksi+'" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</a>';
@@ -302,9 +314,9 @@ if(!empty($menusid)){
 								counter++,
 								JSONObject[key]["kode_obat"],
 								JSONObject[key]["nama_obat"],
-								harga,
+								to_rupiah(harga),
 								JSONObject[key]["qty_barang"],
-								JSONObject[key]["total_harga"],
+								to_rupiah(JSONObject[key]["total_harga"]),
 								btn_hapus,
 							]).draw(false);
 						}
@@ -328,21 +340,36 @@ if(!empty($menusid)){
     	}
 			$(document).on('keyup', '#UangCash', function(){
     	HitungTotalKembalian();
+			var kembali = $('#UangKembali').val();
+			if(kembali==''|| kembali==0){
+				$('#btnSimpan').attr('disabled',true);
+			}
+			else{
+				$('#btnSimpan').attr('disabled',false);
+			}
     });
     function HitungTotalKembalian()
     {
-    	var uang = $('#UangCash').val();
+    	var uang = $('#UangCash').val().replace(",","");
     	uang = uang.split('.').join('');
     	var cash = parseFloat(uang);
     	if(cash >= total){
     		var selisih = cash - total;
     		kembalian = selisih;
-    		$('#UangKembali').val(to_rupiah(selisih));
+    		$('#UangKembali').val(to_rupiah(kembalian));
     	} else {
     		$('#UangKembali').val('');
     		kembalian = -1;
     	}
     }
+		$('#UangCash').inputmask("numeric", {
+	        radixPoint: ".",
+	        groupSeparator: ".",
+	        digits: 2,
+	        autoGroup: true,
+	        rightAlign: false,
+	        oncleared: function () { self.Value(''); }
+	    });
 			});
 		</script>
 

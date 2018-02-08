@@ -301,6 +301,8 @@
            format:'dd/mm/yyyy',
            todayHighlight:true,
            containter:true,
+					 orientation:'bottom',
+					 startView:'years',
         });
         $('.selectOption').select2();
         $('#alert').delay(10000).fadeOut("slow");

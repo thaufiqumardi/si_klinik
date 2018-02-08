@@ -11,8 +11,6 @@
     function index(){
       $data['rekam_mediks'] = $this->M_crud->get_select_to_array('*','rekam_medik');
       $data['registered']=$this->modelPasien->getRegistered1();
-      // echo json_encode($data['registered']);
-      // die;
       $this->load->view('index',$data);
     }
     function form($id_pasien,$no_regis){
@@ -44,14 +42,9 @@
             'msg'=>'Diagnosa Berhasil Disimpan',
           );
           $this->session->set_flashdata('alert',$alert);
-          // $this->form($id_pasien);
         }
       }
       $data['pasien']= $this->model->get_pasien_by_registrasi($no_regis);
-      // echo "<pre>";
-      // print_r($data['pasien']);
-      // echo "</pre>";
-      // die;
       $data['now'] = date('d-m-Y');
       $data['riwayats']= $this->model->get_diagnosa_by_pasien_id($id_pasien);
       $this->load->view('form_rekammedik',$data);
