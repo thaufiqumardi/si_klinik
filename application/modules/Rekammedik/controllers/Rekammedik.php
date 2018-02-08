@@ -19,6 +19,9 @@
         $diagnosa = $this->input->post('diagnosa');
         $keluhan = $this->input->post('keluhan');
         $anamnesa = $this->input->post('anamnesa');
+        $tensi = $this->input->post('tensi');
+        $berat_badan = $this->input->post('berat_badan');
+        $tinggi_badan = $this->input->post('tinggi_badan');
         $is_double = $this->model->validate_double('rekam_medik','id_pasien',$id_pasien,'tgl_rekam_medik',$tgl_rekam_medik,'diagnosa',$diagnosa,'keluhan',$keluhan,'anamnesa',$anamnesa);
         if($is_double > 0){
           $data = array(
@@ -34,7 +37,10 @@
             'id_dokter'=>$this->input->post('id_dokter'),
             'diagnosa' =>$diagnosa,
             'anamnesa' =>$anamnesa,
-            'keluhan' =>$keluhan
+            'keluhan' =>$keluhan,
+            'tensi' => $tensi,
+            'berat_badan' => $berat_badan,
+            'tinggi_badan' => $tinggi_badan,
           );
           $this->M_crud->_insert('rekam_medik',$data);
           $alert = array(

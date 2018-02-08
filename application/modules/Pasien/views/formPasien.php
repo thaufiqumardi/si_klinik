@@ -88,9 +88,9 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-2">No. KTP<sup style="color:red;">*</sup></label>
+											<label class="control-label col-md-2">No. KTP</label>
 											<div class="col-md-9">
-												<input type="text"  placeholder="Nomor KTP" name="nik_pasien" class="form-control" required="required"
+												<input type="text"  placeholder="Nomor KTP" name="nik_pasien" class="form-control"
 												<?php
 														if(isset($pasien)){
 															echo("value='".$pasien['nik_pasien']."'");
@@ -118,7 +118,7 @@
 														/>
 													</div>
 													<div class="col-md-4" style="margin-left: -20px;width:55%;">
-														<input required="required" id="tgl_lahir" type="text" name="tgl_lahir" placeholder="Tanggal Lahir" class="form-control datepicker" 
+														<input required="required" id="tgl_lahir" type="text" name="tgl_lahir" placeholder="Tanggal Lahir" class="form-control datepicker"
 															<?php
 																if(isset($pasien)){
 																	$tgl_lahir=explode('-',$pasien['tgl_lahir']);
