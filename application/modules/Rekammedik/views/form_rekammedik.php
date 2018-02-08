@@ -91,9 +91,31 @@
 																							<input type="hidden" value="<?= $pasien->id_dokter;?>" name="id_dokter">
 																						</div>
 																					</div>
+
+																					<div class="form-group">
+																						<label class="control-label col-md-3">Tensi</label>
+																						<div class="col-md-9">
+																							<input type="text" class="form-control"  name="tensi" >
+																						</div>
+																					</div>
+
 																				</div>
 
 																				<div class="col-md-6">
+																					<div class="form-group">
+																						<label class="control-label col-md-3">Berat Badan</label>
+																						<div class="col-md-9">
+																							<input type="text" class="form-control"  name="berat_badan" placeholder="(Kg)">
+																						</div>
+																					</div>
+
+																					<div class="form-group">
+																						<label class="control-label col-md-3">Tinggi Badan</label>
+																						<div class="col-md-9">
+																							<input type="text" class="form-control"  name="tinggi_badan" placeholder="(Cm)">
+																						</div>
+																					</div>
+
 																					<div class="form-group">
 																						<label class="control-label col-md-3">Keluhan</label>
 																						<div class="col-md-9">
@@ -147,11 +169,16 @@
 																					<thead>
 																						<tr>
 																							<th style="width: 5%;" class="text-center">No.</th>
-																							<th class="text-center">No. Rekam Medik</th>
-																							<th class="text-center">No. Kartu</th>
+																							<!-- <th class="text-center">No. Rekam Medik</th> -->
+																							<!-- <th class="text-center">No. Kartu</th> -->
 																							<th class="text-center">Nama Pasien</th>
 																							<th class="text-center">Dokter</th>
 																							<th class="text-center">Tgl. Rekammedik</th>
+																							<th class="text-center">Tensi</th>
+																							<th class="text-center">Berat</th>
+																							<th class="text-center">Tinggi</th>
+																							<th class="text-center">Keluhan</th>
+																							<th class="text-center">Anamnesa</th>
 																							<th class="text-center">Diagnosa</th>
 																							<th style="width: 10%;" class="text-center">Aksi</th>
 																						</tr>
@@ -162,12 +189,12 @@
 																								<td>
 																									<?= ++$key;?>
 																								</td>
-																								<td>
+																								<!-- <td>
 																									<?= $row->no_rm;?>
-																								</td>
-																								<td>
+																								</td> -->
+																								<!-- <td>
 																									<?= $row->id_pasien;?>
-																								</td>
+																								</td> -->
 																								<td>
 																									<?= $row->nama_pasien;?>
 																								</td>
@@ -176,6 +203,21 @@
 																								</td>
 																								<td>
 																									<?= $row->tgl_rekam_medik;?>
+																								</td>
+																								<td>
+																									<?= $row->tensi;?>
+																								</td>
+																								<td>
+																									<?= $row->berat_badan;?>
+																								</td>
+																								<td>
+																									<?= $row->tinggi_badan;?>
+																								</td>
+																								<td>
+																									<?= $row->keluhan;?>
+																								</td>
+																								<td>
+																									<?= $row->anamnesa;?>
 																								</td>
 																								<td>
 																									<?= $row->diagnosa;?>
