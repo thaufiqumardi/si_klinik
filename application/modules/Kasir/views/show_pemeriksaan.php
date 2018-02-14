@@ -32,7 +32,7 @@ if(!empty($menusid)){
     	<div class="content-wrapper">
         <section class="content-header">
           <!-- <div class="pull-right"> -->
-            <a href="../pemeriksaan" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Kembali</a>
+            <a href="../" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Kembali</a>
           <!-- </div> -->
         </section>
     		<section class="content">
@@ -132,7 +132,7 @@ if(!empty($menusid)){
 										<div class="form-group col-md-9 pull-right">
 											<div class="row">
 												<div class="col-md-6">
-														<button type="button" onclick="window.history.back();" class="btn btn-warning btn-flat btn-block" id="btnRefresh"><i class="fa fa-arrow-left"></i> Kembali</button>
+														<a href="<?=site_url('kasir');?>" type="button" class="btn btn-warning btn-flat btn-block" id="btnRefresh"><i class="fa fa-arrow-left"></i> Kembali</a>
 												</div>
 												<div class="col-md-4">
 													<button class="btn btn-primary btn-flat" type="submit" id="btnSimpan"><i class="fa fa-money"></i> Simpan Transaksi</button>

@@ -41,7 +41,7 @@
 				?>
 				<div class="box box-primary box-solid box-widget">
 					<div class="box-header with-border">
-						<h3 class="box-title">Form Rekam Medik</h3>
+						<h3 class="box-title">Pemeriksaan Pasien</h3>
 					</div>
 					<div class="box-body">
 						<a href="<?php echo site_url('Pemeriksaan/Cetak');?>" target="_blank"  class="btn btn-default pull-right hidden"><i class="fa fa-print"></i> Cetak</a>

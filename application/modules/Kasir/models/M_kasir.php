@@ -81,7 +81,12 @@ class M_kasir extends CI_Model
     		return 0;
     	}
     }
-
+		function get_pembiayaan_obat($id_registrasi){
+			$this->db->from('detail_pembiayaan')
+								->where('jenis_item','Obat')
+								->where('id_registrasi',$id_registrasi);
+			return $this->db->get()->result();
+		}
     function get_piutang($no_registrasi)
     {
     	$this->db->select('*')

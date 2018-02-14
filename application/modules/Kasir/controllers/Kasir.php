@@ -105,6 +105,17 @@ class Kasir extends MX_Controller {
 			'created_by'=>$this->session->userdata['simklinik']['ap_sid']
 		);
 		if(!empty($id_registrasi)){
+			$resep = $this->modelKasir->get_pembiayaan_obat($id_registrasi);
+		
+			for($i=0; $i < count($resep); $i++){
+				$obat = $this->M_crud->get_by_id('obat','id_obat',$resep[$i]->item_id);
+				$stok_ada = $obat->stok;
+				$stok_sisa = $stok_ada - $resep[$i]->qty ;
+				$updated = array (
+					'stok'=>$stok_sisa,
+				);
+				$this->M_crud->_update('obat','id_obat',$obat->id_obat,$updated);
+			}
 			$update_pembiayaan = array(
 				'status_bayar'=>1,
 			);

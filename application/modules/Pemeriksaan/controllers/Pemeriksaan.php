@@ -11,7 +11,6 @@
     function index(){
       $data['rekam_mediks'] = $this->M_crud->get_select_to_array('*','pemeriksaan');
       $data['registered']=$this->modelPasien->getRegistered();
-      
       $this->load->view('index',$data);
     }
     function form($id_pasien,$no_regis){

@@ -92,6 +92,7 @@ class Obat extends MX_Controller {
 					'id_kategori'=>$this->input->post('id_kategori'),
 					'id_merk'=>$this->input->post('id_merk'),
 					'id_satuan'=>$this->input->post('id_satuan'),
+					'stok'=>$this->input->post('stok'),
 					'id_supplier'=>$this->input->post('id_supplier'),
 					'updated_by' => $this->session->userdata['simklinik']['ap_sid'],
 			);

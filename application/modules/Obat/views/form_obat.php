@@ -95,9 +95,11 @@
 					              </div>
 					            </div>
 											<div class="form-group">
-												<label class="control-label col-md-2">Stok</label>
+												<label class="control-label col-md-2">Stok<sup style="color:red;">*</sup></label>
 												<div class="col-md-6">
-													<input type="text" name="stok" class="form-control" placeholder="Stok Obat" />
+													<input type="text" name="stok" class="form-control" placeholder="Stok Obat" required
+													<?=(isset($obat)?"value='$obat->stok'":'');?>
+													 />
 												</div>
 											</div>
 					            <div class="form-group">
