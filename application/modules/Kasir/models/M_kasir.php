@@ -55,30 +55,20 @@ class M_kasir extends CI_Model
     	$this->db->update($table,$data);
     }
 
-    function get_detail($no_registrasi)
+    function get_detail($id_registrasi)
     {
     	$this->db->select('*')
     	->from('detail_pembiayaan')
-    	->where('no_registrasi', $no_registrasi)
+    	->where('id_registrasi', $id_registrasi)
     	->where('status_bayar', '0');
-
-    	$get = $this->db->get();
-
-    	if($get->num_rows() > 0)
-    	{
-    		return $get->result();
-    	}
-    	else
-    	{
-    		return 0;
-    	}
+    	return $this->db->get()->result();
     }
 
-    function get_pembiayaan($id_pembiayaan)
+    function get_pembiayaan($id_registrasi)
     {
     	$this->db->select('*')
     	->from('detail_pembiayaan')
-    	->where('id_pembiayaan', $id_pembiayaan);
+    	->where('id_registrasi', $id_registrasi);
 
     	$get = $this->db->get();
 
@@ -176,6 +166,20 @@ class M_kasir extends CI_Model
 			$this->db->from('transaksi_kasir')
 								->join('obat','obat.id_obat=transaksi_kasir.id_barang')
 								->where('no_kuitansi',$no_kuitansi);
+			return $this->db->get()->result();
+		}
+		function get_pasien_by_registrasi($id_registrasi){
+			$this->db->from('registrasi_pasien')
+                ->where('registrasi_pasien.id_registrasi',$id_registrasi)
+                ->join('pasien','pasien.id_pasien=registrasi_pasien.id_pasien')
+                ->join('dokter','registrasi_pasien.id_dokter=dokter.id_dokter');
+      return $this->db->get()->row();
+		}
+		function get_belum_bayar(){
+			$this->db->from('registrasi_pasien')
+								->where('status_bayar',0)
+								->join('pasien','pasien.id_pasien=registrasi_pasien.id_pasien')
+								->join('dokter','registrasi_pasien.id_dokter=dokter.id_dokter');
 			return $this->db->get()->result();
 		}
 }

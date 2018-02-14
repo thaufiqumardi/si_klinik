@@ -129,10 +129,10 @@
 			$this->db->select('*');
 			$this->db->from('registrasi_pasien');
 			$this->db->where('tgl_registrasi',$now);
+			$this->db->where('status_antrian',1);
 			$this->db->join('dokter','dokter.id_dokter = registrasi_pasien.id_dokter');
 			$this->db->join('pasien','pasien.id_pasien = registrasi_pasien.id_pasien');
 			$this->db->order_by('no_antrian','desc');
-
 			$query = $this->db->get();
 			return $query->result();
 		}

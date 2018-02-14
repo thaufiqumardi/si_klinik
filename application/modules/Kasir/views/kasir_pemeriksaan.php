@@ -41,7 +41,7 @@
 				?>
 				<div class="box box-primary box-solid box-widget">
 					<div class="box-header with-border">
-						<h3 class="box-title">Form Rekam Medik</h3>
+						<h3 class="box-title">Daftar Pasien Belum Bayar</h3>
 					</div>
 					<div class="box-body">
 						<a href="<?php echo site_url('Pemeriksaan/Cetak');?>" target="_blank"  class="btn btn-default pull-right hidden"><i class="fa fa-print"></i> Cetak</a>
@@ -58,6 +58,7 @@
 							<thead>
 								<tr>
 									<th style="width: 5%;" class="text-center">No.</th>
+                  <th>No. antrian</th>
 									<th class="text-center">No. Rekam Medik</th>
 									<th class="text-center">No. Kartu</th>
 									<th class="text-center">Nama Pasien</th>
@@ -69,12 +70,13 @@
 								<?php foreach($registered as $key => $row):?>
 									<tr>
 										<td><?= ++$key;?></td>
+                    <td><?= $row->no_antrian;?></td>
 										<td><?= $row->no_rm;?></td>
 										<td><?= $row->no_kartu;?></td>
 										<td><?= $row->nama_pasien;?></td>
 										<td><?= $row->nama_dokter;?></td>
 										<td>
-											<a href="<?=site_url('Pemeriksaan/form').'/'.$row->id_pasien.'/'.$row->no_registrasi;?>" class="btn btn-primary"><i class="fa fa-stethoscope"></i> Pemeriksaan</a>
+											<a href="<?=site_url('kasir/bayar_pemeriksaan').'/'.$row->id_registrasi;?>" class="btn btn-primary"><i class="fa fa-dollar"></i> Bayar</a>
 										</td>
 									</tr>
 								<?php endforeach;?>
@@ -119,7 +121,7 @@
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
-	  $('#mnPemeriksaan').addClass('active');
+	  $('#mnKasir').addClass('active');
 
 
       $('#alert').delay(10000).fadeOut("slow");

@@ -30,6 +30,9 @@ if(!empty($menusid)){
     <body class="fixed hold-transition skin-blue-light">
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
+				<section class="content-header">
+					<a href="<?=site_url('kasir/pemeriksaan');?>" class="btn btn-primary btn-sm"><i class="fa fa-wheelchair"></i> Bayar Pemeriksaan</a>
+				</section>
     		<section class="content">
 					<div class="box box-primary box-solid">
 						<div class="box-header" style="text-align:left;">
@@ -190,6 +193,7 @@ if(!empty($menusid)){
 			window.location=uri+'/'+nomor_kuitansi;
 		}
     $(document).ready(function() {
+			window.onbeforeunload = function(){alert("Transaksi Harus Diselesaikan terlebih dulu atau hapus transaksi barang"); };
 			setTableTransaksi(nomor_kuitansi)
 			setSubTotal(nomor_kuitansi);
 			$('#btnRefresh').hide();
@@ -341,7 +345,7 @@ if(!empty($menusid)){
 			$(document).on('keyup', '#UangCash', function(){
     	HitungTotalKembalian();
 			var kembali = $('#UangKembali').val();
-			if(kembali==''|| kembali==0){
+			if(kembali==''|| kembali<0){
 				$('#btnSimpan').attr('disabled',true);
 			}
 			else{

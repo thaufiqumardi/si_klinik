@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	    		</li>
 					<li>
             <a class="btn-signout" href="<?=site_url('Master/home/logout');?>" onclick="logout()">
-              <div><i class="fa fa-sign-out"></i> Sign Out</div>
+              <div><i class="fa fa-sign-out"></i> Log Out</div>
             </a>
           </li>
 	    	</ul>

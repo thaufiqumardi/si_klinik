@@ -58,7 +58,7 @@ if(!empty($menusid)){
 			              	  <?php
 			              	  }
 			              	  ?>
-						  <table id="example2" class="table table-bordered table-striped">
+						  <table id="example2" class="table table-bordered">
 							<thead>
 							<tr>
 							  <th style="width: 5%;" class="text-center">No</th>
