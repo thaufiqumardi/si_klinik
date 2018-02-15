@@ -406,157 +406,157 @@
 <?php $this->load->view('template/v_footer'); ?>
 <!-- Script		 -->
 	<script type="text/javascript">
-			$(document).ready(function(){
-				$('#mnPemeriksaan').addClass('active');
-				$('#mnDokter').addClass('active');
-				$('#example2').DataTable({
-					"info":false,
-				});
-		    $("[data-mask]").inputmask();
-		    $('.datepicker').datepicker({
-		      format:'dd/mm/yyyy',
-		      todayHighlight:true,
-		      containter:true,
-		    });
-		    $('.selectOption').select2();
-		    $('#alert').delay(2000).fadeOut("slow");
-				
-				var is_what = $("input[name='is_what']");
-				$('#a_tab_riwayat').click(function(){
-					is_what.val('diagnosa');
-				});
-				$('#a_tab_tindakan').click(function(){
-					is_what.val('tindakan');
-				});
-				$('#a_tab_resep').click(function(){
-					is_what.val('resep');
-				});
-				$('#btnTambahTindakan').click(function(){
-					var isTindakan = false;
-					var inputLayanan = document.getElementsByName('id_layanan[]');
-					for(var i=0;i<inputLayanan.length;i++){
-						var valLayanan = inputLayanan[i];
-						if(valLayanan.value==null || valLayanan.value==''){
-							isTindakan = false;
-							alert("Mohon Pilih Tindakan Sebelum Menambahkan Yang Baru");
-						}
-						else{
-							isTindakan = true;
-						}
-					}
-					if(isTindakan==true){
-						var select =
-						"<div class='row tambahTindakan' style='margin-top:10px;'>"+
-							"<div class='col-md-7'>"+
-								"<label class='control-label col-md-4'></label>"+
-								"<div class='col-md-8'>"+
-									"<select class='form-control selectTindakan' name='id_layanan[]' style='width:100%;'>"+
-										"<option value='' selected disabled>"+
-											"- Pilih -"+
-										"</option>"+
-										<?php foreach($layanans as $layanan):?>
-											"<option value='<?= $layanan->id_layanan;?>'><?= $layanan->nama_layanan;?></option>"+
-										<?php endforeach;?>
-									"</select>"+
-								"</div>"+
-							"</div>"+
-							"<div class='col-md-2'>"+
-								"<button type='button' class='btn btn-danger' id='btnRemoveTindakan' title='Hapus'><i class='fa fa-trash'></i></button>"+
-							"</div>"+
-						"</div>";
-						$('#wrapperTindakan').append(select);
-						$('.selectTindakan').select2();
-						$('#wrapperTindakan').on("click","#btnRemoveTindakan",function(e){
-							e.preventDefault();
-							$(this).closest('.tambahTindakan').remove();
-						});
-					}
-				});
-				$('#btnTambahObat').click(function(){
-					var isNamaObat		= false;
-					var isJumlahObat	= false;
-					var isSatuanObat	= false
-
-					var inputNamaObat 	= document.getElementsByName('id_obat[]');
-					var inputJumlahObat = document.getElementsByName('jumlah_obat[]');
-					var inputSatuanObat = document.getElementsByName('satuan_obat[]');
-
-					for(var i=0; i < inputNamaObat.length;i++){
-						var valNamaObat	= inputNamaObat[i];
-						if(valNamaObat.value==null || valNamaObat.value ==''){
-							isNamaObat = false;
-						} else {
-							isNamaObat = true;
-						}
-					}
-					
-					for(var i=0; i < inputJumlahObat.length; i++){
-						var valJumlahObat = inputJumlahObat[i];
-						if(valJumlahObat.value == null || valJumlahObat == ''){
-							isJumlahObat = false;
-						} else {
-							isJumlahObat = true;
-						}
-					}
-
-					for(var i=0; i < inputSatuanObat.length; i++){
-						var valSatuanObat = inputSatuanObat[i];
-						if(valSatuanObat.value==null || valSatuanObat.value ==''){
-							isSatuanObat = false;
-						} else {
-							isSatuanObat = true;
-						}
-					}
-
-					if(isNamaObat==true && isJumlahObat == true && isSatuanObat==true){
-						var tambah ="<div class='row divObat'>"+
-													"<div class='col-md-5'>"+
-														"<div class='form-group'>"+
-															"<label class='control-label col-md-4'></label>"+
-															"<div class='col-md-8'>"+
-																"<select class='form-control selectObat' name='id_obat[]' style='width:100%;'>"+
-																	"<option selected disabled value=''>"+
-																		"- Pilih -"+
-																	"</option>"+
-																	<?php foreach($obats as $obat):?>
-																		"<option value='<?= $obat->id_obat;?>'><?= $obat->nama_obat;?></option>"+
-																	<?php endforeach;?>
-																"</select>"+
-															"</div>"+
-														"</div>"+
-													"</div>"+
-													"<div class='col-md-5'>"+
-														"<div class='form-group'>"+
-															"<label class='control-label col-md-3'></label>"+
-															"<div class='col-md-4'>"+
-																"<input type='text' name='jumlah_obat[]' class='form-control' />"+
-															"</div>"+
-															"<div class='col-md-5'>"+
-																"<select class='form-control' name='satuan_obat[]' required>"+
-																"<option selected disabled value=''>-Pilih Satuan-</option>"+
-																	<?php foreach($satuans as $satuan):?>
-																		"<option value='<?= $satuan->satuan_id;?>'><?= $satuan->satuan_nama;?></option>"+
-																	<?php endforeach;?>
-																"</select>"+
-															"</div>"+
-														"</div>"+
-													"</div>"+
-													"<div class='col-md-2'>"+
-														"<div class='form-group'>"+
-															"<button type='button' class='btn btn-danger' id='btn_remove_Obat' title='Hapus'><i class='fa fa-trash'></i></button>"+
-														"</div>"+
-													"</div>"+
-												"</div>";
-					$('#wrapperObat').append(tambah);
-					$('#wrapperObat').on("click","#btn_remove_obat",function(e){
-						e.preventdefault();
-						$(this).closest('.divObat').remove();
-					});
-					$('.selectObat').select2();
+		$(document).ready(function(){
+			$('#mnPemeriksaan').addClass('active');
+			$('#mnDokter').addClass('active');
+			$('#example2').DataTable({
+				"info":false,
+			});
+			$("[data-mask]").inputmask();
+			$('.datepicker').datepicker({
+				format:'dd/mm/yyyy',
+				todayHighlight:true,
+				containter:true,
+			});
+			$('.selectOption').select2();
+			$('#alert').delay(2000).fadeOut("slow");
+			
+			var is_what = $("input[name='is_what']");
+			$('#a_tab_riwayat').click(function(){
+				is_what.val('diagnosa');
+			});
+			$('#a_tab_tindakan').click(function(){
+				is_what.val('tindakan');
+			});
+			$('#a_tab_resep').click(function(){
+				is_what.val('resep');
+			});
+			$('#btnTambahTindakan').click(function(){
+				var isTindakan = false;
+				var inputLayanan = document.getElementsByName('id_layanan[]');
+				for(var i=0;i<inputLayanan.length;i++){
+					var valLayanan = inputLayanan[i];
+					if(valLayanan.value==null || valLayanan.value==''){
+						isTindakan = false;
+						alert("Mohon Pilih Tindakan Sebelum Menambahkan Yang Baru");
 					}
 					else{
-						alert("Maaf, Lengkapi masukan data obat sebelumnya sebelum menambahkan yang baru");
+						isTindakan = true;
 					}
-				});
+				}
+				if(isTindakan==true){
+					var select =
+					"<div class='row tambahTindakan' style='margin-top:10px;'>"+
+						"<div class='col-md-7'>"+
+							"<label class='control-label col-md-4'></label>"+
+							"<div class='col-md-8'>"+
+								"<select class='form-control selectTindakan' name='id_layanan[]' style='width:100%;'>"+
+									"<option value='' selected disabled>"+
+										"- Pilih -"+
+									"</option>"+
+									<?php foreach($layanans as $layanan):?>
+										"<option value='<?= $layanan->id_layanan;?>'><?= $layanan->nama_layanan;?></option>"+
+									<?php endforeach;?>
+								"</select>"+
+							"</div>"+
+						"</div>"+
+						"<div class='col-md-2'>"+
+							"<button type='button' class='btn btn-danger' id='btnRemoveTindakan' title='Hapus'><i class='fa fa-trash'></i></button>"+
+						"</div>"+
+					"</div>";
+					$('#wrapperTindakan').append(select);
+					$('.selectTindakan').select2();
+					$('#wrapperTindakan').on("click","#btnRemoveTindakan",function(e){
+						e.preventDefault();
+						$(this).closest('.tambahTindakan').remove();
+					});
+				}
 			});
+			$('#btnTambahObat').click(function(){
+				var isNamaObat		= false;
+				var isJumlahObat	= false;
+				var isSatuanObat	= false
+
+				var inputNamaObat 	= document.getElementsByName('id_obat[]');
+				var inputJumlahObat = document.getElementsByName('jumlah_obat[]');
+				var inputSatuanObat = document.getElementsByName('satuan_obat[]');
+
+				for(var i=0; i < inputNamaObat.length;i++){
+					var valNamaObat	= inputNamaObat[i];
+					if(valNamaObat.value==null || valNamaObat.value ==''){
+						isNamaObat = false;
+					} else {
+						isNamaObat = true;
+					}
+				}
+				
+				for(var i=0; i < inputJumlahObat.length; i++){
+					var valJumlahObat = inputJumlahObat[i];
+					if(valJumlahObat.value == null || valJumlahObat == ''){
+						isJumlahObat = false;
+					} else {
+						isJumlahObat = true;
+					}
+				}
+
+				for(var i=0; i < inputSatuanObat.length; i++){
+					var valSatuanObat = inputSatuanObat[i];
+					if(valSatuanObat.value==null || valSatuanObat.value ==''){
+						isSatuanObat = false;
+					} else {
+						isSatuanObat = true;
+					}
+				}
+
+				if(isNamaObat==true && isJumlahObat == true && isSatuanObat==true){
+					var tambah ="<div class='row divObat'>"+
+												"<div class='col-md-5'>"+
+													"<div class='form-group'>"+
+														"<label class='control-label col-md-4'></label>"+
+														"<div class='col-md-8'>"+
+															"<select class='form-control selectObat' name='id_obat[]' style='width:100%;'>"+
+																"<option selected disabled value=''>"+
+																	"- Pilih -"+
+																"</option>"+
+																<?php foreach($obats as $obat):?>
+																	"<option value='<?= $obat->id_obat;?>'><?= $obat->nama_obat;?></option>"+
+																<?php endforeach;?>
+															"</select>"+
+														"</div>"+
+													"</div>"+
+												"</div>"+
+												"<div class='col-md-5'>"+
+													"<div class='form-group'>"+
+														"<label class='control-label col-md-3'></label>"+
+														"<div class='col-md-4'>"+
+															"<input type='text' name='jumlah_obat[]' class='form-control' />"+
+														"</div>"+
+														"<div class='col-md-5'>"+
+															"<select class='form-control' name='satuan_obat[]' required>"+
+															"<option selected disabled value=''>-Pilih Satuan-</option>"+
+																<?php foreach($satuans as $satuan):?>
+																	"<option value='<?= $satuan->satuan_id;?>'><?= $satuan->satuan_nama;?></option>"+
+																<?php endforeach;?>
+															"</select>"+
+														"</div>"+
+													"</div>"+
+												"</div>"+
+												"<div class='col-md-2'>"+
+													"<div class='form-group'>"+
+														"<button type='button' class='btn btn-danger' id='btn_remove_Obat' title='Hapus'><i class='fa fa-trash'></i></button>"+
+													"</div>"+
+												"</div>"+
+											"</div>";
+				$('#wrapperObat').append(tambah);
+				$('#wrapperObat').on("click","#btn_remove_obat",function(e){
+					e.preventdefault();
+					$(this).closest('.divObat').remove();
+				});
+				$('.selectObat').select2();
+				}
+				else{
+					alert("Maaf, Lengkapi masukan data obat sebelumnya sebelum menambahkan yang baru");
+				}
+			});
+		});
 		</script>

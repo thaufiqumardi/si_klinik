@@ -319,7 +319,9 @@ function confirm_delete(delete_url,title)
 		$('#containerLayanan').hide();
 		$("select[name='id_paket']").attr('disabled',false);
     $("[data-mask]").inputmask();
-    $('.DataTable').DataTable({});
+    $('.DataTable').DataTable({
+			"ordering":false
+		});
     $('.datepicker').datepicker({
            format:'dd/mm/yyyy',
            todayHighlight:true,
