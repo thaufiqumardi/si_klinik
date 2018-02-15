@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2018 at 02:49 PM
+-- Generation Time: Feb 15, 2018 at 04:47 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -132,7 +132,29 @@ INSERT INTO `detail_pembiayaan` (`id_pembiayaan`, `id_registrasi`, `no_registras
 (27, 3, NULL, NULL, NULL, 'Layanan', NULL, NULL, '1.00', '0.00', '0', NULL, NULL, '2018-02-15 13:01:42', NULL, '2018-02-15 13:01:42'),
 (28, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 13:35:43', NULL, '2018-02-15 13:35:43'),
 (29, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 13:35:43', NULL, '2018-02-15 13:35:43'),
-(30, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 13:36:42', NULL, '2018-02-15 13:36:42');
+(30, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 13:36:42', NULL, '2018-02-15 13:36:42'),
+(31, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:06:20', NULL, '2018-02-15 14:06:20'),
+(32, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:07:51', NULL, '2018-02-15 14:07:51'),
+(33, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:07:51', NULL, '2018-02-15 14:07:51'),
+(34, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:09:15', NULL, '2018-02-15 14:09:15'),
+(35, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:10:02', NULL, '2018-02-15 14:10:02'),
+(36, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:12:55', NULL, '2018-02-15 14:12:55'),
+(37, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:13:24', NULL, '2018-02-15 14:13:24'),
+(38, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:13:52', NULL, '2018-02-15 14:13:52'),
+(39, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:15:07', NULL, '2018-02-15 14:15:07'),
+(40, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:16:02', NULL, '2018-02-15 14:16:02'),
+(41, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:16:02', NULL, '2018-02-15 14:16:02'),
+(42, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:16:47', NULL, '2018-02-15 14:16:47'),
+(43, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:18:01', NULL, '2018-02-15 14:18:01'),
+(44, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:20:17', NULL, '2018-02-15 14:20:17'),
+(45, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:21:24', NULL, '2018-02-15 14:21:24'),
+(46, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:21:46', NULL, '2018-02-15 14:21:46'),
+(47, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:21:52', NULL, '2018-02-15 14:21:52'),
+(48, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:25:39', NULL, '2018-02-15 14:25:39'),
+(49, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:26:05', NULL, '2018-02-15 14:26:05'),
+(50, 3, NULL, NULL, 'Mixagrip', 'Obat', 1, '10000.00', '2.00', '20000.00', '0', NULL, NULL, '2018-02-15 14:29:12', NULL, '2018-02-15 14:29:12'),
+(51, 3, NULL, NULL, 'Sanaflu', 'Obat', 2, '5000.00', '3.00', '15000.00', '0', NULL, NULL, '2018-02-15 14:29:12', NULL, '2018-02-15 14:29:12'),
+(52, 3, NULL, NULL, 'Mixagrip', 'Obat', 1, '10000.00', '3.00', '30000.00', '0', NULL, NULL, '2018-02-15 14:29:54', NULL, '2018-02-15 14:29:54');
 
 -- --------------------------------------------------------
 
@@ -576,14 +598,6 @@ CREATE TABLE `pemeriksaan` (
   `updated_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `pemeriksaan`
---
-
-INSERT INTO `pemeriksaan` (`id_pemeriksaan`, `id_pasien`, `id_registrasi`, `id_dokter`, `tgl_pemeriksaan`, `tensi`, `berat_badan`, `tinggi_badan`, `keluhan`, `anamnesa`, `diagnosa`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, 2, 3, 1, '2018-02-15', '129/90', 30, 160, 'asdfasdfasdf', 'asdlfkjasldfjk', 'askdjfkasdjfk', '2018-02-15 13:35:33', 0, '2018-02-15 13:35:33', 0),
-(2, 2, 3, 1, '2018-02-15', '128/93', 30, 160, 'qwer', 'qwer', 'qwer', '2018-02-15 13:40:01', 0, '2018-02-15 13:40:01', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -605,6 +619,15 @@ CREATE TABLE `pemeriksaan_resep` (
   `updated_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pemeriksaan_resep`
+--
+
+INSERT INTO `pemeriksaan_resep` (`id_pemeriksaan_resep`, `id_pasien`, `id_registrasi`, `id_dokter`, `tgl_pemeriksaan`, `id_obat`, `qty_obat`, `id_satuan`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, 2, 3, 1, '2018-02-15', 1, '2', 1, '2018-02-15 14:29:12', 2, '2018-02-15 14:29:12', 0),
+(2, 2, 3, 1, '2018-02-15', 2, '3', 1, '2018-02-15 14:29:12', 2, '2018-02-15 14:29:12', 0),
+(3, 2, 3, 1, '2018-02-15', 1, '3', 1, '2018-02-15 14:29:54', 2, '2018-02-15 14:29:54', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -623,19 +646,6 @@ CREATE TABLE `pemeriksaan_tindakan` (
   `updated_by` int(11) NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pemeriksaan_tindakan`
---
-
-INSERT INTO `pemeriksaan_tindakan` (`id_pemeriksaan_tindakan`, `id_pasien`, `id_registrasi`, `id_dokter`, `tgl_pemeriksaan`, `id_layanan`, `created_by`, `create_at`, `updated_by`, `updated_at`) VALUES
-(1, 2, 3, 1, '2018-02-15', 1, 2, '2018-02-15 19:58:17', 0, '2018-02-15 19:58:17'),
-(2, 2, 3, 1, '2018-02-15', 2, 2, '2018-02-15 19:58:17', 0, '2018-02-15 19:58:17'),
-(3, 2, 3, 1, '2018-02-15', 0, 2, '2018-02-15 20:01:42', 0, '2018-02-15 20:01:42'),
-(4, 2, 3, 1, '2018-02-15', 0, 2, '2018-02-15 20:01:42', 0, '2018-02-15 20:01:42'),
-(5, 2, 3, 1, '2018-02-15', 1, 2, '2018-02-15 20:35:43', 0, '2018-02-15 20:35:43'),
-(6, 2, 3, 1, '2018-02-15', 2, 2, '2018-02-15 20:35:43', 0, '2018-02-15 20:35:43'),
-(7, 2, 3, 1, '2018-02-15', 2, 2, '2018-02-15 20:36:42', 0, '2018-02-15 20:36:42');
 
 -- --------------------------------------------------------
 
@@ -1145,7 +1155,7 @@ ALTER TABLE `bed`
 -- AUTO_INCREMENT for table `detail_pembiayaan`
 --
 ALTER TABLE `detail_pembiayaan`
-  MODIFY `id_pembiayaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_pembiayaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `dokter`
 --
@@ -1210,17 +1220,17 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
-  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `pemeriksaan_resep`
 --
 ALTER TABLE `pemeriksaan_resep`
-  MODIFY `id_pemeriksaan_resep` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pemeriksaan_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pemeriksaan_tindakan`
 --
 ALTER TABLE `pemeriksaan_tindakan`
-  MODIFY `id_pemeriksaan_tindakan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pemeriksaan_tindakan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `penanggung_pasien`
 --
