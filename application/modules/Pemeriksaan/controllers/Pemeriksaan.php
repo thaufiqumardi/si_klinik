@@ -153,39 +153,39 @@
       die;
     }
     function setTable($table, $id_pasien){
-      // if(!empty($join)){
-        switch ($table) {
-          case 'pemeriksaan':
-            $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan');
-            echo json_encode($diagnosa_pasien);
-            break;
-          case 'pemeriksaan_tindakan':
-            $join = "layanan";
-            $join_where = "pemeriksaan_tindakan.id_layanan=layanan.id_layanan";
-            $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan',$join,$join_where);
-            echo json_encode($diagnosa_pasien);
-            break;
-          case 'pemeriksaan_resep':
-            $join = "obat";
-            $join_where = "pemeriksaan_resep.id_obat=obat.id_obat";
-            $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan',$join,$join_where);
-            echo json_encode($diagnosa_pasien);
-            break;
-        }
-        
-      // } else {
-      //   $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan');
-      //   echo json_encode($diagnosa_pasien); 
-      // }
+      switch ($table) {
+        case 'pemeriksaan':
+          $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan');
+          echo json_encode($diagnosa_pasien);
+          break;
+        case 'pemeriksaan_tindakan':
+          $join = "layanan";
+          $join_where = "pemeriksaan_tindakan.id_layanan=layanan.id_layanan";
+          $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan',$join,$join_where);
+          echo json_encode($diagnosa_pasien);
+          break;
+        case 'pemeriksaan_resep':
+          $join = "obat";
+          $join_where = "pemeriksaan_resep.id_obat=obat.id_obat";
+          $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan',$join,$join_where);
+          echo json_encode($diagnosa_pasien);
+          break;
+      }
     }
-    function hapus($id,$id_pasien,$no_regis){
-      $this->M_crud->_delete('pemeriksaan','id_pemeriksaan',$id);
-      $data = array(
-        'class'=>1,
-        'msg'=>'Data Berhasil Dihapus',
-      );
-      $this->session->set_flashdata('alert',$data);
-      redirect('Pemeriksaan/form/'.$id_pasien.'/'.$no_regis);
+    function hapus($id,$table){
+      switch ($table) {
+        case 'pemeriksaan':
+          $primary = "id_pemeriksaan";
+          break;
+        case 'pemeriksaan_resep':
+          $primary = "id_pemeriksaan_resep";
+          break;
+        case 'pemeriksaan_tindakan':
+          $primary = "id_pemeriksaan_tindakan";
+          break;  
+      }
+      $this->M_crud->_delete($table,$primary,$id);     
+      echo json_encode(1);
     }
   }
  ?>

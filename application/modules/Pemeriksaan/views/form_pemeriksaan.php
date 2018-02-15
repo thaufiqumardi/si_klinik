@@ -307,10 +307,10 @@
 																	<table class="table table-bordered table-striped" id="tbl_resep">
 																		<thead>
 																			<tr>
+																				<th>No.</th>
 																				<th>Tanggal</th>
 																				<th>Nama Obat</th>
 																				<th>Jumlah</th>
-																				<th>Keterangan</th>
 																				<th>Aksi</th>
 																			</tr>
 																		</thead>
@@ -338,7 +338,31 @@
 <?php $this->load->view('template/v_footer'); ?>
 <!-- Script		 -->
 	<script type="text/javascript">
+	function hapus(url,id,table){
+				var conf = confirm("Hapus Data?");
+				if(conf){
+					var uri = url+id+table;
+					$.ajax({
+						url: uri,
+						type:'DELETE',
+						success:function(data){
+							try {
+								alert("Berhasil");setTableDiagnosa(id_pasien);
+								window.location.reload();
+							} catch (error) {
+								alert("gagal");
+							}
+						}
+					})
+				}
+				else{
+					console.log("Tidak Jadi");
+				}
+			}
+		
 		$(document).ready(function(){
+			var now = new Date();
+			console.log(now);
 			$('#mnPemeriksaan').addClass('active');
 			$('#mnDokter').addClass('active');
 			$('#example2').DataTable({
@@ -352,7 +376,27 @@
 			});
 			$('.selectOption').select2();
 			$('#alert').delay(2000).fadeOut("slow");
-
+			var tbl_diagnosa = $('#tbl_diagnosa').DataTable({
+					// 'searching':false,
+					'lengthChange':false,
+					'ordering':false,
+					'info':false,
+					'retrieve':false,
+				});
+				var tbl_tindakan = $('#tbl_tindakan').DataTable({
+					// 'searching':false,
+					'lengthChange':false,
+					'ordering':false,
+					'info':false,
+					'retrieve':false,
+				});
+				var tbl_resep = $('#tbl_resep').DataTable({
+					// 'searching':false,
+					'lengthChange':false,
+					'ordering':false,
+					'info':false,
+					'retrieve':false,
+				});
 			var id_pasien = $("input[name='id_pasien']").val();
 			var no_registrasi = "<?=$pasien->no_registrasi;?>";
 			var is_what = $("input[name='is_what']");
@@ -489,28 +533,11 @@
 					alert("Maaf, Lengkapi masukan data obat sebelumnya sebelum menambahkan yang baru");
 				}
 			});
-			setTableAll(iswhat_val);
-			function setTableAll(iswhat_val){
-				switch (iswhat_val) {
-				case "diagnosa":
-					setTableDiagnosa(id_pasien);
-					break;
-				case "tindakan":
-					setTableTindakan(id_pasien);		
-					break;
-				default:
-					break;
-			}
-			}
+			setTableDiagnosa(id_pasien);
+			setTableTindakan(id_pasien);
+			setTableResep(id_pasien);
 			function setTableDiagnosa(id_pasien){
-				var tbl_diagnosa = $('#tbl_diagnosa').DataTable({
-					'searching':false,
-					'lengthChange':false,
-					'ordering':false,
-				});
-
 				tbl_diagnosa.clear().draw();
-				
 				var url = "<?= site_url('Pemeriksaan/setTable');?>";
 				var table_db = "pemeriksaan";
 
@@ -522,6 +549,10 @@
 						 var counter = 1;
 						 for(var key in ObjectData){
 							 if(ObjectData.hasOwnProperty(key)){
+								var id_pemeriksaan = ObjectData[key]["id_pemeriksaan"];
+								var url_hapus = "<?= site_url('Pemeriksaan/hapus').'/';?>";
+								var table = "/pemeriksaan";
+								var btn_hapus = '<a onclick="hapus(\''+url_hapus+'\',\''+id_pemeriksaan+'\',\''+table+'\');" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</a>';
 								 tbl_diagnosa.row.add([
 									 counter++,
 									 ObjectData[key]["tgl_pemeriksaan"],
@@ -531,7 +562,7 @@
 									 ObjectData[key]["keluhan"],
 									 ObjectData[key]["anamnesa"],
 									 ObjectData[key]["diagnosa"],
-									 ObjectData[key]["diagnosa"]
+									 btn_hapus
 								 ]).draw(false);
 							 }
 						 }
@@ -539,18 +570,11 @@
 				},"JSON");
 			}
 			function setTableTindakan(id_pasien){
-				var tbl_tindakan = $('#tbl_tindakan').DataTable({
-					'searching':false,
-					'lengthChange':false,
-					'ordering':false,
-				});
-
 				tbl_tindakan.clear().draw();
 				
 				var url = "<?= site_url('Pemeriksaan/setTable');?>";
 				var table_db = "pemeriksaan_tindakan";
-				var table_join = "layanan";
-				$.get(url+'/'+table_db+'/'+id_pasien+'/'+table_join,function(data){
+				$.get(url+'/'+table_db+'/'+id_pasien,function(data){
 					 var ObjectData = data;
 					 console.log(data);
 					 if(ObjectData ==null || ObjectData==''){
@@ -559,11 +583,45 @@
 						 var counter = 1;
 						 for(var key in ObjectData){
 							 if(ObjectData.hasOwnProperty(key)){
+								var id_pemeriksaan = ObjectData[key]["id_pemeriksaan_tindakan"];
+								var url_hapus = "<?= site_url('Pemeriksaan/hapus').'/';?>";
+								var table = "/pemeriksaan_tindakan";
+								var btn_hapus = '<a onclick="hapus(\''+url_hapus+'\',\''+id_pemeriksaan+'\',\''+table+'\');" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</a>';
 								 tbl_tindakan.row.add([
 									 counter++,
 									 ObjectData[key]["tgl_pemeriksaan"],
 									 ObjectData[key]["nama_layanan"],
-									
+									 btn_hapus
+								 ]).draw(false);
+							 }
+						 }
+					 }
+				},"JSON");
+			}
+			function setTableResep(id_pasien){
+				tbl_resep.clear().draw();
+				
+				var url = "<?= site_url('Pemeriksaan/setTable');?>";
+				var table_db = "pemeriksaan_resep";
+				$.get(url+'/'+table_db+'/'+id_pasien,function(data){
+					 var ObjectData = data;
+					 console.log(data);
+					 if(ObjectData ==null || ObjectData==''){
+						 tbl_resep.clear().draw();
+					 } else {
+						 var counter = 1;
+						 for(var key in ObjectData){
+							 if(ObjectData.hasOwnProperty(key)){
+								var id_pemeriksaan = ObjectData[key]["id_pemeriksaan_resep"];
+								var url_hapus = "<?= site_url('Pemeriksaan/hapus').'/';?>";
+								var table = "/pemeriksaan_resep";
+								var btn_hapus = '<a onclick="hapus(\''+url_hapus+'\',\''+id_pemeriksaan+'\',\''+table+'\');" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</a>';
+								 tbl_resep.row.add([
+									 counter++,
+									 ObjectData[key]["tgl_pemeriksaan"],
+									 ObjectData[key]["nama_obat"],
+									 ObjectData[key]["qty_obat"],
+									 btn_hapus
 								 ]).draw(false);
 							 }
 						 }
@@ -580,13 +638,16 @@
 					data:$('.formPemeriksaan').serialize(),
 					success: function(data){
 						try{
+							alert("Data berhasil di simpan");
 							// console.log(data);
 							// var jumlahInputObat = document.getElementsByName('id_obat[]');
 							// for(var i =0; i< jumlahInputObat.length;i++){
 							// 	$('#btn_remove_obat').trigger('click');
 							// }
 							// var id_pasien = $("#no_registrasi").val();
-							setAllTable(iswhat_val);
+							setTableDiagnosa(id_pasien);
+							setTableTindakan(id_pasien);
+							setTableResep(id_pasien);
 							$('.formPemeriksaan  :input:not(".ignoreDeletion")').val('');
 							$('.formPemeriksaan').find('option').removeAttr('disabled');
 							$('.formPemeriksaan').find('select').val('');
