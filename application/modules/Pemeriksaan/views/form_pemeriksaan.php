@@ -17,8 +17,6 @@
 						<?php
 							if(isset($msg['msg'])){
 								echo $msg['msg'];
-							}else{
-								echo "Penambahan Dokter Gagal, Karena : <br>".validation_errors();
 							}
 						?>
 					</div>
@@ -26,8 +24,8 @@
 					}
 					?>
 					<!-- box widget 1 -->
-					<div class="row">
-						<div  class="col-md-12">
+					<!-- <div class="row">
+						<div  class="col-md-12"> -->
 							<div class="box box-widget">
 								<div class="box-header with-border">
 									<h3 class="box-title">Pemeriksaan Pasien</h3>
@@ -45,34 +43,18 @@
 												<div class="box-body">
 													<div class="col-xs-6">
 														<dl class="dl-horizontal">
-															<dt>
-																No. Rekam Medik :
-															</dt>
-															<dd>
-																<?= $pasien->no_rm;?>
-															</dd>
-															<dt>
-																No. Pendaftaran :
-															</dt>
-															<dd>
-																<?= $pasien->no_registrasi;?>
-															</dd>
+															<dt>No. Rekam Medik :</dt>
+															<dd><?= $pasien->no_rm;?></dd>
+															<dt>No. Pendaftaran :</dt>
+															<dd><?= $pasien->no_registrasi;?></dd>
 														</dl>
 													</div>
 													<div class="col-xs-6">
 														<dl class="dl-horizontal">
-															<dt>
-																Nama :
-															</dt>
-															<dd>
-																<?= $pasien->nama_pasien;?>
-															</dd>
-															<dt>
-																Tanggal Daftar :
-															</dt>
-															<dd>
-																<?= $pasien->tgl_registrasi;?>
-															</dd>
+															<dt>Nama :</dt>
+															<dd><?= $pasien->nama_pasien;?></dd>
+															<dt>Tanggal Daftar :</dt>
+															<dd><?= $pasien->tgl_registrasi;?></dd>
 														</dl>
 													</div>
 												</div>
@@ -85,12 +67,8 @@
 												</div>
 												<div class="box-body">
 													<dl class="dl-horizontal">
-														<dt >
-															Nama :
-														</dt>
-														<dd>
-															<?= $pasien->nama_dokter;?>
-														</dd>
+														<dt>Nama :</dt>
+														<dd><?= $pasien->nama_dokter;?></dd>
 													</dl>
 												</div>
 											</div>
@@ -106,8 +84,8 @@
 												</ul>
 												<div class="tab-content">
 														<div class="tab-pane active" id="tab_riw">
-															<form method="POST"  class="formPemeriksaan form-horizontal" action="<?=site_url('Pemeriksaan/form').'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>">
-																<input type="text" class="ignoreDeletion"  name="is_what" value="diagnosa" />
+															<form class="formPemeriksaan form-horizontal">
+																<input type="text" class="ignoreDeletion" name="is_what" value="diagnosa" />
 																<input type="text" class="ignoreDeletion" name="id_pasien" value="<?=$pasien->id_pasien;?>"/>
 																<input type="text" class="ignoreDeletion" name="id_registrasi" value="<?=$pasien->id_registrasi;?>"/>
 																<input type="text" class="ignoreDeletion" name="id_dokter" value="<?=$pasien->id_dokter;?>"/>
@@ -174,63 +152,26 @@
 															<div class="row">
 																<div  class="col-md-12">
 																	<div class="box box-widget ">
-																		<?php
-																			if(empty($riwayats)){
-																				?>
-																				<div class="box-body">
-																					<div class="alert bg-warning text-center">
-																						<p>
-																							Belum Ada Riwayat
-																						</p>
-																					</div>
-																				</div>
-																				<?php
-																			}
-																			else{
-																				?>
-																				<div class="box-body">
-																					<table id="example2" style="border: 2" class="table table-bordered table-striped DataTable">
-																						<thead>
-																							<tr>
-																								<th style="width: 5%;" class="text-center">No.</th>
-																								<!-- <th class="text-center">No. Rekam Medik</th> -->
-																								<!-- <th class="text-center">No. Kartu</th> -->
-																								<th class="text-center">Nama Pasien</th>
-																								<th class="text-center">Dokter</th>
-																								<th class="text-center">Tanggal</th>
-																								<th class="text-center">Tensi</th>
-																								<th class="text-center">Berat</th>
-																								<th class="text-center">Tinggi</th>
-																								<th class="text-center">Keluhan</th>
-																								<th class="text-center">Anamnesa</th>
-																								<th class="text-center">Diagnosa</th>
-																								<th style="width: 10%;" class="text-center">Aksi</th>
-																							</tr>
-																						</thead>
-																						<tbody>
-																							<?php foreach ($riwayats as $key => $row):?>
-																								<tr>
-																									<td><?= ++$key;?></td>
-																									<td><?= $row->nama_pasien;?></td>
-																									<td><?= $row->nama_dokter;?></td>
-																									<td><?= $row->tgl_pemeriksaan;?></td>
-																									<td><?= $row->tensi;?></td>
-																									<td><?= $row->berat_badan;?></td>
-																									<td><?= $row->tinggi_badan;?></td>
-																									<td><?= $row->keluhan;?></td>
-																									<td><?= $row->anamnesa;?></td>
-																									<td><?= $row->diagnosa;?></td>
-																									<td>
-																										<a href="<?php echo site_url('Pemeriksaan/hapus').'/'.$row->id_pemeriksaan.'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>" class="btn btn-danger btn-xs" onClick="history.go(0)" ><i class="fa fa-trash" ></i> Hapus</a>
-																									</td>
-																								</tr>
-																							<?php endforeach;?>
-																						</tbody>
-																					</table>
-																				</div>
-																				<?php
-																			}
-																		 ?>
+																		<div class="box-body">
+																			<table id="tbl_diagnosa" style="border: 2" class="table table-bordered table-striped DataTable">
+																				<thead>
+																					<tr>
+																						<th style="width: 5%;" class="text-center">No.</th>
+																						<th class="text-center">Tanggal</th>
+																						<th class="text-center">Tensi</th>
+																						<th class="text-center">Berat</th>
+																						<th class="text-center">Tinggi</th>
+																						<th class="text-center">Keluhan</th>
+																						<th class="text-center">Anamnesa</th>
+																						<th class="text-center">Diagnosa</th>
+																						<th style="width: 10%;" class="text-center">Aksi</th>
+																					</tr>
+																				</thead>
+																				<tbody>
+																					
+																				</tbody>
+																			</table>
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -242,11 +183,7 @@
 																		<div class="box-header with-border">
 																				<h3 class="box-title">Tindakan</h3>
 																		</div>
-																		<form method="POST"  class="formPemeriksaan form-horizontal" action="<?=site_url('Pemeriksaan/form').'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>">
-																		<input type="hidden" class="ignoreDeletion"  name="is_what" />
-																		<input type="hidden" class="ignoreDeletion" name="id_pasien" value="<?=$pasien->id_pasien;?>"/>
-																		<input type="hidden" class="ignoreDeletion" name="id_registrasi" value="<?=$pasien->id_registrasi;?>"/>
-																		<input type="hidden" class="ignoreDeletion" name="id_dokter" value="<?=$pasien->id_dokter;?>"/>
+																		<form class="formPemeriksaan form-horizontal">
 																			<div class="box-body">
 																				<div class="row">
 																					<div class="col-md-7">
@@ -284,13 +221,12 @@
 															</div>
 															<div class="row">
 																<div class="col-md-12">
-																	<table class="table table-bordered table-striped" id="tbl_data_obat">
+																	<table class="table table-bordered table-striped" id="tbl_tindakan">
 																		<thead>
 																			<tr>
+																				<th>No</th>
 																				<th>Tanggal</th>
-																				<th>Nama Obat</th>
-																				<th>Jumlah</th>
-																				<th>Keterangan</th>
+																				<th>Tindakan/Layanan</th>
 																				<th>Aksi</th>
 																			</tr>
 																		</thead>
@@ -308,11 +244,7 @@
 																		<div class="box-header with-border">
 																				<h3 class="box-title">Resep Obat</h3>
 																		</div>
-																		<form method="POST"  class="formPemeriksaan form-horizontal" action="<?=site_url('Pemeriksaan/form').'/'.$pasien->id_pasien.'/'.$pasien->no_registrasi;?>">
-																		<input type="text" class="ignoreDeletion"  name="is_what" value="diagnosa" />
-																		<input type="text" class="ignoreDeletion" name="id_pasien" value="<?=$pasien->id_pasien;?>"/>
-																		<input type="text" class="ignoreDeletion" name="id_registrasi" value="<?=$pasien->id_registrasi;?>"/>
-																		<input type="text" class="ignoreDeletion" name="id_dokter" value="<?=$pasien->id_dokter;?>"/>
+																		<form class="formPemeriksaan form-horizontal">
 																			<div class="box-body">
 																				<div class="row">
 																					<div class="col-md-5">
@@ -366,13 +298,13 @@
 																					<a href="<?= site_url('Pemeriksaan');?>" class="btn btn-danger"><i class="fa fa-close"></i> Batal</a>
 																				</div>
 																			</div>
-																		<!-- </form> -->
+																		</form>
 																	</div>
 																</div>
 															</div>
 															<div class="row">
 																<div class="col-md-12">
-																	<table class="table table-bordered table-striped" id="tbl_data_obat">
+																	<table class="table table-bordered table-striped" id="tbl_resep">
 																		<thead>
 																			<tr>
 																				<th>Tanggal</th>
@@ -389,15 +321,15 @@
 																</div>
 															</div>
 														</div>
-													</form>
+													<!-- </form> -->
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
+						<!-- </div>
+					</div> -->
 					<!-- akhir box widget 1 -->
 			</section>
 		</div>
@@ -420,17 +352,14 @@
 			});
 			$('.selectOption').select2();
 			$('#alert').delay(2000).fadeOut("slow");
-			
+
+			var id_pasien = $("input[name='id_pasien']").val();
+			var no_registrasi = "<?=$pasien->no_registrasi;?>";
 			var is_what = $("input[name='is_what']");
-			$('#a_tab_riwayat').click(function(){
-				is_what.val('diagnosa');
-			});
-			$('#a_tab_tindakan').click(function(){
-				is_what.val('tindakan');
-			});
-			$('#a_tab_resep').click(function(){
-				is_what.val('resep');
-			});
+			var iswhat_val = $("input[name='is_what']").val();
+			$('#a_tab_riwayat').click(function(){is_what.val('diagnosa');});
+			$('#a_tab_tindakan').click(function(){is_what.val('tindakan');});
+			$('#a_tab_resep').click(function(){is_what.val('resep');});
 			$('#btnTambahTindakan').click(function(){
 				var isTindakan = false;
 				var inputLayanan = document.getElementsByName('id_layanan[]');
@@ -446,18 +375,20 @@
 				}
 				if(isTindakan==true){
 					var select =
-					"<div class='row tambahTindakan' style='margin-top:10px;'>"+
+					"<div class='row tambahTindakan'>"+
 						"<div class='col-md-7'>"+
-							"<label class='control-label col-md-4'></label>"+
-							"<div class='col-md-8'>"+
-								"<select class='form-control selectTindakan' name='id_layanan[]' style='width:100%;'>"+
-									"<option value='' selected disabled>"+
-										"- Pilih -"+
-									"</option>"+
-									<?php foreach($layanans as $layanan):?>
-										"<option value='<?= $layanan->id_layanan;?>'><?= $layanan->nama_layanan;?></option>"+
-									<?php endforeach;?>
-								"</select>"+
+							"<div class='form-group'>"+
+								"<label class='control-label col-md-4'></label>"+
+								"<div class='col-md-8'>"+
+									"<select class='form-control selectTindakan' name='id_layanan[]' style='width:100%;'>"+
+										"<option value='' selected disabled>"+
+											"- Pilih -"+
+										"</option>"+
+										<?php foreach($layanans as $layanan):?>
+											"<option value='<?= $layanan->id_layanan;?>'><?= $layanan->nama_layanan;?></option>"+
+										<?php endforeach;?>
+									"</select>"+
+								"</div>"+
 							"</div>"+
 						"</div>"+
 						"<div class='col-md-2'>"+
@@ -557,6 +488,115 @@
 				else{
 					alert("Maaf, Lengkapi masukan data obat sebelumnya sebelum menambahkan yang baru");
 				}
+			});
+			setTableAll(iswhat_val);
+			function setTableAll(iswhat_val){
+				switch (iswhat_val) {
+				case "diagnosa":
+					setTableDiagnosa(id_pasien);
+					break;
+				case "tindakan":
+					setTableTindakan(id_pasien);		
+					break;
+				default:
+					break;
+			}
+			}
+			function setTableDiagnosa(id_pasien){
+				var tbl_diagnosa = $('#tbl_diagnosa').DataTable({
+					'searching':false,
+					'lengthChange':false,
+					'ordering':false,
+				});
+
+				tbl_diagnosa.clear().draw();
+				
+				var url = "<?= site_url('Pemeriksaan/setTable');?>";
+				var table_db = "pemeriksaan";
+
+				$.get(url+'/'+table_db+'/'+id_pasien,function(data){
+					 var ObjectData = data;
+					 if(ObjectData ==null || ObjectData==''){
+						 tbl_diagnosa.clear().draw();
+					 } else {
+						 var counter = 1;
+						 for(var key in ObjectData){
+							 if(ObjectData.hasOwnProperty(key)){
+								 tbl_diagnosa.row.add([
+									 counter++,
+									 ObjectData[key]["tgl_pemeriksaan"],
+									 ObjectData[key]["tensi"],
+									 ObjectData[key]["berat_badan"],
+									 ObjectData[key]["tinggi_badan"],
+									 ObjectData[key]["keluhan"],
+									 ObjectData[key]["anamnesa"],
+									 ObjectData[key]["diagnosa"],
+									 ObjectData[key]["diagnosa"]
+								 ]).draw(false);
+							 }
+						 }
+					 }
+				},"JSON");
+			}
+			function setTableTindakan(id_pasien){
+				var tbl_tindakan = $('#tbl_tindakan').DataTable({
+					'searching':false,
+					'lengthChange':false,
+					'ordering':false,
+				});
+
+				tbl_tindakan.clear().draw();
+				
+				var url = "<?= site_url('Pemeriksaan/setTable');?>";
+				var table_db = "pemeriksaan_tindakan";
+				var table_join = "layanan";
+				$.get(url+'/'+table_db+'/'+id_pasien+'/'+table_join,function(data){
+					 var ObjectData = data;
+					 console.log(data);
+					 if(ObjectData ==null || ObjectData==''){
+						 tbl_tindakan.clear().draw();
+					 } else {
+						 var counter = 1;
+						 for(var key in ObjectData){
+							 if(ObjectData.hasOwnProperty(key)){
+								 tbl_tindakan.row.add([
+									 counter++,
+									 ObjectData[key]["tgl_pemeriksaan"],
+									 ObjectData[key]["nama_layanan"],
+									
+								 ]).draw(false);
+							 }
+						 }
+					 }
+				},"JSON");
+			}
+			$('.formPemeriksaan').submit(function(e){
+				e.preventDefault();
+				console.log("POSTED");
+				$.ajax({
+					type:"post",
+					url:"<?= site_url('Pemeriksaan/form');?>"+"/"+id_pasien+"/"+no_registrasi,
+					cache:false,
+					data:$('.formPemeriksaan').serialize(),
+					success: function(data){
+						try{
+							// console.log(data);
+							// var jumlahInputObat = document.getElementsByName('id_obat[]');
+							// for(var i =0; i< jumlahInputObat.length;i++){
+							// 	$('#btn_remove_obat').trigger('click');
+							// }
+							// var id_pasien = $("#no_registrasi").val();
+							setAllTable(iswhat_val);
+							$('.formPemeriksaan  :input:not(".ignoreDeletion")').val('');
+							$('.formPemeriksaan').find('option').removeAttr('disabled');
+							$('.formPemeriksaan').find('select').val('');
+							$("#successInfo").modal('show');
+						}
+						catch(e){
+							alert("GAGAL");
+						}
+					}
+				});
 			});
 		});
 		</script>

@@ -31,10 +31,8 @@
             break;
         }
       }
-
       $data['pasien']   = $this->model->get_pasien_by_registrasi($no_regis);
       $data['now']      = date('d-m-Y');
-      $data['riwayats'] = $this->model->get_diagnosa_by_pasien_id($id_pasien);
       $data['layanans'] = $this->M_crud->get_select_to_array('*','layanan');
       $data['obats']    = $this->M_crud->get_select_to_array('*','obat');
       $data['satuans']  = $this->M_crud->get_select_to_array('*','satuan');
@@ -43,7 +41,8 @@
     }
     private function insert_diagnosa($data){
       $id_pasien        = $this->input->post('id_pasien');
-      $tgl_pemeriksaan  = date('Y-m-d',strtotime($this->input->post('tgl_pemeriksaan')));;
+      $id_registrasi    = $this->input->post('id_registrasi');
+      $tgl_pemeriksaan  = date('Y-m-d');
       $diagnosa         = $this->input->post('diagnosa');
       $keluhan          = $this->input->post('keluhan');
       $anamnesa         = $this->input->post('anamnesa');
@@ -61,6 +60,7 @@
       } else { 
           $data = array (
             'id_pasien'       => $id_pasien,
+            'id_registrasi'   => $id_registrasi,
             'tgl_pemeriksaan' => $tgl_pemeriksaan,
             'id_dokter'       => $this->input->post('id_dokter'),
             'diagnosa'        => $diagnosa,
@@ -88,7 +88,7 @@
           'id_pasien'                 => $this->input->post('id_pasien'),
           'id_registrasi'             => $this->input->post('id_registrasi'),
           'id_dokter'                 => $this->input->post('id_dokter'),
-          'tgl_pemeriksaan_tindakan'  => $now,
+          'tgl_pemeriksaan'  => $now,
           'id_layanan'                => $arr_tindakan[$i],
           'created_by'                => $this->session->userdata['simklinik']['ap_sid']
         );
@@ -123,7 +123,7 @@
           'id_pasien'             => $this->input->post('id_pasien'),
           'id_registrasi'         => $this->input->post('id_registrasi'),
           'id_dokter'             => $this->input->post('id_dokter'),
-          'tgl_pemeriksaan_resep' => $now,
+          'tgl_pemeriksaan' => $now,
           'id_obat'               => $arr_id_obat[$i],
           'qty_obat'              => $arr_jumlah[$i],
           'id_satuan'             => $arr_satuan[$i],
@@ -151,6 +151,32 @@
       print_r($data_obat);
       echo "</pre>";
       die;
+    }
+    function setTable($table, $id_pasien){
+      // if(!empty($join)){
+        switch ($table) {
+          case 'pemeriksaan':
+            $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan');
+            echo json_encode($diagnosa_pasien);
+            break;
+          case 'pemeriksaan_tindakan':
+            $join = "layanan";
+            $join_where = "pemeriksaan_tindakan.id_layanan=layanan.id_layanan";
+            $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan',$join,$join_where);
+            echo json_encode($diagnosa_pasien);
+            break;
+          case 'pemeriksaan_resep':
+            $join = "obat";
+            $join_where = "pemeriksaan_resep.id_obat=obat.id_obat";
+            $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan',$join,$join_where);
+            echo json_encode($diagnosa_pasien);
+            break;
+        }
+        
+      // } else {
+      //   $diagnosa_pasien = $this->model->get_pm($table,'id_pasien',$id_pasien,'tgl_pemeriksaan');
+      //   echo json_encode($diagnosa_pasien); 
+      // }
     }
     function hapus($id,$id_pasien,$no_regis){
       $this->M_crud->_delete('pemeriksaan','id_pemeriksaan',$id);

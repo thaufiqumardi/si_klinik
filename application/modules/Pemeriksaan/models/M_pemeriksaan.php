@@ -19,6 +19,15 @@
       $rows = $this->db->get($table)->num_rows();
       return $rows;
     }
+    function get_pm($table,$field,$param,$ordering,$join=NULL,$join_where=NULL){
+      $this->db->from($table);
+      $this->db->where($field,$param);
+      if(!empty($join)){
+        $this->db->join($join,$join_where);
+      }
+      $this->db->order_by($ordering,"DESC");
+      return $this->db->get()->result();
+    }
     function get_pasien_by_registrasi($no_regis){
       $this->db->from('registrasi_pasien')
                 ->where('registrasi_pasien.no_registrasi',$no_regis)
@@ -26,9 +35,9 @@
                 ->join('dokter','registrasi_pasien.id_dokter=dokter.id_dokter');
       return $this->db->get()->row();
     }
-    function get_diagnosa_by_pasien_id($id_pasien){
+    function get_diagnosa_by_pasien_id($id_registrasi){
       $this->db->from('pemeriksaan')
-                ->where('pemeriksaan.id_pasien',$id_pasien)
+                ->where('pemeriksaan.id_registrasi',$id_registrasi)
                 ->join('dokter','pemeriksaan.id_dokter=dokter.id_dokter')
                 ->join('pasien','pemeriksaan.id_pasien=pasien.id_pasien');
       return $this->db->get()->result();
