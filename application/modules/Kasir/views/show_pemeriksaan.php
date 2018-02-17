@@ -39,8 +39,8 @@ if(!empty($menusid)){
 					<div class="box box-primary box-solid">
 						<div class="box-header" style="text-align:left;">
 							<div class="row">
-								<div class="col-md-3 pull-left">
-									<h4>Form Kasir</h4>
+								<div class="col-md-6 pull-left">
+									<h4 class="box-title">Pembayaran Pasien <?=$pasien->nama_pasien;?></h4>
 								</div>
 								<br>
 							<div class="col-md-2 pull-right">
@@ -105,8 +105,8 @@ if(!empty($menusid)){
 								<div class="col-md-6 pull-right">
 								<!-- <div class="pull-right"> -->
 									<form class="form-horizontal" id="formPemasukan" method="post" action="<?=site_url('Kasir/simpanPemasukan');?>" target="_blank">
-										<input type="text" name="no_kuitansi_pemasukan" value="<?=$no_kuitansi;?>" />
-										<input type="text" name="id_registrasi" value="<?=$pasien->id_registrasi;?>">
+										<input type="hidden" name="no_kuitansi_pemasukan" value="<?=$no_kuitansi;?>" />
+										<input type="hidden" name="id_registrasi" value="<?=$pasien->id_registrasi;?>">
 										<div class="form-group">
 											<label class="control-label col-md-3 col-md-offset-3">Total Bayar:</label>
 											<div class="col-md-6 pull-right">

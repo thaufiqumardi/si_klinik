@@ -87,7 +87,7 @@
 
 					</div>
 				</div>
-				<div class="modal fade" id="confirmHapus"  data-backdrop="static" data-keyboard="false">
+				<!-- <div class="modal fade" id="confirmHapus"  data-backdrop="static" data-keyboard="false">
 					<div class="modal-dialog">
 						<div class="modal-content" style="margin-top:100px;">
 							<div class="modal-header">
@@ -105,7 +105,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 		</section>
 	</div>
 	<?php $this->load->view('template/v_copyright'); ?>
@@ -122,8 +122,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 	  $('#mnKasir').addClass('active');
-
-
       $('#alert').delay(10000).fadeOut("slow");
 	});
 

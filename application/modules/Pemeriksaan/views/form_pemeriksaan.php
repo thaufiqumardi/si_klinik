@@ -22,58 +22,57 @@
 					</div>
 					<?php
 					}
-					?>
+					?><div class="row">
+					<div class="col-md-8">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Data Pasien</h3>
+								<div class="pull-right">
+									No. Kartu: <?= $pasien->no_kartu;?>
+								</div>
+							</div>
+							<div class="box-body">
+								<div class="col-xs-6">
+									<dl class="dl-horizontal">
+										<dt>No. Rekam Medik :</dt>
+										<dd><?= $pasien->no_rm;?></dd>
+										<dt>No. Pendaftaran :</dt>
+										<dd><?= $pasien->no_registrasi;?></dd>
+									</dl>
+								</div>
+								<div class="col-xs-6">
+									<dl class="dl-horizontal">
+										<dt>Nama :</dt>
+										<dd><?= $pasien->nama_pasien;?></dd>
+										<dt>Tanggal Daftar :</dt>
+										<dd><?= $pasien->tgl_registrasi;?></dd>
+									</dl>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Data Dokter</h3>
+							</div>
+							<div class="box-body">
+								<dl class="dl-horizontal">
+									<dt>Nama :</dt>
+									<dd><?= $pasien->nama_dokter;?></dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+				</div>
 					<!-- box widget 1 -->
-					<!-- <div class="row">
-						<div  class="col-md-12"> -->
+					<div class="row">
+						<div  class="col-md-12">
 							<div class="box box-widget">
 								<div class="box-header with-border">
-									<h3 class="box-title">Pemeriksaan Pasien</h3>
+									<h3 class="box-title">Formulir Pemeriksaan</h3>
 								</div>
 								<div class="box-body">
-									<div class="row">
-										<div class="col-md-8">
-											<div class="box box-primary">
-												<div class="box-header with-border">
-													<h3 class="box-title">Data Pasien</h3>
-													<div class="pull-right">
-														No. Kartu: <?= $pasien->no_kartu;?>
-													</div>
-												</div>
-												<div class="box-body">
-													<div class="col-xs-6">
-														<dl class="dl-horizontal">
-															<dt>No. Rekam Medik :</dt>
-															<dd><?= $pasien->no_rm;?></dd>
-															<dt>No. Pendaftaran :</dt>
-															<dd><?= $pasien->no_registrasi;?></dd>
-														</dl>
-													</div>
-													<div class="col-xs-6">
-														<dl class="dl-horizontal">
-															<dt>Nama :</dt>
-															<dd><?= $pasien->nama_pasien;?></dd>
-															<dt>Tanggal Daftar :</dt>
-															<dd><?= $pasien->tgl_registrasi;?></dd>
-														</dl>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="box box-primary">
-												<div class="box-header with-border">
-													<h3 class="box-title">Data Dokter</h3>
-												</div>
-												<div class="box-body">
-													<dl class="dl-horizontal">
-														<dt>Nama :</dt>
-														<dd><?= $pasien->nama_dokter;?></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
 									<div class='row'>
 										<div class='col-sm-12'>
 											<div class="nav-tabs-custom">
@@ -85,16 +84,16 @@
 												<div class="tab-content">
 														<div class="tab-pane active" id="tab_riw">
 															<form class="formPemeriksaan form-horizontal">
-																<input type="text" class="ignoreDeletion" name="is_what" value="diagnosa" />
-																<input type="text" class="ignoreDeletion" name="id_pasien" value="<?=$pasien->id_pasien;?>"/>
-																<input type="text" class="ignoreDeletion" name="id_registrasi" value="<?=$pasien->id_registrasi;?>"/>
-																<input type="text" class="ignoreDeletion" name="id_dokter" value="<?=$pasien->id_dokter;?>"/>
+																<input type="hidden" class="ignoreDeletion" name="is_what" value="diagnosa" />
+																<input type="hidden" class="ignoreDeletion" name="id_pasien" value="<?=$pasien->id_pasien;?>"/>
+																<input type="hidden" class="ignoreDeletion" name="id_registrasi" value="<?=$pasien->id_registrasi;?>"/>
+																<input type="hidden" class="ignoreDeletion" name="id_dokter" value="<?=$pasien->id_dokter;?>"/>
 															<div class="row">
 																<div  class="col-md-12">
-																	<div class="box box-primary box-solid">
-																		<div class="box-header with-border">
+																	<div class="box box-widget">
+																		<!-- <div class="box-header with-border">
 																				<h3 class="box-title">Diagnosa Pasien</h3>
-																		</div>
+																		</div> -->
 																			<div class="box-body">
 																				<div class="row">
 																					<div class="col-md-6">
@@ -151,8 +150,8 @@
 															</div>
 															<div class="row">
 																<div  class="col-md-12">
-																	<div class="box box-widget ">
-																		<div class="box-body">
+																	<!-- <div class="box box-widget "> -->
+																		<!-- <div class="box-body"> -->
 																			<table id="tbl_diagnosa" style="border: 2" class="table table-bordered table-striped DataTable">
 																				<thead>
 																					<tr>
@@ -164,25 +163,25 @@
 																						<th class="text-center">Keluhan</th>
 																						<th class="text-center">Anamnesa</th>
 																						<th class="text-center">Diagnosa</th>
-																						<th style="width: 10%;" class="text-center">Aksi</th>
+																						<!-- <th style="width: 10%;" class="text-center">Aksi</th> -->
 																					</tr>
 																				</thead>
 																				<tbody>
 																					
 																				</tbody>
 																			</table>
-																		</div>
-																	</div>
+																		<!-- </div> -->
+																	<!-- </div> -->
 																</div>
 															</div>
 														</div>
 														<div class="tab-pane " id="tab_tin">
 															<div class="row">
 																<div  class="col-md-12">
-																	<div class="box box-primary box-solid">
-																		<div class="box-header with-border">
+																	<div class="box box-widget">
+																		<!-- <div class="box-header with-border">
 																				<h3 class="box-title">Tindakan</h3>
-																		</div>
+																		</div> -->
 																		<form class="formPemeriksaan form-horizontal">
 																			<div class="box-body">
 																				<div class="row">
@@ -227,7 +226,7 @@
 																				<th>No</th>
 																				<th>Tanggal</th>
 																				<th>Tindakan/Layanan</th>
-																				<th>Aksi</th>
+																				<!-- <th>Aksi</th> -->
 																			</tr>
 																		</thead>
 																		<tbody>
@@ -240,10 +239,10 @@
 														<div class="tab-pane " id="tab_res">
 															<div class="row">
 																<div  class="col-md-12">
-																	<div class="box box-primary box-solid">
-																		<div class="box-header with-border">
+																	<div class="box box-widget">
+																		<!-- <div class="box-header with-border">
 																				<h3 class="box-title">Resep Obat</h3>
-																		</div>
+																		</div> -->
 																		<form class="formPemeriksaan form-horizontal">
 																			<div class="box-body">
 																				<div class="row">
@@ -311,7 +310,7 @@
 																				<th>Tanggal</th>
 																				<th>Nama Obat</th>
 																				<th>Jumlah</th>
-																				<th>Aksi</th>
+																				<!-- <th>Aksi</th> -->
 																			</tr>
 																		</thead>
 																		<tbody>
@@ -328,8 +327,8 @@
 									</div>
 								</div>
 							</div>
-						<!-- </div>
-					</div> -->
+						</div>
+					</div>
 					<!-- akhir box widget 1 -->
 			</section>
 		</div>
@@ -347,7 +346,7 @@
 						type:'DELETE',
 						success:function(data){
 							try {
-								alert("Berhasil");setTableDiagnosa(id_pasien);
+								alert("Berhasil");
 								window.location.reload();
 							} catch (error) {
 								alert("gagal");
@@ -507,7 +506,7 @@
 															"<input type='text' name='jumlah_obat[]' class='form-control' />"+
 														"</div>"+
 														"<div class='col-md-5'>"+
-															"<select class='form-control' name='satuan_obat[]' required>"+
+															"<select class='form-control selectObat' name='satuan_obat[]' required>"+
 															"<option selected disabled value=''>-Pilih Satuan-</option>"+
 																<?php foreach($satuans as $satuan):?>
 																	"<option value='<?= $satuan->satuan_id;?>'><?= $satuan->satuan_nama;?></option>"+
@@ -523,8 +522,8 @@
 												"</div>"+
 											"</div>";
 				$('#wrapperObat').append(tambah);
-				$('#wrapperObat').on("click","#btn_remove_obat",function(e){
-					e.preventdefault();
+				$('#wrapperObat').on("click","#btn_remove_Obat",function(e){
+					e.preventDefault();
 					$(this).closest('.divObat').remove();
 				});
 				$('.selectObat').select2();
@@ -562,7 +561,7 @@
 									 ObjectData[key]["keluhan"],
 									 ObjectData[key]["anamnesa"],
 									 ObjectData[key]["diagnosa"],
-									 btn_hapus
+									//  btn_hapus
 								 ]).draw(false);
 							 }
 						 }
@@ -591,7 +590,7 @@
 									 counter++,
 									 ObjectData[key]["tgl_pemeriksaan"],
 									 ObjectData[key]["nama_layanan"],
-									 btn_hapus
+									//  btn_hapus
 								 ]).draw(false);
 							 }
 						 }
@@ -621,7 +620,7 @@
 									 ObjectData[key]["tgl_pemeriksaan"],
 									 ObjectData[key]["nama_obat"],
 									 ObjectData[key]["qty_obat"],
-									 btn_hapus
+									//  btn_hapus 
 								 ]).draw(false);
 							 }
 						 }
@@ -630,8 +629,9 @@
 			}
 			$('.formPemeriksaan').submit(function(e){
 				e.preventDefault();
-				console.log("POSTED");
-				$.ajax({
+				var isTrue = confirm("Setelah disimpan, data tidak bisa diubah atau dihapus. Anda yakin sudah mengisi data dengan benar?");
+				if(isTrue){
+					$.ajax({
 					type:"post",
 					url:"<?= site_url('Pemeriksaan/form');?>"+"/"+id_pasien+"/"+no_registrasi,
 					cache:false,
@@ -658,6 +658,9 @@
 						}
 					}
 				});
+				} else{
+
+				}
 			});
 		});
 		</script>

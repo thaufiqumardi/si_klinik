@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once APPPATH."third_party/printpos/autoload.php";
 
 class Kasir extends MX_Controller {
 
@@ -40,10 +41,19 @@ class Kasir extends MX_Controller {
 	}
 	function CetakTransaksi($no_kuitansi){
 		$data['detail_pemasukan']=$this->M_crud->get_by_id('pemasukan','no_kuitansi',$no_kuitansi);
+		$id_registrasi = $data['detail_pemasukan']->id_registrasi;
+		$data['pasien']   = $this->modelKasir->get_pasien_by_registrasi($id_registrasi);
 		$data['transaksi'] = $this->M_crud->get_select_to_array('*','transaksi_kasir','obat','transaksi_kasir.id_barang=obat.id_obat','no_kuitansi',$no_kuitansi);
-		// echo json_encode($data['detail_pemasukan']);
+		// echo json_encode($data);
 		// die;
-		$this->load->view('print',$data);
+		if(!empty($id_registrasi)){
+			$data['detail_berobat'] = $this->modelKasir->get_pembiayaan($id_registrasi);
+			// echo json_encode($data['detail_berobat']);
+			$this->load->view('print_pembiayaan',$data);
+		} else {
+			$this->load->view('print',$data);
+		}
+		
 	}
 	function transaksiBarang(){
 		if($_POST){
@@ -87,16 +97,23 @@ class Kasir extends MX_Controller {
 	function simpanPemasukan(){
 		$id_registrasi =$this->input->post('id_registrasi');
 		$harga = str_replace('.','',$this->input->post('total_bayar'));
-		$uang_bayar = $this->input->post('jmlh_bayar');
+		$uang_bayar = str_replace(",","",$this->input->post('jmlh_bayar'));
 		$uang_kembalian = str_replace('.','',$this->input->post('kembalian'));
 		$qty = 1;
 		$total = $harga * $qty;
 		$no_kuitansi = $this->input->post('no_kuitansi_pemasukan');
+		if(!empty($id_registrasi)){
+			$nama_pemasukan	= "Pasien Berobat";
+			$jenis_pemasukan	= "Pasien Berobat";
+		} else {
+			$nama_pemasukan		= "Transaksi Obat Apotek";
+			$jenis_pemasukan	=	"Obat";
+		}
 		$data = array(
 			'no_kuitansi'=>$no_kuitansi,
 			'id_registrasi'=>$id_registrasi,
-			'nama_pemasukan'=>"Transaksi Obat Apotek",
-			'jenis_pemasukan'=>"Obat",
+			'nama_pemasukan'=>$nama_pemasukan,
+			'jenis_pemasukan'=>$jenis_pemasukan,
 			'harga_pemasukan'=>$harga,
 			'qty_pemasukan'=>$qty,
 			'total_pemasukan'=>$total,
