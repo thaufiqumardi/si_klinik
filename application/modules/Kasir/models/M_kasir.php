@@ -167,6 +167,13 @@ class M_kasir extends CI_Model
 								->where('kode_obat',$kode_obat);
 			return $this->db->get()->row();
 		}
+		function getObatByNamaObat($nama_obat){
+			$this->db->from('obat')
+								->join('satuan','obat.id_satuan=satuan.satuan_id')
+								->join('harga_obat','obat.id_obat=harga_obat.id_obat')
+								->where('nama_obat',$nama_obat);
+			return $this->db->get()->row();
+		}
 		function getTransaksiObatNow($no_kuitansi){
 			$this->db->from('transaksi_kasir')
 								->join('obat','obat.id_obat=transaksi_kasir.id_barang')

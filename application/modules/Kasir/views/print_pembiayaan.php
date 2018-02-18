@@ -25,138 +25,115 @@ if(!empty($menusid)){
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php $this->load->view('template/v_header'); ?>
-    <!-- <link rel="stylesheet" href="<?php echo base_url('assets/css/paper.css');?>"> -->
-    <style>
-    /*@page { size: 58mm 100mm } /* output size */
-    /*body.receipt .sheet { width: 58mm; height: 100mm } /* sheet size */
-    /* @media print { body.receipt { width: 58mm } } fix for Chrome */
-  </style>
+    <?php //$this->load->view('template/v_header'); ?>
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/invoice-pos.css');?>">
     </head>
-    <!-- <body class="receipt">
-    <section class="sheet padding-10mm"> -->
     <body>
-    <!-- <section> -->
-    <div class="wrapper">
-      <section class="invoice">
-				<?php
-					$now = date('D');
-					$hari = array(
-						'Sun'=>'Minggu',
-						'Mon' => 'Senin',
-						'Tue' => 'Selasa',
-						'Wed' => 'Rabu',
-						'Thu' => 'Kamis',
-						'Fri' => "Jum'at",
-						'Sat' => 'Sabtu'
-					);
-					$bulan = array(
-						'01' => 'Januari',
-						'02' => 'Februari',
-						'03' => 'Maret',
-						'04' => 'April',
-						'05' => 'Mei',
-						'06' => 'Juni',
-						'07' => 'Juli',
-						'08' => 'Agustus',
-						'09' => 'September',
-						'10' => 'Oktober',
-						'11' => 'November',
-						'12' => 'Desember',
+			<?php
+						$now = date('D');
+						$hari = array(
+							'Sun'=>'Minggu',
+							'Mon' => 'Senin',
+							'Tue' => 'Selasa',
+							'Wed' => 'Rabu',
+							'Thu' => 'Kamis',
+							'Fri' => "Jum'at",
+							'Sat' => 'Sabtu'
 						);
-					?>
-        <div class="row">
-          <div class="col-xs-12">
-            <h2 class="page-header">
-              <i class="fa fa-globe"></i> JASA PRIMA KLINIK
-              <small class="pull-right">Waktu Cetak: <?= date('d').' '.$bulan[date('m')].' '.date('Y').' - '.date('H:i:s');?></small>
-            </h2>
-          </div>
-      
-        </div>
-        <div class="row invoice-info" >
-          <div class="col-xs-12">
-            <dl class="dl-horizontal">
-							<dt>
-								No. Nota :
-							</dt>
-							<dd>
-								<?= $detail_pemasukan->no_kuitansi;?>
-							</dd>
-							<dt>
-								Nama Pasien :
-							</dt>
-							<dd>
-								<?= $pasien->nama_pasien;?>
-							</dd>
-							<dt>
-								Waktu Daftar :
-							</dt>
-							<dd>
-                <?php
+						$bulan = array(
+							'01' => 'Januari',
+							'02' => 'Februari',
+							'03' => 'Maret',
+							'04' => 'April',
+							'05' => 'Mei',
+							'06' => 'Juni',
+							'07' => 'Juli',
+							'08' => 'Agustus',
+							'09' => 'September',
+							'10' => 'Oktober',
+							'11' => 'November',
+							'12' => 'Desember',
+							);
+						?>
+			<div id="invoice-POS">
+				<center id="top">
+					<div class="logo"></div>
+					<div class="info"> 
+						<p style="margin-bottom:0px;">JASA PRIMA MEDICAL CENTRE</p>
+						<small>Jl. Pilang Raya No.147 Cirebon</small>
+					</div><!--End Info-->
+				</center><!--End InvoiceTop-->
+				<div id="mid">
+					<div class="info">
+						<p class="itemtext"> 
+								<b>Kasir</b> : <?= $this->session->userdata['simklinik']['ap_name'];?></br>
+                <b>No. Struk</b>: <?= $detail_pemasukan->no_kuitansi;?></br>
+                <b>Nama Paisen</b>: <?= $pasien->nama_pasien;?></br>
+                <b>Waktu Daftar</b>:  <?php
                   $tgl = date('d-M-Y',strtotime($pasien->tgl_registrasi));
                   echo $tgl.' '.$pasien->jam_registrasi;
                   ?>
-							</dd>
-						</dl>
-          </div>
-      
-        </div>
-        <div class="row">
-          <div class="col-xs-12 table-responsive">
-          <table class="table table-striped tableData table-hover table-bordered">
-                    <thead>
-                      <tr>
-                        <th>No.</th>
-                        <th>Nama Item</th>
-                        <th>Tarif / Harga</th>
-                        <th>Qty</th>
-                        <th>Total Harga</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php foreach($detail_berobat as $key => $row):?>
-                        <?php
+						</p>
+					</div>
+				</div><!--End Invoice Mid-->
+				<div id="bot">
+							<div id="table">
+								<table>
+									<tr class="tabletitle">
+										<td class="item"><h2>Item</h2></td>
+										<td class="Hours"><h2>Qty</h2></td>
+										<td class="Rate"><h2>Sub Total</h2></td>
+									</tr>
+                  <?php foreach($detail_berobat as $key => $row):?>
+                  <?php
                           $harga = $this->M_base->currformat2($row->harga);
                           $harga = substr($harga,0,-3);
                           $total = $this->M_base->currformat2($row->total_harga);
                           $total = substr($total,0,-3);
                         ?>
-                        <tr>
-                          <td><?= ++$key;?></td>
-                          <td><?= $row->nama_item;?></td>
-                          <td><?= $harga;?></td>
-                          <td><?= intval($row->qty);?></td>
-                          <td><?= $total;?></td>
-                        </tr>
-                      <?php endforeach;?>
-                    </tbody>
-                  </table>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6 pull-right">
-            <div class="table-responsive">
-              <table class="table">
-                <tr>
-                  <th style="width:50%">Subtotal:</th>
-                  <td>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->total_pemasukan), 0, -3);?></td>
-                </tr>
-                <tr>
-                  <th>Uang Bayar</th>
-                  <td>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_bayar), 0, -3);?></td>
-                </tr>
-                <tr>
-                  <th>Uang Kembali</th>
-                  <td>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_kembalian), 0, -3);?></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-     </section>
-    </div>
-    <!-- </section> -->
+									<tr class="service">
+										<td class="tableitem">
+											<p class="itemtext"><?= $row->nama_item;?></p>
+										</td>
+										<td class="tableitem">
+										<p class="itemtext"><?= intval($row->qty);?></p>
+										</td>
+										<td class="tableitem">
+										<p class="itemtext"><?= $total;?></p>
+										</td>
+									</tr>
+									<?php endforeach;?>
+								</table>
+								<table>
+								<tr class="tabletitle">
+										<!-- <td></td> -->
+										<td class="Rate" style="text-align:right;" colspan='2'><h2>Total</h2></td>
+										<td class="payment" style="text-align:center;"><h2>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->total_pemasukan), 0, -3);?></h2></td>
+									</tr>
+									<tr class="tabletitle">
+										<!-- <td></td> -->
+										<td class="Rate" style="text-align:right;" colspan='2'><h2>Tunai</h2></td>
+										<td class="payment" style="text-align:center;"><h2>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_bayar), 0, -3);?></h2></td>
+									</tr>
+									<tr class="tabletitle">
+										<!-- <td></td> -->
+										<td class="Rate" style="text-align:right;" colspan='2'><h2>Kembalian</h2></td>
+										<td class="payment" style="text-align:center;"><h2>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_kembalian), 0, -3);?></h2></td>
+									</tr>
+								</table>
+							</div><!--End Table-->
+
+							<div id="legalcopy">
+								<p class="legal" style="text-align:center;">
+									<strong>=======Terimakasih=======<br>====Semoga Lekas Sembuh====</strong><br>
+									<small><?= date('d').' '.$bulan[date('m')].' '.date('Y').'  '.date('H:i:s');?></small>
+								</p>
+							</div>
+
+						</div><!--End InvoiceBot-->
+			</div><!--End Invoice-->
+
+			<!-- ./wrapper -->
     </body>
 		<script type="text/javascript">
 window.print();

@@ -204,3 +204,8 @@
     <?php $this->load->view('template/v_footer'); ?>
 
 </html>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#mnrekammedik').addClass('active');
+	});
+</script>

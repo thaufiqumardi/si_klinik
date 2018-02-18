@@ -208,7 +208,7 @@ class Layanan extends MX_Controller {
     			'No',
     			'Nama Layanan',
     			'Tarif Normal',
-    			'Tarif Khusus'
+    			// 'Tarif Khusus'
     	];
 
     	$dataList = array();
@@ -219,20 +219,22 @@ class Layanan extends MX_Controller {
     		$no++;
     		$row = array();
     		$row[] = $no;
-    		$tarif = $this->M_base->currFormat2($datas->tarif_layanan);
-    		$tarif = str_replace(".00", "", $tarif);
-    		$tarif = "Rp. ".$tarif;
-
-    		$tarif_khusus = "";
-    		if(!empty($datas->tarif_khusus)){
-    			$tarif_khusus = $this->M_base->currFormat2($datas->tarif_khusus);
-    			$tarif_khusus = str_replace(".00", "", $tarif_khusus);
-    			$tarif_khusus = "Rp. ".$tarif_khusus;
-    		}
+    		// $tarif = $this->M_base->currFormat2($datas->tarif_layanan);
+    		// $tarif = str_replace(".00", "", $tarif);
+    		// $tarif = "Rp. ".$tarif;
+				$tarif = $this->M_base->currFormat2($datas->tarif_layanan);
+				$tarif = substr($tarif,0,-3);
+				$tarif = "Rp. ".$tarif;
+    		// $tarif_khusus = "";
+    		// if(!empty($datas->tarif_khusus)){
+    		// 	$tarif_khusus = $this->M_base->currFormat2($datas->tarif_khusus);
+    		// 	$tarif_khusus = str_replace(".00", "", $tarif_khusus);
+    		// 	$tarif_khusus = "Rp. ".$tarif_khusus;
+    		// }
 
     		$row[] = $datas->nama_layanan;
     		$row[] = $tarif;
-    		$row[] = $tarif_khusus;
+    		// $row[] = $tarif_khusus;
     		$dataList[] = $row;
     	}
 

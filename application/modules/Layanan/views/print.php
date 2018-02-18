@@ -38,9 +38,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<tbody>
 			<?php $i=1; foreach($layanan as $row):?>
 			<?php
-				$tarif_layanan = $this->M_base->currFormat2($row->tarif_layanan);
-				$tarif_layanan = str_replace(".00", "", $tarif_layanan);
-				$tarif_layanan = "Rp. ".$tarif_layanan;
+				// $tarif_layanan = $this->M_base->currFormat2($row->tarif_layanan);
+				// $tarif_layanan = str_replace(".00", "", $tarif_layanan);
+				// $tarif_layanan = "Rp. ".$tarif_layanan;
+
+				$tarif = $this->M_base->currFormat2($row->tarif_layanan);
+										// $tarif = str_replace(".00", "", $tarif);
+										$tarif = substr($tarif,0,-3);
+										$tarif = "Rp. ".$tarif;
 
 				// $tarif_khusus = "";
 				// if(!empty($row->tarif_khusus)){
@@ -52,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<tr>
 				<td><?php echo $i++;?></td>
 				<td><?php echo $row->nama_layanan;?></td>
-				<td><?php echo $tarif_layanan;?></td>
+				<td><?php echo $tarif;?></td>
 				<!-- <td><?php echo $tarif_khusus;?></td> -->
 			</tr>
 			<?php endforeach;?>

@@ -39,6 +39,14 @@ class Kasir extends MX_Controller {
 		$obat->harga_jual1 = substr($obat->harga_jual1,0,-3);
 		echo json_encode($obat);
 	}
+	function getObatByNama($nama_obat){
+		// echo $nama_obat;
+		// die;
+		$obat = $this->modelKasir->getObatByNamaObat($nama_obat);
+		$obat->harga_jual1 = $this->M_base->currFormat2($obat->harga_jual1);
+		$obat->harga_jual1 = substr($obat->harga_jual1,0,-3);
+		echo json_encode($obat);
+	}
 	function CetakTransaksi($no_kuitansi){
 		$data['detail_pemasukan']=$this->M_crud->get_by_id('pemasukan','no_kuitansi',$no_kuitansi);
 		$id_registrasi = $data['detail_pemasukan']->id_registrasi;

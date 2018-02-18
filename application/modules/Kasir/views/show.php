@@ -50,7 +50,7 @@ if(!empty($menusid)){
 							<div class="row">
 								<div class="col-md-4">
 									<div class="row" style="margin-bottom:5%;">
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<label class="control-label col-md-2">Kd_Obat</label>
 											<div class="col-md-10">
 												<div class="input-group input-group-sm">
@@ -59,17 +59,35 @@ if(!empty($menusid)){
 														<button type="button" id="btnSearchBarang"  class="btn btn-small btn-primary btn-flat"><i class="fa fa-search"></i></button>
 													</span>
 												</div>
-
+											</div>
+										</div> -->
+										<div class="form-group">
+											<label class="control-label col-md-2">Nama</label>
+											<div class="col-md-10">
+												<div class="input-group input-group-sm">
+													<input type="text" name="nama_obat " required id="searchByNamaObat" class="form-control" />
+													<span class="input-group-btn">
+														<button type="button" id="btn_searchObat"  class="btn btn-small btn-primary btn-flat"><i class="fa fa-search"></i></button>
+													</span>
+												</div>
 											</div>
 										</div>
 									</div>
 									<form id="form_transaksi" class="form-horizontal">
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<label class="control-label col-md-2">Nama</label>
 											<div class="col-md-10">
 												<input type="hidden" name="no_kuitansi" class="ignoreReset" value="<?=$no_kuitansi;?>" />
 												<input type="hidden" name="id_barang" />
 												<input type="text" name="nama_barang" class="form-control" readonly  />
+											</div>
+										</div> -->
+										<div class="form-group">
+											<label class="control-label col-md-2">Kode</label>
+											<div class="col-md-10">
+												<input type="hidden" name="no_kuitansi" class="ignoreReset" value="<?=$no_kuitansi;?>" />
+												<input type="hidden" name="id_barang" />
+												<input type="text" name="kd_obat" class="form-control" readonly  />
 											</div>
 										</div>
 										<div class="form-group">
@@ -226,7 +244,38 @@ if(!empty($menusid)){
 				else{
 					getObat(data);
 				}
+			});
+			$('#searcByNamaObat').keyup(function(event){
+				if(event.keyCode==13){
+					var data = $(this).val();
+					getObatByNama(data);
+				}
+			});
+			$('#btn_searchObat').click(function(){
+				var data = $('#searchByNamaObat').val();
+				if(data == ''){
+					alert("Masukan Kode Obat Untuk Dicari");
+				}
+				else{
+					getObatByNama(data);
+				}
 			})
+			function getObatByNama(data){
+				var uri = "<?= site_url('Kasir/getObatByNama');?>";
+				$.get(uri+'/'+data,function(data){
+					if(data==null){
+						alert("Data Obat tidak ada");
+					}
+					else{
+						$("input[name='id_barang']").val(data.id_obat);
+						$("input[name='kd_obat']").val(data.kode_obat);
+						$("input[name='satuan_barang']").val(data.satuan_nama);
+						$("input[name='id_satuan']").val(data.satuan_id);
+						$("input[name='harga_barang']").val(data.harga_jual1);
+						$("#infoStok").text(data.stok);
+					}
+				},"JSON");
+			}
 			function getObat(data){
 				var uri = "<?= site_url('Kasir/getObatByKd');?>";
 				$.get(uri+'/'+data,function(data){

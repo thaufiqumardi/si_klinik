@@ -25,142 +25,104 @@ if(!empty($menusid)){
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php $this->load->view('template/v_header'); ?>
+		<?php //$this->load->view('template/v_header'); ?>
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/invoice-pos.css');?>">
     </head>
     <body>
-    <div class="wrapper">
-      <!-- Main content -->
-      <section class="invoice">
-        <!-- title row -->
-				<?php
-					$now = date('D');
-					$hari = array(
-						'Sun'=>'Minggu',
-						'Mon' => 'Senin',
-						'Tue' => 'Selasa',
-						'Wed' => 'Rabu',
-						'Thu' => 'Kamis',
-						'Fri' => "Jum'at",
-						'Sat' => 'Sabtu'
-					);
-					$bulan = array(
-						'01' => 'Januari',
-						'02' => 'Februari',
-						'03' => 'Maret',
-						'04' => 'April',
-						'05' => 'Mei',
-						'06' => 'Juni',
-						'07' => 'Juli',
-						'08' => 'Agustus',
-						'09' => 'September',
-						'10' => 'Oktober',
-						'11' => 'November',
-						'12' => 'Desember',
+			<?php
+						$now = date('D');
+						$hari = array(
+							'Sun'=>'Minggu',
+							'Mon' => 'Senin',
+							'Tue' => 'Selasa',
+							'Wed' => 'Rabu',
+							'Thu' => 'Kamis',
+							'Fri' => "Jum'at",
+							'Sat' => 'Sabtu'
 						);
-					?>
-        <div class="row">
-          <div class="col-xs-12">
-            <h2 class="page-header">
-              <i class="fa fa-globe"></i> JASA PRIMA KLINIK
-              <small class="pull-right">Waktu Cetak: <?= date('d').' '.$bulan[date('m')].' '.date('Y').' - '.date('H:i:s');?></small>
-            </h2>
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- info row -->
-        <div class="row invoice-info" >
-          <div class="col-sm-8">
-            <dl class="dl-horizontal">
-							<dt>
-								No. Nota :
-							</dt>
-							<dd>
-								<?= $detail_pemasukan->no_kuitansi;?>
-							</dd>
-							<dt>
-								Pelanggan :
-							</dt>
-							<dd>
-								Umum
-							</dd>
-							<dt>
-								Keterangan :
-							</dt>
-							<dd>
-								Pembelian Obat
-							</dd>
-						</dl>
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
-        <!-- Table row -->
-        <div class="row">
-          <div class="col-xs-12 table-responsive">
-            <table class="table table-striped table-bordered">
-              <thead>
-              <tr>
-                <th>Kode Obat</th>
-                <th>Nama Obat</th>
-                <th>Harga</th>
-                <th>Qty</th>
-                <th>Total</th>
-              </tr>
-              </thead>
-              <tbody>
-								<?php foreach($transaksi as $trx):?>
-									<tr>
-										<td>
-											<?= $trx->kode_obat;?>
+						$bulan = array(
+							'01' => 'Januari',
+							'02' => 'Februari',
+							'03' => 'Maret',
+							'04' => 'April',
+							'05' => 'Mei',
+							'06' => 'Juni',
+							'07' => 'Juli',
+							'08' => 'Agustus',
+							'09' => 'September',
+							'10' => 'Oktober',
+							'11' => 'November',
+							'12' => 'Desember',
+							);
+						?>
+			<div id="invoice-POS">
+				<center id="top">
+					<div class="logo"></div>
+					<div class="info"> 
+						<p style="margin-bottom:0px;">JASA PRIMA MEDICAL CENTRE</p>
+						<small>Jl. Pilang Raya No.147 Cirebon</small>
+					</div><!--End Info-->
+				</center><!--End InvoiceTop-->
+				<div id="mid">
+					<div class="info">
+						<p class="itemtext"> 
+								<b>Kasir</b> : <?= $this->session->userdata['simklinik']['ap_name'];?></br>
+								<b>No. Struk</b>: <?= $detail_pemasukan->no_kuitansi;?>
+						</p>
+					</div>
+				</div><!--End Invoice Mid-->
+				<div id="bot">
+							<div id="table">
+								<table>
+									<tr class="tabletitle">
+										<td class="item"><h2>Item</h2></td>
+										<td class="Hours"><h2>Qty</h2></td>
+										<td class="Rate"><h2>Sub Total</h2></td>
+									</tr>
+									<?php foreach($transaksi as $trx):?>
+									<tr class="service">
+										<td class="tableitem">
+											<p class="itemtext"><?= $trx->nama_obat;?></p>
 										</td>
-										<td>
-											<?= $trx->nama_obat;?>
+										<td class="tableitem">
+										<p class="itemtext"><?= $trx->qty_barang;?></p>
 										</td>
-										<td>
-											<?= substr($this->M_base->currFormat2($trx->harga_barang),0,-3);?>
-										</td>
-										<td>
-											<?= $trx->qty_barang;?>
-										</td>
-										<td>
-											<?= substr($this->M_base->currFormat2($trx->total_harga),0,-3);?>
+										<td class="tableitem">
+										<p class="itemtext"><?= substr($this->M_base->currFormat2($trx->total_harga),0,-3);?></p>
 										</td>
 									</tr>
-								<?php endforeach;?>
-              </tbody>
-            </table>
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
+									<?php endforeach;?>
+								</table>
+								<table>
+								<tr class="tabletitle">
+										<!-- <td></td> -->
+										<td class="Rate" style="text-align:right;" colspan='2'><h2>Total</h2></td>
+										<td class="payment" style="text-align:center;"><h2>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->total_pemasukan), 0, -3);?></h2></td>
+									</tr>
+									<tr class="tabletitle">
+										<!-- <td></td> -->
+										<td class="Rate" style="text-align:right;" colspan='2'><h2>Tunai</h2></td>
+										<td class="payment" style="text-align:center;"><h2>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_bayar), 0, -3);?></h2></td>
+									</tr>
+									<tr class="tabletitle">
+										<!-- <td></td> -->
+										<td class="Rate" style="text-align:right;" colspan='2'><h2>Kembalian</h2></td>
+										<td class="payment" style="text-align:center;"><h2>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_kembalian), 0, -3);?></h2></td>
+									</tr>
+								</table>
+							</div><!--End Table-->
 
-        <div class="row">
-          <div class="col-xs-6 pull-right">
-            <div class="table-responsive">
-              <table class="table">
-                <tr>
-                  <th style="width:50%">Subtotal:</th>
-                  <td>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->total_pemasukan), 0, -3);?></td>
-                </tr>
-                <tr>
-                  <th>Uang Bayar</th>
-                  <td>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_bayar), 0, -3);?></td>
-                </tr>
-                <tr>
-                  <th>Uang Kembali</th>
-                  <td>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_kembalian), 0, -3);?></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- ./wrapper -->
+							<div id="legalcopy">
+								<p class="legal" style="text-align:center;">
+									<strong>=======Terimakasih=======<br>====Semoga Lekas Sembuh====</strong><br>
+									<small><?= date('d').' '.$bulan[date('m')].' '.date('Y').'  '.date('H:i:s');?></small>
+								</p>
+							</div>
+
+						</div><!--End InvoiceBot-->
+			</div><!--End Invoice-->
+
+			<!-- ./wrapper -->
     </body>
 		<!-- <script type="text/javascript">
 window.print();

@@ -88,8 +88,8 @@
 
 			}
     $(document).ready(function(){
-    $('#mnMasterRekamMedik').addClass('active');
-      $('#mnRekamMedikPasien').addClass('active');
+    $('#mnrekammedik').addClass('active');
+      // $('#mnRekamMedikPasien').addClass('active');
     });
 
     $(function () {

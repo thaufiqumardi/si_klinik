@@ -106,13 +106,19 @@
 																						<div class="form-group">
 																							<label class="control-label col-md-3">Berat Badan</label>
 																							<div class="col-md-9">
-																								<input type="text" class="form-control"  name="berat_badan" placeholder="(Kg)">
+																								<div class="input-group">
+																								<input type="text" class="form-control"  name="berat_badan" data-inputmask='"mask": "999"' data-mask>
+																								<span class="input-group-addon">KG</span>
+																								</div>
 																							</div>
 																						</div>
 																						<div class="form-group">
 																							<label class="control-label col-md-3">Tinggi Badan</label>
 																							<div class="col-md-9">
-																								<input type="text" class="form-control"  name="tinggi_badan" placeholder="(Cm)">
+																								<div class="input-group">
+																								<input type="text" class="form-control"  name="tinggi_badan" data-inputmask='"mask": "999"' data-mask>
+																								<span class="input-group-addon">CM</span>
+																								</div>
 																							</div>
 																						</div>
 																					</div>
