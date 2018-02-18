@@ -47,8 +47,8 @@
     			<td width=10% style="border:none; padding:0;">
     			</td>
                 <td align=center style="border:none; font-size:12px;">
-					<span>IZIN NO:445/1617-DINKES/04-S1-KK/IV/05</span><br>
-					<p>Jl. Kiaracondong 304/19-21 telp. (022) 7311759</p>
+					<span></span><br>
+					<p>Jl. Raya Pilang No. 147 Cirebon</p>
                 </td>
                 <td width=10% style="border:none; padding:0;"></td>
     		</tr>
