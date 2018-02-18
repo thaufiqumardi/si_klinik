@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
 
@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
     </head>
-    <body class="fixed hold-transition skin-blue-light sidebar-mini">
+    <body class="fixed hold-transition skin-blue-light ">
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
@@ -24,13 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<?php
 				}
-				?>			        
-						<div class="box box-widget">
+				?>
+						<div class="box box-primary box-solid">
 							<div class="box-header with-border">
 								<h3 class="box-title pull-left"> Data Pemilik</h3>
 							</div>
 							<form class="form-group" action="<?php echo site_url('owner/update').'/'.$owner_id;?>" method="post" enctype="multipart/form-data">
-							<div class="box-body">								
+							<div class="box-body">
 									<div class="row">
 								 		<div class="col-md-6">
 								 			<div class="form-group">
@@ -68,14 +68,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							</div>
 							</form>
-						</div>		
+						</div>
     		</section>
     	</div>
 		<?php $this->load->view('template/v_copyright'); ?>
     </body>
-    
+
     <?php $this->load->view('template/v_footer'); ?>
-    
+
     <script type="text/javascript">
     $(document).ready(function() {
     	$('#mnPengaturan').addClass('active');
@@ -93,5 +93,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			};
 	};
 	</script>
-    
+
 </html>

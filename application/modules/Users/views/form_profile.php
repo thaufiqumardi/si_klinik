@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
 
@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
     </head>
-    <body class="fixed hold-transition skin-blue-light sidebar-mini">
+    <body class="fixed hold-transition skin-blue-light ">
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
@@ -25,8 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 				}
 				?>
-    			<div class="row">		        
-						<div class="col-md-12">		
+    			<div class="row">
+						<div class="col-md-12">
 							<div class="box box-primary box-solid">
 							<div class="box-header with-border">
 								  <h3 class="box-title">Profile Pengguna</h3>
@@ -35,18 +35,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								  <input type="hidden" name="id" value="<?= $user_id ?>">
 								  <div  class="box-body">
 									<div class="form-group">
-									  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pengguna</label>					
+									  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pengguna</label>
 									  <div class="col-sm-4">
 										<input type="text" name="username" class="form-control" value="<?php echo (isset($username) ? $username : ''); ?>" placeholder="Masukan Nama Pengguna..." required="required">
 									  </div>
 									</div>
-											
+
 									<div class="form-group">
-									  <label for="inputEmail3" class="col-sm-2 control-label">Kata Kunci</label>					
+									  <label for="inputEmail3" class="col-sm-2 control-label">Kata Kunci</label>
 									  <div class="col-sm-4">
-										<input type="password" name="password" id="password" class="form-control" 
+										<input type="password" name="password" id="password" class="form-control"
 												placeholder="Masukan Kata Kunci..." onblur="cekpassword()"
-										<?php 
+										<?php
 										if(!isset($user_id)){
 										?>
 											required="required">
@@ -59,15 +59,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										?>
 									  </div>
 									</div>
-									
+
 									<div class="form-group">
-									  <label for="inputEmail3" class="col-sm-2 control-label">Konfirmasi Kata Kunci</label>					
+									  <label for="inputEmail3" class="col-sm-2 control-label">Konfirmasi Kata Kunci</label>
 									  <div class="col-sm-4">
 										<input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Masukan Konfirmasi Kata Kunci...">
 									  </div>
 									</div>
-									
-									<div class="form-group">					
+
+									<div class="form-group">
 										<label for="inputEmail3" class="col-sm-2 control-label">Photo</label>
 										<div class="col-sm-3">
 											<div class="input-group">
@@ -77,7 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</div>
 										</div>
 									</div>
-								  
+
 								  <div class="box-footer">
 									<div  class="form-group">
 								  		<label for="inputEmail3" class="col-sm-2 control-label"></label>
@@ -88,17 +88,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								  </div>
 								  </div>
 								</form>
-								
+
 							</div>
-						</div>	
+						</div>
 				</div>
     		</section>
     	</div>
 		<?php $this->load->view('template/v_copyright'); ?>
     </body>
-    
+
     <?php $this->load->view('template/v_footer'); ?>
-    
+
     <script type="text/javascript">
     $(document).ready(function() {
         $('#alert').delay(10000).fadeOut("slow");
@@ -123,4 +123,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	};
     </script>
 </html>
-

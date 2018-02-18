@@ -94,6 +94,10 @@
 				<label class="col-md-9" style="text-align: left;"><?php echo $pasien['no_telp_rumah'] ?></label>
 			</div>
 			<div class="form-group">
+				<label class="col-md-4" style="text-align: left;">No. Handphone</label>
+				<label class="col-md-8" style="text-align: left;"><?php echo $pasien['no_handphone'] ?></label>
+			</div>
+			<div class="form-group">
 				<label class="col-md-3" style="text-align: left;">Alamat</label>
 				<label class="col-md-9" style="text-align: left;"><?php echo $pasien['jalan'] ?></label>
 			</div>

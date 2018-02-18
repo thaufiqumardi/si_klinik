@@ -23,7 +23,7 @@
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
     </head>
-    <body class="fixed hold-transition skin-blue-light sidebar-mini">
+    <body class="fixed hold-transition skin-blue-light">
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
@@ -35,7 +35,7 @@
 							<h3 class="box-title">Daftar Pasien</h3>
 						</div>
 						<div class="box-body">
-						
+
 							<table id="example2" style="border: 2" class="table table-bordered table-striped DataTable">
 								<thead>
 									<tr>

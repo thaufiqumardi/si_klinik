@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <!DOCTYPE html>
@@ -17,41 +17,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-xs-2">
 			<img src="<?php echo config_item('owner_image'); ?>" style="position:'center';" class="img-responsive">
 		</div>
-		<div class="col-xs-10 text-center">
+		<div class="col-xs-9 text-center">
 			<br>
 			<span>IZIN NO:445/1617-DINKES/04-S1-KK/IV/05</span><br>
 			<p>Jl. Kiaracondong 304/19-21 telp. (022) 7311759</p>
 		</div>
 		<hr>
 	</div>
+	<br>
+	<br>
 	<table style="border: 2" class="table table-bordered table-striped DataTable">
 		<thead>
 			<tr>
-				<th>#</th>
+				<th>No.</th>
 				<th>Nama Layanan</th>
-				<th>Tarif Normal</th>
-				<th>Tarif Khusus</th>
+				<th>Tarif</th>
+				<!-- <th>Tarif Khusus</th> -->
 			</tr>
 		</thead>
 		<tbody>
 			<?php $i=1; foreach($layanan as $row):?>
-			<?php 
-				$tarif = $this->M_base->currFormat2($row->tarif);
-				$tarif = str_replace(".00", "", $tarif);
-				$tarif = "Rp. ".$tarif;
-				
-				$tarif_khusus = "";
-				if(!empty($row->tarif_khusus)){
-					$tarif_khusus = $this->M_base->currFormat2($row->tarif_khusus);
-					$tarif_khusus = str_replace(".00", "", $tarif_khusus);
-					$tarif_khusus = "Rp. ".$tarif_khusus;
-				}
+			<?php
+				$tarif_layanan = $this->M_base->currFormat2($row->tarif_layanan);
+				$tarif_layanan = str_replace(".00", "", $tarif_layanan);
+				$tarif_layanan = "Rp. ".$tarif_layanan;
+
+				// $tarif_khusus = "";
+				// if(!empty($row->tarif_khusus)){
+				// 	$tarif_khusus = $this->M_base->currFormat2($row->tarif_khusus);
+				// 	$tarif_khusus = str_replace(".00", "", $tarif_khusus);
+				// 	$tarif_khusus = "Rp. ".$tarif_khusus;
+				// }
 			?>
 			<tr>
 				<td><?php echo $i++;?></td>
-				<td><?php echo $row->nama;?></td>
-				<td><?php echo $tarif;?></td>
-				<td><?php echo $tarif_khusus;?></td>
+				<td><?php echo $row->nama_layanan;?></td>
+				<td><?php echo $tarif_layanan;?></td>
+				<!-- <td><?php echo $tarif_khusus;?></td> -->
 			</tr>
 			<?php endforeach;?>
 		</tbody>

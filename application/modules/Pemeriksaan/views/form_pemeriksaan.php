@@ -3,7 +3,7 @@
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
   </head>
-	<body class="fixed hold-transition skin-blue-light sidebar-mini">
+	<body class="fixed hold-transition skin-blue-light">
     <?php $this->load->view('template/v_left_menu'); ?>
   	<div class="content-wrapper">
     	<section class="content">
@@ -45,7 +45,7 @@
 										<dt>Nama :</dt>
 										<dd><?= $pasien->nama_pasien;?></dd>
 										<dt>Tanggal Daftar :</dt>
-										<dd><?= $pasien->tgl_registrasi;?></dd>
+										<dd><?= date('d-M-Y', strtotime($pasien->tgl_registrasi));?></dd>
 									</dl>
 								</div>
 							</div>
@@ -167,7 +167,7 @@
 																					</tr>
 																				</thead>
 																				<tbody>
-																					
+
 																				</tbody>
 																			</table>
 																		<!-- </div> -->
@@ -259,7 +259,7 @@
 																									<?php endforeach;?>
 																								</select>
 																							</div>
-																						</div>	
+																						</div>
 																					</div>
 																					<div class="col-md-5">
 																						<div class="form-group">
@@ -358,7 +358,7 @@
 					console.log("Tidak Jadi");
 				}
 			}
-		
+
 		$(document).ready(function(){
 			var now = new Date();
 			console.log(now);
@@ -463,7 +463,7 @@
 						isNamaObat = true;
 					}
 				}
-				
+
 				for(var i=0; i < inputJumlahObat.length; i++){
 					var valJumlahObat = inputJumlahObat[i];
 					if(valJumlahObat.value == null || valJumlahObat == ''){
@@ -570,7 +570,7 @@
 			}
 			function setTableTindakan(id_pasien){
 				tbl_tindakan.clear().draw();
-				
+
 				var url = "<?= site_url('Pemeriksaan/setTable');?>";
 				var table_db = "pemeriksaan_tindakan";
 				$.get(url+'/'+table_db+'/'+id_pasien,function(data){
@@ -599,7 +599,7 @@
 			}
 			function setTableResep(id_pasien){
 				tbl_resep.clear().draw();
-				
+
 				var url = "<?= site_url('Pemeriksaan/setTable');?>";
 				var table_db = "pemeriksaan_resep";
 				$.get(url+'/'+table_db+'/'+id_pasien,function(data){
@@ -620,7 +620,7 @@
 									 ObjectData[key]["tgl_pemeriksaan"],
 									 ObjectData[key]["nama_obat"],
 									 ObjectData[key]["qty_obat"],
-									//  btn_hapus 
+									//  btn_hapus
 								 ]).draw(false);
 							 }
 						 }

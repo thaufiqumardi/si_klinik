@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
 
@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
     </head>
-    <body class="fixed hold-transition skin-blue-light sidebar-mini">
+    <body class="fixed hold-transition skin-blue-light ">
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
@@ -26,11 +26,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 				?>
     			<div class="row">
-			        <div class="col-md-12">	      
+			        <div class="col-md-12">
 						<div class="box box-primary box-solid">
 							<div class="box-header with-border">
 								  <h3 class="box-title">Input Data Tipe Akses</h3>
-								</div>								
+								</div>
 								<form class="form-horizontal" method="post" action="<?php echo base_url().(isset($role_id) ? 'Role/update' : 'Role/insert'); ?>">
 								  <?php
 									if(isset($role_id))
@@ -41,12 +41,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								 <div  class="box-body">
 									<div class="form-group">
 									  <label for="inputEmail3" class="col-sm-2 control-label">Tipe Akses<sup style="color:red;">*</sup></label>
-					
+
 									  <div class="col-sm-4">
 										<input type="text" name="role_name" class="form-control" value="<?php echo (isset($role_name) ? $role_name : ''); ?>" placeholder="Masukan Tipe Akses..." required="required">
 									  </div>
 									</div>
-								  
+
 								  <div class="box-footer">
 								  	<div class="pull-left">
 										<p>Yang bertanda <span style="color: red;">(*)</span> wajib di isi.</p>
@@ -59,16 +59,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								  </div>
 								</form>
 							</div>
-											
+
 					</div>
 				</div>
     		</section>
     	</div>
 		<?php $this->load->view('template/v_copyright'); ?>
     </body>
-    
+
     <?php $this->load->view('template/v_footer'); ?>
-    
+
     <script type="text/javascript">
     $(document).ready(function() {
     	$('#mnPengaturan').addClass('active');

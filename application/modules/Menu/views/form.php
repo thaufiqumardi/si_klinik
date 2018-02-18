@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
 
@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
     </head>
-    <body class="fixed hold-transition skin-blue-light sidebar-mini">
+    <body class="fixed hold-transition skin-blue-light">
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
@@ -26,11 +26,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 				?>
     			<div class="row">
-			        <div class="col-md-12">			         
+			        <div class="col-md-12">
 						<div class="box box-primary box-solid">
 							<div class="box-header with-border">
 							  <h3 class="box-title">Input Data Menu</h3>
-							</div>							
+							</div>
 							<form class="form-horizontal" method="post" action="<?php echo base_url().(isset($id_menu) ? 'Menu/update' : 'Menu/insert'); ?>">
 							  <?php
 								if(isset($id_menu))
@@ -41,15 +41,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div  class="box-body">
 								<div class="form-group">
 								  <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
-				
+
 								  <div class="col-sm-4">
 									<input type="text" name="menu_title" class="form-control" value="<?php echo (isset($menu_title) ? $menu_title : ''); ?>" placeholder="Masukan Nama Menu..." required="required">
 								  </div>
 								</div>
-										
+
 								<div class="form-group">
 								  <label for="inputEmail3" class="col-sm-2 control-label">Icon</label>
-				
+
 								  <div class="col-sm-3">
 									<div class="input-group">
 										<input data-placement="bottomRight" name="icon" class="form-control icp icp-auto" value="<?php echo (isset($icon) ? $icon : 'fa-archive'); ?>" type="text" required="required" />
@@ -57,17 +57,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								  </div>
 								</div>
-								
-								<div class="form-group">					
+
+								<div class="form-group">
 									<label for="inputEmail3" class="col-sm-2 control-label">Urutan</label>
 									<div class="col-sm-3">
 										<div class="input-group">
-											<input type="text" name="urutan" id="urutan" class="form-control" value="<?php echo (isset($urutan) ? $urutan : ''); ?>" 
+											<input type="text" name="urutan" id="urutan" class="form-control" value="<?php echo (isset($urutan) ? $urutan : ''); ?>"
 												placeholder="Masukan Urutan Menu..." onkeypress='return isNumberKey(event);' required="required">
 										</div>
 									</div>
 								</div>
-							  
+
 							  <div class="box-footer">
 								<div  class="form-group">
 							  		<label for="inputEmail3" class="col-sm-2 control-label"></label>
@@ -79,17 +79,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							  </div>
 							  </div>
 							</form>
-							
-						</div>					
+
+						</div>
 					</div>
 				</div>
     		</section>
     	</div>
 		<?php $this->load->view('template/v_copyright'); ?>
     </body>
-    
+
     <?php $this->load->view('template/v_footer'); ?>
-    
+
     <script type="text/javascript">
     $(document).ready(function() {
     	$('#mnPengaturan').addClass('active');
@@ -97,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     	$('#alert').delay(10000).fadeOut("slow");
     });
-    
+
 	function isNumberKey(evt)
 	{
 	   var charCode = (evt.which) ? evt.which : event.keyCode
@@ -106,7 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	   return true;
 	}
 	</script>
-	
+
 	<script>
 	  $(function() {
 	    $('.action-destroy').on('click', function() {
@@ -122,12 +122,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    });
 	    $(document).ready(function() {
 	      $('.icp-auto').iconpicker();
-	      
+
 	      $('.icp-dd').iconpicker({
 	        //title: 'Dropdown with picker',
 	        //component:'.btn > i'
 	      });
-	      
+
 	      $('.icp-glyphs').iconpicker({
 	        title: 'Prepending glypghicons',
 	        icons: $.merge(['glyphicon-home', 'glyphicon-repeat', 'glyphicon-search',
@@ -172,8 +172,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	      </div><hr></div>'}
 	      }).data('iconpicker').show();
 	    }).trigger('click');
-	
-	
+
+
 	    // Events sample:
 	    // This event is only triggered when the actual input value is changed
 	    // by user interaction
@@ -185,4 +185,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	  });
 	</script>
 </html>
-

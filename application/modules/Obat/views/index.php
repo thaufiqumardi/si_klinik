@@ -24,7 +24,7 @@
 	<head>
 		<?php $this->load->view('template/v_header'); ?>
     </head>
-    <body class="fixed hold-transition skin-blue-light sidebar-mini">
+    <body class="fixed hold-transition skin-blue-light ">
     	<?php $this->load->view('template/v_left_menu'); ?>
     	<div class="content-wrapper">
     		<section class="content">
@@ -56,7 +56,7 @@
 				              	  <?php
 				              	  }
 				              	  ?>
-							
+
 						<table id="example2" class="table table-bordered table-striped table-hover DataTable">
 							<thead>
 								<tr>
