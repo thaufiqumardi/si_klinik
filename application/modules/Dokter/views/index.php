@@ -1,6 +1,6 @@
 <?php
 	$menusid = $this->M_crud->get_by_param("menu", 'name', "Dokter");
-	if(empty($menusid)){
+	if(!empty($menusid)){
 		$akses = $this->M_crud->get_select_to_row('hak_akses_create, hak_akses_update, hak_akses_delete', 'hak_akses', null, null, 'hak_akses_role', $this->session->userdata['simklinik']['ap_role'], 'hak_akses_menu', $menusid->id_menu);
 		if(count($akses) == 0)
 		{
