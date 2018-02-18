@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2018 at 04:47 PM
+-- Generation Time: Feb 18, 2018 at 05:43 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -49,33 +49,6 @@ INSERT INTO `admins` (`id`, `username`, `password`, `level`, `role_id`, `created
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bed`
---
-
-CREATE TABLE `bed` (
-  `id_bed` int(11) NOT NULL,
-  `id_kamar` int(11) DEFAULT NULL,
-  `nama_bed` varchar(20) DEFAULT NULL,
-  `status_isi` varchar(20) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `bed`
---
-
-INSERT INTO `bed` (`id_bed`, `id_kamar`, `nama_bed`, `status_isi`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(19, 1, '1', 'Isi', 2, '2017-12-27 06:31:54', NULL, '2017-12-27 06:31:54'),
-(16, 11, '2', 'Kosong', 2, '2017-12-27 06:25:40', 2, '2017-12-27 06:29:49'),
-(18, 1, '2', 'Isi', 2, '2017-12-27 06:31:36', NULL, '2017-12-27 06:31:36'),
-(15, 8, '2', 'ISI', 2, '2017-12-27 06:22:30', 2, '2018-01-04 03:40:41');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `detail_pembiayaan`
 --
 
@@ -98,64 +71,6 @@ CREATE TABLE `detail_pembiayaan` (
   `updated_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `detail_pembiayaan`
---
-
-INSERT INTO `detail_pembiayaan` (`id_pembiayaan`, `id_registrasi`, `no_registrasi`, `tgl_registrasi`, `nama_item`, `jenis_item`, `item_id`, `harga`, `qty`, `total_harga`, `status_bayar`, `satuan`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, 1, '1802140001', '2018-02-14 00:00:00', 'Biaya Pendaftaran', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '1', NULL, NULL, '2018-02-14 08:19:32', NULL, '2018-02-14 08:26:09'),
-(2, 1, NULL, NULL, 'Mixagrip', 'Obat', 1, '10000.00', '3.00', '30000.00', '1', NULL, NULL, '2018-02-14 08:25:36', NULL, '2018-02-14 08:26:09'),
-(3, 1, NULL, NULL, 'Sanaflu', 'Obat', 2, '5000.00', '3.00', '15000.00', '1', NULL, NULL, '2018-02-14 08:25:36', NULL, '2018-02-14 08:26:09'),
-(4, 2, '1802140002', '2018-02-14 00:00:00', 'Biaya Pendaftaran', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-14 08:53:09', NULL, '2018-02-14 08:53:09'),
-(5, 3, '1802150001', '2018-02-15 00:00:00', 'Biaya Pendaftaran', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 09:32:08', NULL, '2018-02-15 09:32:08'),
-(6, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 09:32:34', NULL, '2018-02-15 09:32:34'),
-(7, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 10:52:12', NULL, '2018-02-15 10:52:12'),
-(8, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 10:54:25', NULL, '2018-02-15 10:54:25'),
-(9, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 10:57:43', NULL, '2018-02-15 10:57:43'),
-(10, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 10:58:03', NULL, '2018-02-15 10:58:03'),
-(11, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 10:58:08', NULL, '2018-02-15 10:58:08'),
-(12, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 10:58:18', NULL, '2018-02-15 10:58:18'),
-(13, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 11:21:52', NULL, '2018-02-15 11:21:52'),
-(14, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 11:22:08', NULL, '2018-02-15 11:22:08'),
-(15, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 11:22:23', NULL, '2018-02-15 11:22:23'),
-(16, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 11:22:47', NULL, '2018-02-15 11:22:47'),
-(17, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 11:23:10', NULL, '2018-02-15 11:23:10'),
-(18, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 11:23:38', NULL, '2018-02-15 11:23:38'),
-(19, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 11:24:59', NULL, '2018-02-15 11:24:59'),
-(20, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 12:45:38', NULL, '2018-02-15 12:45:38'),
-(21, 3, NULL, NULL, NULL, 'Layanan', NULL, NULL, '1.00', '0.00', '0', NULL, NULL, '2018-02-15 12:46:22', NULL, '2018-02-15 12:46:22'),
-(22, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 12:46:42', NULL, '2018-02-15 12:46:42'),
-(23, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 12:46:42', NULL, '2018-02-15 12:46:42'),
-(24, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 12:58:17', NULL, '2018-02-15 12:58:17'),
-(25, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 12:58:17', NULL, '2018-02-15 12:58:17'),
-(26, 3, NULL, NULL, NULL, 'Layanan', NULL, NULL, '1.00', '0.00', '0', NULL, NULL, '2018-02-15 13:01:42', NULL, '2018-02-15 13:01:42'),
-(27, 3, NULL, NULL, NULL, 'Layanan', NULL, NULL, '1.00', '0.00', '0', NULL, NULL, '2018-02-15 13:01:42', NULL, '2018-02-15 13:01:42'),
-(28, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 13:35:43', NULL, '2018-02-15 13:35:43'),
-(29, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 13:35:43', NULL, '2018-02-15 13:35:43'),
-(30, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 13:36:42', NULL, '2018-02-15 13:36:42'),
-(31, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:06:20', NULL, '2018-02-15 14:06:20'),
-(32, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:07:51', NULL, '2018-02-15 14:07:51'),
-(33, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:07:51', NULL, '2018-02-15 14:07:51'),
-(34, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:09:15', NULL, '2018-02-15 14:09:15'),
-(35, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:10:02', NULL, '2018-02-15 14:10:02'),
-(36, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:12:55', NULL, '2018-02-15 14:12:55'),
-(37, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:13:24', NULL, '2018-02-15 14:13:24'),
-(38, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:13:52', NULL, '2018-02-15 14:13:52'),
-(39, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:15:07', NULL, '2018-02-15 14:15:07'),
-(40, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:16:02', NULL, '2018-02-15 14:16:02'),
-(41, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:16:02', NULL, '2018-02-15 14:16:02'),
-(42, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:16:47', NULL, '2018-02-15 14:16:47'),
-(43, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:18:01', NULL, '2018-02-15 14:18:01'),
-(44, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:20:17', NULL, '2018-02-15 14:20:17'),
-(45, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:21:24', NULL, '2018-02-15 14:21:24'),
-(46, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:21:46', NULL, '2018-02-15 14:21:46'),
-(47, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:21:52', NULL, '2018-02-15 14:21:52'),
-(48, 3, NULL, NULL, 'Pemeriksaan Umum', 'Layanan', 1, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:25:39', NULL, '2018-02-15 14:25:39'),
-(49, 3, NULL, NULL, 'Pemeriksaan Khusus', 'Layanan', 2, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-15 14:26:05', NULL, '2018-02-15 14:26:05'),
-(50, 3, NULL, NULL, 'Mixagrip', 'Obat', 1, '10000.00', '2.00', '20000.00', '0', NULL, NULL, '2018-02-15 14:29:12', NULL, '2018-02-15 14:29:12'),
-(51, 3, NULL, NULL, 'Sanaflu', 'Obat', 2, '5000.00', '3.00', '15000.00', '0', NULL, NULL, '2018-02-15 14:29:12', NULL, '2018-02-15 14:29:12'),
-(52, 3, NULL, NULL, 'Mixagrip', 'Obat', 1, '10000.00', '3.00', '30000.00', '0', NULL, NULL, '2018-02-15 14:29:54', NULL, '2018-02-15 14:29:54');
-
 -- --------------------------------------------------------
 
 --
@@ -177,32 +92,6 @@ CREATE TABLE `dokter` (
   `alumni` varchar(60) DEFAULT NULL,
   `no_izin_praktek` varchar(20) DEFAULT NULL,
   `status` enum('Aktif','Tidak Aktif') DEFAULT NULL,
-  `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `dokter`
---
-
-INSERT INTO `dokter` (`id_dokter`, `kd_dokter`, `nama_dokter`, `jenis_kelamin`, `tmp_lahir`, `tgl_lahir`, `gol_darah`, `agama`, `alamat`, `telepon`, `status_nikah`, `alumni`, `no_izin_praktek`, `status`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, NULL, 'Dokter Test 1', 'Laki-Laki', 'Bandung', '1996-06-27', NULL, 'Islam', 'CIrebon', '898-9666-50__', 'Belum Kawin', NULL, '123', 'Aktif', '2018-02-02 01:27:20', 2, '2018-02-02 01:27:20', NULL),
-(2, NULL, 'Dokter Test 2', 'Perempuan', 'Jakarta', '2018-02-23', NULL, 'Kristen', 'Jakarta', '892-9123-1331', 'Belum Kawin', NULL, '321', 'Aktif', '2018-02-02 01:28:01', 2, '2018-02-02 01:28:01', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `d_jual`
---
-
-CREATE TABLE `d_jual` (
-  `idjual` smallint(6) NOT NULL,
-  `kodejual` char(15) DEFAULT NULL,
-  `kode_barang` char(15) DEFAULT NULL,
-  `jmljual` int(11) DEFAULT NULL,
-  `hargajual` double DEFAULT NULL,
   `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(11) DEFAULT NULL,
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -261,30 +150,6 @@ CREATE TABLE `harga_obat` (
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `harga_obat`
---
-
-INSERT INTO `harga_obat` (`harga_obat_id`, `id_obat`, `harga_beli`, `harga_jual1`, `harga_jual2`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, 1, '1000000.00', '10000.00', '0.00', 2, '2018-02-02 01:33:43', 2, '2018-02-02 01:34:23'),
-(2, 2, '500000.00', '5000.00', '0.00', 2, '2018-02-02 01:33:57', NULL, '2018-02-02 01:33:57');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `h_jual`
---
-
-CREATE TABLE `h_jual` (
-  `kodejual` char(15) NOT NULL,
-  `tgljual` date DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
 
 --
@@ -299,15 +164,6 @@ CREATE TABLE `kategori` (
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
---
--- Dumping data for table `kategori`
---
-
-INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, 'Demam', '2018-02-02 01:29:04', 2, '2018-02-02 01:29:04', NULL),
-(2, 'Batuk', '2018-02-02 01:29:10', 2, '2018-02-02 01:29:10', NULL),
-(3, 'Batuk, Pilek', '2018-02-02 01:29:26', 2, '2018-02-02 01:29:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -325,14 +181,6 @@ CREATE TABLE `layanan` (
   `updated_by` int(11) NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `layanan`
---
-
-INSERT INTO `layanan` (`id_layanan`, `nama_layanan`, `tarif_layanan`, `tarif_khusus`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'Pemeriksaan Umum', '10000.00', '0.00', 2, '2018-02-06 15:58:52', 0, '2018-02-06 15:58:52'),
-(2, 'Pemeriksaan Khusus', '10000.00', '9000.00', 2, '2018-02-09 23:31:54', 0, '2018-02-09 23:31:54');
 
 -- --------------------------------------------------------
 
@@ -410,14 +258,6 @@ CREATE TABLE `merk` (
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `merk`
---
-
-INSERT INTO `merk` (`merk_id`, `merk_nama`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, 'Mixagrip', 2, '2018-02-02 01:28:47', NULL, '2018-02-02 01:28:47'),
-(2, 'Sanaflu', 2, '2018-02-02 01:28:55', NULL, '2018-02-02 01:28:55');
-
 -- --------------------------------------------------------
 
 --
@@ -438,14 +278,6 @@ CREATE TABLE `obat` (
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `obat`
---
-
-INSERT INTO `obat` (`id_obat`, `id_kategori`, `id_satuan`, `id_merk`, `id_supplier`, `kode_obat`, `nama_obat`, `stok`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, 3, 2, 1, 2, 'KD0001', 'Mixagrip', 60, '2018-02-02 01:33:04', 2, '2018-02-14 15:35:03', 2),
-(2, 1, 1, 2, 1, 'KD0002', 'Sanaflu', 40, '2018-02-02 01:33:25', 2, '2018-02-14 15:26:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -505,16 +337,6 @@ CREATE TABLE `pasien` (
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `pasien`
---
-
-INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_kartu`, `nama_pasien`, `nik_pasien`, `tempat_lahir`, `tgl_lahir`, `umur`, `agama`, `pekerjaan_pasien`, `gol_darah`, `jenis_kelamin`, `no_telp_rumah`, `no_handphone`, `jalan`, `rtrw`, `kelurahan`, `kecamatan`, `kota`, `status_pasien`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, '18000001', '00000001', 'Pasien Test 1', '231231312312', 'Bandung', '2010-07-15', 8, 'Islam', 'Mahasiswa', 'AB', 'Laki-Laki', '', '', 'adadad', '04/04', 'Pasirkaliki', 'CIcendo', 'Bandung', 'BARU', '2018-02-02 01:36:43', 2, '2018-02-02 01:36:43', NULL),
-(2, '18000002', '00000002', 'Pasien Test 2', '34343', 'Jakarta', '1996-03-06', 22, 'Hindu', 'Mahasiswa', 'B', 'Perempuan', '', '', 'asdas', '02/02', 'pasir impun', 'gorogoro', 'CIrebon', 'BARU', '2018-02-02 01:37:52', 2, '2018-02-02 01:37:52', NULL),
-(3, '18000003', '00000003', 'pasien3', '', 'Bandung', '2011-03-02', 7, 'Islam', 'Mahasiswa', 'B', 'Laki-Laki', '', '', 'Pajajaran', '04/04', 'adada', 'dasdasd', 'bandung', 'BARU', '2018-02-08 19:27:14', 2, '2018-02-08 19:27:14', NULL),
-(4, '18000004', '00000004', 'Anak anak', '', 'Bandung', '2018-07-04', 0, 'Islam', '', NULL, 'Laki-Laki', '', '', 'asdfs`', '03/40', 'sdfad', 'asdf', 'asdfasdf', 'BARU', '2018-02-13 02:29:03', 2, '2018-02-13 02:29:03', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -524,11 +346,11 @@ INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_kartu`, `nama_pasien`, `nik_pasi
 CREATE TABLE `pemasukan` (
   `pemasukan_id` int(11) NOT NULL,
   `no_kuitansi` varchar(12) DEFAULT NULL,
-  `id_registrasi` int(11) NOT NULL,
+  `id_registrasi` int(11) DEFAULT NULL,
   `no_registrasi` varchar(10) DEFAULT NULL,
   `tgl_pemasukan` datetime DEFAULT CURRENT_TIMESTAMP,
   `nama_pemasukan` varchar(100) DEFAULT NULL,
-  `jenis_pemasukan` enum('Pendaftaran','Layanan','Obat','Lain-Lain','Paket') DEFAULT NULL,
+  `jenis_pemasukan` enum('Pendaftaran','Layanan','Obat','Lain-Lain','Pasien Berobat') DEFAULT NULL,
   `harga_pemasukan` decimal(10,2) DEFAULT NULL,
   `qty_pemasukan` decimal(10,2) DEFAULT NULL,
   `total_pemasukan` decimal(10,2) DEFAULT NULL,
@@ -539,40 +361,6 @@ CREATE TABLE `pemasukan` (
   `updated_by` int(11) DEFAULT NULL,
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pemasukan`
---
-
-INSERT INTO `pemasukan` (`pemasukan_id`, `no_kuitansi`, `id_registrasi`, `no_registrasi`, `tgl_pemasukan`, `nama_pemasukan`, `jenis_pemasukan`, `harga_pemasukan`, `qty_pemasukan`, `total_pemasukan`, `uang_bayar`, `uang_kembalian`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, '00000001', 1, NULL, '2018-02-14 15:26:09', 'Transaksi Obat Apotek', 'Obat', '55000.00', '1.00', '55000.00', '60.00', '5000.00', 2, '2018-02-14 15:26:09', NULL, '2018-02-14 15:26:09');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pembayaran`
---
-
-CREATE TABLE `pembayaran` (
-  `id` int(11) NOT NULL,
-  `id_kunjungan` int(11) DEFAULT NULL,
-  `waktu` date DEFAULT NULL,
-  `biaya` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pembayaran`
---
-
-INSERT INTO `pembayaran` (`id`, `id_kunjungan`, `waktu`, `biaya`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(3, 13, '2016-08-08', 4000000, '2017-11-21 15:19:51', NULL, '2017-11-21 15:19:51', NULL),
-(4, 14, '2016-08-08', 4000000, '2017-11-21 15:19:51', NULL, '2017-11-21 15:19:51', NULL),
-(5, 15, '2016-08-08', 20000, '2017-11-21 15:19:51', NULL, '2017-11-21 15:19:51', NULL),
-(7, 16, '2016-12-06', 30000, '2017-11-21 15:19:51', NULL, '2017-11-21 15:19:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -619,15 +407,6 @@ CREATE TABLE `pemeriksaan_resep` (
   `updated_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `pemeriksaan_resep`
---
-
-INSERT INTO `pemeriksaan_resep` (`id_pemeriksaan_resep`, `id_pasien`, `id_registrasi`, `id_dokter`, `tgl_pemeriksaan`, `id_obat`, `qty_obat`, `id_satuan`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, 2, 3, 1, '2018-02-15', 1, '2', 1, '2018-02-15 14:29:12', 2, '2018-02-15 14:29:12', 0),
-(2, 2, 3, 1, '2018-02-15', 2, '3', 1, '2018-02-15 14:29:12', 2, '2018-02-15 14:29:12', 0),
-(3, 2, 3, 1, '2018-02-15', 1, '3', 1, '2018-02-15 14:29:54', 2, '2018-02-15 14:29:54', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -650,111 +429,6 @@ CREATE TABLE `pemeriksaan_tindakan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penanggung_pasien`
---
-
-CREATE TABLE `penanggung_pasien` (
-  `id_penanggung` int(11) NOT NULL,
-  `id_pasien` int(11) DEFAULT NULL,
-  `nama_penanggung` varchar(125) DEFAULT NULL,
-  `nik_penanggung` varchar(16) DEFAULT NULL,
-  `tempat_lahir_penanggung` varchar(50) DEFAULT NULL,
-  `tgl_lahir_penanggung` date DEFAULT NULL,
-  `hubungan_pasien` varchar(75) DEFAULT NULL,
-  `pendidikan_penanggung` varchar(50) DEFAULT NULL,
-  `pekerjaan_penanggung` varchar(75) DEFAULT NULL,
-  `no_telp_penanggung` varchar(20) DEFAULT NULL,
-  `no_hp_penanggung` varchar(20) DEFAULT NULL,
-  `jalan` varchar(75) DEFAULT NULL,
-  `rtrw` varchar(7) DEFAULT NULL,
-  `kelurahan` varchar(50) DEFAULT NULL,
-  `kecamatan` varchar(50) DEFAULT NULL,
-  `kota` varchar(50) DEFAULT NULL,
-  `email` varchar(75) DEFAULT NULL,
-  `cara_pembayaran` enum('Pribadi','Kantor','Asuransi') DEFAULT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `penanggung_pasien`
---
-
-INSERT INTO `penanggung_pasien` (`id_penanggung`, `id_pasien`, `nama_penanggung`, `nik_penanggung`, `tempat_lahir_penanggung`, `tgl_lahir_penanggung`, `hubungan_pasien`, `pendidikan_penanggung`, `pekerjaan_penanggung`, `no_telp_penanggung`, `no_hp_penanggung`, `jalan`, `rtrw`, `kelurahan`, `kecamatan`, `kota`, `email`, `cara_pembayaran`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(6, 18, 'Penanggung 1', '2324987329857298', 'jakarta', '1970-01-01', 'Saudara', 'sd', 'Direktur', '(022) 9898-9898', '857-8789-8743', 'Jl. Penanggung1', '03/03', 'Kelp1', 'kecp1', 'Bandung', 'penanggung1@gmail.com', 'Kantor', '2017-11-28 15:03:34', 0, '2017-12-26 11:33:17', 2),
-(7, 19, 'Penanggung2', '2324987329857298', 'Bandung', '1970-01-01', 'Saudara', 'S3', 'Direktur', '', '', '', '', 'cibiru', 'cicici', 'Bandung', 'reza@gmail.com', 'Pribadi', '2017-11-28 15:30:41', 0, '2017-11-28 16:02:16', 0),
-(8, 20, 'Penanggung 3', '3275969183398476', '', '1970-01-01', 'Bapak', '', 'abcd', '(022) 9893-4899', '857-3643-6436', 'Jl. blabla', '30/30', 'lasdkfj', 'djsfk', 'jdsfk', 'penanggung3@gmail.co', 'Pribadi', '2017-11-29 09:13:41', 0, '2017-12-08 12:46:07', 0),
-(9, 21, 'Mutia Zata Yumni', '3273236711930001', 'Bandung', '1991-08-25', 'Kakak', 'S1', 'Guru', '', '329-3823-8299', 'JL. Saluyu A XV No.277', '04/07', 'Cipamokolan ', 'Rancasari', 'Bandung', 'mutia.zata@gmail.com', 'Pribadi', '2017-11-29 15:11:01', 0, '2017-11-29 15:11:01', 0),
-(10, 27, 'Kaka', '21424234232', NULL, '1970-01-01', 'Kakak', NULL, 'Mahasiswa', '(022) 4444-4444', '454-5454-5454', 'Jl. Kebon Sawo', '09/09', 'Kelor', 'Wetan', 'Jakarta', 'kaka@gmail.com', 'Kantor', '2017-12-13 10:17:11', 2, '2017-12-13 10:47:31', 2),
-(11, 28, 'Mutia ', '12649846786', NULL, '1970-01-01', 'Kakak', NULL, 'Mahasiswa', '(974) 9810-8932', '893-6254-7649', 'Kp. Pulo', '08/08', 'Cimande', 'Citapen', 'Surabaya', 'mutia.zata@gmail.com', 'Asuransi', '2017-12-13 10:29:00', 2, '2017-12-13 10:29:00', NULL),
-(12, 29, 'aaaa', '33333333333333', 'Jakarta', '2017-12-03', 'aaa', 'aaa', 'aaa', '(022) 3332-3232', '232-3232-2323', 'aaa', '09/09', 'aa', 'aa', 'aa', 'aa@gmail.com', 'Kantor', '2017-12-18 10:42:19', 2, '2017-12-18 10:42:19', NULL),
-(13, 30, 'dddd', 'ddd', 'ddddd', '2017-12-05', 'dddd', 'dddd', 'dddd', '(022) 2222-2222', '323-2323-2323', 'eee', '08/08', 'dddd', 'dddd', 'ddd', 'eee@eee.com', NULL, '2017-12-18 10:57:29', 2, '2017-12-18 10:57:29', NULL),
-(14, 31, 'wqwqwqwqw', 'wqwq', 'eeee', '2017-12-06', 'eee', 'eee', 'eee', '(022) 2222-2222', '444-4443-3333', 'www', '32/32', 'www', 'ww', 'lalala', 'www@ww.com', 'Kantor', '2017-12-18 11:16:38', 2, '2017-12-26 11:34:49', 2),
-(15, 32, 'aaa', '1234567890', 'aaa', '2017-12-01', 'aaa', 'aaa', 'aaa', '(022) 1111-1111', '111-1111-1111', 'aaa', '11/11', 'aaa', 'aaa', 'aaa', 'aaa', 'Pribadi', '2017-12-26 11:07:45', 2, '2017-12-26 11:07:45', NULL),
-(16, 33, 'sasa', '222', '', '1970-01-01', 'ibu', '', '', '', '434-3434-3434', 'xexe', '33/33', 'xexe', 'xexe', 'xexe', '', 'Asuransi', '2017-12-26 11:18:06', 2, '2017-12-26 11:18:06', NULL),
-(17, 34, 'ref', '2343423', '', '1970-01-01', '344f', '', '', '', '244-4444-4444', 'frfr', '34/34', 'frfrf', 'frfrf', 'frfrfr', '', 'Kantor', '2017-12-26 11:22:42', 2, '2017-12-26 11:22:42', NULL),
-(18, 35, 'aaaa', '33333333333333', '', '1970-01-01', 'aaa', 'aaa', 'aaa', '(222) 2222-2222', '222-2222-2222', 'aaa', '09/09', 'aaa', 'aaa', 'aaa', 'aaa@aaa.com', 'Pribadi', '2017-12-26 11:40:46', 2, '2017-12-26 11:42:52', 2),
-(19, 36, 'Tafsir', '123412341234', 'Jakarta', '1958-08-12', 'Suami', 'SMK', 'Pegawai Swasta', '(022) 2929-2929', '399-3939-3939', 'Jl. Saluyu A XV no.277', '04/07', 'Cipamokolan', 'Rancasari', 'Bandung', 'muchtar.tafsir@gmail.com', 'Kantor', '2017-12-27 10:04:55', 2, '2017-12-27 10:14:07', 2),
-(20, 37, 'Mutia Zata Yumni', '0987654321', 'Bandung', '1991-08-25', 'Kakak', 'S1', 'Guru', '(021) 1111-1111', '111-1111-1111', 'JL. Saluyu A XV No.277', '04/07', 'Cipamokolan ', 'Rancasari', 'Bandung', 'mutia.zata@gmail.com', 'Pribadi', '2018-01-02 13:43:48', 2, '2018-01-03 11:33:55', 2),
-(21, 38, 'Jajat Ismail', '21212121212121', 'Jakarta', '1999-10-21', 'Kakak', 'S1', 'Pegawai Swasta', '(021) 0000-0000', '000-0000-0000', 'kp.melayu', '09/09', 'jongol', 'Kirana', 'Bandung', 'jajat@gmail.com', 'Kantor', '2018-01-02 13:48:34', 2, '2018-01-02 13:48:34', NULL),
-(22, 39, 'Dadang', '3203060507964761', 'Bandung', '2018-01-05', 'Saudara', 'Pendidik', 'Pencuri', '(022) 2222-2222', '898-9989-8989', 'Jl. Dr. Ciairam', '03/03', 'Paspasan', 'Mandiri', 'Bahagia', 'Email@gmail.com', 'Pribadi', '2018-01-04 11:16:12', 2, '2018-01-04 11:16:12', NULL),
-(23, 40, NULL, NULL, NULL, '1970-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-08 22:01:42', 90, '2018-01-08 22:01:42', NULL),
-(24, 41, NULL, NULL, NULL, '1970-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-27 20:26:59', 2, '2018-01-27 20:26:59', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `piutang`
---
-
-CREATE TABLE `piutang` (
-  `piutang_id` int(11) NOT NULL,
-  `no_registrasi` varchar(10) DEFAULT NULL,
-  `tgl_registrasi` datetime DEFAULT NULL,
-  `no_rm` varchar(100) DEFAULT NULL,
-  `nama_pasien` varchar(100) DEFAULT NULL,
-  `total_biaya` decimal(10,2) DEFAULT NULL,
-  `total_bayar` decimal(10,2) DEFAULT NULL,
-  `sisa_bayar` decimal(10,2) DEFAULT NULL,
-  `status` int(1) DEFAULT '0',
-  `created_by` int(11) DEFAULT NULL,
-  `created_date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `piutang`
---
-
-INSERT INTO `piutang` (`piutang_id`, `no_registrasi`, `tgl_registrasi`, `no_rm`, `nama_pasien`, `total_biaya`, `total_bayar`, `sisa_bayar`, `status`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, '1712260001', '2017-12-26 00:00:00', '17000013', 'qqq', '215000.00', '0.00', '215000.00', 0, 2, '2017-12-26 11:10:07', NULL, '2017-12-26 11:10:07'),
-(2, '1712260002', '2017-12-26 00:00:00', '17000002', 'Jajat Ismail', '10000.00', '0.00', '10000.00', 0, 2, '2017-12-26 11:10:55', NULL, '2017-12-26 11:10:55'),
-(3, '1712260003', '2017-12-26 00:00:00', '17000014', 'dede', '15000.00', '0.00', '15000.00', 0, 2, '2017-12-26 11:18:37', NULL, '2017-12-26 11:18:37'),
-(4, '1712260004', '2017-12-26 00:00:00', '17000005', 'Nadra Zata Silmi', '15000.00', '0.00', '15000.00', 0, 2, '2017-12-26 11:21:04', NULL, '2017-12-26 11:21:04'),
-(5, '1712280001', '2017-12-28 00:00:00', '17000002', 'Jajat Ismail', '210000.00', '0.00', '210000.00', 0, 2, '2017-12-28 16:20:54', NULL, '2017-12-28 16:20:54'),
-(6, '1712280002', '2017-12-28 00:00:00', '17000004', 'Pasien 3', '35000.00', '0.00', '35000.00', 0, 2, '2017-12-28 16:22:55', NULL, '2017-12-28 16:22:55'),
-(7, '1712280003', '2017-12-28 00:00:00', '17000003', 'Pasien5', '10000.00', '10000.00', '0.00', 1, 2, '2017-12-28 16:23:10', 2, '2017-12-28 16:44:13'),
-(8, '1712280004', '2017-12-28 00:00:00', '17000003', 'Pasien5', '260000.00', '260000.00', '0.00', 1, 2, '2017-12-28 16:23:36', 2, '2017-12-28 17:10:19'),
-(9, '1712280005', '2017-12-28 00:00:00', '17000002', 'Jajat Ismail', '10000.00', '10000.00', '0.00', 1, 2, '2017-12-28 16:24:57', 2, '2017-12-28 17:36:18'),
-(10, '1712280006', '2017-12-28 00:00:00', '17000004', 'Pasien 3', '10000.00', '0.00', '10000.00', 0, 2, '2017-12-28 16:25:28', NULL, '2017-12-28 16:25:28'),
-(11, '1712290001', '2017-12-29 00:00:00', '17000002', 'Jajat Ismail', '135000.00', '135000.00', '0.00', 1, 86, '2017-12-29 10:26:54', 2, '2017-12-29 12:27:52'),
-(12, '1712290002', '2017-12-29 00:00:00', '17000003', 'Pasien5', '10000.00', '300000.00', '-290000.00', 1, 87, '2017-12-29 10:27:32', 2, '2017-12-29 14:34:51'),
-(13, '1712290002', '2017-12-29 00:00:00', '17000005', 'Nadra Zata Silmi', '280000.00', '0.00', '280000.00', 0, 2, '2017-12-29 10:59:00', NULL, '2017-12-29 10:59:00'),
-(14, '1801020001', '2018-01-02 00:00:00', '17000004', 'Pasien 3', '260000.00', '0.00', '260000.00', 0, 2, '2018-01-02 13:15:03', NULL, '2018-01-02 13:15:03'),
-(15, '1801030001', '2018-01-03 00:00:00', '18000001', 'Nadra ', '115000.00', '115000.00', '0.00', 1, 2, '2018-01-03 11:48:25', 2, '2018-01-03 11:53:00'),
-(16, '1801030002', '2018-01-03 00:00:00', '18000002', 'Taufik Umardi', '15912.00', '0.00', '15912.00', 0, 2, '2018-01-03 11:48:40', NULL, '2018-01-03 11:48:40'),
-(17, '1801040001', '2018-01-04 00:00:00', '18000002', 'Taufik Umardi', '210000.00', '0.00', '210000.00', 0, 2, '2018-01-04 10:38:51', NULL, '2018-01-04 10:38:51'),
-(18, '1801040002', '2018-01-04 00:00:00', '18000001', 'Nadra ', '1120000.00', '0.00', '1120000.00', 0, 2, '2018-01-04 10:40:41', NULL, '2018-01-04 10:40:41'),
-(19, '1801040003', '2018-01-04 00:00:00', '18000003', 'Muhammad Thaufiq Umardi', '35000.00', '0.00', '35000.00', 0, 2, '2018-01-04 11:16:35', NULL, '2018-01-04 11:16:35'),
-(20, '1801070001', '2018-01-07 00:00:00', '18000003', 'Muhammad Thaufiq Umardi', '130000.00', '0.00', '130000.00', 0, 2, '2018-01-07 20:17:44', NULL, '2018-01-07 20:17:44'),
-(21, '1801080001', '2018-01-08 00:00:00', '18000003', 'Muhammad Thaufiq Umardi', '210000.00', '0.00', '210000.00', 0, 2, '2018-01-08 21:12:53', NULL, '2018-01-08 21:12:53');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `produsen_obat`
 --
 
@@ -768,15 +442,6 @@ CREATE TABLE `produsen_obat` (
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `produsen_obat`
---
-
-INSERT INTO `produsen_obat` (`suplier_id`, `nama_sup`, `kode_sup`, `alamat_sup`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, 'Kimia Farma', 'A0001', 'Jl Burangrang no.7 Bandung', '2017-11-21 15:31:24', NULL, '2017-11-21 15:31:24', NULL),
-(2, 'Biofarma', 'A0002', 'Jl Pasteur', '2017-11-21 15:31:24', NULL, '2017-11-21 15:31:24', NULL),
-(5, '3232', 'lala', 'jakarta\r\n', '2017-11-21 15:31:24', NULL, '2017-11-21 15:31:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -801,30 +466,6 @@ CREATE TABLE `registrasi_pasien` (
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `registrasi_pasien`
---
-
-INSERT INTO `registrasi_pasien` (`id_registrasi`, `no_registrasi`, `id_dokter`, `id_pasien`, `tgl_registrasi`, `jam_registrasi`, `no_antrian`, `status_registrasi`, `status_antrian`, `status_bayar`, `play_sound`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, 1802140001, 1, 1, '2018-02-14', '15:19:32', 1, '0', '1', 1, '0', '2018-02-14 15:19:32', NULL, '2018-02-14 15:26:09', NULL),
-(2, 1802140002, 1, 2, '2018-02-14', '15:53:09', 2, '0', '1', 0, '0', '2018-02-14 15:53:09', NULL, '2018-02-14 16:03:12', NULL),
-(3, 1802150001, 1, 2, '2018-02-15', '16:32:08', 1, '0', '1', 0, '0', '2018-02-15 16:32:08', NULL, '2018-02-15 16:32:17', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rm_resep`
---
-
-CREATE TABLE `rm_resep` (
-  `id_resep` int(11) NOT NULL,
-  `id_obat` int(10) NOT NULL,
-  `id_registrasi` int(11) NOT NULL,
-  `no_registrasi` int(11) NOT NULL,
-  `satuan_id` int(11) NOT NULL,
-  `qty_resep` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -866,14 +507,6 @@ CREATE TABLE `satuan` (
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `satuan`
---
-
-INSERT INTO `satuan` (`satuan_id`, `satuan_nama`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
-(1, 'Tablet', 2, '2018-02-02 01:28:25', NULL, '2018-02-02 01:28:25'),
-(2, 'Pcs', 2, '2018-02-02 01:28:35', NULL, '2018-02-02 01:28:35');
-
 -- --------------------------------------------------------
 
 --
@@ -893,14 +526,6 @@ CREATE TABLE `supplier` (
   `updated_date` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `supplier`
---
-
-INSERT INTO `supplier` (`supplier_id`, `nama_supplier`, `kode_supplier`, `alamat_supplier`, `no_telpon_supplier`, `contact_person`, `no_telp_cp`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, 'Kimia Farma', NULL, 'Pasteur', '0821313', 'Aang', NULL, '2018-02-02 01:31:51', 2, '2018-02-02 01:31:51', NULL),
-(2, 'Biofarma', NULL, 'Cihampelas', '0123123', 'Maman', NULL, '2018-02-02 01:32:24', 2, '2018-02-02 01:32:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -961,12 +586,6 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `bed`
---
-ALTER TABLE `bed`
-  ADD PRIMARY KEY (`id_bed`);
-
---
 -- Indexes for table `detail_pembiayaan`
 --
 ALTER TABLE `detail_pembiayaan`
@@ -979,14 +598,6 @@ ALTER TABLE `dokter`
   ADD PRIMARY KEY (`id_dokter`);
 
 --
--- Indexes for table `d_jual`
---
-ALTER TABLE `d_jual`
-  ADD PRIMARY KEY (`idjual`),
-  ADD KEY `kode_barang` (`kode_barang`),
-  ADD KEY `kodejual` (`kodejual`);
-
---
 -- Indexes for table `hak_akses`
 --
 ALTER TABLE `hak_akses`
@@ -997,13 +608,6 @@ ALTER TABLE `hak_akses`
 --
 ALTER TABLE `harga_obat`
   ADD PRIMARY KEY (`harga_obat_id`);
-
---
--- Indexes for table `h_jual`
---
-ALTER TABLE `h_jual`
-  ADD PRIMARY KEY (`kodejual`),
-  ADD KEY `username` (`username`);
 
 --
 -- Indexes for table `kategori`
@@ -1054,12 +658,6 @@ ALTER TABLE `pemasukan`
   ADD PRIMARY KEY (`pemasukan_id`);
 
 --
--- Indexes for table `pembayaran`
---
-ALTER TABLE `pembayaran`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
@@ -1078,18 +676,6 @@ ALTER TABLE `pemeriksaan_tindakan`
   ADD PRIMARY KEY (`id_pemeriksaan_tindakan`);
 
 --
--- Indexes for table `penanggung_pasien`
---
-ALTER TABLE `penanggung_pasien`
-  ADD PRIMARY KEY (`id_penanggung`);
-
---
--- Indexes for table `piutang`
---
-ALTER TABLE `piutang`
-  ADD PRIMARY KEY (`piutang_id`);
-
---
 -- Indexes for table `produsen_obat`
 --
 ALTER TABLE `produsen_obat`
@@ -1100,12 +686,6 @@ ALTER TABLE `produsen_obat`
 --
 ALTER TABLE `registrasi_pasien`
   ADD PRIMARY KEY (`id_registrasi`);
-
---
--- Indexes for table `rm_resep`
---
-ALTER TABLE `rm_resep`
-  ADD PRIMARY KEY (`id_resep`);
 
 --
 -- Indexes for table `role`
@@ -1147,25 +727,15 @@ ALTER TABLE `users`
 ALTER TABLE `admins`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `bed`
---
-ALTER TABLE `bed`
-  MODIFY `id_bed` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
---
 -- AUTO_INCREMENT for table `detail_pembiayaan`
 --
 ALTER TABLE `detail_pembiayaan`
-  MODIFY `id_pembiayaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_pembiayaan` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `dokter`
 --
 ALTER TABLE `dokter`
-  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `d_jual`
---
-ALTER TABLE `d_jual`
-  MODIFY `idjual` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `hak_akses`
 --
@@ -1175,17 +745,17 @@ ALTER TABLE `hak_akses`
 -- AUTO_INCREMENT for table `harga_obat`
 --
 ALTER TABLE `harga_obat`
-  MODIFY `harga_obat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `harga_obat_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_kategori` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `layanan`
 --
 ALTER TABLE `layanan`
-  MODIFY `id_layanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_layanan` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `menu`
 --
@@ -1195,67 +765,47 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `merk`
 --
 ALTER TABLE `merk`
-  MODIFY `merk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `merk_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_obat` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
-  MODIFY `pemasukan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `pembayaran`
---
-ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `pemasukan_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
-  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pemeriksaan_resep`
 --
 ALTER TABLE `pemeriksaan_resep`
-  MODIFY `id_pemeriksaan_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pemeriksaan_resep` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pemeriksaan_tindakan`
 --
 ALTER TABLE `pemeriksaan_tindakan`
-  MODIFY `id_pemeriksaan_tindakan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `penanggung_pasien`
---
-ALTER TABLE `penanggung_pasien`
-  MODIFY `id_penanggung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
---
--- AUTO_INCREMENT for table `piutang`
---
-ALTER TABLE `piutang`
-  MODIFY `piutang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_pemeriksaan_tindakan` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `produsen_obat`
 --
 ALTER TABLE `produsen_obat`
-  MODIFY `suplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `suplier_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `registrasi_pasien`
 --
 ALTER TABLE `registrasi_pasien`
-  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `rm_resep`
---
-ALTER TABLE `rm_resep`
-  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -1265,12 +815,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `satuan`
 --
 ALTER TABLE `satuan`
-  MODIFY `satuan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `satuan_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `transaksi_kasir`
 --
