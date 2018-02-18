@@ -112,7 +112,7 @@ if(!empty($menusid)){
 						<a type="button" id="btnNextAntrian" class="btn btn-primary btn-block"><i class="fa fa-tv"></i> Tampilkan Antrian Selanjutnya Ke Layar</a>
 					</div>
 					<div class="col-lg-6">
-						<button type="button" class="btn btn-danger btn-block"><i class="fa fa-refresh"></i> Refresh Halaman</button>
+						<button type="button" onclick="window.location.reload();" class="btn btn-danger btn-block"><i class="fa fa-refresh"></i> Refresh Halaman</button>
 					</div>
 				</div>
     		</section>
@@ -122,7 +122,7 @@ if(!empty($menusid)){
     <?php $this->load->view('template/v_footer'); ?>
     <script type="text/javascript">
     $(document).ready(function() {
-    	$('#mnPemeriksaanPasien').addClass('active');
+    	$('#mnMasterPasien').addClass('active');
     	$('#mnAntrianPasien').addClass('active');
     	$('#alert').delay(10000).fadeOut("slow");
     	var sisa_antrian = $('#sisa_antrian').val();

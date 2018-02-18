@@ -75,7 +75,7 @@
               <h1><?= $hari[$now];?></h1>
               <h2><?= date('d').' '.$bulan[date('m')].' '.date('Y');?></h2>
             </div>
-            <div id="content">
+            <!-- <div id="content">
 	        	<div id="slider">
 					<ul>
 						<li><a href="#"><img src="<?php echo base_url('logo/Anggrek.png'); ?>" alt="" /></a></li>
@@ -83,9 +83,9 @@
 						<li><a href="#"><img src="<?php echo base_url('logo/Tulip.png'); ?>" alt="" /></a></li>
 					</ul>
 				</div>
-        	</div>
+        	</div> -->
           </div>
-        </div>
+        </div> 
       </div>
     </section>
     <section class="col-lg-6">
