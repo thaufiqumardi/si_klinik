@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 }
 </style>
 <header class="main-header">
-	<a href="index2.html" class="logo">
+	<a href="<?= site_url('beranda') ?>" class="logo">
     	<span class="logo-mini"><b>SK</b></span>
     	<span class="logo-lg"><b>JASA PRIMA </b></span>
     </a>
