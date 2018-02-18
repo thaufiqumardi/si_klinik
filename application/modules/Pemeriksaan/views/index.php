@@ -46,7 +46,7 @@
 					<div class="box-body">
 						<a href="<?php echo site_url('Pemeriksaan/Cetak');?>" target="_blank"  class="btn btn-default pull-right hidden"><i class="fa fa-print"></i> Cetak</a>
 		              	  <a href="<?php echo base_url(); ?>Pemeriksaan" style="margin-right: 10px;" class="btn btn-warning pull-right">
-		              	  <i class="fa fa-refresh"></i> Refresh</a>
+		              	  <i class="fa fa-refresh"></i> Refresh</a><br><br>
 						<table id="example2" style="border: 2" class="table table-bordered table-striped DataTable">
 							<thead>
 								<tr>
