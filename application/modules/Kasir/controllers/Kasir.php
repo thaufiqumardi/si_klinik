@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require_once APPPATH."third_party/printpos/autoload.php";
+// require_once APPPATH."third_party/printpos/autoload.php";
 
 class Kasir extends MX_Controller {
 
