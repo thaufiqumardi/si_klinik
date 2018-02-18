@@ -18,8 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<div class="col-xs-9 text-center">
 			<br>
-			<span>IZIN NO:</span><br>
-			<p>Jl. Raya Paling No. 147 Cirebon telp. (022) xxxx</p>
+			<span></span><br>
+			<p>Jl. Raya Pilang No. 147 Cirebon</p>
 		</div>
 		<hr>
 	</div>

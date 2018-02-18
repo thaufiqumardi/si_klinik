@@ -19,8 +19,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<div class="col-xs-9 text-center">
 			<br>
-			<span>IZIN NO:445/1617-DINKES/04-S1-KK/IV/05</span><br>
-			<p>Jl. Kiaracondong 304/19-21 telp. (022) 7311759</p>
+			<span></span><br>
+			<p>Jl. Raya Pilang No. 147 Cirebon</p>
 		</div>
 		<hr>
 	</div>
