@@ -194,4 +194,18 @@ class M_kasir extends CI_Model
 								->join('dokter','registrasi_pasien.id_dokter=dokter.id_dokter');
 			return $this->db->get()->result();
 		}
+		function get_riwayat(){
+			$this->db->select('*, pemasukan.created_date As tgl_transaksi')
+								->from('pemasukan')
+								->join('users','users.user_id=pemasukan.created_by')
+								->order_by('pemasukan.created_date','DESC');
+			return $this->db->get()->result();
+		}
+		function get_detail_pemasukan($no_kuitansi){
+			$this->db->select('*')
+								->from('pemasukan a')
+								->join('users b','a.created_by=b.user_id')
+								->where('a.no_kuitansi',$no_kuitansi);
+			return $this->db->get()->row();
+		}
 }

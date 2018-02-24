@@ -160,4 +160,15 @@ class Kasir extends MX_Controller {
 		$this->M_crud->_delete('transaksi_kasir','id_transaksi',$id_transaksi);
 		redirect('kasir');
 	}
+	function riwayat($no_kuitansi = NULL){
+		if(!empty($no_kuitansi)){
+			$data['detail_pemasukan'] = $this->modelKasir->get_detail_pemasukan($no_kuitansi);
+			// echo json_encode($data['detail_pemasukan']);
+			// die;
+			$this->load->view('riwayat_detail',$data);
+		} else {
+			$data['riwayat'] = $this->modelKasir->get_riwayat();
+			$this->load->view('riwayat',$data);
+		}
+	}
 }

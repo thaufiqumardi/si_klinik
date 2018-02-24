@@ -233,6 +233,7 @@ if(!empty($menusid)){
 			});
 
     	$('#mnKasir').addClass('active');
+			$('#mnTransaksi').addClass('active');
 			// if(nomor_kuitansi ==null || nomor_kuitansi==0){
 			// 	$("input[name='no_kuitansi_pemasukan']").val('0');
 			// }

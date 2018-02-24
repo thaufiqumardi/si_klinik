@@ -67,6 +67,7 @@ $route['pendaftaran_pasien']='Pasien/pendaftaran_pasien';
 /* BERANDA */
 $route['kasir']="Kasir";
 $route['kasir/cetak']='Kasir/cetak';
+$route['kasir/riwayat']='Kasir/riwayat';
 /* BERANDA */
 
 /* PEMERIKSAAN */

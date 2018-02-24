@@ -155,7 +155,8 @@ if(!empty($menusid)){
     var kembalian = -1;
 		var nomor_kuitansi = $("input[name='no_kuitansi_pemasukan']").val();
     $(document).ready(function(){
-      $('#mnKasir').addClass('active');
+			$('#mnTransaksi').addClass('active');
+		$('#mnKasirPemeriksaan').addClass('active');
       $('.tableData').DataTable({
         'lengthChange':false,
         'info':false,

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 18 Feb 2018 pada 18.32
--- Versi Server: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Feb 18, 2018 at 06:54 PM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admins`
+-- Table structure for table `admins`
 --
 
 CREATE TABLE `admins` (
@@ -39,7 +39,7 @@ CREATE TABLE `admins` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admins`
+-- Dumping data for table `admins`
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `level`, `role_id`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `admins` (`id`, `username`, `password`, `level`, `role_id`, `created
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_pembiayaan`
+-- Table structure for table `detail_pembiayaan`
 --
 
 CREATE TABLE `detail_pembiayaan` (
@@ -72,17 +72,18 @@ CREATE TABLE `detail_pembiayaan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_pembiayaan`
+-- Dumping data for table `detail_pembiayaan`
 --
 
 INSERT INTO `detail_pembiayaan` (`id_pembiayaan`, `id_registrasi`, `no_registrasi`, `tgl_registrasi`, `nama_item`, `jenis_item`, `item_id`, `harga`, `qty`, `total_harga`, `status_bayar`, `satuan`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
 (1, 1, '1802190001', '2018-02-19 00:00:00', 'Biaya Pendaftaran', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '1', NULL, NULL, '2018-02-18 17:05:17', NULL, '2018-02-18 17:14:46'),
-(2, 1, NULL, NULL, 'Inzana Anak', 'Obat', 2, '1000.00', '3.00', '3000.00', '1', NULL, NULL, '2018-02-18 17:13:02', NULL, '2018-02-18 17:14:46');
+(2, 1, NULL, NULL, 'Inzana Anak', 'Obat', 2, '1000.00', '3.00', '3000.00', '1', NULL, NULL, '2018-02-18 17:13:02', NULL, '2018-02-18 17:14:46'),
+(3, 2, '1802190002', '2018-02-19 00:00:00', 'Biaya Pendaftaran', 'Pendaftaran', 0, '10000.00', '1.00', '10000.00', '0', NULL, NULL, '2018-02-18 17:50:28', NULL, '2018-02-18 17:50:28');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dokter`
+-- Table structure for table `dokter`
 --
 
 CREATE TABLE `dokter` (
@@ -107,7 +108,7 @@ CREATE TABLE `dokter` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `dokter`
+-- Dumping data for table `dokter`
 --
 
 INSERT INTO `dokter` (`id_dokter`, `kd_dokter`, `nama_dokter`, `jenis_kelamin`, `tmp_lahir`, `tgl_lahir`, `gol_darah`, `agama`, `alamat`, `telepon`, `status_nikah`, `alumni`, `no_izin_praktek`, `status`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
@@ -117,7 +118,7 @@ INSERT INTO `dokter` (`id_dokter`, `kd_dokter`, `nama_dokter`, `jenis_kelamin`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hak_akses`
+-- Table structure for table `hak_akses`
 --
 
 CREATE TABLE `hak_akses` (
@@ -136,7 +137,7 @@ CREATE TABLE `hak_akses` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `hak_akses`
+-- Dumping data for table `hak_akses`
 --
 
 INSERT INTO `hak_akses` (`id_hak_akses`, `hak_akses_role`, `hak_akses_menu`, `hak_akses_create`, `hak_akses_retrive`, `hak_akses_update`, `hak_akses_delete`, `hak_akses_search`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
@@ -161,7 +162,7 @@ INSERT INTO `hak_akses` (`id_hak_akses`, `hak_akses_role`, `hak_akses_menu`, `ha
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `harga_obat`
+-- Table structure for table `harga_obat`
 --
 
 CREATE TABLE `harga_obat` (
@@ -177,7 +178,7 @@ CREATE TABLE `harga_obat` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `harga_obat`
+-- Dumping data for table `harga_obat`
 --
 
 INSERT INTO `harga_obat` (`harga_obat_id`, `id_obat`, `harga_beli`, `harga_jual1`, `harga_jual2`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
@@ -187,7 +188,7 @@ INSERT INTO `harga_obat` (`harga_obat_id`, `id_obat`, `harga_beli`, `harga_jual1
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -200,7 +201,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
@@ -210,7 +211,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `created_date`, `created
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `layanan`
+-- Table structure for table `layanan`
 --
 
 CREATE TABLE `layanan` (
@@ -225,7 +226,7 @@ CREATE TABLE `layanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `layanan`
+-- Dumping data for table `layanan`
 --
 
 INSERT INTO `layanan` (`id_layanan`, `nama_layanan`, `tarif_layanan`, `tarif_khusus`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -235,7 +236,7 @@ INSERT INTO `layanan` (`id_layanan`, `nama_layanan`, `tarif_layanan`, `tarif_khu
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -254,7 +255,7 @@ CREATE TABLE `menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id_menu`, `name`, `title`, `url`, `icon`, `ref`, `urutan`, `parent`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
@@ -291,12 +292,13 @@ INSERT INTO `menu` (`id_menu`, `name`, `title`, `url`, `icon`, `ref`, `urutan`, 
 (70, 'dokter', 'Dokter', 'dokter', 'fa-black-tie', 'dokter', 2, 0, '2018-01-27 20:01:24', NULL, '2018-02-02 01:31:08', 2),
 (52, 'AntrianPasien', 'Antrian Pasien', 'antrianpasien', 'fa-circle-o', 'mnAntrianPasien', 1, 4, '2018-01-03 02:11:34', NULL, '2018-01-03 02:11:34', NULL),
 (72, 'layanan', 'Layanan', 'layanan', 'fa-medkit', 'mnLayanan', 6, 0, '2018-02-08 15:57:29', NULL, '2018-02-14 13:42:39', 2),
-(73, 'pemeriksaan', 'Pemeriksaan', 'pemeriksaan', 'fa-stethoscope', 'mnPemeriksaan', 6, 0, '2018-02-08 20:50:34', NULL, '2018-02-08 20:51:58', 2);
+(73, 'pemeriksaan', 'Pemeriksaan', 'pemeriksaan', 'fa-stethoscope', 'mnPemeriksaan', 6, 0, '2018-02-08 20:50:34', NULL, '2018-02-08 20:51:58', 2),
+(74, 'antrianPasien', 'Antrian Pasien', 'antrianpasien', 'fa-circle-o', 'mnAntrianPasien', NULL, 7, '2018-02-19 00:45:10', NULL, '2018-02-19 00:52:07', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `merk`
+-- Table structure for table `merk`
 --
 
 CREATE TABLE `merk` (
@@ -309,7 +311,7 @@ CREATE TABLE `merk` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `merk`
+-- Dumping data for table `merk`
 --
 
 INSERT INTO `merk` (`merk_id`, `merk_nama`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
@@ -319,7 +321,7 @@ INSERT INTO `merk` (`merk_id`, `merk_nama`, `created_by`, `created_date`, `updat
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `obat`
+-- Table structure for table `obat`
 --
 
 CREATE TABLE `obat` (
@@ -338,7 +340,7 @@ CREATE TABLE `obat` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `obat`
+-- Dumping data for table `obat`
 --
 
 INSERT INTO `obat` (`id_obat`, `id_kategori`, `id_satuan`, `id_merk`, `id_supplier`, `kode_obat`, `nama_obat`, `stok`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
@@ -348,7 +350,7 @@ INSERT INTO `obat` (`id_obat`, `id_kategori`, `id_satuan`, `id_merk`, `id_suppli
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `owner`
+-- Table structure for table `owner`
 --
 
 CREATE TABLE `owner` (
@@ -364,7 +366,7 @@ CREATE TABLE `owner` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `owner`
+-- Dumping data for table `owner`
 --
 
 INSERT INTO `owner` (`owner_id`, `nama_owner`, `alamat_owner`, `logo_owner`, `no_telpon_owner`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
@@ -373,7 +375,7 @@ INSERT INTO `owner` (`owner_id`, `nama_owner`, `alamat_owner`, `logo_owner`, `no
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pasien`
+-- Table structure for table `pasien`
 --
 
 CREATE TABLE `pasien` (
@@ -404,16 +406,17 @@ CREATE TABLE `pasien` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pasien`
+-- Dumping data for table `pasien`
 --
 
 INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_kartu`, `nama_pasien`, `nik_pasien`, `tempat_lahir`, `tgl_lahir`, `umur`, `agama`, `pekerjaan_pasien`, `gol_darah`, `jenis_kelamin`, `no_telp_rumah`, `no_handphone`, `jalan`, `rtrw`, `kelurahan`, `kecamatan`, `kota`, `status_pasien`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, '18000001', '00000001', 'Muhammad Thaufiq ', '3273060507960005', 'Cilacap', '1996-07-05', 22, 'Islam', 'Pengangguran', 'O', 'Laki-Laki', '', '857-2323-6512', 'Jl. Dr Abdul Rivai ', '03/03', 'Pasirkaliki', 'Cicendo', 'Bandung', 'BARU', '2018-02-18 23:56:57', 100, '2018-02-18 23:56:57', NULL);
+(1, '18000001', '00000001', 'Muhammad Thaufiq ', '3273060507960005', 'Cilacap', '1996-07-05', 22, 'Islam', 'Pengangguran', 'O', 'Laki-Laki', '', '857-2323-6512', 'Jl. Dr Abdul Rivai ', '03/03', 'Pasirkaliki', 'Cicendo', 'Bandung', 'BARU', '2018-02-18 23:56:57', 100, '2018-02-18 23:56:57', NULL),
+(2, '18000002', '00000002', 'Asep Surasep', '2392389282394802', 'Bandung', '1991-03-01', 27, 'Islam', 'Pengangguran', NULL, 'Laki-Laki', '', '', 'Jl. Cararaang', '30/34', 'okojo', 'ojo', 'Bandung', 'BARU', '2018-02-19 00:50:21', 2, '2018-02-19 00:50:21', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemasukan`
+-- Table structure for table `pemasukan`
 --
 
 CREATE TABLE `pemasukan` (
@@ -436,7 +439,7 @@ CREATE TABLE `pemasukan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pemasukan`
+-- Dumping data for table `pemasukan`
 --
 
 INSERT INTO `pemasukan` (`pemasukan_id`, `no_kuitansi`, `id_registrasi`, `no_registrasi`, `tgl_pemasukan`, `nama_pemasukan`, `jenis_pemasukan`, `harga_pemasukan`, `qty_pemasukan`, `total_pemasukan`, `uang_bayar`, `uang_kembalian`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
@@ -445,7 +448,7 @@ INSERT INTO `pemasukan` (`pemasukan_id`, `no_kuitansi`, `id_registrasi`, `no_reg
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemeriksaan`
+-- Table structure for table `pemeriksaan`
 --
 
 CREATE TABLE `pemeriksaan` (
@@ -467,7 +470,7 @@ CREATE TABLE `pemeriksaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pemeriksaan`
+-- Dumping data for table `pemeriksaan`
 --
 
 INSERT INTO `pemeriksaan` (`id_pemeriksaan`, `id_pasien`, `id_registrasi`, `id_dokter`, `tgl_pemeriksaan`, `tensi`, `berat_badan`, `tinggi_badan`, `keluhan`, `anamnesa`, `diagnosa`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
@@ -476,7 +479,7 @@ INSERT INTO `pemeriksaan` (`id_pemeriksaan`, `id_pasien`, `id_registrasi`, `id_d
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemeriksaan_resep`
+-- Table structure for table `pemeriksaan_resep`
 --
 
 CREATE TABLE `pemeriksaan_resep` (
@@ -495,7 +498,7 @@ CREATE TABLE `pemeriksaan_resep` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pemeriksaan_resep`
+-- Dumping data for table `pemeriksaan_resep`
 --
 
 INSERT INTO `pemeriksaan_resep` (`id_pemeriksaan_resep`, `id_pasien`, `id_registrasi`, `id_dokter`, `tgl_pemeriksaan`, `id_obat`, `qty_obat`, `id_satuan`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
@@ -504,7 +507,7 @@ INSERT INTO `pemeriksaan_resep` (`id_pemeriksaan_resep`, `id_pasien`, `id_regist
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemeriksaan_tindakan`
+-- Table structure for table `pemeriksaan_tindakan`
 --
 
 CREATE TABLE `pemeriksaan_tindakan` (
@@ -523,7 +526,7 @@ CREATE TABLE `pemeriksaan_tindakan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produsen_obat`
+-- Table structure for table `produsen_obat`
 --
 
 CREATE TABLE `produsen_obat` (
@@ -540,7 +543,7 @@ CREATE TABLE `produsen_obat` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `registrasi_pasien`
+-- Table structure for table `registrasi_pasien`
 --
 
 CREATE TABLE `registrasi_pasien` (
@@ -562,16 +565,17 @@ CREATE TABLE `registrasi_pasien` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `registrasi_pasien`
+-- Dumping data for table `registrasi_pasien`
 --
 
 INSERT INTO `registrasi_pasien` (`id_registrasi`, `no_registrasi`, `id_dokter`, `id_pasien`, `tgl_registrasi`, `jam_registrasi`, `no_antrian`, `status_registrasi`, `status_antrian`, `status_bayar`, `play_sound`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
-(1, 1802190001, 1, 1, '2018-02-19', '00:05:17', 1, '0', '1', 1, '0', '2018-02-19 00:05:17', NULL, '2018-02-19 00:14:46', NULL);
+(1, 1802190001, 1, 1, '2018-02-19', '00:05:17', 1, '0', '1', 1, '1', '2018-02-19 00:05:17', NULL, '2018-02-19 00:47:45', NULL),
+(2, 1802190002, 2, 2, '2018-02-19', '00:50:28', 2, '0', '1', 0, '1', '2018-02-19 00:50:28', NULL, '2018-02-19 00:50:59', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -584,7 +588,7 @@ CREATE TABLE `role` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`role_id`, `role_name`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
@@ -597,7 +601,7 @@ INSERT INTO `role` (`role_id`, `role_name`, `created_date`, `created_by`, `updat
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `satuan`
+-- Table structure for table `satuan`
 --
 
 CREATE TABLE `satuan` (
@@ -610,7 +614,7 @@ CREATE TABLE `satuan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `satuan`
+-- Dumping data for table `satuan`
 --
 
 INSERT INTO `satuan` (`satuan_id`, `satuan_nama`, `created_by`, `created_date`, `updated_by`, `updated_date`) VALUES
@@ -620,7 +624,7 @@ INSERT INTO `satuan` (`satuan_id`, `satuan_nama`, `created_by`, `created_date`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `supplier`
+-- Table structure for table `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -638,7 +642,7 @@ CREATE TABLE `supplier` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `supplier`
+-- Dumping data for table `supplier`
 --
 
 INSERT INTO `supplier` (`supplier_id`, `nama_supplier`, `kode_supplier`, `alamat_supplier`, `no_telpon_supplier`, `contact_person`, `no_telp_cp`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
@@ -648,7 +652,7 @@ INSERT INTO `supplier` (`supplier_id`, `nama_supplier`, `kode_supplier`, `alamat
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi_kasir`
+-- Table structure for table `transaksi_kasir`
 --
 
 CREATE TABLE `transaksi_kasir` (
@@ -666,7 +670,7 @@ CREATE TABLE `transaksi_kasir` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -685,7 +689,7 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `is_admin`, `role_id`, `name`, `username`, `password`, `user_photo`, `status`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES
@@ -850,7 +854,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `detail_pembiayaan`
 --
 ALTER TABLE `detail_pembiayaan`
-  MODIFY `id_pembiayaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pembiayaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `dokter`
 --
@@ -880,7 +884,7 @@ ALTER TABLE `layanan`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `merk`
 --
@@ -895,7 +899,7 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pemasukan`
 --
@@ -925,7 +929,7 @@ ALTER TABLE `produsen_obat`
 -- AUTO_INCREMENT for table `registrasi_pasien`
 --
 ALTER TABLE `registrasi_pasien`
-  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_registrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `role`
 --

@@ -121,7 +121,8 @@
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
-	  $('#mnKasir').addClass('active');
+	  $('#mnTransaksi').addClass('active');
+		$('#mnKasirPemeriksaan').addClass('active');
       $('#alert').delay(10000).fadeOut("slow");
 	});
 
