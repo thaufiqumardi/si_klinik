@@ -64,12 +64,18 @@ if(!empty($menusid)){
 										<div class="form-group">
 											<label class="control-label col-md-2">Nama</label>
 											<div class="col-md-10">
-												<div class="input-group input-group-sm">
+												<!-- <div class="input-group input-group-sm">
 													<input type="text" name="nama_obat " required id="searchByNamaObat" class="form-control" />
 													<span class="input-group-btn">
 														<button type="button" id="btn_searchObat"  class="btn btn-small btn-primary btn-flat"><i class="fa fa-search"></i></button>
 													</span>
-												</div>
+												</div> -->
+												<select name="kd_obat" id="select_obat" class="form-control selectOption">
+													<option selected value="" disabled>--Masukan Nama Obat--</option>
+													<?php foreach($obats as $obat):?>
+														<option value="<?=$obat->id_obat;?>"><?=$obat->nama_obat;?></option>
+													<?php endforeach;?>
+												</select>
 											</div>
 										</div>
 									</div>
@@ -211,6 +217,7 @@ if(!empty($menusid)){
 			window.location=uri+'/'+nomor_kuitansi;
 		}
     $(document).ready(function() {
+			$('.selectOption').select2({});
 			window.onbeforeunload = function(){alert("Transaksi Harus Diselesaikan terlebih dulu atau hapus transaksi barang"); };
 			setTableTransaksi(nomor_kuitansi)
 			setSubTotal(nomor_kuitansi);
@@ -276,14 +283,18 @@ if(!empty($menusid)){
 					}
 				},"JSON");
 			}
+			$('#select_obat').change(function(data){
+				getObat(data.target.value);
+			})
 			function getObat(data){
-				var uri = "<?= site_url('Kasir/getObatByKd');?>";
+				var uri = "<?= site_url('Kasir/getObatById');?>";
 				$.get(uri+'/'+data,function(data){
 					if(data==null){
 						alert("Data Obat tidak ada");
 					}
 					else{
 						$("input[name='id_barang']").val(data.id_obat);
+						$("input[name='kd_obat']").val(data.kode_obat);
 						$("input[name='nama_barang']").val(data.nama_obat);
 						$("input[name='satuan_barang']").val(data.satuan_nama);
 						$("input[name='id_satuan']").val(data.satuan_id);

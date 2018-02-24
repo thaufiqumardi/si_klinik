@@ -8,15 +8,13 @@ class Kasir extends MX_Controller {
     {
       parent::__construct();
 			$this->load->model('M_kasir','modelKasir');
-			$this->load->model('Pasien/M_pasien','modelPasien');
-			$this->load->model('Pemeriksaan/M_pemeriksaan','modelPemeriksaan');
     }
 
 	public function index(){
 		$this->M_setting->_make_sure_is_login();
 		$this->M_setting->_check_menu();
 		$data['no_kuitansi']=$this->modelKasir->get_nomor_kuitansi();
-		
+		$data['obats'] = $this->M_crud->get_select_to_array('*','obat');
 		$this->load->view('show',$data);
 	}
 	function pemeriksaan(){
@@ -33,7 +31,7 @@ class Kasir extends MX_Controller {
 		}
 		$this->load->view('show_pemeriksaan',$data);
 	}
-	function getObatByKd($kd_obat){
+	function getObatById($kd_obat){
 		$obat = $this->modelKasir->getObatByKodeObat($kd_obat);
 		$obat->harga_jual1 = $this->M_base->currFormat2($obat->harga_jual1);
 		$obat->harga_jual1 = substr($obat->harga_jual1,0,-3);
@@ -52,11 +50,8 @@ class Kasir extends MX_Controller {
 		$id_registrasi = $data['detail_pemasukan']->id_registrasi;
 		$data['pasien']   = $this->modelKasir->get_pasien_by_registrasi($id_registrasi);
 		$data['transaksi'] = $this->M_crud->get_select_to_array('*','transaksi_kasir','obat','transaksi_kasir.id_barang=obat.id_obat','no_kuitansi',$no_kuitansi);
-		// echo json_encode($data);
-		// die;
 		if(!empty($id_registrasi)){
 			$data['detail_berobat'] = $this->modelKasir->get_pembiayaan($id_registrasi);
-			// echo json_encode($data['detail_berobat']);
 			$this->load->view('print_pembiayaan',$data);
 		} else {
 			$this->load->view('print',$data);

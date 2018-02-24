@@ -10,6 +10,11 @@ class Home extends CI_Controller{
 
 	function index()
 	{
+		// $CI =& get_instance();
+		// echo "<pre>";
+		// print_r($CI);
+		// echo "</pre>";
+		// die;
 		$login = $this->M_base->check_session_login();
 		if($login == 'Ok'){
 			// $now = new DateTime ( NULL, new DateTimeZone('Asia/Jakarta'));

@@ -1,11 +1,19 @@
-body.receipt .sheet { width: 58mm; height: 100mm } /* change height as you like */
+body.receipt .sheet { width: 58mm; height: 100mm;  } /* change height as you like */
 @media print { body.receipt { width: 58mm } } /* this line is needed for fixing Chrome's bug */
+@font-face{
+  font-family: roboto;
+  src : url('roboto-mono-regular.woff');
+}
+body{
+  font-family: roboto;
+}
 #invoice-POS{
   box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
-  padding:2mm;
+  padding:0;
   margin: 0 auto;
   width: 44mm;
   background: #FFF;
+  font-family: roboto;
   
 }
 ::selection {background: #f31544; color: #FFF;}
@@ -22,31 +30,31 @@ h3{
 }
 p{
   font-size: .7em;
-  color: #666;
+  color: #000;
   line-height: 1.2em;
   margin:none;
 }
 small{
   font-size: .6em;
-  color: #666;
+  color: #000000;
   line-height: 1.2em;
   text-align:left;
 }
-#top, #mid,#bot{ /* Targets all id with 'col-' */
-  border-bottom: 1px solid #EEE;
+#top, #mid{ /* Targets all id with 'col-' */
+  border-bottom: 1px dashed #000;
 }
-
-#top{min-height: 100px;}
+#bot{ border-bottom:none;}
+#top{min-height: auto;}
 #mid{min-height: auto;} 
 #bot{ min-height: 50px;}
 
-#top .logo{
+/* #top .logo{ */
   /* float: left; */
-	height: 60px;
+	/* height: 60px;
 	width: 60px;
 	background: url(KMB_Logo_Small.png) no-repeat;
 	background-size: 60px 60px;
-}
+} */
 .clientlogo{
   float: left;
 	height: 60px;
@@ -66,7 +74,7 @@ small{
 .title p{text-align: right;} 
 table{
   width: 100%;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 /* td{
   padding: 5px 0 5px 15px;
@@ -74,13 +82,15 @@ table{
 } */
 .tabletitle{
   /* padding: 5px; */
-  font-size: .5em;
-  background: #EEE;
+  font-size: 11px;
+  background: #FFF;
 }
 .service{border-bottom: 1px solid #EEE;}
 .item{width: 24mm;}
 .itemtext{font-size: .5em;}
-
+h5{
+  margin:0;
+}
 #legalcopy{
   margin-top: 5mm;
 }

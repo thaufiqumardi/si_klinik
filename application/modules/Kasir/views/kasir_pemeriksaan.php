@@ -58,7 +58,7 @@
 							<thead>
 								<tr>
 									<th style="width: 5%;" class="text-center">No.</th>
-                  <th>No. antrian</th>
+									<th style="width: 5%;" class="text-center">Tgl. Registrasi</th>
 									<th class="text-center">No. Rekam Medik</th>
 									<th class="text-center">No. Kartu</th>
 									<th class="text-center">Nama Pasien</th>
@@ -70,7 +70,7 @@
 								<?php foreach($registered as $key => $row):?>
 									<tr>
 										<td><?= ++$key;?></td>
-                    <td><?= $row->no_antrian;?></td>
+										<td><?= date('d-M-Y',strtotime($row->tgl_registrasi));?></td>
 										<td><?= $row->no_rm;?></td>
 										<td><?= $row->no_kartu;?></td>
 										<td><?= $row->nama_pasien;?></td>

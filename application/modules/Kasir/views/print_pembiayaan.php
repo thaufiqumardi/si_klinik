@@ -57,26 +57,25 @@ if(!empty($menusid)){
 						?>
 			<div id="invoice-POS">
 				<center id="top">
-					<div class="logo"></div>
-					<div class="info"> 
-						<p style="margin-bottom:0px;">JASA PRIMA MEDICAL CENTRE</p>
-						<small>Jl. Pilang Raya No.147 Cirebon</small>
+				<div class="info"> 
+						<p style="margin-bottom:-5px;">JASA PRIMA MEDICAL CENTRE</p>
+						<p style="margin-bottom:-10px;">Jl. Pilang Raya No.147</p>
+						<p style="margin-bottom:5px;">Cirebon</p>
+						<p style="margin:0px;">NPWP: 70.622.7279-426.001</p>
+						<small>Telp. 022-XXXXXX</small>
 					</div><!--End Info-->
 				</center><!--End InvoiceTop-->
 				<div id="mid">
 					<div class="info">
-						<p class="itemtext"> 
-								<b>Kasir</b> : <?= $this->session->userdata['simklinik']['ap_name'];?></br>
-                <b>No. Struk</b>: <?= $detail_pemasukan->no_kuitansi;?></br>
-                <b>Nama Paisen</b>: <?= $pasien->nama_pasien;?></br>
-                <b>Waktu Daftar</b>:  <?php
-                  $tgl = date('d-M-Y',strtotime($pasien->tgl_registrasi));
-                  echo $tgl.' '.$pasien->jam_registrasi;
-                  ?>
+						<p class="itemtext">
+						<p style="text-align:center;margin:0px;">Bukti Pembayaran</p> 
+						<h5><b>No. Nota</b>: <?= $detail_pemasukan->no_kuitansi;?></h5>
+						<small>Tgl: <?= date('d').' '.$bulan[date('m')].' '.date('Y');?><br><?="Jam: ".date('H:i:s');?></small><br>
+						<small>Operator : <?= $this->session->userdata['simklinik']['ap_name'];?></small>
 						</p>
 					</div>
 				</div><!--End Invoice Mid-->
-				<div id="bot">
+				<div id="mid">
 							<div id="table">
 								<table>
 									<tr class="tabletitle">
@@ -104,32 +103,34 @@ if(!empty($menusid)){
 									</tr>
 									<?php endforeach;?>
 								</table>
+								<div class="itemtext" style="text-align:right;margin-right:3%;">
+								<p style="font-size:1em;">------+<p>
+								</div>
 								<table>
 								<tr class="tabletitle">
 										<!-- <td></td> -->
-										<td class="Rate" style="text-align:right;" colspan='2'><h2>Total</h2></td>
+										<td class="Rate"  colspan='2'><h2>Total ........</h2></td>
 										<td class="payment" style="text-align:center;"><h2>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->total_pemasukan), 0, -3);?></h2></td>
 									</tr>
 									<tr class="tabletitle">
 										<!-- <td></td> -->
-										<td class="Rate" style="text-align:right;" colspan='2'><h2>Tunai</h2></td>
+										<td class="Rate"  colspan='2'><h2>Tunai ........</h2></td>
 										<td class="payment" style="text-align:center;"><h2>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_bayar), 0, -3);?></h2></td>
 									</tr>
 									<tr class="tabletitle">
 										<!-- <td></td> -->
-										<td class="Rate" style="text-align:right;" colspan='2'><h2>Kembalian</h2></td>
+										<td class="Rate" colspan='2'><h2>Kembalian ....</h2></td>
 										<td class="payment" style="text-align:center;"><h2>Rp. <?=	substr($this->M_base->currFormat2($detail_pemasukan->uang_kembalian), 0, -3);?></h2></td>
 									</tr>
 								</table>
+								<p style="text-align:center;font-size:.6em;" >Harga Sudah Termasuk PPN</p>
 							</div><!--End Table-->
-
-							<div id="legalcopy">
-								<p class="legal" style="text-align:center;">
-									<strong>=======Terimakasih=======<br>====Semoga Lekas Sembuh====</strong><br>
-									<small><?= date('d').' '.$bulan[date('m')].' '.date('Y').'  '.date('H:i:s');?></small>
+						</div>
+						<div id="legalcopy">
+								<p class="legal" style="text-align:center; font-size:9px;">
+									*** TERIMAKASIH ***<br>MITRA ANDA UNTUK TETAP SEHAT<br>
+									
 								</p>
-							</div>
-
 						</div><!--End InvoiceBot-->
 			</div><!--End Invoice-->
 
